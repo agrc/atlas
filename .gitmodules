@@ -10,3 +10,6 @@
 [submodule "src/dojox"]
 	path = src/dojox
 	url = https://github.com/dojo/dojox.git
+[submodule "src/agrc"]
+	path = src/agrc
+	url = https://github.com/agrc/agrc.widgets.git
