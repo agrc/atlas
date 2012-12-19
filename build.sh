@@ -39,6 +39,7 @@ echo " Done"
 cd "$TOOLSDIR"
 
 if which node >/dev/null; then
+  ulimit -n 1024 # see: http://bugs.dojotoolkit.org/ticket/15620 remove after upgrading to dojo 1.8
   node ../../dojo/dojo.js load=build --require "$LOADERCONF" --profile "$PROFILE" --releaseDir "$DISTDIR" $@
 elif which java >/dev/null; then
   java -Xms256m -Xmx256m  -cp ../shrinksafe/js.jar:../closureCompiler/compiler.jar:../shrinksafe/shrinksafe.jar org.mozilla.javascript.tools.shell.Main  ../../dojo/dojo.js baseUrl=../../dojo load=build --require "$LOADERCONF" --profile "$PROFILE" --releaseDir "$DISTDIR" $@
