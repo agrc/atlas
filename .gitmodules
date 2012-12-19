@@ -15,4 +15,4 @@
 	url = https://github.com/agrc/agrc.widgets.git
 [submodule "src/ijit"]
 	path = src/ijit
-	url = https://github.com/stdavis/ijit.widgets.git
+	url = https://github.com/agrc/ijit.widgets.git
