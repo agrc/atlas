@@ -1,0 +1,18 @@
+{
+	"folders":
+	[
+		{
+            "folder_exclude_patterns": [
+                "dist/app", 
+                "dist/bootstrap", 
+                "dist/dijit", 
+                "dist/dojo", 
+                "dist/ijit", 
+                "dist/jquery", 
+                "dist/leaflet", 
+                "dist/agrc"
+            ], 
+			"path": "/Users/scottdavis/Documents/Projects/AGRCJavaScriptProjectBoilerPlate"
+		}
+	]
+}

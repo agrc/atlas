@@ -1,0 +1,29 @@
+<div>
+    <div data-dojo-attach-point='mainContainer' class='main-container' data-dojo-type='dijit.layout.BorderContainer'>
+        <div class='title-pane' data-dojo-type='dijit.layout.ContentPane' region='top'>
+            <h1>
+                <span class='title'>Project Title (beta)</span>
+                <a data-dojo-attach-point='version' class='version' href='ChangeLog.html' target="_blank"></a>
+            </h1>
+        </div>
+        <div data-dojo-attach-point='sideBar' class='side-bar' data-dojo-type='dijit.layout.ContentPane' region='left'>
+            <div class='side-bar-sizer'>
+                <div class='padder'>
+                    padded content
+                </div>
+                <div data-dojo-attach-point='paneStack'>
+                    <div title='Pane 1' open='true'>
+                        blah
+                    </div>
+                    <div title='Pane 2'>
+                        blah
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-dojo-attach-point='centerContainer' class='center-container' data-dojo-type='dijit.layout.ContentPane' region='center'>
+            <div data-dojo-attach-point='sidebarToggle'></div>
+            <div data-dojo-attach-point='mapDiv' class='map-div'></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AGRC JavaScript Project Boilerplate</title>
+
+    <!-- META TAGS -->
+    <meta charset='utf-8'>
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://serverapi.arcgisonline.com/jsapi/arcgis/3.0/js/dojo/dijit/themes/claro/claro.css'>
+    <link rel='stylesheet' href='app/resources/app.css'>
+</head>
+<body class='claro'>
+    <div data-dojo-type='app.App'></div>
+
+    <!-- JAVASCRIPT -->
+    <script data-dojo-config="async: 0, isDebug: 1, tlmSiblingOfDojo: 1" src='http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.0' defer></script>
+    <script src='app/nls/run_en-us.js' defer></script> <!-- for built version -->
+    <script src='app/run.js' defer></script>
+
+    <!-- GOOGLE ANALYTICS -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'CODE???']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</body>
+</html>

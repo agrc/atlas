@@ -1,0 +1,39 @@
+{
+    "predef": [
+        "alert",
+        "dojo",
+        // jquery
+        "$",
+        "jQuery",
+        
+        // AMD
+        "define",
+        "require",
+
+        "console",
+        "module",
+        "AGRC",
+
+        // jasmine
+        "it", 
+        "expect", 
+        "beforeEach", 
+        "afterEach", 
+        "spyOn", 
+        "jasmine", 
+        "runs", 
+        "waitsFor",
+        "describe",
+        "xit",
+        "stubModule"
+    ],
+
+    "evil": true,
+    "regexdash": true,
+    "browser": true,
+    "wsh": true,
+    // "trailing": true,
+    "sub": true,
+    "undef": true,
+    "unused": true
+}
