@@ -32,4 +32,4 @@ Build an awesome app.
 
 ### Step 3 - Optimize
 
-Before pushing to a server, run `build.sh`. This will use the dojo build system to create an optimized version of your app in the `dist` directory that you can then upload to your server.
+Before pushing to a server, run `build.sh`. This will use the [dojo build system](http://dojotoolkit.org/reference-guide/build/) to create an optimized version of your app in the `dist` directory that you can then upload to your server.
