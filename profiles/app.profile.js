@@ -1,11 +1,5 @@
-function copyOnly(mid) {
-    return mid in {
-        // 'app/profile': 1
-    };
-}
-
 var profile = {
-    // basePath: '..',
+    basePath: '../src',
     action: 'release',
     cssOptimize: 'comments',
     mini: true,
@@ -71,32 +65,14 @@ var profile = {
         // We aren’t loading tests in production
         'dojo-test-sniff':0
     },
-    resourceTags: {
-        test: function (filename, mid) {
-            // TODO: filter out tests
-            return false;
-        },
-        copyOnly: function (filename, mid) {
-            return copyOnly(mid);
-        },
-        // TODO: filter out agrc, ijit, and esri?
-        amd: function (filename, mid) {
-            return !copyOnly(mid) && /\.js$/.test(filename);
-        },
-        miniExclude: function (filename, mid) {
-            return mid in {
-                'app/profile': 1
-            };
-        }
-    },
     packages: [{
         name: 'dojo',
-        location: '../dojo'
+        location: 'dojo'
     },{
         name: 'dijit',
-        location: '../dijit'
+        location: 'dijit'
     },{
         name: 'dojox',
-        location: '../dojox'
+        location: 'dojox'
     }]
 };

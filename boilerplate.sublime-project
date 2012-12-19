@@ -1,8 +1,10 @@
 {
-	"folders":
-	[
-		{
-			"path": "/Users/scottdavis/Documents/Projects/AGRCJavaScriptProjectBoilerPlate"
-		}
-	]
+ "folders": [
+  {
+   "folder_exclude_patterns": [
+    "dist"
+   ], 
+   "path": "/Users/scottdavis/Documents/Projects/AGRCJavaScriptProjectBoilerPlate"
+  }
+ ]
 }

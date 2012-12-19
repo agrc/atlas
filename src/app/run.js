@@ -5,19 +5,19 @@
         projectUrl = location.pathname.replace(/\/[^\/]+$/, "");
     } else {
         // running in rhino (build system)
-        projectUrl = '../';
+        projectUrl = '';
     }
     require({
         packages: [
             {
                 name: 'app',
-                location: projectUrl + '/app'
+                location: projectUrl + 'app'
             },{
                 name: 'agrc',
-                location: projectUrl + '/agrc'
+                location: projectUrl + 'agrc'
             },{
                 name: 'ijit',
-                location: projectUrl + '/ijit'
+                location: projectUrl + 'ijit'
             }
         ],
         // This is a hack. In order to allow app/main and app/run to be built together into a single file, a cache key needs

@@ -4,5 +4,5 @@
     "main": "main",
     "description": "AGRC Boilerplate",
     "homepage": "https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate",
-    "dojoBuild": "app.profile.js"
+    "dojoBuild": "package.js"
 }
