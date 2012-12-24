@@ -33,6 +33,7 @@ fi
 echo "Building application with $PROFILE to $DISTDIR."
 
 echo -n "Cleaning old files..."
+cp "$DISTDIR/sftp-config.json" "$BASEDIR"
 rm -rf "$DISTDIR"
 echo " Done"
 
@@ -67,7 +68,13 @@ perl -pe "
   s/\s+/ /g;                                 # Collapse white-space" > "$DISTDIR/ChangeLog.html"
 
 echo -n "removing un-needed dojo files"
+cd "$DISTDIR"
+rm -rf "dojo"
+rm -rf "dojox"
+rm -rf "dijit"
 find . -name *.uncompressed.js -exec rm '{}' ';'
 find . -name *.consoleStripped.js -exec rm '{}' ';'
+
+mv "$BASEDIR/sftp-config.json" "$DISTDIR"
 
 echo -n "Build complete"

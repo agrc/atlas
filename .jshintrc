@@ -1,5 +1,6 @@
 {
     "predef": [
+        "esri",
         "alert",
         "dojo",
         // jquery
