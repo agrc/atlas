@@ -1,2 +1,5 @@
 *.sublime-workspace
 /dist/
+.grunt/
+_SpecRunner.html
+node_modules/

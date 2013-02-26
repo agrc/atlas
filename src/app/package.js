@@ -1,9 +1,10 @@
-var profile = {
+/*global profile:true*/
+profile = {
     resourceTags: {
             // Files that contain test code and should be excluded when the `copyTests` build flag exists and is `false`.
             // It is strongly recommended that the `mini` build flag be used instead of `copyTests`. Therefore, no files
             // are marked with the `test` tag here.
-            test: function (filename, mid) {
+            test: function () {
                 return false;
             },
 
@@ -31,4 +32,4 @@ var profile = {
                 };
             }
         }
-}
+};

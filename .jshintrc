@@ -3,20 +3,15 @@
         "esri",
         "alert",
         "dojo",
-        // jquery
         "$",
         "jQuery",
-        
-        // AMD
         "define",
         "require",
-
         "console",
         "module",
         "AGRC",
-
-        // jasmine
         "it", 
+        "xit",
         "expect", 
         "beforeEach", 
         "afterEach", 
@@ -25,7 +20,7 @@
         "runs", 
         "waitsFor",
         "describe",
-        "xit",
+        "xdescribe",
         "stubModule"
     ],
 
@@ -33,7 +28,6 @@
     "regexdash": true,
     "browser": true,
     "wsh": true,
-    // "trailing": true,
     "sub": true,
     "undef": true,
     "unused": true

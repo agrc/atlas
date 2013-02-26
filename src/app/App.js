@@ -70,8 +70,8 @@ function (
             // the correct size
             this.inherited(arguments);
             
-            var ps,
-                sb;
+            var ps;
+            // var sb;
 
             ps = new PaneStack(null, this.paneStack);
             
