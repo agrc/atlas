@@ -71,25 +71,25 @@ function (
             this.inherited(arguments);
             
             var ps;
-            // var sb;
+            var sb;
 
             ps = new PaneStack(null, this.paneStack);
             
             this.initMap();
             
-            // sb = new SideBarToggler({
-            //     sidebar: this.sideBar.domNode,
-            //     mainContainer: this.mainContainer,
-            //     map: this.map,
-            //     centerContainer: this.centerContainer.domNode
-            // }, this.sidebarToggle);
+            sb = new SideBarToggler({
+                sidebar: this.sideBar.domNode,
+                mainContainer: this.mainContainer,
+                map: this.map,
+                centerContainer: this.centerContainer.domNode
+            }, this.sidebarToggle);
         },
         initMap: function(){
             // summary:
             //      Sets up the map
             console.info(this.declaredClass + "::" + arguments.callee.nom, arguments);
             
-            this.map = new BaseMap(this.mapDiv);
+            this.map = new BaseMap(this.mapDiv, {defaultBaseMap: 'Terrain'});
         }
     });
 });
