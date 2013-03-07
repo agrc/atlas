@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     jasmine: {
       app: {
         src: ['src/app/tests/jasmineTestBootstrap.js',
+          'src/dojo/dojo.js',
           'src/app/run.js'],
         options: {
           specs: ['src/app/tests/spec/*.js']
