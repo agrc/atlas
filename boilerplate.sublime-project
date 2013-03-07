@@ -7,7 +7,8 @@
     "src/dojox", 
     "src/util", 
     "src/dijit", 
-    "node_modules"
+    "node_modules", 
+    ".grunt"
    ], 
    "path": "/Users/scottdavis/Documents/Projects/AGRCJavaScriptProjectBoilerPlate"
   }
