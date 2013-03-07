@@ -6,7 +6,8 @@
     "src/dojo", 
     "src/dojox", 
     "src/util", 
-    "src/dijit"
+    "src/dijit", 
+    "node_modules"
    ], 
    "path": "/Users/scottdavis/Documents/Projects/AGRCJavaScriptProjectBoilerPlate"
   }

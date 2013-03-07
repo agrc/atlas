@@ -33,7 +33,7 @@ fi
 echo "Building application with $PROFILE to $DISTDIR."
 
 echo -n "Cleaning old files..."
-cp "$DISTDIR/sftp-config.json" "$BASEDIR"
+# cp "$DISTDIR/sftp-config.json" "$BASEDIR"
 rm -rf "$DISTDIR"
 echo " Done"
 
@@ -75,6 +75,6 @@ rm -rf "dijit"
 find . -name *.uncompressed.js -exec rm '{}' ';'
 find . -name *.consoleStripped.js -exec rm '{}' ';'
 
-mv "$BASEDIR/sftp-config.json" "$DISTDIR"
+# mv "$BASEDIR/sftp-config.json" "$DISTDIR"
 
 echo -n "Build complete"
