@@ -1,9 +1,6 @@
 [submodule "src/agrc"]
 	path = src/agrc
 	url = https://github.com/agrc/agrc.widgets.git
-[submodule "src/ijit"]
-	path = src/ijit
-	url = https://github.com/agrc/ijit.widgets.git
 [submodule "src/dijit"]
 	path = src/dijit
 	url = https://github.com/dojo/dijit.git
