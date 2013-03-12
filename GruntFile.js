@@ -5,7 +5,6 @@ module.exports = function(grunt) {
     jasmine: {
       app: {
         src: ['src/app/tests/jasmineTestBootstrap.js',
-          'src/dojo/dojo.js',
           'src/app/run.js'],
         options: {
           specs: ['src/app/tests/spec/*.js']
@@ -32,5 +31,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
-  grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'connect', 'watch']);
 };
