@@ -2,7 +2,10 @@
  "folders": [
   {
    "folder_exclude_patterns": [
-    "dist", 
+    "dist/dojo", 
+    "dist/dojox", 
+    "dist/util", 
+    "dist/dijit", 
     "src/dojo", 
     "src/dojox", 
     "src/util", 
@@ -10,7 +13,7 @@
     "node_modules", 
     ".grunt"
    ], 
-   "path": "/Users/scottdavis/Documents/Projects/AGRCJavaScriptProjectBoilerPlate"
+   "path": "/"
   }
  ]
 }
