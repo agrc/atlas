@@ -28,7 +28,8 @@ profile = {
             // the application.
             miniExclude: function (filename, mid) {
                 return mid in {
-                    'app/package': 1
+                    'app/package': 1,
+                    'app/tests/jasmineTestBootstrap': 1
                 };
             }
         }

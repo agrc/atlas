@@ -2,7 +2,7 @@
     var projectUrl;
     if (typeof location === 'object') {
         // running in browser
-        projectUrl = location.pathname.replace(/\/[^\/]+$/, "");
+        projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
 
         // running in unit tests
         projectUrl = (projectUrl === "") ? '/src' : projectUrl;
@@ -14,13 +14,13 @@
         packages: [
             {
                 name: 'app',
-                location: projectUrl + '/app'
+                location: projectUrl + 'app'
             },{
                 name: 'agrc',
-                location: projectUrl + '/agrc'
+                location: projectUrl + 'agrc'
             },{
                 name: 'ijit',
-                location: projectUrl + '/ijit'
+                location: projectUrl + 'ijit'
             }
         ]
     }, ['app']);

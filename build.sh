@@ -54,20 +54,20 @@ cd "$BASEDIR"
 LOADERMID=${LOADERMID//\//\\\/}
 
 # Copy & minify index.html to dist
-echo -n 'copying index.html'
+echo 'copying index.html'
 cat "$SRCDIR/index.html" | tr '\n' ' ' | \
 perl -pe "
   s/<\!--.*?-->//g;                          # Strip comments
   s/isDebug: *1/deps:[\"$LOADERMID\"]/;      # Remove isDebug
   s/\s+/ /g;                                 # Collapse white-space" > "$DISTDIR/index.html"
 
-echo -n 'copying ChangeLog.html'
+echo 'copying ChangeLog.html'
 cat "$SRCDIR/ChangeLog.html" | tr '\n' ' ' | \
 perl -pe "
   s/<\!--.*?-->//g;                          # Strip comments
   s/\s+/ /g;                                 # Collapse white-space" > "$DISTDIR/ChangeLog.html"
 
-echo -n "removing un-needed dojo files"
+echo "removing un-needed dojo files"
 cd "$DISTDIR"
 rm -rf "dojo"
 rm -rf "dojox"
@@ -77,4 +77,4 @@ find . -name *.consoleStripped.js -exec rm '{}' ';'
 
 # mv "$BASEDIR/sftp-config.json" "$DISTDIR"
 
-echo -n "Build complete"
+echo "Build complete"
