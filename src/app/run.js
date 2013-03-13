@@ -5,7 +5,7 @@
         projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
 
         // running in unit tests
-        projectUrl = (projectUrl === "") ? '/src' : projectUrl;
+        projectUrl = (projectUrl === "/") ? '/src/' : projectUrl;
     } else {
         // running in build system
         projectUrl = '';
