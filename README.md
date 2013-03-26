@@ -10,6 +10,7 @@ To Use
 
 ```
 git clone https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate.git --recursive
+cd AGRCJavaScriptProjectBoilerPlate
 npm install
 ```
 
