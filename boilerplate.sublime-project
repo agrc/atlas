@@ -1,19 +1,19 @@
 {
- "folders": [
-  {
-   "folder_exclude_patterns": [
-    "dist/dojo", 
-    "dist/dojox", 
-    "dist/util", 
-    "dist/dijit", 
-    "src/dojo", 
-    "src/dojox", 
-    "src/util", 
-    "src/dijit", 
-    "node_modules", 
-    ".grunt"
-   ], 
-   "path": "/"
-  }
- ]
+    "folders": [{
+        "folder_exclude_patterns": [
+            "dist/agrc",
+            "dist/app",
+            "dist/ijit",
+            "dist/dojo",
+            "dist/dojox",
+            "dist/util",
+            "dist/dijit",
+            "src/dojo",
+            "src/dojox",
+            "src/util",
+            "src/dijit",
+            "node_modules",
+            ".grunt"],
+        "path": "/"
+    }]
 }
