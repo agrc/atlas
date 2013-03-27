@@ -50,7 +50,6 @@ function (
             
             AGRC.errorLogger = new ErrorLogger({appName: 'ProjectName'});
             
-            // global reference
             AGRC.app = this;
         },
         postCreate: function () {

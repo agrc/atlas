@@ -1,0 +1,124 @@
+[0.000][INFO]:      ChromeDriver 23.0.1240.0 /opt/local/bin/chromedriver
+[0.982][FINE]:      Initializing session with capabilities {
+   "browserName": "chrome",
+   "chromeOptions": {
+      "args": [  ],
+      "binary": "",
+      "extensions": [  ]
+   },
+   "javascriptEnabled": true,
+   "platform": "ANY",
+   "version": ""
+}
+
+[0.983][INFO]:      Launching chrome: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --enable-logging --log-level=1 --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --use-mock-keychain --ignore-certificate-errors about:blank
+[1.322][INFO]:      Connected to Chrome successfully. Version: 25.0.1364.160
+[1.326][FINE]:      Command received (/session/cc9f191b50c231da63e05b165f047d59)
+[1.326][FINE]:      Command finished (/session/cc9f191b50c231da63e05b165f047d59) with response {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "status": 0,
+   "value": {
+      "acceptSslCerts": false,
+      "applicationCacheEnabled": false,
+      "browserConnectionEnabled": false,
+      "browserName": "chrome",
+      "chrome.chromedriverVersion": "23.0.1240.0",
+      "chrome.nativeEvents": false,
+      "cssSelectorsEnabled": true,
+      "databaseEnabled": false,
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "locationContextEnabled": false,
+      "nativeEvents": true,
+      "platform": "mac",
+      "rotatable": false,
+      "takesScreenshot": true,
+      "version": "25.0.1364.160",
+      "webStorageEnabled": true
+   }
+}
+
+[1.343][FINE]:      Command received (/session/cc9f191b50c231da63e05b165f047d59/timeouts/implicit_wait) with params {
+   "ms": 10000.0,
+   "sessionId": "cc9f191b50c231da63e05b165f047d59"
+}
+
+[1.343][FINER]:     Waiting for all views to stop loading...
+[1.367][FINER]:     Done waiting for all views to stop loading
+[1.367][FINER]:     Waiting for all views to stop loading...
+[1.367][FINER]:     Done waiting for all views to stop loading
+[1.367][FINE]:      Command finished (/session/cc9f191b50c231da63e05b165f047d59/timeouts/implicit_wait) with response {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "status": 0,
+   "value": {
+
+   }
+}
+
+[1.368][FINE]:      Command received (/session/cc9f191b50c231da63e05b165f047d59/url) with params {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "url": "http://168.179.247.152/mac/Broadband/src"
+}
+
+[1.368][FINER]:     Waiting for all views to stop loading...
+[1.368][FINER]:     Done waiting for all views to stop loading
+[2.300][FINER]:     Waiting for all views to stop loading...
+[2.300][FINER]:     Done waiting for all views to stop loading
+[2.300][FINE]:      Command finished (/session/cc9f191b50c231da63e05b165f047d59/url) with response {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "status": 0,
+   "value": {
+
+   }
+}
+
+[2.302][FINE]:      Command received (/session/cc9f191b50c231da63e05b165f047d59/execute) with params {
+   "args": [  ],
+   "script": "\n            if (!window.SELENIUM) {\n                window.SELENIUM = {};\n            }\n        ...",
+   "sessionId": "cc9f191b50c231da63e05b165f047d59"
+}
+
+[2.302][FINER]:     Waiting for all views to stop loading...
+[2.302][FINER]:     Done waiting for all views to stop loading
+[2.461][FINER]:     Waiting for all views to stop loading...
+[2.463][FINER]:     Done waiting for all views to stop loading
+[2.463][FINE]:      Command finished (/session/cc9f191b50c231da63e05b165f047d59/execute) with response {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "status": 0,
+   "value": null
+}
+
+[2.464][FINE]:      Command received (/session/cc9f191b50c231da63e05b165f047d59/execute) with params {
+   "args": [  ],
+   "script": "\n            if (window.SELENIUM.ajaxComplete) {\n                return window.SELENIUM.ajaxCompl...",
+   "sessionId": "cc9f191b50c231da63e05b165f047d59"
+}
+
+[2.464][FINER]:     Waiting for all views to stop loading...
+[2.464][FINER]:     Done waiting for all views to stop loading
+[2.480][FINER]:     Waiting for all views to stop loading...
+[2.480][FINER]:     Done waiting for all views to stop loading
+[2.480][FINE]:      Command finished (/session/cc9f191b50c231da63e05b165f047d59/execute) with response {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "status": 0,
+   "value": true
+}
+
+[2.482][FINE]:      Command received (/session/cc9f191b50c231da63e05b165f047d59/element) with params {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "using": "css selector",
+   "value": ".disclaimer-btn"
+}
+
+[2.482][FINER]:     Waiting for all views to stop loading...
+[2.482][FINER]:     Done waiting for all views to stop loading
+[3.890][FINER]:     Waiting for all views to stop loading...
+[3.893][FINER]:     Done waiting for all views to stop loading
+[3.893][FINE]:      Command finished (/session/cc9f191b50c231da63e05b165f047d59/element) with response {
+   "sessionId": "cc9f191b50c231da63e05b165f047d59",
+   "status": 0,
+   "value": {
+      "ELEMENT": ":wdc:1363037074513"
+   }
+}
+
