@@ -31,7 +31,7 @@ Tool Versions
 
 [Dojo](http://dojotoolkit.org/): 1.8.3
 
-[ESRI JS API](http://help.arcgis.com/en/webapi/javascript/arcgis/): 3.3
+[ESRI JS API](http://help.arcgis.com/en/webapi/javascript/arcgis/): 3.4
 
 [Grunt](http://gruntjs.com/): 0.4.0 (plugins can be found in `package.json`)
 
