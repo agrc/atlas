@@ -15,4 +15,4 @@
 	url = https://github.com/dojo/util.git
 [submodule "src/ijit"]
 	path = src/ijit
-	url = https://github.com/agrc/agrc-ijit.git
+	url = https://github.com/agrc/agrc.ijit.git
