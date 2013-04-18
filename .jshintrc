@@ -1,10 +1,6 @@
 {
     "predef": [
-        "esri",
         "alert",
-        "dojo",
-        "$",
-        "jQuery",
         "define",
         "require",
         "console",
@@ -30,5 +26,5 @@
     "wsh": true,
     "sub": true,
     "undef": true,
-    "unused": true
+    "unused": "vars"
 }

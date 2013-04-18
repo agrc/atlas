@@ -51,6 +51,8 @@ function (
             AGRC.errorLogger = new ErrorLogger({appName: 'ProjectName'});
             
             AGRC.app = this;
+
+            this.inherited(arguments);
         },
         postCreate: function () {
             // summary:
@@ -59,6 +61,8 @@ function (
         
             // set version number
             this.version.innerHTML = AGRC.version;
+
+            this.inherited(arguments);
         },
         startup: function () {
             // summary:
@@ -82,6 +86,8 @@ function (
                 map: this.map,
                 centerContainer: this.centerContainer.domNode
             }, this.sidebarToggle);
+
+            this.inherited(arguments);
         },
         initMap: function(){
             // summary:

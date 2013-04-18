@@ -14,6 +14,7 @@ function (
         var testWidget;
         beforeEach(function () {
             testWidget = new App({}, domConstruct.create('div', {}, win.body()));
+            testWidget.startup();
         });
         afterEach(function () {
             testWidget.destroy();
