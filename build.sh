@@ -38,6 +38,10 @@ if [ -d "$DISTDIR/sftp-config.json" ]; then
   cp "$DISTDIR/sftp-config.json" "$BASEDIR"
   rm -rf "$DISTDIR"
 fi
+if [ -d "$DISTDIR/sftp-config-alt.json" ]; then
+  cp "$DISTDIR/sftp-config-alt.json" "$BASEDIR"
+  rm -rf "$DISTDIR"
+fi
 rm -rf "$DISTDIR"
 echo " Done"
 
@@ -80,6 +84,9 @@ find . -name *.consoleStripped.js -exec rm '{}' ';'
 
 if [ -d "$BASEDIR/sftp-config.json" ]; then
   mv "$BASEDIR/sftp-config.json" "$DISTDIR"
+fi
+if [ -d "$BASEDIR/sftp-config-alt.json" ]; then
+  mv "$BASEDIR/sftp-config-alt.json" "$DISTDIR"
 fi
 
 echo "Build complete"
