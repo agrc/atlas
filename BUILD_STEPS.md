@@ -1,0 +1,1 @@
+- copy mxd's to hnas/serverprojects
