@@ -36,11 +36,9 @@ echo "$LOADERCONF"
 echo -n "Cleaning old files..."
 if [ -d "$DISTDIR/sftp-config.json" ]; then
   cp "$DISTDIR/sftp-config.json" "$BASEDIR"
-  rm -rf "$DISTDIR"
 fi
-if [ -d "$DISTDIR/sftp-config-alt4.json" ]; then
-  cp "$DISTDIR/sftp-config-alt4.json" "$BASEDIR"
-  rm -rf "$DISTDIR"
+if [ -d "$DISTDIR/sftp-config-alt.json" ]; then
+  cp "$DISTDIR/sftp-config-alt.json" "$BASEDIR"
 fi
 rm -rf "$DISTDIR"
 echo " Done"
