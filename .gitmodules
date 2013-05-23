@@ -16,3 +16,6 @@
 [submodule "src/StubModule"]
 	path = src/StubModule
 	url = https://github.com/agrc/StubModule.git
+[submodule "src/ijit"]
+	path = src/ijit
+	url = https://github.com/agrc/agrc.ijit.git
