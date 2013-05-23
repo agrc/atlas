@@ -4,10 +4,13 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
       app: {
-        src: ['src/app/tests/jasmineTestBootstrap.js',
-          'src/app/run.js'],
+        src: ['src/app/run.js'],
         options: {
-          specs: ['src/app/tests/spec/*.js']
+          specs: ['src/app/tests/spec/*.js'],
+          vendor: [
+            'src/app/tests/jasmineTestBootstrap.js',
+            'http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.4'
+          ]
         }
       }
     },
