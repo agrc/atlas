@@ -13,7 +13,11 @@
             "src/util",
             "src/dijit",
             "node_modules",
-            ".grunt"],
+            ".grunt"
+        ],
+        "file_exclude_patterns": [
+            "*.sublime-workspace"
+        ],
         "path": "/"
     }]
 }
