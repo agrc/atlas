@@ -28,7 +28,7 @@ function (
     SideBarToggler, 
     PaneStack
     ) {
-    return declare("app.App", 
+    return declare("app/App", 
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], 
         {
         // summary:
