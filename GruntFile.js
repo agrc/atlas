@@ -3,13 +3,22 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jasmine: {
+      // for embedded map projects...
+      // app: {
+      //   src: ['src/EmbeddedMapLoader.js'],
+      //   options: {
+      //     specs: ['src/app/tests/spec/*.js']
+      //   }
+      // }
+      
+      // for regular apps...
       app: {
         src: ['src/app/run.js'],
         options: {
-          specs: ['src/app/tests/spec/*.js'],
-          vendor: [
-            'src/app/tests/jasmineTestBootstrap.js',
-            'http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.4'
+        specs: ['src/app/tests/spec/*.js'],
+        vendor: [
+          'src/app/tests/jasmineTestBootstrap.js',
+          'http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.4'
           ]
         }
       }
