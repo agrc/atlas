@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AGRC JavaScript Project Boilerplate</title>
+    <title>Atlas Utah</title>
 
     <!-- META TAGS -->
     <meta charset='utf-8'>
-    <link rel="shortcut icon" href="http://mapserv.utah.gov/cdn/images/favicon.ico" />
+    <link rel="shortcut icon" href="http://mapserv.utah.gov/cdn/images/favicon.ico"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="description" content="A basic web site highlighting the Utah automated geographic reference center's map cache's, widgets, and web services." />
+    <meta name="keywords" content="utah, map, map of utah, utah data, gis, utah gis, gis data, sgid, utah gis portal, agrc, atlas, utah atlas, online utah atlas" />
 
     <!-- CSS -->
-    <link rel='stylesheet' href='http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/dojo/dijit/themes/claro/claro.css'>
-    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.4/js/esri/css/esri.css" />
+    <link rel='stylesheet' href='http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/dojo/dijit/themes/claro/claro.css'>
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.5/js/esri/css/esri.css" />
     <link rel='stylesheet' href='app/resources/App.css'>
 </head>
 <body class='claro'>
     <div data-dojo-type='app/App'></div>
 
     <!-- JAVASCRIPT -->
-    <script data-dojo-config="isDebug: 1, tlmSiblingOfDojo: 1" src='http://serverapi.arcgisonline.com/jsapi/arcgis/3.4' defer></script>
-    <script src='app/nls/run_en-us.js' defer></script> <!-- for built version -->
+    <script data-dojo-config="isDebug: 1, tlmSiblingOfDojo: 1" src='http://serverapi.arcgisonline.com/jsapi/arcgis/3.5amd/js/dojo/dojo/dojo.js' defer></script>
     <script src='app/run.js' defer></script>
 
     <!-- GOOGLE ANALYTICS -->
@@ -27,7 +29,7 @@
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'CODE???', 'utah.gov');
+        ga('create', 'UA-11849964-7', 'utah.gov');
         ga('send', 'pageview');
     </script>
 </body>

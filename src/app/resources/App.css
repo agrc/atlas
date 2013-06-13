@@ -1,6 +1,10 @@
 @import '../../agrc/resources/map/BaseMap.css';
 @import '../../ijit/themes/standard/layout/SideBarToggler.css';
 @import '../../ijit/themes/standard/layout/PaneStack.css';
+@import '../../agrc/themes/standard/map/BaseMapSelector.css';
+@import '../../agrc/resources/locate/FindAddress.css';
+@import '../../agrc/resources/locate/FindGeneric.css';
+@import '../../bootstrap/css/bootstrap.css';
 
 body, html, .app {
     width: 100%;
@@ -19,6 +23,7 @@ body, html, .app {
 /* TITLE PANE */
 .app .title-pane {
     border: none;
+    overflow: hidden;
 }
 .app h1 {
     margin: 5px 0 0 0;
@@ -34,6 +39,11 @@ body, html, .app {
 }
 .app .version:hover {
     text-decoration: underline !important;
+}
+.app .title-pane>img {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 /* SIDE BAR */

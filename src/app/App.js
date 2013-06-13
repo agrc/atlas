@@ -7,9 +7,13 @@ define([
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!app/templates/App.html',
     'agrc/widgets/map/BaseMap',
-    'ijit/modules/ErrorLogger',
+    // 'ijit/modules/ErrorLogger',
     'ijit/widgets/layout/SideBarToggler',
     'ijit/widgets/layout/PaneStack',
+    'agrc/widgets/locate/FindAddress',
+    'agrc/widgets/locate/FindGeneric',
+    'agrc/widgets/map/BaseMapSelector',
+    'esri/dijit/Print',
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
@@ -24,9 +28,13 @@ function (
     _WidgetsInTemplateMixin, 
     template, 
     BaseMap, 
-    ErrorLogger, 
+    // ErrorLogger, 
     SideBarToggler, 
-    PaneStack
+    PaneStack,
+    FindAddress,
+    FindGeneric,
+    BaseMapSelector,
+    Print
     ) {
     return declare("app/App", 
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], 
@@ -46,9 +54,7 @@ function (
             //      first function to fire after page loads
             console.info(this.declaredClass + "::" + arguments.callee.nom, arguments);
 
-            // esri.config.defaults.io.corsEnabledServers.push("dagrc.utah.gov");
-            
-            AGRC.errorLogger = new ErrorLogger({appName: 'ProjectName'});
+            // AGRC.errorLogger = new ErrorLogger({appName: 'ProjectName'});
             
             AGRC.app = this;
 
@@ -75,6 +81,9 @@ function (
             
             var ps;
             var sb;
+            var fa;
+            var fp;
+            var fm;
 
             ps = new PaneStack(null, this.paneStack);
             
@@ -87,14 +96,66 @@ function (
                 centerContainer: this.centerContainer.domNode
             }, this.sidebarToggle);
 
+            fa = new FindAddress({
+                map: this.map,
+                apiKey: AGRC.apiKey
+            }, this.geocodeNode);
+
+            fp = new FindGeneric({
+                map: this.map,
+                layerName: 'SGID10.LOCATION.PlaceNamesGNIS2000',
+                searchFieldName: 'NAME',
+                fieldLabel: 'GNIS Name'
+            }, this.gnisNode);
+
+            fm = new FindGeneric({
+                map: this.map,
+                layerName: 'SGID10.BOUNDARIES.Municipalities',
+                searchFieldName: 'NAME',
+                fieldLabel: 'Name'
+            }, this.cityNode);
+
             this.inherited(arguments);
+
+            this.printer = new Print({
+                map: this.map,
+                url: AGRC.exportWebMapUrl,
+                templates: [
+                    {
+                        label: 'Portrait (PDF)',
+                        format: 'PDF',
+                        layout: 'Letter ANSI A Portrait',
+                        options: {
+                            legendLayers: []
+                        }
+                    },{
+                        label: 'Landscape (PDF)',
+                        format: 'PDF',
+                        layout: 'Letter ANSI A Landscape',
+                        options: {
+                            legendLayers: []
+                        }
+                    }
+                ]
+            }, this.printDiv);
+            this.printer.startup();
         },
         initMap: function(){
             // summary:
             //      Sets up the map
             console.info(this.declaredClass + "::" + arguments.callee.nom, arguments);
             
-            this.map = new BaseMap(this.mapDiv, {defaultBaseMap: 'Terrain'});
+            this.map = new BaseMap(this.mapDiv, {
+                useDefaultBaseMap: false
+            });
+
+            var s;
+
+            s = new BaseMapSelector({
+                map: this.map,
+                id: 'claro',
+                position: 'TR'
+            });
         }
     });
 });
