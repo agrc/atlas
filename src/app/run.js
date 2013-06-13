@@ -10,18 +10,12 @@
         // running in build system
         projectUrl = '';
     }
-    require({
-        packages: [
-            {
-                name: 'app',
-                location: projectUrl + 'app'
-            },{
-                name: 'agrc',
-                location: projectUrl + 'agrc'
-            },{
-                name: 'ijit',
-                location: projectUrl + 'ijit'
-            }
-        ]
-    }, ['app']);
+    var config = {packagePaths: {}};
+    config.packagePaths[projectUrl] = [
+        'app',
+        'agrc',
+        'ijit',
+        'bootstrap'
+    ];
+    require(config, ['app']);
 })();

@@ -17,7 +17,16 @@ function (
 
         // version: String
         //      The version number.
-        version: '0.1.0'
+        version: '2.0.0',
+
+        // apiKey: String
+        //      The api key used for services on api.mapserv.utah.gov
+        // apiKey: 'AGRC-63E1FF17767822', // localhost
+        apiKey: 'AGRC-A94B063C533889', // key for atlas.utah.gov
+
+        // exportWebMapUrl: String
+        //      print task url
+        exportWebMapUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task'
     };
 
     // lights...camera...action!

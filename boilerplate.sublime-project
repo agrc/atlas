@@ -8,10 +8,13 @@
             "dist/dojox",
             "dist/util",
             "dist/dijit",
+            "dist/bootstrap",
+            "dist/esri",
             "src/dojo",
             "src/dojox",
             "src/util",
             "src/dijit",
+            "src/esri",
             "node_modules",
             ".grunt"
         ],

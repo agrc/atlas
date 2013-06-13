@@ -1,3 +1,4 @@
+/*jshint unused:false */
 var profile = {
     basePath: '../src',
     action: 'release',
@@ -8,44 +9,16 @@ var profile = {
     stripConsole: 'all',
     selectorEngine: 'acme',
     layers: {
-        'app/run': {
-            include: ['app/main', 'app/run'],
-            exclude: [
-                "dijit/_base/scroll",
-                "dijit/_TemplatedMixin",
-                "dijit/_Templated",
-                "dijit/_WidgetBase",
-                "dijit/_TemplatedMixin",
-                "dijit/_WidgetsInTemplateMixin",
-                "dojo/_base/array",
-                "dojo/_base/declare",
-                "dojo/_base/lang",
-                "dojo/_base/kernel",
-                "dojox/gfx/matrix",
-                "dojo/_base/Color",
-                "dojox/gfx/_base",
-                "dojox/xml/parser",
-                "dojox/gfx",
-                "dojo/fx",
-                "dojo/date",
-                "dojo/date/locale",
-                "dojo/io/script",
-                "dojo/_base/url",
-                "dojox/collections/ArrayList",
-                "dojo/string",
-                "dojo/fx/Toggler",
-                "dijit/_base/manager",
-                "dijit/form/HorizontalSlider",
-                "dijit/form/VerticalSlider",
-                "dijit/form/HorizontalRule",
-                "dijit/form/VerticalRule",
-                "dijit/form/HorizontalRuleLabels",
-                "dijit/form/VerticalRuleLabels",
-                "dijit/_base",
-                "dijit/form/DropDownButton",
-                "dijit/form/ComboButton",
-                "dijit/form/ToggleButton"
-            ]
+        'dojo/dojo': {
+            include: [
+                'dojo/i18n',
+                'dojo/domReady',
+                'app/main',
+                'app/run',
+                'esri/dijit/Attribution'
+            ],
+            customBase: true,
+            boot: true
         }
     },
     staticHasFeatures: {
@@ -57,10 +30,10 @@ var profile = {
         'dojo-publish-privates':0,
 
         // We’re fully async, so get rid of the legacy loader
-        // 'dojo-sync-loader':0,
+        'dojo-sync-loader':0,
         
         // dojo-xhr-factory relies on dojo-sync-loader
-        // 'dojo-xhr-factory':0,
+        'dojo-xhr-factory':0,
 
         // We aren’t loading tests in production
         'dojo-test-sniff':0
@@ -74,5 +47,8 @@ var profile = {
     },{
         name: 'dojox',
         location: 'dojox'
+    },{
+        name: 'esri',
+        location: 'esri'
     }]
 };
