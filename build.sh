@@ -105,8 +105,8 @@ cd "$DISTDIR"
 # rm -rf "dojox" need to leave for gfx renderers which cannot be included in the build
 # see: http://dojotoolkit.org/reference-guide/1.9/dojox/gfx.html#id53
 # rm -rf "dijit"
-# find . -name *.uncompressed.js -exec rm '{}' ';'
-# find . -name *.consoleStripped.js -exec rm '{}' ';'
+find . -name *.uncompressed.js -exec rm '{}' ';'
+find . -name *.consoleStripped.js -exec rm '{}' ';'
 
 if [ -e "$BASEDIR/sftp-config.json" ]; then
   mv "$BASEDIR/sftp-config.json" "$DISTDIR"
