@@ -15,6 +15,7 @@
             "src/util",
             "src/dijit",
             "src/esri",
+            "src/StubModule/dojo",
             "node_modules",
             ".grunt"
         ],
