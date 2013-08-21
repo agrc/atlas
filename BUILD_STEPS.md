@@ -9,6 +9,7 @@ For Single Page Apps
 - build.sh
 - test in dist
 - change apiKey in main.js back
+- tag
 
 For Embedded Widget Projects
 ============================
@@ -23,3 +24,4 @@ For Embedded Widget Projects
 - push to server and test dist again
 - change apiKey in main.js back
 - change dist/EmbeddedMapLoader.js to point back to relative path
+- tag
