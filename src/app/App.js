@@ -11,7 +11,7 @@ define([
     'ijit/widgets/layout/SideBarToggler',
     'ijit/widgets/layout/PaneStack',
     'agrc/widgets/locate/FindAddress',
-    'agrc/widgets/locate/FindGeneric',
+    'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMapSelector',
     'esri/dijit/Print',
 
@@ -32,7 +32,7 @@ function (
     SideBarToggler, 
     PaneStack,
     FindAddress,
-    FindGeneric,
+    MagicZoom,
     BaseMapSelector,
     Print
     ) {
@@ -79,13 +79,13 @@ function (
             // the correct size
             this.inherited(arguments);
             
-            var ps;
+            // var ps;
             var sb;
             var fa;
             var fp;
             var fm;
 
-            ps = new PaneStack(null, this.paneStack);
+            // ps = new PaneStack(null, this.paneStack);
             
             this.initMap();
             
@@ -101,18 +101,23 @@ function (
                 apiKey: AGRC.apiKey
             }, this.geocodeNode);
 
-            fp = new FindGeneric({
+            fp = new MagicZoom({
                 map: this.map,
-                layerName: 'SGID10.LOCATION.PlaceNamesGNIS2000',
-                searchFieldName: 'NAME',
-                fieldLabel: 'GNIS Name'
+                mapServiceURL: AGRC.urls.vector,
+                searchLayerIndex: 4,
+                searchField: 'NAME',
+                placeHolder: 'place name...',
+                maxResultsToDisplay: 10,
+                'class': 'first'
             }, this.gnisNode);
 
-            fm = new FindGeneric({
+            fm = new MagicZoom({
                 map: this.map,
-                layerName: 'SGID10.BOUNDARIES.Municipalities',
-                searchFieldName: 'NAME',
-                fieldLabel: 'Name'
+                layerName: AGRC.urls.vector,
+                searchLayerIndex: 1,
+                searchField: 'NAME',
+                placeHolder: 'city name...',
+                maxResultsToDisplay: 10
             }, this.cityNode);
 
             this.inherited(arguments);

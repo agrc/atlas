@@ -37,6 +37,8 @@ Tool Versions
 
 [Jasmine](http://pivotal.github.com/jasmine/): 1.3.1
 
+[Bootstrap](http://getbootstrap.com/): 3.0.0
+
 Notes
 =====
 
