@@ -50,27 +50,6 @@ fi
 rm -rf "$DISTDIR"
 echo " Done"
 
-echo "slurping esri modules"
-cat $HARFILE | grep 'js/esri.*js' | awk '{print $2}' | perl -pe 's/",?//g' > "$BASEDIR/profiles/esriUrls.txt"
-wget -xi "$BASEDIR/profiles/esriUrls.txt"
-rsync -avh "serverapi.arcgisonline.com/jsapi/arcgis/3.5amd/js/esri" "src/"
-rm -rf "serverapi.arcgisonline.com"
-
-echo "processing esri modules"
-cd "$SRCDIR/esri"
-FILES=$(find .)
-for f in $FILES
-do
-  perl -pi -e "
-    m/(define\()(\".*\")(.split\(\"\,\"\))/;
-    (my \$new = \$2) =~ s/,/\"\,\"/g;
-    s/(define\()(\".*\")(.split\(\"\,\"\))/\$1\[\$new\]/;
-    " $f
-done
-perl -pi -e "
-    s/\,ar:1.*zh-cn\":1//;
-    " "$SRCDIR/esri/nls/jsapi.js"
-
 cd "$TOOLSDIR"
 
 if which node >/dev/null; then

@@ -6,6 +6,7 @@ For Single Page Apps
 - Bump app version number and update changelog
 - Save new profiles/traffic.har file
 - change apiKey in main.js from localhost to server
+- run slurp_esri_modules.sh, if needed
 - build.sh
 - test in dist
 - change apiKey in main.js back
@@ -18,6 +19,7 @@ For Embedded Widget Projects
 - _SpecRunner.html
 - Bump app version number and update changelog
 - change apiKey in main.js from localhost to server
+- run slurp_esri_modules.sh, if needed
 - build.sh
 - test in dist
 - change server to point to url in dist/EmbeddedMapLoader.js
