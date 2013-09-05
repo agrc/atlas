@@ -9,11 +9,11 @@ define([
     'agrc/widgets/map/BaseMap',
     // 'ijit/modules/ErrorLogger',
     'ijit/widgets/layout/SideBarToggler',
-    'ijit/widgets/layout/PaneStack',
     'agrc/widgets/locate/FindAddress',
     'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMapSelector',
     'esri/dijit/Print',
+    'dojo/dom-style',
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
@@ -30,11 +30,11 @@ function (
     BaseMap, 
     // ErrorLogger, 
     SideBarToggler, 
-    PaneStack,
     FindAddress,
     MagicZoom,
     BaseMapSelector,
-    Print
+    Print,
+    domStyle
     ) {
     return declare("app/App", 
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], 
@@ -79,14 +79,11 @@ function (
             // the correct size
             this.inherited(arguments);
             
-            // var ps;
             var sb;
             var fa;
             var fp;
             var fm;
 
-            // ps = new PaneStack(null, this.paneStack);
-            
             this.initMap();
             
             sb = new SideBarToggler({
@@ -144,6 +141,10 @@ function (
                 ]
             }, this.printDiv);
             this.printer.startup();
+            var that = this;
+            this.printer.on('print-complete', function () {
+                domStyle.set(that.popupBlurb, 'display', 'block');
+            });
         },
         initMap: function(){
             // summary:
