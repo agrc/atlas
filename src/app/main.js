@@ -21,8 +21,8 @@ function (
 
         // apiKey: String
         //      The api key used for services on api.mapserv.utah.gov
-        // apiKey: 'AGRC-63E1FF17767822', // localhost
-        apiKey: 'AGRC-A94B063C533889', // key for atlas.utah.gov
+        apiKey: 'AGRC-63E1FF17767822', // localhost
+        // apiKey: 'AGRC-A94B063C533889', // key for atlas.utah.gov
 
         // exportWebMapUrl: String
         //      print task url
