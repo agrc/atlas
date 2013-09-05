@@ -23,5 +23,13 @@
             "*.sublime-workspace"
         ],
         "path": "/"
-    }]
+    }],
+    "build_systems": [
+        {
+            "name": "AGRC Build",
+            "cmd": ["bash ./build.sh"],
+            "working_dir": "$project_path",
+            "shell": true
+        }
+    ]
 }
