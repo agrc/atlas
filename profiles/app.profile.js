@@ -49,6 +49,14 @@ var profile = {
         location: 'dojox'
     },{
         name: 'esri',
-        location: 'esri'
-    }]
+        location: 'esri',
+        resourceTags: {
+            amd: function (filename, mid) {
+                return (/.*\.js/).test(filename);
+            }
+        }
+    }],
+    plugins: {
+        'agrc/modules/JSONLoader': 'agrc/modules/JSONLoaderBuildPlugin'
+    }
 };

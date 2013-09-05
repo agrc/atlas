@@ -110,7 +110,7 @@ function (
 
             fm = new MagicZoom({
                 map: this.map,
-                layerName: AGRC.urls.vector,
+                mapServiceURL: AGRC.urls.vector,
                 searchLayerIndex: 1,
                 searchField: 'NAME',
                 placeHolder: 'city name...',

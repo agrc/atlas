@@ -1,10 +1,12 @@
+@import '../../dijit/themes/claro/claro.css';
+@import '../../esri/css/esri.css';
 @import '../../agrc/resources/map/BaseMap.css';
 @import '../../ijit/themes/standard/layout/SideBarToggler.css';
 @import '../../ijit/themes/standard/layout/PaneStack.css';
 @import '../../agrc/resources/map/BaseMapSelector.css';
 @import '../../agrc/resources/locate/FindAddress.css';
 @import '../../agrc/resources/locate/MagicZoom.css';
-@import '../../bootstrap/css/bootstrap.css';
+/*@import '../../bootstrap/css/bootstrap.css';*/
 @import '../../bootstrap/css/bootstrap-theme.css';
 
 body, html, .app {
@@ -70,7 +72,7 @@ body, html, .app {
 .magic-zoom {
     position: relative;
 }
-.app .side-bar-sizer :nth-of-type(3) {
+.app .side-bar-sizer :nth-of-type(4) {
     z-index: 26;
 }
 .app [data-dojo-attach-point='popupBlurb'] {
