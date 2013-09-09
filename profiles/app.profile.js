@@ -55,8 +55,5 @@ var profile = {
                 return (/.*\.js/).test(filename);
             }
         }
-    }],
-    plugins: {
-        'agrc/modules/JSONLoader': 'agrc/modules/JSONLoaderBuildPlugin'
-    }
+    }]
 };
