@@ -1,3 +1,4 @@
+main.js
 _coremap.js
 arcgis/csv.js
 arcgis/Portal.js
