@@ -21,6 +21,5 @@ del /s /q *.consoleStripped.js
 cd %BASEDIR%
 
 type %SRCDIR%\index.html|perl -pe "s/<script data-dojo.*?<\/script>/<script src='dojo\/dojo\.js' data-dojo-config=\"deps:['app\/run']\"><\/script>/;s/<script src=\'app.*?<\/script>//;s/<\!--.*?-->//g;s/\s+/ /g;">"%DISTDIR%/index.html"
-type %SRCDIR%\edit.html|perl -pe "s/<script data-dojo.*?<\/script>/<script src='dojo\/dojo\.js' data-dojo-config=\"deps:['app\/run']\"><\/script>/;s/<script src=\'app.*?<\/script>//;s/<\!--.*?-->//g;s/\s+/ /g;">"%DISTDIR%/edit.html"
 
 pause
