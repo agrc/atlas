@@ -24,12 +24,16 @@
         ],
         "path": "/"
     }],
-    "build_systems": [
-        {
-            "name": "AGRC Build",
+    "build_systems": [{
+        "name": "AGRC Build",
+        "working_dir": "$project_path",
+        "osx": {
             "cmd": ["bash ./build.sh"],
-            "working_dir": "$project_path",
             "shell": true
+        },
+        "windows": {
+            "cmd": ["build.bat"],
+            "path": "C:\\Program Files (x86)\\Java\\jre7\\bin\\;C:\\Program Files (x86)\\Git\\bin;" //install http://msysgit.github.io/
         }
-    ]
+    }]
 }
