@@ -26,6 +26,6 @@
     "wsh": true,
     "sub": true,
     "undef": true,
-    "unused": "vars",
+    "unused": true,
     "eqnull": true
 }
