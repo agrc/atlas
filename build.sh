@@ -52,6 +52,7 @@ echo " Done"
 
 cd "$TOOLSDIR"
 
+set +e
 if which node >/dev/null; then
   ulimit -n 1024
   node ../../dojo/dojo.js load=build --require "$LOADERCONF" --profile "$PROFILE" --releaseDir "$DISTDIR" $@
@@ -61,6 +62,7 @@ else
   echo "Need node.js or Java to build!"
   exit 1
 fi
+set -e
 
 cd "$BASEDIR"
 
