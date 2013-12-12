@@ -63,8 +63,6 @@ define([
             //      first function to fire after page loads
             console.info('app.App::constructor', arguments);
 
-            // AGRC.errorLogger = new ErrorLogger({appName: 'ProjectName'});
-
             AGRC.app = this;
 
             this.inherited(arguments);
@@ -88,10 +86,7 @@ define([
             // the correct size
             this.inherited(arguments);
 
-            var sb;
-            var fa;
-            var fp;
-            var fm;
+            var sb, fa, fp, fm;
 
             this.initMap();
 
@@ -148,6 +143,7 @@ define([
                 }]
             }, this.printDiv);
             this.printer.startup();
+
             var that = this;
             this.printer.on('print-complete', function() {
                 domStyle.set(that.popupBlurb, 'display', 'block');
@@ -162,9 +158,9 @@ define([
                 useDefaultBaseMap: false
             });
 
-            var s;
+            var selector;
 
-            s = new BaseMapSelector({
+            selector = new BaseMapSelector({
                 map: this.map,
                 id: 'claro',
                 position: 'TR'
