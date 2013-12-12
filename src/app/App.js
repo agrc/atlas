@@ -1,9 +1,9 @@
 define([
-    'dijit/registry', 
-    'dojo/dom', 
+    'dijit/registry',
+    'dojo/dom',
     'dojo/_base/declare',
-    'dijit/_WidgetBase', 
-    'dijit/_TemplatedMixin', 
+    'dijit/_WidgetBase',
+    'dijit/_TemplatedMixin',
     'dijit/_WidgetsInTemplateMixin',
     'dojo/text!app/templates/App.html',
     'agrc/widgets/map/BaseMap',
@@ -17,9 +17,9 @@ define([
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
-], 
+],
 
-function (
+function(
     registry, 
     dom, 
     declare, 
@@ -36,8 +36,7 @@ function (
     Print,
     domStyle
     ) {
-    return declare("app/App", 
-        [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], 
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin],
         {
         // summary:
         //      The main widget for the app
@@ -48,44 +47,44 @@ function (
 
         // map: agrc.widgets.map.Basemap
         map: null,
-        
-        constructor: function(){
+
+        constructor: function() {
             // summary:
             //      first function to fire after page loads
-            console.info(this.declaredClass + "::" + arguments.callee.nom, arguments);
+            console.info('app.App::constructor', arguments);
 
             // AGRC.errorLogger = new ErrorLogger({appName: 'ProjectName'});
-            
+
             AGRC.app = this;
 
             this.inherited(arguments);
         },
-        postCreate: function () {
+        postCreate: function() {
             // summary:
-            //      Fires when 
-            console.log(this.declaredClass + "::" + arguments.callee.nom, arguments);
-        
+            //      Fires when
+            console.log('app.App::postCreate', arguments);
+
             // set version number
             this.version.innerHTML = AGRC.version;
 
             this.inherited(arguments);
         },
-        startup: function () {
+        startup: function() {
             // summary:
             //      Fires after postCreate when all of the child widgets are finished laying out.
-            console.log(this.declaredClass + "::" + arguments.callee.nom, arguments);
+            console.log('app.App::startup', arguments);
 
-            // call this before creating the map to make sure that the map container is 
+            // call this before creating the map to make sure that the map container is
             // the correct size
             this.inherited(arguments);
-            
+
             var sb;
             var fa;
             var fp;
             var fm;
 
             this.initMap();
-            
+
             sb = new SideBarToggler({
                 sidebar: this.sideBar.domNode,
                 mainContainer: this.mainContainer,
@@ -142,15 +141,15 @@ function (
             }, this.printDiv);
             this.printer.startup();
             var that = this;
-            this.printer.on('print-complete', function () {
+            this.printer.on('print-complete', function() {
                 domStyle.set(that.popupBlurb, 'display', 'block');
             });
         },
-        initMap: function(){
+        initMap: function() {
             // summary:
             //      Sets up the map
-            console.info(this.declaredClass + "::" + arguments.callee.nom, arguments);
-            
+            console.info('app.App::initMap', arguments);
+
             this.map = new BaseMap(this.mapDiv, {
                 useDefaultBaseMap: false
             });
