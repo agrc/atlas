@@ -1,43 +1,53 @@
 define([
-    'dijit/registry',
-    'dojo/dom',
+    'dojo/text!app/templates/App.html',
+
     'dojo/_base/declare',
+
+    'dojo/dom',
+    'dojo/dom-style',
+
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
     'dijit/_WidgetsInTemplateMixin',
-    'dojo/text!app/templates/App.html',
+    'dijit/registry',
+
     'agrc/widgets/map/BaseMap',
-    // 'ijit/modules/ErrorLogger',
-    'ijit/widgets/layout/SideBarToggler',
+    'agrc/widgets/map/BaseMapSelector',
+
     'agrc/widgets/locate/FindAddress',
     'agrc/widgets/locate/MagicZoom',
-    'agrc/widgets/map/BaseMapSelector',
+
+    'ijit/widgets/layout/SideBarToggler',
+
     'esri/dijit/Print',
-    'dojo/dom-style',
+
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
-],
+], function(
+    template,
 
-function(
-    registry, 
-    dom, 
-    declare, 
-    _WidgetBase, 
-    _TemplatedMixin, 
-    _WidgetsInTemplateMixin, 
-    template, 
-    BaseMap, 
-    // ErrorLogger, 
-    SideBarToggler, 
+    declare,
+
+    dom,
+    domStyle,
+
+    _WidgetBase,
+    _TemplatedMixin,
+    _WidgetsInTemplateMixin,
+    registry,
+
+    BaseMap,
+    BaseMapSelector,
+
     FindAddress,
     MagicZoom,
-    BaseMapSelector,
-    Print,
-    domStyle
-    ) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin],
-        {
+
+    SideBarToggler,
+
+    Print
+) {
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
         //      The main widget for the app
 
@@ -121,23 +131,21 @@ function(
             this.printer = new Print({
                 map: this.map,
                 url: AGRC.exportWebMapUrl,
-                templates: [
-                    {
-                        label: 'Portrait (PDF)',
-                        format: 'PDF',
-                        layout: 'Letter ANSI A Portrait',
-                        options: {
-                            legendLayers: []
-                        }
-                    },{
-                        label: 'Landscape (PDF)',
-                        format: 'PDF',
-                        layout: 'Letter ANSI A Landscape',
-                        options: {
-                            legendLayers: []
-                        }
+                templates: [{
+                    label: 'Portrait (PDF)',
+                    format: 'PDF',
+                    layout: 'Letter ANSI A Portrait',
+                    options: {
+                        legendLayers: []
                     }
-                ]
+                }, {
+                    label: 'Landscape (PDF)',
+                    format: 'PDF',
+                    layout: 'Letter ANSI A Landscape',
+                    options: {
+                        legendLayers: []
+                    }
+                }]
             }, this.printDiv);
             this.printer.startup();
             var that = this;
