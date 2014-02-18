@@ -21,7 +21,7 @@ LOADERMID="app/run"
 LOADERCONF="$SRCDIR/$LOADERMID.js"
 
 # Main application package build configuration
-PROFILE="$BASEDIR/profiles/app.profile.js"
+PROFILE="$BASEDIR/profiles/build.profile.js"
 
 # HAR file of all traffic for app
 HARFILE="$BASEDIR/profiles/traffic.har"

@@ -9,6 +9,7 @@ var profile = {
     stripConsole: 'all',
     selectorEngine: 'acme',
     layers: {
+        // single file build layer
         'dojo/dojo': {
             include: [
                 'dojo/i18n',
@@ -38,25 +39,22 @@ var profile = {
         // We aren’t loading tests in production
         'dojo-test-sniff':0
     },
+    // These packages are defined in the build profile instead of the app config
+    // because we don't use the local version of the esri package for development.
+    // I've had problems getting the local version of the esri package to work 
+    // in development.
     packages: [{
-        name: 'dojo',
-        location: 'dojo'
+        name: 'dojo'
     },{
-        name: 'dijit',
-        location: 'dijit'
+        name: 'dijit'
     },{
-        name: 'dojox',
-        location: 'dojox'
+        name: 'dojox'
     },{
         name: 'esri',
-        location: 'esri',
         resourceTags: {
             amd: function (filename, mid) {
                 return (/.*\.js/).test(filename);
             }
         }
-    }],
-    plugins:{
-        "agrc/modules/JSONLoader":"agrc/modules/JSONLoaderPluginResolver"
-    }
+    }]
 };
