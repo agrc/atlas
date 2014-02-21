@@ -1,9 +1,29 @@
 {
-	"folders":
-	[
-		{
-			"follow_symlinks": true,
-			"path": "."
-		}
-	]
+    "folders": [{
+        "folder_exclude_patterns": [
+            "dist/app",
+            "dist/bower_components",
+            "dist/esri",
+            "src/bower_components",
+            "src/esri",
+            "node_modules",
+            ".grunt"
+        ],
+        "file_exclude_patterns": [
+            "*.sublime-workspace"
+        ],
+        "path": "/"
+    }],
+    "build_systems": [{
+        "name": "AGRC Build",
+        "working_dir": "$project_path",
+        "osx": {
+            "cmd": ["bash ./build.sh"],
+            "shell": true
+        },
+        "windows": {
+            "cmd": ["build.bat"],
+            "path": "C:\\Program Files (x86)\\Java\\jre7\\bin\\;C:\\Program Files (x86)\\Git\\bin;" //install http://msysgit.github.io/
+        }
+    }]
 }

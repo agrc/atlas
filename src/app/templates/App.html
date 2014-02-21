@@ -1,32 +1,22 @@
 <div>
     <div data-dojo-attach-point='mainContainer' class='main-container' data-dojo-type='dijit.layout.BorderContainer'>
-        <div class='title-pane' data-dojo-type='dijit.layout.ContentPane' data-dojo-props="region:'top'">
+        <div class='title-pane' data-dojo-type='dijit/layout/ContentPane' data-dojo-props="region:'top'">
             <h1>
-                <span class='title'>Atlas Utah</span>
+                <span class='title'>Utah Environmental Interactive Map</span>
                 <a data-dojo-attach-point='version' class='version' href='ChangeLog.html'></a>
             </h1>
-            <img src="app/resources/agrc_logo.jpg" alt="agrc logo">
+            <img src="app/resources/deq_logo.png" alt="deq logo">
         </div>
-        <div data-dojo-attach-point='sideBar' class='side-bar' data-dojo-type='dijit.layout.ContentPane' data-dojo-props="region:'left'">
+        <div data-dojo-attach-point='sideBar' class='side-bar' data-dojo-type='dijit/layout/ContentPane' data-dojo-props="region:'right'">
             <div class='side-bar-sizer'>
                 <div class='padder'>
-                    Data and services provided by <a href="http://gis.utah.gov">Utah AGRC</a>
-                    <div data-dojo-attach-point="printDiv"></div>
-                    <div class='alert alert-info' data-dojo-attach-point='popupBlurb'>You may need to disable pop-up blockers to open the printout.</div>
+                    wizard
 
-                    <h4>Find Address</h4>
-                    <div data-dojo-attach-point='geocodeNode'></div>
-
-                    <h4>Find GNIS Place Name</h4>
-                    <div data-dojo-attach-point='gnisNode'></div>
-
-                    <h4>Find City</h4>
-                    <div data-dojo-attach-point='cityNode'></div>
+                    search
                 </div>
             </div>
         </div>
-        <div data-dojo-attach-point='centerContainer' class='center-container' data-dojo-type='dijit.layout.ContentPane' data-dojo-props="region:'center'">
-            <div data-dojo-attach-point='sidebarToggle'></div>
+        <div data-dojo-attach-point='centerContainer' class='center-container' data-dojo-type='dijit/layout/ContentPane' data-dojo-props="region:'center'">
             <div data-dojo-attach-point='mapDiv' class='map-div'></div>
         </div>
     </div>

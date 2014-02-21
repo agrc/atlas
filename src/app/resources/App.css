@@ -6,7 +6,7 @@
 @import '../../bower_components/agrc-widgets/resources/map/BaseMapSelector.css';
 @import '../../bower_components/agrc-widgets/resources/locate/FindAddress.css';
 @import '../../bower_components/agrc-widgets/resources/locate/MagicZoom.css';
-/*@import '../../bootstrap/css/bootstrap.css';*/
+@import '../../bower_components/bootstrap/dist/css/bootstrap.css';
 @import '../../bower_components/bootstrap/dist/css/bootstrap-theme.css';
 
 body, html, .app {

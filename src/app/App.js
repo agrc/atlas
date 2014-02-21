@@ -14,13 +14,6 @@ define([
     'agrc/widgets/map/BaseMap',
     'agrc/widgets/map/BaseMapSelector',
 
-    'agrc/widgets/locate/FindAddress',
-    'agrc/widgets/locate/MagicZoom',
-
-    'ijit/widgets/layout/SideBarToggler',
-
-    'esri/dijit/Print',
-
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
@@ -38,14 +31,7 @@ define([
     registry,
 
     BaseMap,
-    BaseMapSelector,
-
-    FindAddress,
-    MagicZoom,
-
-    SideBarToggler,
-
-    Print
+    BaseMapSelector
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -86,68 +72,9 @@ define([
             // the correct size
             this.inherited(arguments);
 
-            var sb, fa, fp, fm;
-
             this.initMap();
 
-            sb = new SideBarToggler({
-                sidebar: this.sideBar.domNode,
-                mainContainer: this.mainContainer,
-                map: this.map,
-                centerContainer: this.centerContainer.domNode
-            }, this.sidebarToggle);
-
-            fa = new FindAddress({
-                map: this.map,
-                apiKey: AGRC.apiKey
-            }, this.geocodeNode);
-
-            fp = new MagicZoom({
-                map: this.map,
-                mapServiceURL: AGRC.urls.vector,
-                searchLayerIndex: 4,
-                searchField: 'NAME',
-                placeHolder: 'place name...',
-                maxResultsToDisplay: 10,
-                'class': 'first'
-            }, this.gnisNode);
-
-            fm = new MagicZoom({
-                map: this.map,
-                mapServiceURL: AGRC.urls.vector,
-                searchLayerIndex: 1,
-                searchField: 'NAME',
-                placeHolder: 'city name...',
-                maxResultsToDisplay: 10
-            }, this.cityNode);
-
             this.inherited(arguments);
-
-            this.printer = new Print({
-                map: this.map,
-                url: AGRC.exportWebMapUrl,
-                templates: [{
-                    label: 'Portrait (PDF)',
-                    format: 'PDF',
-                    layout: 'Letter ANSI A Portrait',
-                    options: {
-                        legendLayers: []
-                    }
-                }, {
-                    label: 'Landscape (PDF)',
-                    format: 'PDF',
-                    layout: 'Letter ANSI A Landscape',
-                    options: {
-                        legendLayers: []
-                    }
-                }]
-            }, this.printDiv);
-            this.printer.startup();
-
-            var that = this;
-            this.printer.on('print-complete', function() {
-                domStyle.set(that.popupBlurb, 'display', 'block');
-            });
         },
         initMap: function() {
             // summary:
