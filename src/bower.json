@@ -1,0 +1,14 @@
+{
+  "name": "deq-enviro",
+  "version": "0.0.0",
+  "dependencies": {
+    "dojo": "1.9.1",
+    "dojox": "1.9.1",
+    "dijit": "1.9.1",
+    "dojo-util": "1.9.1",
+    "bootstrap": "~3.1.1",
+    "agrc-widgets": "*",
+    "agrc-ijit": "*",
+    "jquery": "~1"
+  }
+}
