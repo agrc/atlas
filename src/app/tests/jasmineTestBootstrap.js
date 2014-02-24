@@ -5,7 +5,7 @@ var dojoConfig = {
     has: {'dojo-undef-api': true}
 };
 
-// override alert to console
-window.alert = function(msg) {
-    console.error('ALERT OVERRIDDEN TO LOG: ' + msg);
-};
+// // override alert to console
+// window.alert = function(msg) {
+//     console.error('ALERT OVERRIDDEN TO LOG: ' + msg);
+// };
