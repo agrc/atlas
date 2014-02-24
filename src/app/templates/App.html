@@ -17,7 +17,13 @@
             </div>
         </div>
         <div data-dojo-attach-point='centerContainer' class='center-container' data-dojo-type='dijit/layout/ContentPane' data-dojo-props="region:'center'">
-            <div data-dojo-attach-point='mapDiv' class='map-div'></div>
+            <div data-dojo-attach-point='mapDiv' class='map-div'>
+                <div class='map-button-container'>
+                    <div data-dojo-attach-point="layersBtn"></div>
+                    <div data-dojo-attach-point="measureBtn"></div>
+                    <div data-dojo-attach-point="printBtn"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

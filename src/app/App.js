@@ -14,6 +14,8 @@ define([
     'agrc/widgets/map/BaseMap',
     'agrc/widgets/map/BaseMapSelector',
 
+    'app/MapButton',
+
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
@@ -31,7 +33,9 @@ define([
     registry,
 
     BaseMap,
-    BaseMapSelector
+    BaseMapSelector,
+
+    MapButton
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -60,6 +64,19 @@ define([
 
             // set version number
             this.version.innerHTML = AGRC.version;
+
+            new MapButton({
+                title: 'Map Layers',
+                iconName: 'list'
+            }, this.layersBtn);
+            new MapButton({
+                title: 'Measure Tool',
+                iconName: 'resize-horizontal'
+            }, this.measureBtn);
+            new MapButton({
+                title: 'Print Map',
+                iconName: 'print'
+            }, this.printBtn);
 
             this.inherited(arguments);
         },

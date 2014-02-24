@@ -1,0 +1,38 @@
+.map-button-container {
+    position: absolute;
+    z-index: 50;
+    top: 87px;
+    left: 20px;
+    display: block;
+}
+.map-button {
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: #666;
+    background-color: rgba(102, 102, 102, 0.8);
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    border-radius: 5px;
+    background-image: ?? 20x20;
+    background-position: center, center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    box-sizing: content-box;
+    margin-bottom: 3px;
+}
+.map-button:hover {
+    background-color: #333;
+    background-color: rgba(102, 102, 102, 0.9);
+}
+.map-button:hover {
+    background-color: #ccc;
+    background-color: rgba(102, 102, 102, 0.6);
+}
+.map-button .glyphicon {
+    color: #f2f2f2;
+    font-size: 20px;
+    left: -10px;
+    top: -10px;
+    margin: 50%;
+}

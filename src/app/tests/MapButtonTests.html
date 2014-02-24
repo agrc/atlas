@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>MapButton Tests</title>
+
+    <!-- META TAGS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <!-- CSS -->        
+    <link rel='stylesheet' href='http://js.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css'>
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../resources/MapButton.css">
+    <style type='text/css'>
+        body {
+            padding: 20px;
+        }
+        #map {
+            width: 300px;
+            position: relative;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='http://js.arcgis.com/3.8'></script>
+    <script type="text/javascript">
+    var projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
+    var widgetUnderTest;
+
+    require({
+        packages: [{
+            name: 'app',
+            location: projectUrl + '../'
+        }]
+    }, [
+        'app/MapButton',
+        'esri/map',
+
+        'dojo/domReady!'
+    ], function(Module, Map) {
+        map = new Map('map', {
+            basemap: 'streets',
+            zoom: 3
+        });
+        widgetUnderTest = new Module({
+            title: 'title text',
+            iconName: 'list'
+        }, 'node');
+
+        widgetUnderTest.startup();
+    });
+</script>
+</head>
+<body class='claro'>
+    <div id="map">
+        <div class="map-button-container">
+            <div id="node"></div>
+        </div>
+    </div>
+</body>
+</html>

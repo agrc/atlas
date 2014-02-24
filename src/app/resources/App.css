@@ -8,6 +8,7 @@
 @import '../../bower_components/agrc-widgets/resources/locate/MagicZoom.css';
 @import '../../bower_components/bootstrap/dist/css/bootstrap.css';
 @import '../../bower_components/bootstrap/dist/css/bootstrap-theme.css';
+@import 'MapButton.css';
 
 body, html, .app {
     width: 100%;
@@ -68,15 +69,6 @@ body, html, .app {
 }
 .app .first-header {
     margin-top: 0px;
-}
-.magic-zoom {
-    position: relative;
-}
-.app .side-bar-sizer :nth-of-type(4) {
-    z-index: 26;
-}
-.app [data-dojo-attach-point='popupBlurb'] {
-    display: none;
 }
 
 /* CENTER (MAP) */

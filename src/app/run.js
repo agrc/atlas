@@ -2,7 +2,7 @@
     var projectUrl;
     if (typeof location === 'object') {
         // running in browser
-        projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
+        projectUrl = location.pathname.replace(/\/[^\/]+$/, "");
 
         // running in unit tests
         projectUrl = (projectUrl === "/") ? '/src/' : projectUrl;
