@@ -15,6 +15,7 @@ define([
     'agrc/widgets/map/BaseMapSelector',
 
     'app/MapButton',
+    'app/Wizard',
 
 
     'dijit/layout/BorderContainer',
@@ -35,7 +36,8 @@ define([
     BaseMap,
     BaseMapSelector,
 
-    MapButton
+    MapButton,
+    Wizard
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -68,30 +70,16 @@ define([
             new MapButton({
                 title: 'Map Layers',
                 iconName: 'list'
-            }, this.layersBtn);
+            }, this.layersBtnDiv);
             new MapButton({
                 title: 'Measure Tool',
                 iconName: 'resize-horizontal'
-            }, this.measureBtn);
+            }, this.measureBtnDiv);
             new MapButton({
                 title: 'Print Map',
                 iconName: 'print'
-            }, this.printBtn);
-
-            this.inherited(arguments);
-        },
-        startup: function() {
-            // summary:
-            //      Fires after postCreate when all of the child widgets are finished laying out.
-            console.log('app.App::startup', arguments);
-
-            // call this before creating the map to make sure that the map container is
-            // the correct size
-            this.inherited(arguments);
-
-            this.initMap();
-
-            this.inherited(arguments);
+            }, this.printBtnDiv);
+            new Wizard({}, this.wizardDiv);
         },
         initMap: function() {
             // summary:

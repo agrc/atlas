@@ -5,12 +5,12 @@
         projectUrl = location.pathname.replace(/\/[^\/]+$/, "");
 
         // running in unit tests
-        projectUrl = (projectUrl === "/") ? '/src/' : projectUrl;
+        projectUrl = (projectUrl === "") ? '/src/' : projectUrl;
     } else {
         // running in build system
         projectUrl = '';
     }
-    var components = 'bower_components/';
+    var components = projectUrl + 'bower_components/';
     var config = {
         packages: [
             {
@@ -18,16 +18,22 @@
                 location: projectUrl + 'app'
             },{
                 name: 'agrc',
-                location: projectUrl + components + 'agrc-widgets'
+                location: components + 'agrc-widgets'
             },{
                 name: 'ijit',
-                location: projectUrl + components + 'agrc-ijit'
-            },{
-                name: 'bootstrap',
-                location: projectUrl + components + 'bootstrap/dist/js',
-                main: 'bootstrap'
+                location: components + 'agrc-ijit'
             }
-        ]
+        ],
+        paths: {
+            'use': components + 'use-amd/use',
+            'bootstrap': components + 'bootstrap/dist/js/bootstrap',
+            'jquery': components + 'jquery/dist/jquery'
+        },
+        use: {
+            'bootstrap': {
+                deps: ['jquery']
+            }
+        }
     };
     require(config, ['app']);
 })();

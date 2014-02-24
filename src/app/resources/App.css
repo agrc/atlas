@@ -61,14 +61,8 @@ body, html, .app {
     width: 302px;
     margin: -1px;
 }
-.app .padder {
-    padding: 8px;
-}
-.app .side-bar h3 {
-    margin-bottom: 3px;
-}
-.app .first-header {
-    margin-top: 0px;
+.app .panel-group .panel {
+    border-radius: 0;
 }
 
 /* CENTER (MAP) */

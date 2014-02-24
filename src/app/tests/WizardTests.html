@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Wizard Tests</title>
+
+    <!-- META TAGS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <!-- CSS -->        
+    <link rel='stylesheet' href='http://js.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css'>
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../resources/Wizard.css">
+    <style type='text/css'>
+    
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='http://js.arcgis.com/3.8'></script>
+    <script type="text/javascript">
+    var projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
+    var widgetUnderTest;
+
+    require({
+        packages: [{
+            name: 'app',
+            location: projectUrl + '../'
+        }]
+    }, [
+        'app/Wizard',
+
+        'dojo/domReady!'
+    ], function(Module) {
+        widgetUnderTest = new Module({
+        }, 'node');
+
+        widgetUnderTest.startup();
+    });
+</script>
+</head>
+<body class='claro'>
+    <div id="node"></div>
+</body>
+</html>
