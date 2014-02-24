@@ -14,22 +14,13 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jasmine: {
-            // for embedded map projects...
-            // app: {
-            //   src: ['src/EmbeddedMapLoader.js'],
-            //   options: {
-            //     specs: ['src/app/tests/spec/*.js']
-            //   }
-            // }
-
-            // for regular apps...
             app: {
                 src: ['src/app/run.js'],
                 options: {
-                    specs: ['src/app/tests/spec/*.js'],
+                    specs: ['src/app/**/Spec*.js'],
                     vendor: [
                         'src/app/tests/jasmineTestBootstrap.js',
-                        'http://js.arcgis.com/3.6/'
+                        'http://js.arcgis.com/3.8/'
                     ]
                 }
             }
@@ -65,4 +56,6 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'connect', 'watch']);
+
+    grunt.registerTask('travis', ['jshint', 'jasmine:app:build']);
 };
