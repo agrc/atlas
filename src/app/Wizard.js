@@ -7,8 +7,7 @@ define([
     'dijit/_TemplatedMixin',
     'dijit/_WidgetsInTemplateMixin',
 
-
-    'use!bootstrap'
+    'app/_CollapsableMixin'
 ], function(
     template,
 
@@ -16,9 +15,12 @@ define([
 
     _WidgetBase,
     _TemplatedMixin,
-    _WidgetsInTemplateMixin
+    _WidgetsInTemplateMixin,
+
+    _CollapsableMixin
 ) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
+    return declare(
+        [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _CollapsableMixin], {
         // description:
         //      The title pane with help text.
 
@@ -35,10 +37,6 @@ define([
             //    private
             console.log('app/Wizard::postCreate', arguments);
 
-            $(this.anchor).collapse({
-                parent: this.domNode,
-                toggle: false
-            });
 
             this.setupConnections();
         },

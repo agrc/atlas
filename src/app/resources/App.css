@@ -64,6 +64,12 @@ body, html, .app {
 .app .panel-group .panel {
     border-radius: 0;
 }
+.app .panel-group .panel {
+    margin-top: -1px;
+}
+.app .panel-group {
+    margin-bottom: -1px;
+}
 
 /* CENTER (MAP) */
 .app .center-container {

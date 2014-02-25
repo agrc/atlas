@@ -16,6 +16,7 @@ define([
 
     'app/MapButton',
     'app/Wizard',
+    'app/search/Search',
 
 
     'dijit/layout/BorderContainer',
@@ -37,7 +38,8 @@ define([
     BaseMapSelector,
 
     MapButton,
-    Wizard
+    Wizard,
+    Search
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -67,6 +69,13 @@ define([
             // set version number
             this.version.innerHTML = AGRC.version;
 
+            this.inherited(arguments);
+        },
+        startup: function () {
+            // summary:
+            //      
+            console.log('app/App:startup', arguments);
+        
             new MapButton({
                 title: 'Map Layers',
                 iconName: 'list'
@@ -80,6 +89,11 @@ define([
                 iconName: 'print'
             }, this.printBtnDiv);
             new Wizard({}, this.wizardDiv);
+            new Search({}, this.searchDiv);
+
+            this.inherited(arguments);
+
+            this.initMap();
         },
         initMap: function() {
             // summary:

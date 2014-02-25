@@ -5,8 +5,9 @@ define([
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
-    'dijit/_WidgetsInTemplateMixin'
+    'dijit/_WidgetsInTemplateMixin',
 
+    'app/_CollapsableMixin'
 ], function(
     template,
 
@@ -14,31 +15,17 @@ define([
 
     _WidgetBase,
     _TemplatedMixin,
-    _WidgetsInTemplateMixin
+    _WidgetsInTemplateMixin,
+
+    _CollapsableMixin
 ) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
+    return declare(
+        [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _CollapsableMixin], {
         // description:
-        //      **Summary**: Encapsulates the search functionality for the app.
-        //      <p>
-        //      </p>
-        //      **Owner(s)**:
-        //      </p>
-        //      <p>
-        //      **Test Page**: <a href=""></a>
-        //      </p>
-        //      <p>
-        //      **Description**:  Encapsulates the search functionality for the app.
-        //      </p>
-        //      <p>
-        //      **Required Files**:
-        //      </p>
-        //      <ul><li></li></ul>
-        // example:
-        // |    var widget = new Search({
-        // |    }, "node");
+        //      Encapsulates the search functionality for the app.
 
         templateString: template,
-        baseClass: 'search',
+        baseClass: 'search panel-group',
         widgetsInTemplate: true,
 
         // Properties to be sent into constructor
@@ -51,6 +38,8 @@ define([
             console.log('app/search/Search::postCreate', arguments);
 
             this.setupConnections();
+
+            this.inherited(arguments);
         },
         setupConnections: function() {
             // summary:

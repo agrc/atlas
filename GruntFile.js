@@ -17,7 +17,7 @@ module.exports = function(grunt) {
             app: {
                 src: ['src/app/run.js'],
                 options: {
-                    specs: ['src/app/tests/**/Spec*.js'],
+                    specs: ['src/app/**/Spec*.js'],
                     vendor: [
                         'src/app/tests/jasmineTestBootstrap.js',
                         'http://js.arcgis.com/3.8/'
