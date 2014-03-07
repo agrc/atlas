@@ -6,7 +6,6 @@
 @import '../../agrc/resources/map/BaseMapSelector.css';
 @import '../../agrc/resources/locate/FindAddress.css';
 @import '../../agrc/resources/locate/MagicZoom.css';
-/*@import '../../bootstrap/dist/css/bootstrap.css';*/
 @import '../../bootstrap/dist/css/bootstrap-theme.css';
 @import 'MapButton.css';
 
@@ -19,65 +18,83 @@ body, html, .app {
     font-family: Arial, sans-serif;
     color: #444;
 }
-.app .main-container {
-    width: 100%;
-    height: 100%;
+.app .container-with-border {
+    border: 1px solid #b5bcc7;
 }
 
 /* TITLE PANE */
-.app .title-pane {
-    border: none;
-    overflow: hidden;
+.app .title-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    padding: 8px;
 }
-.app h1 {
+.app .title-container h1 {
     margin: 5px 0 0 0;
     font-size: 40px;
     letter-spacing: -2px;
-    font-weight: normal;
 }
-.app .version {
+.app .title-container .version {
     font-size: 16px;
     text-decoration: none;
     color: gray;
     letter-spacing: 0;
 }
-.app .version:hover {
+.app .title-container .version:hover {
     text-decoration: underline !important;
 }
-.app .title-pane>img {
+.app .title-container>img {
     position: absolute;
     top: -3px;
     right: 0;
 }
 
 /* SIDE BAR */
-.app .side-bar {
+.app .side-bar-container {
     width: 300px;
     padding: 0;
     overflow-y: auto;
     overflow-x: hidden;
+    position: absolute;
+    right: 5px;
+    top: 75px;
+    bottom: 5px;
 }
-.app .side-bar-sizer {
-    width: 302px;
-    margin: -1px;
-}
-.app .panel-group .panel {
+.app .side-bar-container .panel-group .panel {
     border-radius: 0;
 }
-.app .panel-group .panel {
+.app .side-bar-container .panel-group .panel {
     margin-top: -1px;
 }
-.app .panel-group {
-    margin-bottom: -1px;
+.app .side-bar-container .panel-group {
+    margin: -1px;
 }
 
 /* CENTER (MAP) */
-.app .center-container>.dijitContentPane {
-    padding: 0;
+.app .center-container {
+    position: absolute;
+    top: 75px;
+    left: 5px;
+    bottom: 5px;
+    right: 310px;
 }
-.app .map-div {
+.app .center-container .map-div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.app .center-container .grid-identify-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100% !important;
+    border-top: 0 solid #b5bcc7;
+    height: 0;
+    overflow: hidden;
 }
 
 /* GENERAL STUFF */

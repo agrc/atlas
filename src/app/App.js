@@ -2,6 +2,7 @@ define([
     'dojo/text!app/templates/App.html',
 
     'dojo/_base/declare',
+    'dojo/_base/array',
 
     'dojo/dom',
     'dojo/dom-style',
@@ -11,20 +12,19 @@ define([
     'dijit/_WidgetsInTemplateMixin',
     'dijit/registry',
 
+    'dojox/fx',
+
     'agrc/widgets/map/BaseMap',
     'agrc/widgets/map/BaseMapSelector',
 
     'app/MapButton',
     'app/Wizard',
-    'app/search/Search',
-
-
-    'dijit/layout/BorderContainer',
-    'dijit/layout/ContentPane'
+    'app/search/Search'
 ], function(
     template,
 
     declare,
+    array,
 
     dom,
     domStyle,
@@ -33,6 +33,8 @@ define([
     _TemplatedMixin,
     _WidgetsInTemplateMixin,
     registry,
+
+    coreFx,
 
     BaseMap,
     BaseMapSelector,
@@ -48,6 +50,10 @@ define([
         widgetsInTemplate: true,
         templateString: template,
         baseClass: 'app',
+
+        // childWidgets: Object[]
+        //      container for holding custom child widgets
+        childWidgets: null,
 
         // map: agrc.widgets.map.Basemap
         map: null,
@@ -69,6 +75,22 @@ define([
             // set version number
             this.version.innerHTML = AGRC.version;
 
+            this.childWidgets = [
+                new MapButton({
+                    title: 'Map Layers',
+                    iconName: 'list'
+                }, this.layersBtnDiv),
+                new MapButton({
+                    title: 'Measure Tool',
+                    iconName: 'resize-horizontal'
+                }, this.measureBtnDiv),
+                new MapButton({
+                    title: 'Print Map',
+                    iconName: 'print'
+                }, this.printBtnDiv),
+                new Wizard({}, this.wizardDiv),
+                new Search({}, this.searchDiv)
+            ];
             this.inherited(arguments);
         },
         startup: function () {
@@ -76,24 +98,15 @@ define([
             //      
             console.log('app/App:startup', arguments);
         
-            new MapButton({
-                title: 'Map Layers',
-                iconName: 'list'
-            }, this.layersBtnDiv);
-            new MapButton({
-                title: 'Measure Tool',
-                iconName: 'resize-horizontal'
-            }, this.measureBtnDiv);
-            new MapButton({
-                title: 'Print Map',
-                iconName: 'print'
-            }, this.printBtnDiv);
-            new Wizard({}, this.wizardDiv);
-            new Search({}, this.searchDiv);
-
             this.inherited(arguments);
 
+            array.forEach(this.childWidgets, function (widget) {
+                widget.startup();
+            });
+
             this.initMap();
+
+            this.buildAnimations();
         },
         initMap: function() {
             // summary:
@@ -111,6 +124,51 @@ define([
                 id: 'claro',
                 position: 'TR'
             });
+        },
+        buildAnimations: function () {
+            // summary:
+            //      builds the animations used for this widget
+            console.log('app/App:buildAnimations', arguments);
+        
+            var that = this;
+            this.openGridAnimation = coreFx.combine([
+                coreFx.animateProperty({
+                    node: this.gridIdentifyContainer,
+                    properties: {
+                        height: 250,
+                        borderWidth: 1
+                    },
+                    onEnd: function () {
+                        that.map.resize();
+                        // TODO: preserve map extent
+                    }
+                }),
+                coreFx.animateProperty({
+                    node: this.mapDiv,
+                    properties: {
+                        bottom: 250
+                    }
+                })
+            ]);
+            this.closeGridAnimation = coreFx.combine([
+                coreFx.animateProperty({
+                    node: this.gridIdentifyContainer,
+                    properties: {
+                        height: 0,
+                        borderWidth: 0
+                    },
+                    onEnd: function () {
+                        that.map.resize();
+                        // TODO: preserve map extent
+                    }
+                }),
+                coreFx.animateProperty({
+                    node: this.mapDiv,
+                    properties: {
+                        bottom: 0
+                    }
+                })
+            ]);
         }
     });
 });

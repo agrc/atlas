@@ -24,5 +24,14 @@ function (
         it('creates a valid object', function () {
             expect(testWidget).toEqual(jasmine.any(App));
         });
+
+        describe('buildAnimations', function () {
+            it('creates dojo/fx objects', function () {
+                testWidget.buildAnimations();
+
+                expect(testWidget.openGridAnimation.play).toBeDefined();
+                expect(testWidget.closeGridAnimation.play).toBeDefined();
+            });
+        });
     });
 });
