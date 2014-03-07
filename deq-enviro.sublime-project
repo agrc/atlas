@@ -2,10 +2,13 @@
     "folders": [{
         "folder_exclude_patterns": [
             "dist/app",
-            "dist/bower_components",
-            "dist/esri",
-            "src/bower_components",
+            "dist/dojo",
+            "dist/dijit",
+            "dist/dojox",
             "src/esri",
+            "src/dojo",
+            "src/dijit",
+            "src/dojox",
             "node_modules",
             ".grunt"
         ],

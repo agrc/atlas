@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                     specs: ['src/app/**/Spec*.js'],
                     vendor: [
                         'src/app/tests/jasmineTestBootstrap.js',
-                        'http://js.arcgis.com/3.8/'
+                        'src/dojo/dojo.js'
                     ],
                     host: 'http://localhost:8000'
                 }

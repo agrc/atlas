@@ -9,7 +9,7 @@ BASEDIR=$(cd $(dirname $0) && pwd)
 SRCDIR="$BASEDIR/src"
 
 # Directory containing dojo build utilities
-TOOLSDIR="$SRCDIR/components/dojo-util/buildscripts"
+TOOLSDIR="$SRCDIR/util/buildscripts"
 
 # Destination directory for built code
 DISTDIR="$BASEDIR/dist"
@@ -33,16 +33,6 @@ echo "Building application with $PROFILE to $DISTDIR."
 echo "$LOADERCONF"
 
 echo -n "Cleaning old files..."
-echo "$BASEDIR"
-if [ -e "$DISTDIR/sftp-config.json" ]; then
-  cp "$DISTDIR/sftp-config.json" "$BASEDIR"
-fi
-if [ -e "$DISTDIR/sftp-config-alt.json" ]; then
-  cp "$DISTDIR/sftp-config-alt.json" "$BASEDIR"
-fi
-if [ -e "$DISTDIR/EmbeddedMapLoader.js" ]; then
-  cp "$DISTDIR/EmbeddedMapLoader.js" "$BASEDIR"
-fi
 rm -rf "$DISTDIR"
 echo " Done"
 

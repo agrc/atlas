@@ -1,39 +1,32 @@
 (function () {
-    var projectUrl;
-    if (typeof location === 'object') {
-        // running in browser
-        projectUrl = location.pathname.replace(/\/[^\/]+$/, "");
-
-        // running in unit tests
-        projectUrl = (projectUrl === "") ? '/src/' : projectUrl;
-    } else {
-        // running in build system
-        projectUrl = '';
-    }
-    var components = projectUrl + 'bower_components/';
+    // the baseUrl is relavant in source version and while running unit tests.
+    // the`typeof` is for when this file is passed as a require argument to the build system
+    // since it runs on node, it doesn't have a window object. The basePath for the build system
+    // is defined in build.profile.js
     var config = {
+        baseUrl: (
+            typeof window !== "undefined" &&
+            window.dojoConfig && 
+            window.dojoConfig.isJasmineTestRunner
+            ) ? '/src': './',
         packages: [
+            'agrc',
+            'app',
+            'dijit',
+            'dojo',
+            'dojox',
+            'esri',
+            'ijit',
             {
-                name: 'app',
-                location: projectUrl + 'app'
+                name: 'jquery',
+                location: 'jquery/dist',
+                main: 'jquery'
             },{
-                name: 'agrc',
-                location: components + 'agrc-widgets'
-            },{
-                name: 'ijit',
-                location: components + 'agrc-ijit'
+                name: 'bootstrap',
+                location: 'bootstrap',
+                main: 'dist/js/bootstrap'
             }
-        ],
-        paths: {
-            'use': components + 'use-amd/use',
-            'bootstrap': components + 'bootstrap/dist/js/bootstrap',
-            'jquery': components + 'jquery/dist/jquery'
-        },
-        use: {
-            'bootstrap': {
-                deps: ['jquery']
-            }
-        }
+        ]
     };
-    require(config, ['app']);
+    require(config, ['jquery', 'app']);
 })();

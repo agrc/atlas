@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare',
 
-    'use!bootstrap'
+    'bootstrap'
 ], function(
     declare
 ) {

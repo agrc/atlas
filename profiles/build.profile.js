@@ -16,8 +16,12 @@ var profile = {
                 'dojo/domReady',
                 'app/main',
                 'app/run',
-                'esri/dijit/Attribution'
+                'esri/dijit/Attribution',
+                'dojox/gfx/path',
+                'dojox/gfx/svg',
+                'dojox/gfx/shape'
             ],
+            includeLocales: ['en-us'],
             customBase: true,
             boot: true
         }
@@ -44,17 +48,14 @@ var profile = {
     // I've had problems getting the local version of the esri package to work 
     // in development.
     packages: [{
-        name: 'dojo'
-    },{
-        name: 'dijit'
-    },{
-        name: 'dojox'
-    },{
         name: 'esri',
         resourceTags: {
             amd: function (filename, mid) {
                 return (/.*\.js/).test(filename);
             }
         }
-    }]
+    }],
+    userConfig: {
+        packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
+    }
 };

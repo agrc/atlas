@@ -1,11 +1,16 @@
 define([
-    'dojo/parser', 
+    'app/App',
 
-    'app/App'
+    'dojo/dom',
+
+
+    'dojo/domReady!'
 ], 
 
 function (
-    parser
+    App,
+
+    dom
     ) {
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
@@ -33,6 +38,9 @@ function (
         }
     };
 
-    // lights...camera...action!
-    parser.parse();
+    // don't initialize if this is the jasmine test runner
+    if (!window.dojoConfig || !window.dojoConfig.isJasmineTestRunner) {
+        var app = new App({}, dom.byId('appDiv'));
+        app.startup();
+    }
 });

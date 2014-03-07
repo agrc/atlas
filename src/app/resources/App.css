@@ -1,13 +1,13 @@
-@import '../../bower_components/dijit/themes/claro/claro.css';
+@import '../../dijit/themes/claro/claro.css';
 @import '../../esri/css/esri.css';
-@import '../../bower_components/agrc-widgets/resources/map/BaseMap.css';
-@import '../../bower_components/agrc-ijit/themes/standard/layout/SideBarToggler.css';
-@import '../../bower_components/agrc-ijit/themes/standard/layout/PaneStack.css';
-@import '../../bower_components/agrc-widgets/resources/map/BaseMapSelector.css';
-@import '../../bower_components/agrc-widgets/resources/locate/FindAddress.css';
-@import '../../bower_components/agrc-widgets/resources/locate/MagicZoom.css';
-@import '../../bower_components/bootstrap/dist/css/bootstrap.css';
-@import '../../bower_components/bootstrap/dist/css/bootstrap-theme.css';
+@import '../../agrc/resources/map/BaseMap.css';
+@import '../../ijit/themes/standard/layout/SideBarToggler.css';
+@import '../../ijit/themes/standard/layout/PaneStack.css';
+@import '../../agrc/resources/map/BaseMapSelector.css';
+@import '../../agrc/resources/locate/FindAddress.css';
+@import '../../agrc/resources/locate/MagicZoom.css';
+/*@import '../../bootstrap/dist/css/bootstrap.css';*/
+@import '../../bootstrap/dist/css/bootstrap-theme.css';
 @import 'MapButton.css';
 
 body, html, .app {
@@ -72,7 +72,7 @@ body, html, .app {
 }
 
 /* CENTER (MAP) */
-.app .center-container {
+.app .center-container>.dijitContentPane {
     padding: 0;
 }
 .app .map-div {

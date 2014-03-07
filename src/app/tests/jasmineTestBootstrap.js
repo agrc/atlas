@@ -1,8 +1,7 @@
 /*jshint unused:false*/
 var dojoConfig = {
-    isDebug: false,
-    isJasmineTestRunner: true, // prevents parser in main.js from running
-    has: {'dojo-undef-api': true}
+    // isDebug: false,
+    isJasmineTestRunner: true
 };
 
 // // override alert to console
