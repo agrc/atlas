@@ -6,7 +6,6 @@ node_modules/
 .DS_Store
 *.svn*
 *.pyc
-src/esri/*
 src/agrc/*
 src/ijit/*
 src/bootstrap/*
