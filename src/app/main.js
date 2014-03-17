@@ -3,6 +3,8 @@ define([
 
     'dojo/dom',
 
+    'esri/config',
+
 
     'dojo/domReady!'
 ], 
@@ -10,8 +12,14 @@ define([
 function (
     App,
 
-    dom
+    dom,
+
+    esriConfig
     ) {
+    // force api to use CORS on mapserv thus removing the test request on app load
+    // e.g. http://mapserv.utah.gov/ArcGIS/rest/info?f=json
+    esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
+    
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
         errorLogger: null,
