@@ -20,6 +20,10 @@ function (
         //      global reference to App
         app: null,
 
+        // appName: String
+        //      name of the app used in permissionsproxy
+        appName: 'deq',
+
         // version: String
         //      The version number.
         version: '0.0.1',
