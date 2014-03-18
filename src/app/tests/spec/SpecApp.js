@@ -1,14 +1,16 @@
 require([
     'app/App',
     'dojo/dom-construct',
-    'dojo/_base/window'
+    'dojo/_base/window',
+    'dojo/dom-class'
 
 ],
 
 function (
     App,
     domConstruct,
-    win
+    win,
+    domClass
     ) {
     describe('app/App', function () {
         var testWidget;
@@ -17,7 +19,7 @@ function (
             testWidget.startup();
         });
         afterEach(function () {
-            testWidget.destroy();
+            testWidget.destroyRecursive();
             testWidget = null;
         });
 
@@ -31,6 +33,28 @@ function (
 
                 expect(testWidget.openGridAnimation.play).toBeDefined();
                 expect(testWidget.closeGridAnimation.play).toBeDefined();
+            });
+        });
+
+        describe('switchBottomPanel', function () {
+            var panel, panel2;
+            beforeEach(function () {
+                panel = testWidget.identifyPane;
+                panel2 = testWidget.resultsGrid;
+            });
+            it('removes `hidden` class from passed in element', function () {
+                domClass.add(panel.domNode, 'hidden');
+
+                testWidget.switchBottomPanel(panel.domNode);
+
+                expect(domClass.contains(panel.domNode, 'hidden')).toBe(false);
+            });
+            it('adds `hidden` class to the other element', function () {
+                domClass.remove(panel.domNode, 'hidden');
+
+                testWidget.switchBottomPanel(panel2);
+
+                expect(domClass.contains(panel.domNode, 'hidden')).toBe(true);
             });
         });
     });

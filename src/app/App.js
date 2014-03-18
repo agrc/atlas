@@ -1,11 +1,12 @@
 define([
-    'dojo/text!app/templates/App.html',
+    'dojo/text!./templates/App.html',
 
     'dojo/_base/declare',
     'dojo/_base/array',
 
     'dojo/dom',
     'dojo/dom-style',
+    'dojo/dom-class',
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
@@ -17,9 +18,11 @@ define([
     'agrc/widgets/map/BaseMap',
     'agrc/widgets/map/BaseMapSelector',
 
-    'app/MapButton',
-    'app/Wizard',
-    'app/search/Search',
+    './MapButton',
+    './Wizard',
+    './search/Search',
+    './search/ResultsGrid',
+    './search/IdentifyPane',
 
     'ijit/widgets/authentication/LoginRegister'
 ], function(
@@ -30,6 +33,7 @@ define([
 
     dom,
     domStyle,
+    domClass,
 
     _WidgetBase,
     _TemplatedMixin,
@@ -44,6 +48,8 @@ define([
     MapButton,
     Wizard,
     Search,
+    ResultsGrid,
+    IdentifyPane,
 
     LoginRegister
 ) {
@@ -99,8 +105,11 @@ define([
                     logoutDiv: this.logoutDiv,
                     showOnLoad: false
                     // securedServicesBaseUrl: ??
-                })
+                }),
+                this.resultsGrid = new ResultsGrid({}, this.resultsGridDiv),
+                this.identifyPane = new IdentifyPane({}, this.identifyPaneDiv)
             ];
+            this.switchBottomPanel(this.resultsGridDiv);
             this.inherited(arguments);
         },
         startup: function () {
@@ -110,7 +119,9 @@ define([
         
             this.inherited(arguments);
 
+            var that = this;
             array.forEach(this.childWidgets, function (widget) {
+                that.own(widget);
                 widget.startup();
             });
 
@@ -179,6 +190,19 @@ define([
                     }
                 })
             ]);
+        },
+        switchBottomPanel: function (node) {
+            // summary:
+            //      shows the passed in node and hides the other
+            // node: DomNode
+            console.log('app/App:switchBottomPanel', arguments);
+        
+            domClass.remove(node, 'hidden');
+
+            var otherNode = (node === this.identifyPane.domNode) ? 
+                this.resultsGrid.domNode : this.identifyPane.domNode;
+
+            domClass.add(otherNode, 'hidden');
         }
     });
 });
