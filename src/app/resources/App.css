@@ -1,13 +1,10 @@
 @import '../../dijit/themes/claro/claro.css';
 @import '../../esri/css/esri.css';
 @import '../../agrc/resources/map/BaseMap.css';
-@import '../../ijit/themes/standard/layout/SideBarToggler.css';
-@import '../../ijit/themes/standard/layout/PaneStack.css';
 @import '../../agrc/resources/map/BaseMapSelector.css';
-@import '../../agrc/resources/locate/FindAddress.css';
-@import '../../agrc/resources/locate/MagicZoom.css';
 @import '../../bootstrap/dist/css/bootstrap-theme.css';
 @import 'MapButton.css';
+@import '../../ijit/resources/authentication/LoginRegister.css';
 
 body, html, .app {
     width: 100%;
@@ -15,7 +12,6 @@ body, html, .app {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: Arial, sans-serif;
     color: #444;
 }
 .app .container-with-border {
@@ -31,7 +27,8 @@ body, html, .app {
     padding: 8px;
 }
 .app .title-container h1 {
-    margin: 5px 0 0 0;
+    font-family: Arial, sans-serif;
+    margin: 5px 0 0 60px;
     font-size: 40px;
     letter-spacing: -2px;
 }
@@ -47,7 +44,15 @@ body, html, .app {
 .app .title-container>img {
     position: absolute;
     top: -3px;
-    right: 0;
+    left: 0;
+}
+.app .title-container .links-container {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.app .title-container [data-dojo-attach-point='logoutDiv'] {
+    display: inline;
 }
 
 /* SIDE BAR */

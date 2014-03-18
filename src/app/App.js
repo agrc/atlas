@@ -19,7 +19,9 @@ define([
 
     'app/MapButton',
     'app/Wizard',
-    'app/search/Search'
+    'app/search/Search',
+
+    'ijit/widgets/authentication/LoginRegister'
 ], function(
     template,
 
@@ -41,7 +43,9 @@ define([
 
     MapButton,
     Wizard,
-    Search
+    Search,
+
+    LoginRegister
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -89,7 +93,13 @@ define([
                     iconName: 'print'
                 }, this.printBtnDiv),
                 new Wizard({}, this.wizardDiv),
-                new Search({}, this.searchDiv)
+                new Search({}, this.searchDiv),
+                new LoginRegister({
+                    appName: AGRC.appName,
+                    logoutDiv: this.logoutDiv,
+                    showOnLoad: false
+                    // securedServicesBaseUrl: ??
+                })
             ];
             this.inherited(arguments);
         },
