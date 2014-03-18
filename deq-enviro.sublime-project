@@ -22,7 +22,8 @@
         "working_dir": "$project_path",
         "osx": {
             "cmd": ["bash ./build.sh"],
-            "shell": true
+            "shell": true,
+            "path": "/bin/:/usr/local/bin/:/usr/bin/"
         },
         "windows": {
             "cmd": ["build.bat"],
