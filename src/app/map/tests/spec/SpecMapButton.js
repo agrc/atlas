@@ -1,5 +1,5 @@
 require([
-    'app/MapButton',
+    'app/map/MapButton',
 
     'dojo/_base/window',
 

@@ -3,7 +3,7 @@
 @import '../../agrc/resources/map/BaseMap.css';
 @import '../../agrc/resources/map/BaseMapSelector.css';
 @import '../../bootstrap/dist/css/bootstrap-theme.css';
-@import 'MapButton.css';
+@import '../map/resources/MapButton.css';
 @import '../../ijit/resources/authentication/LoginRegister.css';
 
 body, html, .app {

@@ -18,7 +18,7 @@ define([
     'agrc/widgets/map/BaseMap',
     'agrc/widgets/map/BaseMapSelector',
 
-    './MapButton',
+    './map/MapButton',
     './Wizard',
     './search/Search',
     './search/ResultsGrid',
