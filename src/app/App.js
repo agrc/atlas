@@ -19,6 +19,7 @@ define([
     'agrc/widgets/map/BaseMapSelector',
 
     './map/MapButton',
+    './map/MapLayersPopover',
     './Wizard',
     './search/Search',
     './search/ResultsGrid',
@@ -46,6 +47,7 @@ define([
     BaseMapSelector,
 
     MapButton,
+    MapLayersPopover,
     Wizard,
     Search,
     ResultsGrid,
@@ -86,7 +88,7 @@ define([
             this.version.innerHTML = AGRC.version;
 
             this.childWidgets = [
-                new MapButton({
+                this.mapLayersBtn = new MapButton({
                     title: 'Map Layers',
                     iconName: 'list'
                 }, this.layersBtnDiv),
@@ -107,7 +109,10 @@ define([
                     // securedServicesBaseUrl: ??
                 }),
                 this.resultsGrid = new ResultsGrid({}, this.resultsGridDiv),
-                this.identifyPane = new IdentifyPane({}, this.identifyPaneDiv)
+                this.identifyPane = new IdentifyPane({}, this.identifyPaneDiv),
+                new MapLayersPopover({
+                    btn: this.mapLayersBtn.domNode
+                })
             ];
             this.switchBottomPanel(this.resultsGridDiv);
             this.inherited(arguments);
