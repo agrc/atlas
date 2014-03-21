@@ -28,5 +28,6 @@
     "sub": true,
     "undef": true,
     "unused": true,
-    "eqnull": true
+    "eqnull": true,
+    "es3": true
 }
