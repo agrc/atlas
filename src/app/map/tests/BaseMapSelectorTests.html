@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>BaseMapSelector Tests</title>
+
+    <!-- META TAGS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <!-- CSS -->        
+    <link rel="stylesheet" type="text/css" href="../../../esri/css/esri.css" />
+    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../resources/BaseMapSelector.css">
+    <style type='text/css'>
+        body {
+            padding: 50px;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="../../../jquery/dist/jquery.js"></script>
+    <script type='text/javascript' src="../../../bootstrap/dist/js/bootstrap.js"></script>
+    <script type='text/javascript' src="../../../dojo/dojo.js"></script>
+    <script type="text/javascript">
+        var baseUrl = window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../';
+        var widgetUnderTest;
+        var map;
+
+        require({
+            baseUrl: baseUrl,
+            packages: ['app', 'agrc', 'esri', 'dojo', 'dijit', 'dojox']
+        }, [
+            'app/map/BaseMapSelector',
+            'agrc/widgets/map/BaseMap',
+
+            'dojo/domReady!'
+        ], function(
+            Module,
+            BaseMap
+            ) {
+
+            map = new BaseMap('mapDiv', {
+                useDefaultBaseMap: false
+            });
+            widgetUnderTest = new Module({
+                map: map
+            }, 'node');
+
+            widgetUnderTest.startup();
+        });
+</script>
+</head>
+<body class='claro'>
+    <div id="node"></div>
+    <div id="mapDiv"></div>
+</body>
+</html>

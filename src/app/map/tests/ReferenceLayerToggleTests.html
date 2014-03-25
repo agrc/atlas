@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>ReferenceLayerToggle Tests</title>
+
+    <!-- META TAGS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <!-- CSS -->        
+    <link rel="stylesheet" type="text/css" href="../../../esri/css/esri.css" />
+    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../resources/ReferenceLayerToggle.css">
+    <style type='text/css'>
+        body {
+            padding: 50px;
+        }
+        #mapDiv {
+            border: solid gray 1px;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="../../../jquery/dist/jquery.js"></script>
+    <script type='text/javascript' src="../../../bootstrap/dist/js/bootstrap.js"></script>
+    <script type='text/javascript' src='../../../dojo/dojo.js' data-dojo-config='isDebug: 1'></script>
+    <script type="text/javascript">
+        var baseUrl = window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../';
+        var widgetUnderTest;
+        var widgetUnderTest2;
+        var widgetUnderTest3;
+        var widgetUnderTest4;
+        var map;
+
+        require({
+            baseUrl: baseUrl,
+            packages: ['app', 'esri', 'agrc', 'dojo', 'dijit', 'dojox']
+        }, [
+            'app/map/ReferenceLayerToggle',
+            'app/map/MapController',
+
+            'agrc/widgets/map/BaseMap',
+
+
+            'dojo/domReady!'
+        ], function(Module, MapController, BaseMap) {
+            map = new BaseMap('mapDiv', {
+                zoom: 5
+            });
+            MapController.init({map: map});
+
+            widgetUnderTest = new Module({
+                layerName: 'Dynamic Layer',
+                map: map,
+                mapServiceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/SBI/MapServer'
+            }, 'node');
+            widgetUnderTest.startup();
+
+            widgetUnderTest2 = new Module({
+                layerName: 'Cached Layer',
+                map: map,
+                mapServiceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/UtahPLSS/MapServer',
+                tiledService: true
+            }, 'node2');
+            widgetUnderTest2.startup();
+
+            widgetUnderTest3 = new Module({
+                layerName: 'Individual layer within Map Service',
+                map: map,
+                mapServiceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/LandUsePlanning/MapServer',
+                layerIndex: 1
+            }, 'node3');
+            widgetUnderTest3.startup();
+
+            widgetUnderTest4 = new Module({
+                layerName: 'Individual layer within Map Service',
+                map: map,
+                mapServiceUrl: 'http://mapserv.utah.gov/arcgis/rest/services/LandUsePlanning/MapServer',
+                layerIndex: 15
+            }, 'node4');
+            widgetUnderTest4.startup();
+        });
+    </script>
+</head>
+<body class='claro'>
+    <div id="node"></div>
+    <div id="node2"></div>
+    <div id="node3"></div>
+    <div id="node4"></div>
+    <div id="mapDiv"></div>
+</body>
+</html>

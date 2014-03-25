@@ -16,14 +16,15 @@ define([
     'dojox/fx',
 
     'agrc/widgets/map/BaseMap',
-    'agrc/widgets/map/BaseMapSelector',
 
+    './config',
     './map/MapButton',
     './map/MapLayersPopover',
     './Wizard',
     './search/Search',
     './search/ResultsGrid',
     './search/IdentifyPane',
+    './map/MapController',
 
     'ijit/widgets/authentication/LoginRegister'
 ], function(
@@ -44,14 +45,15 @@ define([
     coreFx,
 
     BaseMap,
-    BaseMapSelector,
 
+    config,
     MapButton,
     MapLayersPopover,
     Wizard,
     Search,
     ResultsGrid,
     IdentifyPane,
+    MapController,
 
     LoginRegister
 ) {
@@ -75,7 +77,7 @@ define([
             //      first function to fire after page loads
             console.info('app.App::constructor', arguments);
 
-            AGRC.app = this;
+            config.app = this;
 
             this.inherited(arguments);
         },
@@ -85,11 +87,12 @@ define([
             console.log('app.App::postCreate', arguments);
 
             // set version number
-            this.version.innerHTML = AGRC.version;
+            this.version.innerHTML = config.version;
 
+            this.initMap();
             this.childWidgets = [
                 this.mapLayersBtn = new MapButton({
-                    title: 'Map Layers',
+                    title: 'Map Reference Layers',
                     iconName: 'list'
                 }, this.layersBtnDiv),
                 new MapButton({
@@ -103,7 +106,7 @@ define([
                 new Wizard({}, this.wizardDiv),
                 new Search({}, this.searchDiv),
                 new LoginRegister({
-                    appName: AGRC.appName,
+                    appName: config.appName,
                     logoutDiv: this.logoutDiv,
                     showOnLoad: false
                     // securedServicesBaseUrl: ??
@@ -115,6 +118,7 @@ define([
                 })
             ];
             this.switchBottomPanel(this.resultsGridDiv);
+
             this.inherited(arguments);
         },
         startup: function () {
@@ -130,8 +134,6 @@ define([
                 widget.startup();
             });
 
-            this.initMap();
-
             this.buildAnimations();
         },
         initMap: function() {
@@ -143,13 +145,7 @@ define([
                 useDefaultBaseMap: false
             });
 
-            var selector;
-
-            selector = new BaseMapSelector({
-                map: this.map,
-                id: 'claro',
-                position: 'TR'
-            });
+            MapController.init({map: this.map});
         },
         buildAnimations: function () {
             // summary:
@@ -204,7 +200,7 @@ define([
         
             domClass.remove(node, 'hidden');
 
-            var otherNode = (node === this.identifyPane.domNode) ? 
+            var otherNode = (node === this.identifyPane.domNode) ?
                 this.resultsGrid.domNode : this.identifyPane.domNode;
 
             domClass.add(otherNode, 'hidden');

@@ -9,12 +9,10 @@ var profile = {
     stripConsole: 'all',
     selectorEngine: 'acme',
     layers: {
-        // single file build layer
         'dojo/dojo': {
             include: [
                 'dojo/i18n',
                 'dojo/domReady',
-                'app/main',
                 'app/run',
                 'esri/dijit/Attribution',
                 'dojox/gfx/path',
