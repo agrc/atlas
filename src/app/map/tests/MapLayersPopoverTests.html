@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>MapLayersPopover Tests</title>
+
+    <!-- META TAGS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <!-- CSS -->        
+    <link rel="stylesheet" type="text/css" href="../../../esri/css/esri.css" />
+    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../resources/MapLayersPopover.css">
+    <link rel="stylesheet" href="../resources/MapButton.css">
+    <style type='text/css'>
+        body {
+            padding: 80px;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="../../../jquery/dist/jquery.js"></script>
+    <script type='text/javascript' src="../../../bootstrap/dist/js/bootstrap.js"></script>
+    <script type='text/javascript' src='../../../dojo/dojo.js'></script>
+    <script type="text/javascript">
+    var projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
+    var widgetUnderTest;
+
+    require({
+        packages: [{
+            name: 'app',
+            location: projectUrl + '../../'
+        },{
+            name: 'esri',
+            location: projectUrl + '../../../esri'
+        }]
+    }, [
+        'app/map/MapLayersPopover',
+        'app/map/MapButton',
+
+        'dojo/on',
+
+        'esri/map',
+
+
+        'dojo/domReady!'
+    ], function(
+        Module, 
+        MapButton,
+
+        on
+        ) {
+        var btn = new MapButton({title: 'hello', iconName: 'list'}, 'node');
+        btn.startup();
+
+        widgetUnderTest = new Module({
+            btn: btn.domNode
+        });
+        widgetUnderTest.startup();
+
+        on.emit(btn.domNode, 'click', {bubbles: true});
+    });
+</script>
+</head>
+<body class='claro'>
+    <div id="node"></div>
+</body>
+</html>

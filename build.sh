@@ -58,7 +58,7 @@ LOADERMID=${LOADERMID//\//\\\/}
 echo 'copying index.html'
 cat "$SRCDIR/index.html" | tr '\n' ' ' | \
 perl -pe "
-  s/<script data-dojo.*?run.js' defer><\/script>/<script src='dojo\/dojo\.js' data-dojo-config=\"deps:['app\/run']\"><\/script>/;
+  s/<script data-dojo.*?run.js'><\/script>/<script src='dojo\/dojo\.js' data-dojo-config=\"deps:['app\/run']\"><\/script>/;
   s/\s+/ /g;                                 # Collapse white-space" > "$DISTDIR/index.html"
 
 echo 'copying ChangeLog.html'

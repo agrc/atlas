@@ -1,7 +1,8 @@
 /*jshint unused:false*/
 var dojoConfig = {
     // isDebug: false,
-    isJasmineTestRunner: true
+    isJasmineTestRunner: true,
+    packages: ['matchers']
 };
 
 // // override alert to console

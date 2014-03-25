@@ -1,10 +1,10 @@
 @import '../../dijit/themes/claro/claro.css';
 @import '../../esri/css/esri.css';
 @import '../../agrc/resources/map/BaseMap.css';
-@import '../../agrc/resources/map/BaseMapSelector.css';
 @import '../../bootstrap/dist/css/bootstrap-theme.css';
-@import 'MapButton.css';
+@import '../map/resources/MapButton.css';
 @import '../../ijit/resources/authentication/LoginRegister.css';
+@import '../map/resources/MapLayersPopover.css';
 
 body, html, .app {
     width: 100%;
@@ -51,6 +51,8 @@ body, html, .app {
     right: 10px;
     top: 5px;
 }
+.app .title-container .login-register-logout,
+.app .title-container .login-register-logout .dropdown,
 .app .title-container [data-dojo-attach-point='logoutDiv'] {
     display: inline;
 }

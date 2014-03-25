@@ -1,9 +1,7 @@
 {
     "predef": [
-        "alert",
         "define",
         "require",
-        "console",
         "module",
         "AGRC",
         "it", 
@@ -16,17 +14,34 @@
         "runs", 
         "waitsFor",
         "describe",
-        "xdescribe",
-        "stubModule",
-        "$"
+        "xdescribe"
     ],
 
-    "evil": true,
-    "regexdash": true,
+    "bitwise": true,
     "browser": true,
-    "wsh": true,
-    "sub": true,
+    "browser": true,
+    "camelcase": true,
+    "curly": true,
+    "devel": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "es3": true,
+    "forin": true,
+    "freeze": true,
+    "gcl": true,
+    "immed": true,
+    "indent": 4,
+    "jquery": true,
+    "latedef": true,
+    "maxcomplexity": 10,
+    "maxerr": 250,
+    "maxlen": 120,
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "nonbsp": true,
+    "quotmark": "single",
+    "trailing": true,
     "undef": true,
-    "unused": true,
-    "eqnull": true
+    "unused": true
 }

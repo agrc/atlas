@@ -1,5 +1,5 @@
 require([
-    'app/MapButton',
+    'app/map/MapButton',
 
     'dojo/_base/window',
 
@@ -21,7 +21,7 @@ require([
         }
     });
 
-    describe('app/MapButton', function() {
+    describe('app/map/MapButton', function() {
         describe('Sanity', function() {
             beforeEach(function() {
                 widget = new WidgetUnderTest(null, domConstruct.create('div', null, win.body()));

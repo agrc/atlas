@@ -1,5 +1,5 @@
 require([
-    'app/search/ResultsGrid',
+    'app/map/MapLayersPopover',
 
     'dojo/_base/window',
 
@@ -16,18 +16,18 @@ require([
 
     afterEach(function() {
         if (widget) {
-            widget.destroy();
+            widget.destroyRecursive();
             widget = null;
         }
     });
 
-    describe('app/search/ResultsGrid', function() {
+    describe('app/map/MapLayersPopover', function() {
         describe('Sanity', function() {
             beforeEach(function() {
                 widget = new WidgetUnderTest(null, domConstruct.create('div', null, win.body()));
             });
 
-            it('should create a ResultsGrid', function() {
+            it('should create a MapLayersPopover', function() {
                 expect(widget).toEqual(jasmine.any(WidgetUnderTest));
             });
         });
