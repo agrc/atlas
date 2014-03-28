@@ -62,12 +62,19 @@ define([
                     });
 
                     // build message
+                    var stringify = function (args) {
+                        try {
+                            return JSON.stringify(args);
+                        } catch (e) {
+                            return '[could not stringify]';
+                        }
+                    };
                     var msg = 'Expected topic: "' + topicName + '"\n';
                     if (result.pass) {
                         msg += ' not';
                     }
-                    msg += ' to have been called with ' + JSON.stringify(expectedArgs) +
-                        '\n but it was actually called with ' + JSON.stringify([].slice.call(actualArgs));
+                    msg += ' to have been called with ' + stringify(expectedArgs) +
+                        '\n but it was actually called with ' + stringify(actualArgs);
                     result.message = msg;
 
                     return result;
@@ -96,13 +103,32 @@ define([
 
     return {
         listen: function (topicName) {
-            handles.push(topic.subscribe(topicName, function () {
-                if (!publishes[topicName]) {
-                    publishes[topicName] = [arguments];
-                } else {
-                    publishes[topicName].push(arguments);
+            // summary
+            //      Adds subscribes for the topic(s) so that this module
+            //      can track them.
+            // topicName: String | Object
+            //      Can either be a single string topic name or an object with
+            //      topic names as properties (e.g. {topic1: 'topic1', t2: 'topic2'})
+            var topics = [];
+
+            if (typeof topicName === 'string') {
+                topics.push(topicName);
+            } else {
+                for (var prop in topicName) {
+                    if (topicName.hasOwnProperty(prop)) {
+                        topics.push(topicName[prop]);
+                    }
                 }
-            }));
+            }
+            array.forEach(topics, function (t) {
+                handles.push(topic.subscribe(t, function () {
+                    if (!publishes[t]) {
+                        publishes[t] = [arguments];
+                    } else {
+                        publishes[t].push(arguments);
+                    }
+                }));
+            });
         },
         matchers: matchers
     };

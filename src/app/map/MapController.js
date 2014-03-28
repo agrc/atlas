@@ -49,7 +49,9 @@ define([
                 topic.subscribe(config.topics.appMapReferenceLayerToggle.addLayer,
                     lang.hitch(this, 'addReferenceLayer')),
                 topic.subscribe(config.topics.appMapReferenceLayerToggle.toggleLayer,
-                    lang.hitch(this, 'toggleReferenceLayer'))
+                    lang.hitch(this, 'toggleReferenceLayer')),
+                topic.subscribe(config.topics.appQueryLayer.addLayer,
+                    lang.hitch(this, 'addQueryLayer'))
             );
         },
         addReferenceLayer: function (url, tiledService, layerIndex, layerProps) {
@@ -109,6 +111,15 @@ define([
                 var f = (on) ? lyr.show : lyr.hide;
                 f.apply(lyr);
             }
+        },
+        addQueryLayer: function (layer) {
+            // summary:
+            //      adds the query layer Feature Layer to the map
+            // layer: esri/layers/FeatureLayer
+            console.log('app/map/MapControl:addQueryLayer', arguments);
+        
+            this.map.addLayer(layer);
+            this.map.addLoaderToLayer(layer);
         },
         destroy: function () {
             // summary:

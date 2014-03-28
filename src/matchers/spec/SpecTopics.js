@@ -10,6 +10,30 @@ require([
     ) {
     describe('matchers/Topics', function () {
         var topicName = 'custom';
+        var tObj = {
+            t1: 'topic1',
+            t2: 'topic2',
+            t3: 'topic3'
+        };
+        describe('listen', function () {
+            it('can accept a single topic as a string', function () {
+                Topics.listen(topicName);
+
+                dojoTopic.publish(topicName);
+
+                expect(topicName).toHaveBeenPublished();
+            });
+            it('can accept an object defining multiple topics', function () {
+                Topics.listen(tObj);
+
+                dojoTopic.publish(tObj.t1);
+                dojoTopic.publish(tObj.t2);
+
+                expect(tObj.t1).toHaveBeenPublished();
+                expect(tObj.t2).toHaveBeenPublished();
+                expect(tObj.t3).not.toHaveBeenPublished();
+            });
+        });
         describe('toHaveBeenPublished', function () {
             it('is available as a matcher', function () {
                 expect('test').not.toHaveBeenPublished();
