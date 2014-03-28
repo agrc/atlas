@@ -105,5 +105,14 @@ require([
                 expect(layer.show).not.toHaveBeenCalled();
             });
         });
+        describe('addQueryLayer', function () {
+            it('adds the layer to the map', function () {
+                var lyr = {};
+
+                testObject.addQueryLayer(lyr);
+
+                expect(map.addLayer).toHaveBeenCalledWith(lyr);
+            });
+        });
     });
 });

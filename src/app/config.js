@@ -10,7 +10,7 @@ define([], function () {
 
         // version: String
         //      The version number.
-        version: '0.0.1',
+        version: '0.1.0',
 
         // topics: Object
         //      The topic strings used in this app
@@ -18,6 +18,9 @@ define([], function () {
             appMapReferenceLayerToggle: {
                 addLayer: 'app/map/ReferenceLayerToggle.addLayer',
                 toggleLayer: 'app/map/ReferenceLayerToggle.toggleLayer'
+            },
+            appQueryLayer: {
+                addLayer: 'app/QueryLayer.addLayer'
             }
         },
 
@@ -34,7 +37,19 @@ define([], function () {
             landOwnership: 0,
             environmentalCovenants: 1,
             huc: 2,
-            indianTribal: 3
+            indianTribal: 3,
+
+            // query layers
+            facilityUST: 5,
+            siteREM: 6
+        },
+
+        // queryLayer: Object
+        //      query layer properties
+        queryLayer: {
+            opacity: 0.7,
+            color: [4, 241, 90],
+            size: 10
         }
     };
 

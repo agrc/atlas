@@ -2,22 +2,31 @@ define([
     'dojo/text!./templates/Search.html',
 
     'dojo/_base/declare',
+    'dojo/_base/array',
+    'dojo/dom-construct',
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
     'dijit/_WidgetsInTemplateMixin',
 
-    'app/_CollapsableMixin'
+    '../_CollapsableMixin',
+    './QueryLayer',
+    './tests/data/mockQueryLayers'
+
 ], function(
     template,
 
     declare,
+    array,
+    domConstruct,
 
     _WidgetBase,
     _TemplatedMixin,
     _WidgetsInTemplateMixin,
 
-    _CollapsableMixin
+    _CollapsableMixin,
+    QueryLayer,
+    mockQueryLayers
 ) {
     return declare(
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _CollapsableMixin], {
@@ -37,16 +46,12 @@ define([
             //    private
             console.log('app/search/Search::postCreate', arguments);
 
-            this.setupConnections();
+            var that = this;
+            array.forEach(mockQueryLayers.queryLayers, function (ql) {
+                that.own(new QueryLayer(ql, domConstruct.create('div', {}, that.queryLayersContainer)));
+            });
 
             this.inherited(arguments);
-        },
-        setupConnections: function() {
-            // summary:
-            //      wire events, and such
-            //
-            console.log('app/search/Search::setupConnections', arguments);
-
         }
     });
 });

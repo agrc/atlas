@@ -52,7 +52,7 @@ var profile = {
                 return (/.*\.js/).test(filename);
             }
         }
-    }],
+    }, 'matchers'],
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
     }
