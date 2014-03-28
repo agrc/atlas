@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Utah Environmental Interactive Map</title>
-    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css"/>
 
     <style type="text/css">
         body {
@@ -11,11 +11,21 @@
     </style>
 </head>
 <body>
-	<h1>Atlas Utah Change Log</h1>
-    <a href="./" class="btn"><i class="icon-arrow-left"></i> Back to the app</a>
-    <h2>0.0.1 <small>Mar 7, 2014</small></h2>
+	<h1>Utah Environmental Interactive Map Change Log</h1>
+    <a href="./" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Back to the app</a>
+    <h2>0.1.0 <small>Mar 28, 2014</small></h2>
     <ul>
-        <li>Initial app layout and build system wired up</li>
+        <li>Initial app layout framework and build system wired up.</li>
+        <li>Added Disclaimer link and associated modal dialog (<a href="https://github.com/agrc/deq-enviro/issues/11">#11</a>).</li>
+        <li>Fleshed out initial draft of QueryLayer widget. (<a href="https://github.com/agrc/deq-enviro/issues/10">#10</a>).</li>
+        <ul>
+            <li>Toggle features on the map with checkbox.</li>
+            <li>Shows layer description and links to meta data page.</li>
+        </ul>
+        <li>Grid/Identify window toggle. Not exposed in the UI yet (<a href="https://github.com/agrc/deq-enviro/issues/9">#9</a>).</li>
+        <li>Added simple user management including request access, sign in, change/reset password. No custom geographic extent or time frame restrictions yet (<a href="https://github.com/agrc/deq-enviro/issues/8">#8</a>).</li>
+        <li>Added reference layers popup (<a href="https://github.com/agrc/deq-enviro/issues/6">#6</a>).</li>
+        <li>Added reference layers toggle controls and base map selector (<a href="https://github.com/agrc/deq-enviro/issues/7">#7</a>).</li>
     </ul>
 </body>
 </html>

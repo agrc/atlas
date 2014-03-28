@@ -4,7 +4,8 @@ module.exports = function(grunt) {
     var otherFiles = [
         'src/app/**/*.html',
         'src/app/**/*.css',
-        'src/index.html'
+        'src/index.html',
+        'src/ChangeLog.html'
     ];
     var gruntFile = 'GruntFile.js';
     var internFile = 'tests/intern.js';
