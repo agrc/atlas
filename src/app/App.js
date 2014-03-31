@@ -88,10 +88,9 @@ define([
 
             this.childWidgets.push(
                 new SideBarToggler({
-                    sidebar: this.sideBar.domNode,
-                    mainContainer: this.mainContainer,
+                    sidebar: this.sideBar,
                     map: this.map,
-                    centerContainer: this.centerContainer.domNode
+                    centerContainer: this.centerContainer
                 }, this.sidebarToggle),
                 new FindAddress({
                     map: this.map,

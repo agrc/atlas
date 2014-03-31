@@ -14,77 +14,78 @@ body, html, .app {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: Arial, sans-serif;
     color: #444;
 }
-.app .main-container {
-    width: 100%;
-    height: 100%;
+.app .container-with-border {
+    border: 1px solid #b5bcc7;
 }
 
 /* TITLE PANE */
-.app .title-pane {
-    border: none;
-    overflow: hidden;
+.app .title-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    padding: 8px;
 }
-.app h1 {
-    margin: 5px 0 0 0;
+.app .title-container h1 {
+    font-family: Arial, sans-serif;
+    margin: 5px 0 0 5px;
     font-size: 40px;
     letter-spacing: -2px;
-    font-weight: normal;
 }
-.app .version {
+.app .title-container .version {
     font-size: 16px;
     text-decoration: none;
     color: gray;
     letter-spacing: 0;
 }
-.app .version:hover {
+.app .title-container .version:hover {
     text-decoration: underline !important;
 }
-.app .title-pane>img {
+.app .title-container>img {
     position: absolute;
     top: -3px;
     right: 0;
-}
-
-/* SIDE BAR */
-.app .side-bar {
-    width: 300px;
-    padding: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.app .side-bar-sizer {
-    width: 302px;
-    margin: -1px;
-}
-.app .padder {
-    padding: 8px;
-}
-.app .side-bar h3 {
-    margin-bottom: 3px;
-}
-.app .first-header {
-    margin-top: 0px;
-}
-.magic-zoom {
-    position: relative;
-}
-.app .side-bar-sizer :nth-of-type(4) {
-    z-index: 26;
 }
 .app [data-dojo-attach-point='popupBlurb'] {
     display: none;
 }
 
+/* SIDE BAR */
+.app .side-bar-container {
+    width: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    left: 5px;
+    top: 75px;
+    bottom: 5px;
+}
+.app .side-bar-padder {
+    padding: 10px;
+    width: 300px;
+    margin: -1px;
+}
+.app .side-bar-container .magic-zoom {
+    position: relative;
+}
+
 /* CENTER (MAP) */
 .app .center-container {
-    padding: 0;
+    position: absolute;
+    top: 75px;
+    left: 310px;
+    bottom: 5px;
+    right: 5px;
+    overflow: hidden;
 }
-.app .map-div {
-    width: 100%;
-    height: 100% !important;
+.app .center-container [data-dojo-attach-point='mapDiv'] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 /* GENERAL STUFF */
