@@ -1,0 +1,2 @@
+//>>built
+define(["dojo/_base/declare","dojo/_base/lang","dojo/has","esri/kernel"],function(b,c,d,e){return b(null,{declaredClass:"esri.tasks.StatisticDefinition",statisticType:null,onStatisticField:null,outStatisticFieldName:null,toJson:function(){var a={statisticType:this.statisticType,onStatisticField:this.onStatisticField};this.outStatisticFieldName&&(a.outStatisticFieldName=this.outStatisticFieldName);return a}})});

@@ -1,14 +1,15 @@
+/* jshint camelcase:false */
 module.exports = function(grunt) {
     var jsFiles = 'src/app/**/*.js';
     var otherFiles = [
         'src/app/**/*.html',
         'src/app/**/*.css',
-        'src/index.html'
+        'src/index.html',
+        'src/ChangeLog.html'
     ];
     var gruntFile = 'GruntFile.js';
     var internFile = 'tests/intern.js';
-    var packageFile = 'package.json';
-    var jshintFiles = [jsFiles, gruntFile, internFile, packageFile];
+    var jshintFiles = [jsFiles, gruntFile, internFile];
 
     // Project configuration.
     grunt.initConfig({
@@ -23,14 +24,15 @@ module.exports = function(grunt) {
             // }
 
             // for regular apps...
-            app: {
+            'default': {
                 src: ['src/app/run.js'],
                 options: {
-                    specs: ['src/app/tests/spec/*.js'],
+                    specs: ['src/app/**/Spec*.js'],
                     vendor: [
                         'src/app/tests/jasmineTestBootstrap.js',
-                        'http://js.arcgis.com/3.6/'
-                    ]
+                        'src/dojo/dojo.js'
+                    ],
+                    host: 'http://localhost:8000'
                 }
             }
         },
@@ -43,7 +45,7 @@ module.exports = function(grunt) {
         watch: {
             jshint: {
                 files: jshintFiles,
-                tasks: ['jshint']
+                tasks: ['jshint', 'jasmine:default:build']
             },
             src: {
                 files: jshintFiles.concat(otherFiles),
@@ -64,5 +66,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
 
     // Default task.
-    grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'connect', 'watch']);
+    grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
+
+    grunt.registerTask('travis', ['jshint', 'connect', 'jasmine:default']);
 };

@@ -13,13 +13,14 @@ define([
 
     'agrc/widgets/map/BaseMap',
     'agrc/widgets/map/BaseMapSelector',
-
     'agrc/widgets/locate/FindAddress',
     'agrc/widgets/locate/MagicZoom',
 
     'ijit/widgets/layout/SideBarToggler',
 
     'esri/dijit/Print',
+
+    './config',
 
 
     'dijit/layout/BorderContainer',
@@ -39,13 +40,14 @@ define([
 
     BaseMap,
     BaseMapSelector,
-
     FindAddress,
     MagicZoom,
 
     SideBarToggler,
 
-    Print
+    Print,
+
+    config
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -63,7 +65,7 @@ define([
             //      first function to fire after page loads
             console.info('app.App::constructor', arguments);
 
-            AGRC.app = this;
+            config.app = this;
 
             this.inherited(arguments);
         },
@@ -73,7 +75,7 @@ define([
             console.log('app.App::postCreate', arguments);
 
             // set version number
-            this.version.innerHTML = AGRC.version;
+            this.version.innerHTML = config.version;
 
             this.inherited(arguments);
         },
@@ -99,12 +101,12 @@ define([
 
             fa = new FindAddress({
                 map: this.map,
-                apiKey: AGRC.apiKey
+                apiKey: config.apiKey
             }, this.geocodeNode);
 
             fp = new MagicZoom({
                 map: this.map,
-                mapServiceURL: AGRC.urls.vector,
+                mapServiceURL: config.urls.vector,
                 searchLayerIndex: 4,
                 searchField: 'NAME',
                 placeHolder: 'place name...',
@@ -114,7 +116,7 @@ define([
 
             fm = new MagicZoom({
                 map: this.map,
-                mapServiceURL: AGRC.urls.vector,
+                mapServiceURL: config.urls.vector,
                 searchLayerIndex: 1,
                 searchField: 'NAME',
                 placeHolder: 'city name...',
@@ -125,7 +127,7 @@ define([
 
             this.printer = new Print({
                 map: this.map,
-                url: AGRC.exportWebMapUrl,
+                url: config.exportWebMapUrl,
                 templates: [{
                     label: 'Portrait (PDF)',
                     format: 'PDF',

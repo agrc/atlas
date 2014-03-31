@@ -1,18 +1,6 @@
 [submodule "src/agrc"]
 	path = src/agrc
 	url = https://github.com/agrc/agrc.widgets.git
-[submodule "src/dijit"]
-	path = src/dijit
-	url = https://github.com/dojo/dijit.git
-[submodule "src/dojo"]
-	path = src/dojo
-	url = https://github.com/dojo/dojo.git
-[submodule "src/dojox"]
-	path = src/dojox
-	url = https://github.com/dojo/dojox.git
-[submodule "src/util"]
-	path = src/util
-	url = https://github.com/dojo/util.git
 [submodule "src/StubModule"]
 	path = src/StubModule
 	url = https://github.com/agrc/StubModule.git

@@ -1,8 +1,8 @@
 define([
-    'dojo/parser', 
+    'dojo/parser',
 
     'app/App'
-], 
+],
 
 function (
     parser
@@ -26,7 +26,8 @@ function (
 
         // exportWebMapUrl: String
         //      print task url
-        exportWebMapUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
+        exportWebMapUrl:
+            'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
 
         urls: {
             vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer'

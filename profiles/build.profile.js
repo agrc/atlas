@@ -9,15 +9,17 @@ var profile = {
     stripConsole: 'all',
     selectorEngine: 'acme',
     layers: {
-        // single file build layer
         'dojo/dojo': {
             include: [
                 'dojo/i18n',
                 'dojo/domReady',
-                'app/main',
                 'app/run',
-                'esri/dijit/Attribution'
+                'esri/dijit/Attribution',
+                'dojox/gfx/path',
+                'dojox/gfx/svg',
+                'dojox/gfx/shape'
             ],
+            includeLocales: ['en-us'],
             customBase: true,
             boot: true
         }
@@ -39,22 +41,16 @@ var profile = {
         // We aren’t loading tests in production
         'dojo-test-sniff':0
     },
-    // These packages are defined in the build profile instead of the app config
-    // because we don't use the local version of the esri package for development.
-    // I've had problems getting the local version of the esri package to work 
-    // in development.
     packages: [{
-        name: 'dojo'
-    },{
-        name: 'dijit'
-    },{
-        name: 'dojox'
-    },{
         name: 'esri',
         resourceTags: {
             amd: function (filename, mid) {
                 return (/.*\.js/).test(filename);
             }
         }
-    }]
+    }, 'matchers'],
+    // this is to make sure that the widget templates get built into the layer file.
+    userConfig: {
+        packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
+    }
 };
