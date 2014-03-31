@@ -48,7 +48,7 @@ var profile = {
                 return (/.*\.js/).test(filename);
             }
         }
-    }, 'matchers'],
+    }],
     // this is to make sure that the widget templates get built into the layer file.
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
