@@ -29,29 +29,16 @@ Check out [BUILD_STEPS.md](https://github.com/agrc/AGRCJavaScriptProjectBoilerPl
 Tool Versions
 ============
 
-[Dojo](http://dojotoolkit.org/): 1.8.3
-
-[ESRI JS API](http://js.arcgis.com/): 3.6
-
-[Grunt](http://gruntjs.com/): 0.4.1 (plugins can be found in `package.json`)
-
-[Jasmine](http://pivotal.github.com/jasmine/): 1.3.1
-
-[Bootstrap](http://getbootstrap.com/): 3.0.0
+See `bower.json` for dependency versions.
 
 Notes
 =====
 
 The build script uses a special AMD build of the ESRI api to get all modules into a single built layer file (`dojo/dojo.js`).
 
-`dojo`, [`agrc`](https://github.com/agrc/agrc.widgets), and [`ijit`](https://github.com/agrc/agrc-ijit) are included via git submodules so make sure that you clone the repository like this:
-
+Before beginning development make sure to run:
 ```
-git clone --recursive
+bower install
+npm install
 ```
-
-Or do this after cloning:
-
-```
-git submodule update --init --recursive
-```
+to bring in all required dependencies.
