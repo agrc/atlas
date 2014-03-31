@@ -7,7 +7,6 @@
 @import '../../agrc/resources/locate/FindAddress.css';
 @import '../../agrc/resources/locate/MagicZoom.css';
 /*@import '../../bootstrap/css/bootstrap.css';*/
-@import '../../bootstrap/css/bootstrap-theme.css';
 
 body, html, .app {
     width: 100%;

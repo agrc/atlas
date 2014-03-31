@@ -1,0 +1,39 @@
+<div class="${options.theme}" role="presentation">
+    <div data-dojo-attach-point="_widgetContainer" class="${_widgetContainerClass}" role="presentation">
+        <div class="${_stopsContainerClass}" role="presentation">
+            <table class="${_stopsClass}" data-dojo-attach-point="_dndNode"></table>
+            <div class="${_clearClass}"></div>
+            <div class="${_stopsButtonContainerClass}">
+                <div role="button" class="${_stopsAddDestinationClass}" data-dojo-attach-point="_addDestinationNode">${_i18n.widgets.directions.addDestination}</div>
+                <div role="button" class="${_stopsOptionsButtonClass}" data-dojo-attach-point="_optionsButtonNode">${_i18n.widgets.directions.showOptions}</div>
+            	<div class="${_clearClass}"></div>
+            </div>
+            <div role="presentation" class="${_stopsOptionsMenuClass}" data-dojo-attach-point="_optionsMenuNode">
+                <div class="${_stopsOptionsCheckboxesClass}">
+                    <ul>
+                        <li class="${_stopsFindOptimalOrderClass}" data-dojo-attach-point="_findOptimalOrderItemNode"><input tabindex="0" data-dojo-attach-point="_findOptimalOrderNode" type="checkbox" id="${id}_find_optimal_order" /><label for="${id}_find_optimal_order">${_i18n.widgets.directions.findOptimalOrder}</label></li>
+                        <li class="${_stopsReturnToStartClass}" data-dojo-attach-point="_returnToStartItemNode"><input tabindex="0" data-dojo-attach-point="_returnToStartNode" type="checkbox" id="${id}_stopsReturnToStart" /><label for="${id}_stopsReturnToStart">${_i18n.widgets.directions.returnToStart}</label></li>
+                        <li class="${_stopsUseTrafficClass}" data-dojo-attach-point="_useTrafficItemNode"><input tabindex="0" data-dojo-attach-point="_useTrafficNode" type="checkbox" id="${id}_stopsUseTraffic" /><label for="${id}_stopsUseTraffic">${_i18n.widgets.directions.useTraffic}</label></li>
+                    </ul>
+                </div>
+                <div class="${_stopsOptionsUnitsClass}">
+                    <ul>
+                        <li><input tabindex="0" id="${id}_use_miles" data-dojo-attach-point="_useMilesNode" name="${id}_units" type="radio"><label for="${id}_use_miles">${_i18n.widgets.directions.units.MILES.name}</label></li>
+                        <li><input tabindex="0" id="${id}_use_kilometers" data-dojo-attach-point="_useKilometersNode" name="${id}_units" type="radio"><label for="${id}_use_kilometers">${_i18n.widgets.directions.units.KILOMETERS.name}</label></li>
+                    </ul>
+                </div>
+                <div class="${_clearClass}"></div>
+            </div>
+            <div class="${_stopsGetDirectionsContainerClass}">
+                <div tabindex="0" role="button" class="${_stopsGetDirectionsClass}" data-dojo-attach-point="_getDirectionsButtonNode">${_i18n.widgets.directions.getDirections}</div>
+                <div tabindex="0" role="button" class="${_stopsClearDirectionsClass}" data-dojo-attach-point="_clearDirectionsButtonNode">${_i18n.widgets.directions.clearDirections}</div>
+                <div class="${_clearClass}"></div>
+            </div>
+    	</div>
+    	<div class="${_clearClass}"></div>
+    	<div data-dojo-attach-point="_errorNode" role="presentation"></div>
+    	<div class="${_resultsContainerClass}" role="presentation">
+        	<div class="${_routesContainerClass}" data-dojo-attach-point="_resultsNode" role="presentation"></div>
+    	</div>
+    </div>
+</div>

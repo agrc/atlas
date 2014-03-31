@@ -2,7 +2,7 @@
     "folders": [{
         "folder_exclude_patterns": [
             "dist/agrc",
-            "dist/app",
+            // "dist/app",
             "dist/ijit",
             "dist/dojo",
             "dist/dojox",
@@ -15,7 +15,6 @@
             "src/util",
             "src/dijit",
             "src/esri",
-            "src/StubModule/dojo",
             "node_modules",
             ".grunt"
         ],
@@ -29,7 +28,8 @@
         "working_dir": "$project_path",
         "osx": {
             "cmd": ["bash ./build.sh"],
-            "shell": true
+            "shell": true,
+            "path": "/bin/:/usr/local/bin/:/usr/bin/"
         },
         "windows": {
             "cmd": ["build.bat"],

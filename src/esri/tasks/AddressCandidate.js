@@ -1,0 +1,2 @@
+//>>built
+define(["dojo/_base/declare","dojo/_base/lang","dojo/has","esri/kernel","esri/geometry/Point"],function(a,b,d,e,c){return a(null,{declaredClass:"esri.tasks.AddressCandidate",constructor:function(a){b.mixin(this,a);this.location=new c(this.location)}})});
