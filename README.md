@@ -10,7 +10,7 @@ To Use
 ### Step 1 - Boilerplate
 
 ```
-git clone https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate.git --recursive
+git clone https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate.git
 cd AGRCJavaScriptProjectBoilerPlate
 npm install
 ```
@@ -21,7 +21,7 @@ Open `src/index.html` to view the development version of the app.
 
 Build an awesome app.
 
-Run `grunt` to automatically lint your files and run unit tests (see _SpecRunner.html for unit tests).
+Run `grunt` to automatically lint your files and run unit tests (see `_SpecRunner.html` for unit tests).
 
 ### Step 3 - Optimize
 
