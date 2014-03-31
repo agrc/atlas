@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate.svg?branch=master)](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate)
 AGRC JavaScript Project Boilerplate
 ===================================
 
