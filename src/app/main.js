@@ -1,12 +1,4 @@
-define([
-    'dojo/parser',
-
-    'app/App'
-],
-
-function (
-    parser
-    ) {
+define([], function () {
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
         errorLogger: null,
@@ -33,7 +25,4 @@ function (
             vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer'
         }
     };
-
-    // lights...camera...action!
-    parser.parse();
 });

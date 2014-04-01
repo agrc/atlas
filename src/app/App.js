@@ -22,6 +22,7 @@ define([
     'esri/dijit/Print',
 
     './config',
+    './Identify',
 
 
     'dijit/layout/BorderContainer',
@@ -49,7 +50,8 @@ define([
 
     Print,
 
-    config
+    config,
+    Identify
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -163,11 +165,14 @@ define([
                 useDefaultBaseMap: false
             });
 
-            this.childWidgets.push(new BaseMapSelector({
-                map: this.map,
-                id: 'claro',
-                position: 'TR'
-            }));
+            this.childWidgets.push(
+                new BaseMapSelector({
+                    map: this.map,
+                    id: 'claro',
+                    position: 'TR'
+                }),
+                new Identify({map: this.map})
+            );
         }
     });
 });

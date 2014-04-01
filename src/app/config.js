@@ -1,3 +1,4 @@
+/* jshint maxlen:false */
 define(['dojo/has'], function (has) {
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
@@ -9,7 +10,7 @@ define(['dojo/has'], function (has) {
 
         // version: String
         //      The version number.
-        version: '2.1.0',
+        version: '2.2.0',
 
         // apiKey: String
         //      The api key used for services on api.mapserv.utah.gov
@@ -17,20 +18,37 @@ define(['dojo/has'], function (has) {
 
         // exportWebMapUrl: String
         //      print task url
-        exportWebMapUrl:
-            'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
+        exportWebMapUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
+
+        // utm12wkt: String
+        //      The well known text for utm zone 12 nad83 for use with proj4
+        utm12wkt: 'PROJCS["NAD83 / UTM zone 12N",GEOGCS["NAD83",DATUM["North_American_Datum_1983",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],AUTHORITY["EPSG","6269"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.01745329251994328,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4269"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-111],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],AUTHORITY["EPSG","26912"],AXIS["Easting",EAST],AXIS["Northing",NORTH]]',
 
         urls: {
-            vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer'
+            search: 'http://api.mapserv.utah.gov/api/v1/search/{0}/{1}'
+        },
+
+        fieldNames: {
+            NAME: 'NAME', // counties & municipalities
+            STATE_LGD: 'STATE_LGD' // state
+        },
+
+        featureClassNames: {
+            counties: 'SGID10.Boundaries.Counties',
+            municipalities: 'SGID10.Boundaries.Municipalities',
+            landOwnership: 'SGID10.Cadastre.LandOwnership'
         }
     };
 
     if (has('agrc-api-key') === 'prod') {
-        window.AGRC.apiKey = 'use prod key';
+        // mapserv.utah.gov
+        window.AGRC.apiKey = 'AGRC-A94B063C533889';
     } else if (has('agrc-api-key') === 'stage') {
-        window.AGRC.apiKey = 'use key for staging';
+        // test.mapserv.utah.gov
+        window.AGRC.apiKey = 'AGRC-AC122FA9671436';
     } else {
-        window.AGRC.apiKey = 'use my dev key';
+        // localhost
+        window.AGRC.apiKey = 'AGRC-63E1FF17767822';
     }
 
     return window.AGRC;

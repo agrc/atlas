@@ -10,5 +10,6 @@
     "stubmodule": null,
     "agrc": "agrc-widgets#",
     "ijit": "agrc-ijit#"
-  }
+  },
+  "devDependencies": {}
 }
