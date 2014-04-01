@@ -6,6 +6,7 @@
 @import '../../agrc/resources/map/BaseMapSelector.css';
 @import '../../agrc/resources/locate/FindAddress.css';
 @import '../../agrc/resources/locate/MagicZoom.css';
+@import './Identify.css';
 /*@import '../../bootstrap/css/bootstrap.css';*/
 
 body, html, .app {

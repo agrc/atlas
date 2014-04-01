@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>QueryLayer Tests</title>
+
+    <!-- META TAGS -->
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../../esri/css/esri.css" />
+    <link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../resources/App.css">
+    <style type='text/css'>
+        body {
+            padding: 50px;
+        }
+        #mapDiv {
+            border: solid gray 1px;
+        }
+        .identify-widget {
+            border: solid gray 1px;
+            width: 270px;
+            padding: 10px 6px 6px 10px;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="../../jquery/dist/jquery.js"></script>
+    <script type='text/javascript' src="../../bootstrap/dist/js/bootstrap.js"></script>
+    <script type='text/javascript' src="../../dojo/dojo.js"></script>
+    <script type="text/javascript">
+        var baseUrl = window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../';
+        var widgetUnderTest;
+
+        require({
+            baseUrl: baseUrl,
+            packages: ['app', 'agrc', 'ijit', 'esri', 'dojo', 'dijit', 'dojox',
+            {
+                name: 'proj4',
+                location: 'proj4',
+                main: 'dist/proj4-src'
+            }
+                ]
+        }, [
+            'app/Identify',
+
+            'agrc/widgets/map/BaseMap',
+
+            'dojo/dom-construct',
+
+
+            'dojo/domReady!'
+        ], function(
+            Module,
+
+            BaseMap,
+
+            domConstruct
+            ) {
+            widgetUnderTest = new Module({map: new BaseMap('mapDiv')});
+            widgetUnderTest.startup();
+
+            domConstruct.place(widgetUnderTest.domNode, document.body);
+
+            widgetUnderTest.onMapClick({
+                mapPoint: {
+                    x: 438888.5113211562,
+                    y: 4435618.118854405
+                }
+            });
+        });
+</script>
+</head>
+<body class='claro'>
+    <div id="node"></div>
+    <div id="mapDiv"></div>
+</body>
+</html>
