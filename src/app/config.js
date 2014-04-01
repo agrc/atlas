@@ -1,4 +1,4 @@
-define([], function () {
+define(['dojo/has'], function (has) {
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
         errorLogger: null,
@@ -13,8 +13,7 @@ define([], function () {
 
         // apiKey: String
         //      The api key used for services on api.mapserv.utah.gov
-        // apiKey: 'AGRC-63E1FF17767822', // localhost
-        apiKey: 'AGRC-A94B063C533889', // key for atlas.utah.gov
+        apiKey: '', // acquire at developer.mapserv.utah.gov
 
         // exportWebMapUrl: String
         //      print task url
@@ -25,6 +24,14 @@ define([], function () {
             vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer'
         }
     };
+
+    if (has('agrc-api-key') === 'prod') {
+        window.AGRC.apiKey = 'use prod key';
+    } else if (has('agrc-api-key') === 'stage') {
+        window.AGRC.apiKey = 'use key for staging';
+    } else {
+        window.AGRC.apiKey = 'use my dev key';
+    }
 
     return window.AGRC;
 });
