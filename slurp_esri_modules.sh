@@ -8,7 +8,7 @@ rm -rf "serverapi.arcgisonline.com"
 
 echo "processing esri modules"
 cd "$SRCDIR/esri"
-FILES=$(find .)
+FILES=$(find . -type f)
 for f in $FILES
 do
   perl -pi -e "
