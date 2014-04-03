@@ -71,6 +71,9 @@ body, html, .app {
 .app .side-bar-container .magic-zoom {
     position: relative;
 }
+.app .side-bar-container .magic-zoom.first {
+    z-index: 27;
+}
 
 /* CENTER (MAP) */
 .app .center-container {
