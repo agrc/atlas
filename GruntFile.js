@@ -90,14 +90,14 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     flatten: true,
-                    src: ['src/index.html', 'src/ChangeLog.html'],
+                    src: ['src/index.html'],
                     dest: 'dist/'
                 }]
             }
         },
-        imagemin: { // Task
-            dynamic: { // Another target
-                options: { // Target options
+        imagemin: {
+            dynamic: {
+                options: {
                     optimizationLevel: 3
                 },
                 files: [{
@@ -106,6 +106,12 @@ module.exports = function(grunt) {
                     src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
                     dest: 'dist/' // Destination path prefix
                 }]
+            }
+        },
+        copy: {
+            main: {
+                src: 'src/ChangeLog.html',
+                dest: 'dist/ChangeLog.html'
             }
         }
     });
@@ -119,10 +125,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-dojo');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task.
     grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('build', ['dojo:prod', 'replace:dist', 'newer:imagemin:dynamic']);
+    grunt.registerTask('build', ['dojo:prod', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
     grunt.registerTask('stage-build', ['dojo:stage', 'replace:dist', 'newer:imagemin:dynamic']);
     grunt.registerTask('travis', ['jshint', 'connect', 'jasmine:default']);
 };
