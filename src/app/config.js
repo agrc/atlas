@@ -28,7 +28,8 @@ define([], function () {
         //      Urls for the project
         urls: {
             UtahPLSS: 'http://mapserv.utah.gov/arcgis/rest/services/UtahPLSS/MapServer',
-            DEQEnviro: '/arcgis/rest/services/DEQEnviro/MapServer'
+            DEQEnviro: '/arcgis/rest/services/DEQEnviro/MapServer',
+            queryLayersJson: '/webdata/queryLayers.json'
         },
 
         // layerIndices: Object
