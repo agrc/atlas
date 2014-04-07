@@ -3,7 +3,10 @@ define([
 
     'dojo/_base/declare',
     'dojo/_base/array',
+    'dojo/_base/lang',
     'dojo/dom-construct',
+    'dojo/topic',
+    'dojo/request',
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
@@ -11,14 +14,19 @@ define([
 
     '../_CollapsableMixin',
     './QueryLayer',
-    './tests/data/mockQueryLayers'
+    './QueryLayerHeader',
+    './tests/data/mockQueryLayers',
+    '../config'
 
 ], function(
     template,
 
     declare,
     array,
+    lang,
     domConstruct,
+    topic,
+    request,
 
     _WidgetBase,
     _TemplatedMixin,
@@ -26,7 +34,9 @@ define([
 
     _CollapsableMixin,
     QueryLayer,
-    mockQueryLayers
+    QueryLayerHeader,
+    mockQueryLayers,
+    config
 ) {
     return declare(
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _CollapsableMixin], {
@@ -37,8 +47,30 @@ define([
         baseClass: 'search panel-group',
         widgetsInTemplate: true,
 
+        // selectedQueryLayers: QueryLayer[]
+        //      A list of all selected query layers.
+        selectedQueryLayers: null,
+
         // Properties to be sent into constructor
 
+        constructor: function () {
+            // summary:
+            //      description
+            console.log('app/search/Search:constructor', arguments);
+        
+            var that = this;
+
+            this.selectedQueryLayers = [];
+
+            this.own(
+                topic.subscribe(config.topics.appQueryLayer.addLayer, function (lyr) {
+                    that.selectedQueryLayers.push(lyr);
+                }),
+                topic.subscribe(config.topics.appQueryLayer.removeLayer, function (lyr) {
+                    that.selectedQueryLayers.splice(array.indexOf(that.selectedQueryLayers, lyr), 1);
+                })
+            );
+        },
         postCreate: function() {
             // summary:
             //    Overrides method of same name in dijit._Widget.
@@ -46,12 +78,28 @@ define([
             //    private
             console.log('app/search/Search::postCreate', arguments);
 
-            var that = this;
-            array.forEach(mockQueryLayers.queryLayers, function (ql) {
-                that.own(new QueryLayer(ql, domConstruct.create('div', {}, that.queryLayersContainer)));
-            });
+            request(config.urls.queryLayersJson, {
+                handleAs: 'json'
+            }).then(lang.hitch(this, 'buildQueryLayers'));
 
             this.inherited(arguments);
+        },
+        buildQueryLayers: function (queryLayers) {
+            // summary:
+            //      builds the query layer widgets and their associated panels
+            // queryLayers: {}
+            //      The array returned from queryLayers.json
+            console.log('app/search/Search:buildQueryLayers', arguments);
+        
+            var headers = {};
+            array.forEach(queryLayers, function (ql) {
+                if (!headers[ql.heading]) {
+                    headers[ql.heading] = new QueryLayerHeader({
+                        name: ql.heading
+                    }, domConstruct.create('div', {}, this.queryLayersContainer));
+                }
+                this.own(new QueryLayer(ql, domConstruct.create('div', {}, headers[ql.heading].panelBody)));
+            }, this);
         }
     });
 });

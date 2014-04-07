@@ -43,24 +43,20 @@ define([
         baseClass: 'query-layer',
         widgetsInTemplate: true,
 
-        // layer: esri/layers/FeatureLayer
-        //      The feature layer associated with this widget
-        layer: null,
-
 
         // Properties to be sent into constructor
 
-        // layerName: String
+        // name: String
         //      The name of the query layer
-        layerName: null,
+        name: null,
 
-        // layerIndex: Number
+        // index: Number
         //      The index of the layer within the query layers map service
-        layerIndex: null,
+        index: null,
 
-        // layerDescription: String
+        // description: String
         //      The text that you want to show up in the popup
-        layerDescription: null,
+        description: null,
 
         // metaDataUrl: String
         //      The URL for the metadata page for this layer.
@@ -74,14 +70,9 @@ define([
             //      private
             console.log('app/QueryLayer::postCreate', arguments);
 
-            this.renderer = new SimpleRenderer(new SimpleMarkerSymbol(
-                SimpleMarkerSymbol.STYLE_CIRCLE,
-                config.queryLayer.size,
-                new SimpleLineSymbol(),
-                new Color(config.queryLayer.color)
-            ));
-
-            $(this.helpTip).tooltip();
+            $(this.helpTip).tooltip({
+                container: 'body'
+            });
 
             this.inherited(arguments);
         },
@@ -90,16 +81,8 @@ define([
             //      Fires when checkbox checked state changes
             console.log('app/QueryLayer:onCheckboxChange', arguments);
 
-            if (!this.layer) {
-                this.layer = new FeatureLayer(config.urls.DEQEnviro + '/' + this.layerIndex, {
-                    opacity: config.queryLayer.opacity,
-                    outFields: ['*']
-                });
-                this.layer.setRenderer(this.renderer);
-                topic.publish(topics.addLayer, this.layer);
-            } else {
-                this.layer.setVisibility(this.checkbox.checked);
-            }
+            var t = (this.checkbox.checked) ? topics.addLayer : topics.removeLayer;
+            topic.publish(t, this);
         }
     });
 });

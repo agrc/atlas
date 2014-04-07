@@ -20,7 +20,8 @@ define([], function () {
                 toggleLayer: 'app/map/ReferenceLayerToggle.toggleLayer'
             },
             appQueryLayer: {
-                addLayer: 'app/QueryLayer.addLayer'
+                addLayer: 'app/QueryLayer.addLayer',
+                removeLayer: 'app/QueryLayer.removeLayer'
             }
         },
 
