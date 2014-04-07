@@ -4,6 +4,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/array',
     'dojo/dom-construct',
+    'dojo/topic',
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
@@ -11,7 +12,8 @@ define([
 
     '../_CollapsableMixin',
     './QueryLayer',
-    './tests/data/mockQueryLayers'
+    './tests/data/mockQueryLayers',
+    '../config'
 
 ], function(
     template,
@@ -19,6 +21,7 @@ define([
     declare,
     array,
     domConstruct,
+    topic,
 
     _WidgetBase,
     _TemplatedMixin,
@@ -26,7 +29,8 @@ define([
 
     _CollapsableMixin,
     QueryLayer,
-    mockQueryLayers
+    mockQueryLayers,
+    config
 ) {
     return declare(
         [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _CollapsableMixin], {
@@ -37,8 +41,30 @@ define([
         baseClass: 'search panel-group',
         widgetsInTemplate: true,
 
+        // selectedQueryLayers: QueryLayer[]
+        //      A list of all selected query layers.
+        selectedQueryLayers: null,
+
         // Properties to be sent into constructor
 
+        constructor: function () {
+            // summary:
+            //      description
+            console.log('app/search/Search:constructor', arguments);
+        
+            var that = this;
+
+            this.selectedQueryLayers = [];
+
+            this.own(
+                topic.subscribe(config.topics.appQueryLayer.addLayer, function (lyr) {
+                    that.selectedQueryLayers.push(lyr);
+                }),
+                topic.subscribe(config.topics.appQueryLayer.removeLayer, function (lyr) {
+                    that.selectedQueryLayers.splice(array.indexOf(that.selectedQueryLayers, lyr), 1);
+                })
+            );
+        },
         postCreate: function() {
             // summary:
             //    Overrides method of same name in dijit._Widget.

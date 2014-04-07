@@ -48,23 +48,25 @@ require([
             var topics = config.topics.appQueryLayer;
             beforeEach(function () {
                 Topics.listen(topics.addLayer);
+                Topics.listen(topics.removeLayer);
             });
-            it('shows and hides the layer according to checkbox state', function () {
-                widget.checkbox.checked = true;
-                var layer = jasmine.createSpyObj('layer', ['setVisibility']);
-                widget.layer = layer;
+            describe('fires the appropriate topics', function () {
+                it('checked', function () {
+                    widget.checkbox.checked = true;
 
-                widget.onCheckboxChange();
+                    widget.onCheckboxChange();
 
-                expect(layer.setVisibility).toHaveBeenCalledWith(true);
-            });
-            it('fires the addLayer topic if the layer hasn\'t been created yet', function () {
-                widget.checkbox.checked = true;
+                    expect(topics.addLayer).toHaveBeenPublishedWith(widget);
+                    expect(topics.removeLayer).not.toHaveBeenPublished();
+                });
+                it('unchecked', function () {
+                    widget.checkbox.checked = false;
 
-                widget.onCheckboxChange();
+                    widget.onCheckboxChange();
 
-                expect(topics.addLayer).toHaveBeenPublishedWith(widget.layer);
-                expect(topics.toggleLayer).not.toHaveBeenPublished();
+                    expect(topics.removeLayer).toHaveBeenPublishedWith(widget);
+                    expect(topics.addLayer).not.toHaveBeenPublished();
+                });
             });
         });
     });
