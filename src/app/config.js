@@ -39,11 +39,7 @@ define([], function () {
             landOwnership: 0,
             environmentalCovenants: 1,
             huc: 2,
-            indianTribal: 3,
-
-            // query layers
-            facilityUST: 5,
-            siteREM: 6
+            indianTribal: 3
         },
 
         // queryLayer: Object
