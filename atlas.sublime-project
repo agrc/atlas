@@ -1,17 +1,7 @@
 {
     "folders": [{
         "folder_exclude_patterns": [
-            "dist/agrc",
-            "dist/app",
-            "dist/ijit",
-            "dist/dojo",
-            "dist/dojox",
-            "dist/util",
-            "dist/dijit",
-            "dist/bootstrap",
-            "dist/jquery",
-            "dist/esri",
-            "dist/proj4js",
+            "dist",
             "src/dojo",
             "src/dojox",
             "src/util",
