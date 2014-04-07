@@ -51,6 +51,7 @@ define([
 
             this.map.on('click', lang.hitch(this, 'onMapClick'));
             this.map.infoWindow.setTitle('Map Click Information');
+            this.map.infoWindow.resize(300, 400);
         },
         postCreate: function () {
             // summary:
