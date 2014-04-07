@@ -46,17 +46,17 @@ define([
 
         // Properties to be sent into constructor
 
-        // layerName: String
+        // name: String
         //      The name of the query layer
-        layerName: null,
+        name: null,
 
-        // layerIndex: Number
+        // index: Number
         //      The index of the layer within the query layers map service
-        layerIndex: null,
+        index: null,
 
-        // layerDescription: String
+        // description: String
         //      The text that you want to show up in the popup
-        layerDescription: null,
+        description: null,
 
         // metaDataUrl: String
         //      The URL for the metadata page for this layer.
