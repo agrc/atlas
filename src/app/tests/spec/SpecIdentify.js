@@ -28,7 +28,7 @@ require([
         beforeEach(function() {
             map = jasmine.createSpyObj('map', ['on']);
             infoWindow = jasmine.createSpyObj('infoWindow',
-                ['show', 'setTitle', 'setContent']
+                ['show', 'setTitle', 'setContent', 'resize']
             );
             map.infoWindow = infoWindow;
             testWidget = new ClassUnderTest({
