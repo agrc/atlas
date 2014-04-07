@@ -5,6 +5,7 @@
 @import '../map/resources/MapButton.css';
 @import '../../ijit/resources/authentication/LoginRegister.css';
 @import '../map/resources/MapLayersPopover.css';
+@import '../search/resources/Search.css';
 
 body, html, .app {
     width: 100%;
@@ -16,6 +17,9 @@ body, html, .app {
 }
 .app .container-with-border {
     border: 1px solid #b5bcc7;
+}
+.app a h4 {
+    color: #333;
 }
 
 /* TITLE PANE */
@@ -59,7 +63,7 @@ body, html, .app {
 
 /* SIDE BAR */
 .app .side-bar-container {
-    width: 300px;
+    width: 350px;
     padding: 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -68,14 +72,21 @@ body, html, .app {
     top: 75px;
     bottom: 5px;
 }
-.app .side-bar-container .panel-group .panel {
+.app .side-bar-container>.panel-group>.panel {
     border-radius: 0;
 }
-.app .side-bar-container .panel-group .panel {
+.app .side-bar-container>.panel-group>.panel {
     margin-top: -1px;
 }
-.app .side-bar-container .panel-group {
+.app .side-bar-container>.panel-group {
     margin: -1px;
+}
+.app .side-bar-container>.panel-group>.panel>.panel-heading {
+    padding: 0;
+}
+.app .side-bar-container>.panel-group>.panel>.panel-heading>a {
+    padding: 10px 15px;
+    display: block;
 }
 
 /* CENTER (MAP) */
@@ -84,7 +95,7 @@ body, html, .app {
     top: 75px;
     left: 5px;
     bottom: 5px;
-    right: 310px;
+    right: 360px;
 }
 .app .center-container .map-div {
     position: absolute;

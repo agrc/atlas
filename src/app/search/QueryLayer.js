@@ -70,7 +70,9 @@ define([
             //      private
             console.log('app/QueryLayer::postCreate', arguments);
 
-            $(this.helpTip).tooltip();
+            $(this.helpTip).tooltip({
+                container: 'body'
+            });
 
             this.inherited(arguments);
         },

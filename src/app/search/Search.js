@@ -3,8 +3,10 @@ define([
 
     'dojo/_base/declare',
     'dojo/_base/array',
+    'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/topic',
+    'dojo/request',
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
@@ -12,6 +14,7 @@ define([
 
     '../_CollapsableMixin',
     './QueryLayer',
+    './QueryLayerHeader',
     './tests/data/mockQueryLayers',
     '../config'
 
@@ -20,8 +23,10 @@ define([
 
     declare,
     array,
+    lang,
     domConstruct,
     topic,
+    request,
 
     _WidgetBase,
     _TemplatedMixin,
@@ -29,6 +34,7 @@ define([
 
     _CollapsableMixin,
     QueryLayer,
+    QueryLayerHeader,
     mockQueryLayers,
     config
 ) {
@@ -72,12 +78,28 @@ define([
             //    private
             console.log('app/search/Search::postCreate', arguments);
 
-            var that = this;
-            array.forEach(mockQueryLayers.queryLayers, function (ql) {
-                that.own(new QueryLayer(ql, domConstruct.create('div', {}, that.queryLayersContainer)));
-            });
+            request(config.urls.queryLayersJson, {
+                handleAs: 'json'
+            }).then(lang.hitch(this, 'buildQueryLayers'));
 
             this.inherited(arguments);
+        },
+        buildQueryLayers: function (queryLayers) {
+            // summary:
+            //      builds the query layer widgets and their associated panels
+            // queryLayers: {}
+            //      The array returned from queryLayers.json
+            console.log('app/search/Search:buildQueryLayers', arguments);
+        
+            var headers = {};
+            array.forEach(queryLayers, function (ql) {
+                if (!headers[ql.heading]) {
+                    headers[ql.heading] = new QueryLayerHeader({
+                        name: ql.heading
+                    }, domConstruct.create('div', {}, this.queryLayersContainer));
+                }
+                this.own(new QueryLayer(ql, domConstruct.create('div', {}, headers[ql.heading].panelBody)));
+            }, this);
         }
     });
 });

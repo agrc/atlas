@@ -5,7 +5,10 @@ require([
     'dojo/_base/window',
 
     'dojo/dom-construct',
-    'dojo/topic'
+    'dojo/topic',
+    'dojo/query',
+
+    'app/search/tests/data/mockQueryLayers'
 ], function(
     WidgetUnderTest,
     config,
@@ -13,7 +16,10 @@ require([
     win,
 
     domConstruct,
-    topic
+    topic,
+    query,
+
+    mockQueryLayers
 ) {
 
     var widget;
@@ -51,6 +57,14 @@ require([
                 topic.publish(config.topics.appQueryLayer.removeLayer, one);
 
                 expect(widget.selectedQueryLayers).toEqual([two]);
+            });
+        });
+        describe('buildQueryLayers', function () {
+            it('builds the correct number of query layers and headers', function () {
+                widget.buildQueryLayers(mockQueryLayers);
+
+                expect(query('.query-layer', widget.domNode).length).toBe(5);
+                expect(query('.query-layer-header', widget.domNode).length).toBe(3);
             });
         });
     });
