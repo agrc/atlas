@@ -3,7 +3,7 @@
         <div class="panel-heading">
             <a href="#queryLayersPanel" data-toggle="collapse">
                 <h4 class="panel-title">
-                    Query Layers
+                    Select Query Layers
                 </h4>
             </a>
         </div>
@@ -18,13 +18,35 @@
         <div class="panel-heading">
             <a href="#locationPanel" data-toggle="collapse">
                 <h4 class="panel-title">
-                    Search Location
+                    Define Search Location
                 </h4>
             </a>
         </div>
         <div id="locationPanel" class="panel-collapse collapse">
             <div class="panel-body">
-                Search tools
+                <select class='form-control'
+                    data-dojo-attach-point='select'
+                    data-dojo-attach-event='onchange: onSelectChange'>
+                    <option value="empty">please select an option</option>
+                    <option value="address">Street Address</option>
+                    <option value="city">City</option>
+                    <option value="county">County/Statewide</option>
+                    <!-- <option value="site">Site Name</option>
+                    <option value="program">Program ID</option> -->
+                    <option value="shape">Shapes</option>
+                </select>
+                <br>
+                <div data-dojo-attach-point="stackContainer" 
+                    data-dojo-type="dijit/layout/StackContainer">
+                    <div data-dojo-attach-point='empty'
+                        data-dojo-type='dijit/layout/ContentPane'></div>
+                    <div data-dojo-attach-point='addressPane'></div>
+                    <div data-dojo-attach-point="cityPane"></div>
+                    <div data-dojo-attach-point="countyPane"></div>
+                    <div data-dojo-attach-point='shapePane'></div>
+                </div>
+                <button class="btn btn-primary btn-lg">Search</button>
+                <button class="btn btn-default btn-lg">Clear</button>
             </div>
         </div>
     </div>

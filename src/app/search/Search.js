@@ -14,6 +14,10 @@ define([
     '../_CollapsableMixin',
     './QueryLayer',
     './QueryLayerHeader',
+    './Address',
+    './City',
+    './County',
+    './Shape',
     '../config'
 
 ], function(
@@ -32,6 +36,10 @@ define([
     _CollapsableMixin,
     QueryLayer,
     QueryLayerHeader,
+    Address,
+    City,
+    County,
+    Shape,
     config
 ) {
     return declare(
@@ -79,6 +87,13 @@ define([
                 that.buildQueryLayers(json.queryLayers);
             });
 
+            this.own(
+                this.address = new Address({}, this.addressPane),
+                this.city = new City({}, this.cityPane),
+                this.county = new County({}, this.countyPane),
+                this.shape = new Shape({}, this.shapePane)
+            );
+
             this.inherited(arguments);
         },
         buildQueryLayers: function (queryLayers) {
@@ -97,6 +112,13 @@ define([
                 }
                 this.own(new QueryLayer(ql, domConstruct.create('div', {}, headers[ql.heading].panelBody)));
             }, this);
+        },
+        onSelectChange: function () {
+            // summary:
+            //      fires when the user changes the value of the select
+            console.log('app.search.Search::onSelectChange', arguments);
+        
+            this.stackContainer.selectChild(this[this.select.value]);
         }
     });
 });

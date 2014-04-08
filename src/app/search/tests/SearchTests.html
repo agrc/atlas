@@ -6,28 +6,46 @@
     <!-- META TAGS -->
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-    <!-- CSS -->        
-    <link rel='stylesheet' href='http://js.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css'>
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.7/js/esri/css/esri.css" />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../../../dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" type="text/css" href="../../../esri/css/esri.css" />
+    <link rel="stylesheet" href="../../../bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="../resources/Search.css">
     <style type='text/css'>
-    
+         body {
+            margin: 50px;
+            width: 350px;
+         }
     </style>
 
     <!-- JAVASCRIPT -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script type='text/javascript' src='http://js.arcgis.com/3.8'></script>
+    <script type="text/javascript" src="../../../jquery/dist/jquery.js"></script>
+    <script type='text/javascript' src="../../../bootstrap/dist/js/bootstrap.js"></script>
+    <script type='text/javascript' src="../../../dojo/dojo.js"></script>
     <script type="text/javascript">
-    var projectUrl = location.pathname.replace(/\/[^\/]+$/, "") + '/';
+    var baseUrl = location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../../';
     var widgetUnderTest;
 
     require({
-        packages: [{
-            name: 'app',
-            location: projectUrl + '../'
-        }]
+        baseUrl: baseUrl,
+        packages: [
+            'agrc',
+            'app',
+            'dijit',
+            'dojo',
+            'dojox',
+            'esri',
+            'ijit',
+            {
+                name: 'jquery',
+                location: 'jquery/dist',
+                main: 'jquery'
+            },{
+                name: 'bootstrap',
+                location: 'bootstrap',
+                main: 'dist/js/bootstrap'
+            }
+        ]
     }, [
         'app/search/Search',
 
