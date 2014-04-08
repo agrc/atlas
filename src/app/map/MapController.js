@@ -39,6 +39,7 @@ define([
             lang.mixin(this, params);
 
             this.setUpSubscribes();
+            this.setUpPublishes();
         },
         setUpSubscribes: function () {
             // summary:
@@ -52,6 +53,18 @@ define([
                     lang.hitch(this, 'toggleReferenceLayer')),
                 topic.subscribe(config.topics.appQueryLayer.addLayer,
                     lang.hitch(this, 'addQueryLayer'))
+            );
+        },
+        setUpPublishes: function () {
+            // summary:
+            //      sets up publishes
+            console.log('app/map/MapController:setUpPublishes', arguments);
+        
+            var that = this;
+            this.handles.push(
+                this.map.on('zoom-end', function () {
+                    topic.publish(config.topics.appMapController.mapZoom, that.map.getZoom());
+                })
             );
         },
         addReferenceLayer: function (url, tiledService, layerIndex, layerProps) {

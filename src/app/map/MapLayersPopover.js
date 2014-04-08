@@ -9,6 +9,7 @@ define([
     'dijit/_WidgetsInTemplateMixin',
 
     './ReferenceLayerToggle',
+    './ScaleDependentReferenceLayerToggle',
     '../config',
     './MapController',
     './BaseMapSelector'
@@ -23,6 +24,7 @@ define([
     _WidgetsInTemplateMixin,
 
     ReferenceLayerToggle,
+    ScaleDependentReferenceLayerToggle,
     config,
     MapController,
     BaseMapSelector
@@ -79,10 +81,11 @@ define([
                     layerIndex: 2,
                     layerProps: {opacity: 0.7}
                 }, domConstruct.create('div', {}, this.domNode, 'first')),
-                new ReferenceLayerToggle({
+                new ScaleDependentReferenceLayerToggle({
                     layerName: 'Township/Range/Section',
                     mapServiceUrl: config.urls.UtahPLSS,
-                    tiledService: true
+                    tiledService: true,
+                    minScaleLevel: config.TRSMinScaleLevel
                 }, domConstruct.create('div', {}, this.domNode, 'first')),
                 new ReferenceLayerToggle({
                     layerName: 'Environmental Covenants',

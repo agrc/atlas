@@ -20,8 +20,13 @@ require([
         beforeEach(function() {
             layer = jasmine.createSpyObj('layer', ['hide', 'show', 'setVisibleLayers']);
             layer.url = url;
-            map = jasmine.createSpyObj('map', ['addLayer', 'addLoaderToLayer']);
-               
+            map = jasmine.createSpyObj('map', [
+                'addLayer',
+                'addLoaderToLayer',
+                'on'
+            ]);
+            map.on.and.returnValue({remove: function () {}});
+
             testObject = ClassUnderTest;
             testObject.init({map: map});
         });

@@ -22,6 +22,9 @@ define([], function () {
             appQueryLayer: {
                 addLayer: 'app/QueryLayer.addLayer',
                 removeLayer: 'app/QueryLayer.removeLayer'
+            },
+            appMapController: {
+                mapZoom: 'app/MapController.mapZoom'
             }
         },
 
@@ -48,7 +51,11 @@ define([], function () {
             opacity: 0.7,
             color: [4, 241, 90],
             size: 10
-        }
+        },
+
+        // TRSMinScaleLevel: Number
+        //      The minimum scale level that the TRS Layer widget will appear disabled.
+        TRSMinScaleLevel: 5
     };
 
     return window.AGRC;

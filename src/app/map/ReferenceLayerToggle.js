@@ -7,7 +7,6 @@ define([
 
     'dijit/_WidgetBase',
     'dijit/_TemplatedMixin',
-    'dijit/_WidgetsInTemplateMixin',
 
     '../config'
 
@@ -20,18 +19,16 @@ define([
 
     _WidgetBase,
     _TemplatedMixin,
-    _WidgetsInTemplateMixin,
 
     config
 ) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
+    return declare([_WidgetBase, _TemplatedMixin], {
         // description:
         //      Provides controls for the user to show/hide a reference layer on the map. 
         //      Can handle stand-alone services or individual layers within a service.
 
         templateString: template,
         baseClass: 'reference-layer-toggle',
-        widgetsInTemplate: false,
 
         // layer: esri/layers/Layer
         //      The map service layer associated with this widget
