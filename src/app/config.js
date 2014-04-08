@@ -1,4 +1,10 @@
-define([], function () {
+define([
+    'dojo/request',
+    'dojo/Deferred'
+], function (
+    request,
+    Deferred
+    ) {
     window.AGRC = {
         // app: app.App
         //      global reference to App
@@ -33,7 +39,7 @@ define([], function () {
         urls: {
             UtahPLSS: 'http://mapserv.utah.gov/arcgis/rest/services/UtahPLSS/MapServer',
             DEQEnviro: '/arcgis/rest/services/DEQEnviro/MapServer',
-            queryLayersJson: '/webdata/queryLayers.json'
+            json: '/webdata/DEQEnviro.json'
         },
 
         // layerIndices: Object
@@ -55,7 +61,31 @@ define([], function () {
 
         // TRSMinScaleLevel: Number
         //      The minimum scale level that the TRS Layer widget will appear disabled.
-        TRSMinScaleLevel: 5
+        TRSMinScaleLevel: 5,
+
+        // appJson: Object
+        //      Cache for data returned by getAppJson
+        appJson: null,
+
+        getAppJson: function () {
+            // summary:
+            //      requests the DEQEnviro.json data and returns it, caches the results for future requests
+            console.log('app.config::getAppJson', arguments);
+
+            var def = new Deferred();
+        
+            if (!this.appJson) {
+                request(this.urls.json, {
+                    handleAs: 'json'
+                }).then(function (json) {
+                    def.resolve(this.appJson = json);
+                });
+            } else {
+                def.resolve(this.appJson);
+            }
+
+            return def.promise;
+        }
     };
 
     return window.AGRC;

@@ -6,7 +6,7 @@
             <a data-dojo-attach-point='version' class='version' href='ChangeLog.html'></a>
         </h1>
         <div class="links-container">
-            <a data-toggle='modal' href='#disclaimerModal'>Disclaimer</a>
+            <a data-dojo-attach-point='disclaimerLink' target='_blank' href=''>Disclaimer</a>
             |
             <div data-dojo-attach-point="logoutDiv"></div>
         </div>
@@ -28,26 +28,6 @@
             class='grid-identify-container'>
             <div data-dojo-attach-point="resultsGridDiv"></div>
             <div data-dojo-attach-point="identifyPaneDiv" class='hidden'></div>
-        </div>
-    </div>
-
-    <!-- disclaimer modal -->
-    <div class="modal fade" id="disclaimerModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button typel="button" data-dismiss="modal" class="close">&times;</button>
-                    <h4 class="modal-title">Disclaimer</h4>
-                </div>
-                <div class="modal-body">
-                    <p>The information contained in this web site has been compiled from the DEQ database(s) and is provided as a service to the public. This Interactive Map is to be used to obtain only a summary of information regarding sites regulated by DEQ. Use beyond this intended purpose is at the user’s risk. At this time, not all the DEQ’s divisions are publishing data to this Interactive Map. Site location and other related information are subject to inherent error and inaccuracies due to the limitations of the data collection methods, data entry errors, and other factors. DEQ makes no representation as to the completeness or accuracy of the information in this web site. More complete information on all sites can be accessed at the respective DEQ division office at 195 North 1950 West, Salt Lake City, Utah. Information on how to obtain access to DEQ records can be made to <a href="mailto:lleib@utah.gov">lleib@utah.gov</a>.</p> 
-                    <p>Please report any mapping related inaccuracies to the following contact person: </p>
-                    <p>Harold Sandbeck, Environmental Scientist/GIS Specialist, DEQ/DERR <a href="mailto:haroldsandbeck@utah.gov">haroldsandbeck@utah.gov</a></p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
