@@ -1,4 +1,5 @@
 @import './BaseMapSelector.css';
+@import './ReferenceLayerToggle.css';
 
 .map-layers-popover {
 
