@@ -7,8 +7,9 @@ define([], function () {
         //      global reference to App
         app: null,
 
-        // version: String
+        // version*: String
         //      The version number.
+        //      * breaks the regex in grunt bump
         version: '2.1.0',
 
         // apiKey: String
