@@ -8,7 +8,7 @@ require([
     'dojo/topic',
     'dojo/query',
 
-    'app/search/tests/data/mockQueryLayers'
+    'app/search/tests/data/mockDEQEnviroJSON'
 ], function(
     WidgetUnderTest,
     config,
@@ -19,7 +19,7 @@ require([
     topic,
     query,
 
-    mockQueryLayers
+    mockDEQEnviroJSON
 ) {
 
     var widget;
@@ -61,7 +61,7 @@ require([
         });
         describe('buildQueryLayers', function () {
             it('builds the correct number of query layers and headers', function () {
-                widget.buildQueryLayers(mockQueryLayers);
+                widget.buildQueryLayers(mockDEQEnviroJSON.queryLayers);
 
                 expect(query('.query-layer', widget.domNode).length).toBe(5);
                 expect(query('.query-layer-header', widget.domNode).length).toBe(3);

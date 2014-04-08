@@ -89,6 +89,11 @@ define([
             // set version number
             this.version.innerHTML = config.version;
 
+            var that = this;
+            config.getAppJson().then(function (json) {
+                that.disclaimerLink.href = json.otherLinks[1].url;
+            });
+
             this.initMap();
             this.childWidgets = [
                 this.mapLayersBtn = new MapButton({

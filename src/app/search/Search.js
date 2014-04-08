@@ -3,7 +3,6 @@ define([
 
     'dojo/_base/declare',
     'dojo/_base/array',
-    'dojo/_base/lang',
     'dojo/dom-construct',
     'dojo/topic',
     'dojo/request',
@@ -15,7 +14,6 @@ define([
     '../_CollapsableMixin',
     './QueryLayer',
     './QueryLayerHeader',
-    './tests/data/mockQueryLayers',
     '../config'
 
 ], function(
@@ -23,7 +21,6 @@ define([
 
     declare,
     array,
-    lang,
     domConstruct,
     topic,
     request,
@@ -35,7 +32,6 @@ define([
     _CollapsableMixin,
     QueryLayer,
     QueryLayerHeader,
-    mockQueryLayers,
     config
 ) {
     return declare(
@@ -78,9 +74,10 @@ define([
             //    private
             console.log('app/search/Search::postCreate', arguments);
 
-            request(config.urls.queryLayersJson, {
-                handleAs: 'json'
-            }).then(lang.hitch(this, 'buildQueryLayers'));
+            var that = this;
+            config.getAppJson().then(function (json) {
+                that.buildQueryLayers(json.queryLayers);
+            });
 
             this.inherited(arguments);
         },
