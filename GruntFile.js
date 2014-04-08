@@ -113,6 +113,18 @@ module.exports = function(grunt) {
                 src: 'src/ChangeLog.html',
                 dest: 'dist/ChangeLog.html'
             }
+        },
+        bump: {
+            options: {
+                files: ['package.json', 'src/app/package.json','src/app/main.js'],
+                commit: true,
+                commitFiles: ['-a'],
+                createTag: true,
+                tagName: 'v%VERSION%',
+                tagMessage: 'Version %VERSION%',
+                push: true,
+                pushTo: 'origin'
+            }
         }
     });
 
@@ -126,6 +138,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-dojo');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-bump');
 
     // Default task.
     grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
