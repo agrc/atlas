@@ -130,6 +130,6 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
     grunt.registerTask('build', ['dojo:prod', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
-    grunt.registerTask('stage-build', ['dojo:stage', 'replace:dist', 'newer:imagemin:dynamic']);
+    grunt.registerTask('stage-build', ['dojo:stage', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
     grunt.registerTask('travis', ['jshint', 'connect', 'jasmine:default']);
 };
