@@ -13,6 +13,15 @@
 <body>
 	<h1>Utah Environmental Interactive Map Change Log</h1>
     <a href="./" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Back to the app</a>
+    <h2>0.2.0 <small>Apr 10, 2014</small></h2>
+    <ul>
+        <li> Nightly script was created to scrape the <a href='https://docs.google.com/a/utah.gov/spreadsheet/ccc?key=0Aqee4VOgQcXcdG9DQzFEYld6UUtWRU1kNG5PMWVEY1E&usp=drive_web#gid=0'>Query Layers spreadsheet</a> for config data for the app. Any changes made to the spreadsheet will show up in the app the next morning (<a href="https://github.com/agrc/deq-enviro/issues/23">#23</a>).</li>
+        <li>Query Layers are grouped by heading (<a href="https://github.com/agrc/deq-enviro/issues/18">#18</a>).</li>
+        <li>Define Search Location pane layout fleshed out including drop down, stack container and buttons (<a href="https://github.com/agrc/deq-enviro/issues/19">#19</a>).</li>
+        <li>The disclaimer dialog was replaced with an external link from the <a href='https://docs.google.com/a/utah.gov/spreadsheet/ccc?key=0Aqee4VOgQcXcdG9DQzFEYld6UUtWRU1kNG5PMWVEY1E&usp=drive_web#gid=0'>Query Layers spreadsheet</a> "Other Links" tab. This data is also scraped nightly so that the URL can be maintained by DEQ (<a href="https://github.com/agrc/deq-enviro/issues/21">#21</a>).</li>
+        <li>The Township/Range/Section checkbox and label are now disabled at the smaller scales when the layer would not be visible on the map. A popup is also displayed to help the user know what's going on. The popup goes away and the controls are enabled as the user zooms into scales at which the layer would be visible (<a href="https://github.com/agrc/deq-enviro/issues/24">#24</a>).</li>
+        <li>Query layer features are no longer displayed when you check them in the "Select Query Layers" pane. The plan is to only show found features on the map after a search is performed (<a href="https://github.com/agrc/deq-enviro/issues/26">#26</a>).</li>
+    </ul>
     <h2>0.1.0 <small>Mar 28, 2014</small></h2>
     <ul>
         <li>Initial app layout framework and build system wired up.</li>
