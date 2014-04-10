@@ -1,9 +1,11 @@
 define([
     'dojo/request',
-    'dojo/Deferred'
+    'dojo/Deferred',
+    'dojo/has'
 ], function (
     request,
-    Deferred
+    Deferred,
+    has
     ) {
     window.AGRC = {
         // app: app.App
@@ -16,7 +18,7 @@ define([
 
         // version: String
         //      The version number.
-        version: '0.1.0',
+        version: '0.2.0',
 
         // topics: Object
         //      The topic strings used in this app
@@ -87,6 +89,17 @@ define([
             return def.promise;
         }
     };
+
+    if (has('agrc-api-key') === 'prod') {
+        // mapserv.utah.gov
+        window.AGRC.apiKey = 'AGRC-A94B063C533889';
+    } else if (has('agrc-api-key') === 'stage') {
+        // test.mapserv.utah.gov
+        window.AGRC.apiKey = 'AGRC-AC122FA9671436';
+    } else {
+        // localhost
+        window.AGRC.apiKey = 'AGRC-63E1FF17767822';
+    }
 
     return window.AGRC;
 });
