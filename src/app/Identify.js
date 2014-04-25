@@ -65,17 +65,22 @@ define([
                     config.featureClassNames.counties,
                     config.fieldNames.NAME,
                     this.county,
-                    'name' // because the api returns weird field names for now
+                    '{name}' // because the api returns weird field names for now
                 ],[
                     config.featureClassNames.municipalities,
                     config.fieldNames.NAME,
                     this.municipality,
-                    'name' // because the api returns weird field names for now
+                    '{name}' // because the api returns weird field names for now
                 ],[
                     config.featureClassNames.landOwnership,
                     config.fieldNames.STATE_LGD,
                     this.landOwner,
-                    'statE_LGD' // because the api returns weird field names for now
+                    '{statE_LGD}' // because the api returns weird field names for now
+                ],[
+                    config.featureClassNames.nationalGrid,
+                    config.fieldNames.GRID1Mil + ',' + config.fieldNames.GRIS100K,
+                    this.nationalGrid,
+                    '{griD1MIL}{griD100K}{x}{y}'
                 ]
             ];
         },
@@ -84,6 +89,8 @@ define([
             //      user clicks on the map
             // evt: Map Click Event
             console.log('app/Identify:onMapClick', arguments);
+
+            var that = this;
 
             this.clearValues();
             this.map.infoWindow.show(evt.mapPoint);
@@ -109,8 +116,15 @@ define([
                     },
                     handleAs: 'json'
                 }).then(function (data) {
-                    r[2].innerHTML = (data.result.length > 0) ?
-                        data.result[0].attributes[r[3]] : 'n/a';
+                    if (data.result.length > 0) {
+                        var f = lang.mixin(data.result[0].attributes, {
+                            x: that.utmX.innerHTML.slice(-5),
+                            y: that.utmY.innerHTML.slice(-5)
+                        });
+                        r[2].innerHTML = lang.replace(r[3], f);
+                    } else {
+                        r[2].innerHTML = 'n/a';
+                    }
                 });
             });
 

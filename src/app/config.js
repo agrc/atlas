@@ -32,13 +32,16 @@ define(['dojo/has'], function (has) {
 
         fieldNames: {
             NAME: 'NAME', // counties & municipalities
-            STATE_LGD: 'STATE_LGD' // state
+            STATE_LGD: 'STATE_LGD', // state
+            GRID1Mil: 'GRID1Mil',
+            GRIS100K: 'GRID100K'
         },
 
         featureClassNames: {
             counties: 'SGID10.Boundaries.Counties',
             municipalities: 'SGID10.Boundaries.Municipalities',
-            landOwnership: 'SGID10.Cadastre.LandOwnership'
+            landOwnership: 'SGID10.Cadastre.LandOwnership',
+            nationalGrid: 'SGID10.Indices.NationalGrid'
         }
     };
 
