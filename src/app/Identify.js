@@ -113,6 +113,8 @@ define([
                         data.result[0].attributes[r[3]] : 'n/a';
                 });
             });
+
+            this.getElevation(evt.mapPoint);
         },
         clearValues: function () {
             // summary:
@@ -121,6 +123,32 @@ define([
 
             query('span', this.domNode).forEach(function (n) {
                 n.innerHTML = '';
+            });
+        },
+        getElevation: function (point) {
+            // summary:
+            //      queries the identify service for the DEM image server
+            // point: esri/geometry/Point
+            console.log('app/Identify::getElevation', arguments);
+        
+            var that = this;
+            request(config.urls.dem, {
+                query: {
+                    geometry: JSON.stringify(point.toJson()),
+                    f: 'json',
+                    geometryType: 'esriGeometryPoint'
+                },
+                handleAs: 'json',
+                headers: {
+                    'X-Requested-With': null
+                }
+            }).then(function (grid) {
+                if (grid.value) {
+                    var meters = grid.value;
+                    var feet = Math.round(meters * 3.28084);
+                    that.elevMeters.innerHTML = meters;
+                    that.elevFeet.innerHTML = feet;
+                }
             });
         }
     });

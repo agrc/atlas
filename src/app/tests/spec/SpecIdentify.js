@@ -1,8 +1,12 @@
 require([
-    'app/Identify'
+    'app/Identify',
+
+    'stubmodule'
 
 ], function(
-    ClassUnderTest
+    ClassUnderTest,
+
+    stubmodule
 ) {
     describe('app/Identify', function() {
         var testWidget;
@@ -10,7 +14,8 @@ require([
         var evt = {
             mapPoint: {
                 x: 415652.65472246887,
-                y: 4447848.04338003
+                y: 4447848.04338003,
+                toJson: function () {return {};}
             }
         };
         var infoWindow;
@@ -65,6 +70,8 @@ require([
                 testWidget.county.innerHTML = 'blah';
                 testWidget.municipality.innerHTML = 'blah';
                 testWidget.landOwner.innerHTML = 'blah';
+                testWidget.elevMeters.innerHTML = 'blah';
+                testWidget.elevFeet.innerHTML = 'blah';
 
                 testWidget.clearValues();
 
@@ -75,6 +82,29 @@ require([
                 expect(testWidget.county.innerHTML).toEqual('');
                 expect(testWidget.municipality.innerHTML).toEqual('');
                 expect(testWidget.landOwner.innerHTML).toEqual('');
+                expect(testWidget.elevMeters.innerHTML).toEqual('');
+                expect(testWidget.elevFeet.innerHTML).toEqual('');
+            });
+        });
+        describe('getElevation', function () {
+            it('passes the point to the request', function (done) {
+                var point = {
+                    toJson: function () {return {a: 'a'};}
+                };
+                var request = jasmine.createSpy('request')
+                    .and.returnValue({then: function () {}});
+                stubmodule('app/Identify', {
+                    'dojo/request': request
+                }).then(function (StubbedModule) {
+                    var testWidget2 = new StubbedModule({map: map});
+
+                    testWidget2.getElevation(point);
+
+                    expect(request.calls.mostRecent().args[1].query.geometry)
+                        .toEqual('{"a":"a"}');
+
+                    done();
+                });
             });
         });
     });

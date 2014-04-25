@@ -22,7 +22,8 @@ define([], function () {
             'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
 
         urls: {
-            vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer'
+            vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer',
+            dem: 'http://mapserv.utah.gov/arcgis/rest/services/DEM/ImageServer'
         }
     };
 });
