@@ -11,5 +11,5 @@ src/dojo/
 src/dojox/
 src/ijit/
 src/jquery/
-src/stub/
+src/stubmodule/
 src/util/
