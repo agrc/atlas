@@ -14,7 +14,6 @@ var profile = {
                 'dojo/i18n',
                 'dojo/domReady',
                 'app/run',
-                'esri/dijit/Attribution',
                 'dojox/gfx/path',
                 'dojox/gfx/svg',
                 'dojox/gfx/shape'

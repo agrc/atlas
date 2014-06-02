@@ -162,7 +162,8 @@ define([
             console.info('app.App::initMap', arguments);
 
             this.map = new BaseMap(this.mapDiv, {
-                useDefaultBaseMap: false
+                useDefaultBaseMap: false,
+                showAttribution: false
             });
 
             this.childWidgets.push(
