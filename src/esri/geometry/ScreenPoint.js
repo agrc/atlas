@@ -1,2 +1,0 @@
-//>>built
-define(["dojo/_base/declare","dojo/_base/lang","dojo/has","esri/kernel","esri/geometry/Point"],function(a,c,d,e,b){return a(b,{declaredClass:"esri.geometry.ScreenPoint",verifySR:function(){}})});

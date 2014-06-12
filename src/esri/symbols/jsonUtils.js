@@ -1,3 +1,0 @@
-//>>built
-define(["dojo/_base/lang","dojo/has","esri/kernel","esri/symbols/SimpleMarkerSymbol","esri/symbols/PictureMarkerSymbol","esri/symbols/SimpleLineSymbol","esri/symbols/CartographicLineSymbol","esri/symbols/SimpleFillSymbol","esri/symbols/PictureFillSymbol","esri/symbols/TextSymbol"],function(l,m,n,c,d,e,f,g,h,k){return{fromJson:function(a){var b=null;switch(a.type.substring(0,6)){case "esriSM":b=new c(a);break;case "esriPM":b=new d(a);break;case "esriTS":b=new k(a);break;case "esriSL":b=void 0!==a.cap?new f(a):
-new e(a);break;case "esriSF":b=new g(a);break;case "esriPF":b=new h(a)}return b},getShapeDescriptors:function(a){return a&&a.getShapeDescriptors?a.getShapeDescriptors():{defaultShape:null,fill:null,stroke:null}}}});

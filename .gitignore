@@ -9,6 +9,7 @@ src/bootstrap/
 src/dijit/
 src/dojo/
 src/dojox/
+src/esri/
 src/ijit/
 src/jquery/
 src/stubmodule/

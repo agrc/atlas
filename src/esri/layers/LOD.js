@@ -1,2 +1,0 @@
-//>>built
-define(["dojo/_base/declare","dojo/_base/lang","dojo/has","esri/kernel","esri/lang"],function(a,b,d,e,c){return a(null,{declaredClass:"esri.layers.LOD",constructor:function(a){b.mixin(this,a)},toJson:function(){return c.fixJson({level:this.level,levelValue:this.levelValue,resolution:this.resolution,scale:this.scale})}})});

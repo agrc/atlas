@@ -113,7 +113,13 @@ module.exports = function(grunt) {
                 src: 'src/ChangeLog.html',
                 dest: 'dist/ChangeLog.html'
             }
-        }
+        },
+        esri_slurp: {
+            options: {
+                version: 3.9
+            }
+        },
+        clean: ['dist']
     });
 
     // Register tasks.
@@ -126,10 +132,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-dojo');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-esri-slurp');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default task.
     grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('build', ['dojo:prod', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
-    grunt.registerTask('stage-build', ['dojo:stage', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
-    grunt.registerTask('travis', ['jshint', 'connect', 'jasmine:default']);
+    grunt.registerTask('build', ['clean', 'dojo:prod', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
+    grunt.registerTask('stage-build', ['clean', 'dojo:stage', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
+    grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:default']);
 };

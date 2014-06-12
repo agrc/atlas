@@ -1,3 +1,0 @@
-//>>built
-define(["dojo/_base/declare","dojo/_base/lang","dojo/has","esri/kernel","esri/lang","esri/layers/LayerInfo","esri/layers/LayerMapSource","esri/layers/LayerDataSource"],function(c,g,h,k,d,e,b,f){return c(e,{declaredClass:"esri.layers.DynamicLayerInfo",defaultVisibility:!0,parentLayerId:-1,maxScale:0,minScale:0,constructor:function(a){a&&(a.source?a="mapLayer"===a.source.type?new b(a.source):new f(a.source):(a=new b,a.mapLayerId=this.id),this.source=a)},toJson:function(){var a=this.inherited(arguments);
-a.source=this.source&&this.source.toJson();return d.fixJson(a)}})});
