@@ -1,2 +1,0 @@
-//>>built
-define(["dojo/_base/declare","dojo/_base/lang","dojo/has","esri/kernel","esri/lang"],function(b,c,e,f,d){return b(null,{declaredClass:"esri.layers.Domain",constructor:function(a){a&&c.isObject(a)&&(this.name=a.name,this.type=a.type)},toJson:function(){return d.fixJson({name:this.name,type:this.type})}})});
