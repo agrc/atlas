@@ -79,20 +79,12 @@ module.exports = function(grunt) {
                 basePath: './src'
             }
         },
-        replace: {
+        processhtml: {
+            options: {},
             dist: {
-                options: {
-                    patterns: [{
-                        match: /<!-- start -->(.|\s)*?<!-- end -->/g,
-                        replacement: '<script src=\'dojo/dojo.js\' data-dojo-config="deps:[\'app/run\']"></script>'
-                    }]
-                },
-                files: [{
-                    expand: true,
-                    flatten: true,
-                    src: ['src/index.html'],
-                    dest: 'dist/'
-                }]
+                files: {
+                    'dist/index.html': ['src/index.html']
+                }
             }
         },
         imagemin: {
@@ -128,16 +120,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-dojo');
-    grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-esri-slurp');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-processhtml');
 
     // Default task.
     grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('build', ['clean', 'dojo:prod', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
-    grunt.registerTask('stage-build', ['clean', 'dojo:stage', 'replace:dist', 'newer:imagemin:dynamic', 'copy']);
+    grunt.registerTask('build', ['clean', 'dojo:prod', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
+    grunt.registerTask('stage-build', ['clean', 'dojo:stage', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
     grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:default']);
 };
