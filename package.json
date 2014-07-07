@@ -8,12 +8,11 @@
     "grunt-contrib-watch": "~0.5",
     "grunt-contrib-connect": "~0.6",
     "grunt-dojo": "~0.3",
-    "grunt-contrib-imagemin": "~0.6",
-    "grunt-replace": "~0.7",
-    "grunt-newer": "^0.7.0",
+    "grunt-contrib-imagemin": "~0.7",
     "grunt-contrib-copy": "^0.5.0",
     "grunt-esri-slurp": "~0",   
-    "grunt-contrib-clean": "^0"
+    "grunt-contrib-clean": "^0",
+    "grunt-processhtml": "^0.3" 
   },
   "scripts": {
     "test": "grunt travis --verbose"

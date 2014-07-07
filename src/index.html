@@ -20,10 +20,14 @@
 <body class='claro'>
     <div id='appDiv'></div>
 
-    <!-- start -->
+    <!-- build:template
+    <script data-dojo-config="deps:['app/run']" src='dojo/dojo.js'></script>
+    /build -->
+
+    <!-- build:remove -->
     <script data-dojo-config="isDebug: 1" src='dojo/dojo.js'></script>
     <script src='app/run.js'></script>
-    <!-- end -->
+    <!-- /build -->
 
     <!-- GOOGLE ANALYTICS -->
     <script>
