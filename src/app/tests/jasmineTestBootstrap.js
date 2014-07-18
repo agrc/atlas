@@ -1,10 +1,20 @@
+/* global JasmineFaviconReporter */
 /*jshint unused:false*/
 var dojoConfig = {
-    has: {'dojo-undef-api': true},
+    // isDebug: false,
+    isJasmineTestRunner: true,
     packages: [{
+        name: 'matchers',
+        location: 'matchers/src'
+    },{
         name: 'stubmodule',
         location: 'stubmodule/src',
         main: 'stub-module'
     }],
-    isJasmineTestRunner: true
+    has: {
+        'dojo-undef-api': true
+    }
 };
+
+// for jasmine-favicon-reporter
+jasmine.getEnv().addReporter(new JasmineFaviconReporter());

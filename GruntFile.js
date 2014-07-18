@@ -29,6 +29,8 @@ module.exports = function(grunt) {
                 options: {
                     specs: ['src/app/**/Spec*.js'],
                     vendor: [
+                        'src/jasmine-favicon-reporter/vendor/favico.js',
+                        'src/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
                         'src/app/tests/jasmineTestBootstrap.js',
                         'src/dojo/dojo.js'
                     ],
