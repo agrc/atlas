@@ -116,18 +116,11 @@ module.exports = function(grunt) {
         clean: ['dist']
     });
 
-    // Register tasks.
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-dojo');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-esri-slurp');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-processhtml');
-
+    // Loading dependencies
+    for (var key in grunt.file.readJSON("package.json").devDependencies) {
+        if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
+    }
+    
     // Default task.
     grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
     grunt.registerTask('build', ['clean', 'dojo:prod', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
