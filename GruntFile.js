@@ -1,4 +1,4 @@
-/* jshint camelcase:false */
+/* jshint camelcase: false */
 module.exports = function(grunt) {
     var jsFiles = 'src/app/**/*.js';
     var otherFiles = [
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             // }
 
             // for regular apps...
-            'default': {
+            'app': {
                 src: ['src/app/run.js'],
                 options: {
                     specs: ['src/app/**/Spec*.js'],
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         watch: {
             jshint: {
                 files: jshintFiles,
-                tasks: ['jshint', 'jasmine:default:build']
+                tasks: ['jshint', 'jasmine:app:build']
             },
             src: {
                 files: jshintFiles.concat(otherFiles),
@@ -97,8 +97,8 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true, // Enable dynamic expansion
                     cwd: 'src/', // Src matches are relative to this path
-                    src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
-                    dest: 'dist/' // Destination path prefix
+                    src: '**/*.{png,jpg,gif}', // Actual patterns to match
+                    dest: 'src/'
                 }]
             }
         },
@@ -110,7 +110,8 @@ module.exports = function(grunt) {
         },
         esri_slurp: {
             options: {
-                version: 3.9
+                version: 3.9,
+                beautify: true
             }
         },
         clean: ['dist']
@@ -124,8 +125,12 @@ module.exports = function(grunt) {
     }
     
     // Default task.
-    grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('build', ['clean', 'dojo:prod', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
-    grunt.registerTask('stage-build', ['clean', 'dojo:stage', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
-    grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:default']);
+    grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'connect', 'watch']);
+
+    grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:app']);
+
+    grunt.registerTask('build',
+        ['newer:imagemin:dynamic', 'clean', 'dojo:prod', 'copy', 'processhtml:dist']);
+    grunt.registerTask('stage-build',
+        ['newer:imagemin:dynamic', 'clean', 'dojo:stage', 'copy', 'processhtml:dist']);
 };
