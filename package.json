@@ -11,9 +11,10 @@
     "grunt-contrib-jshint": "~0.9",
     "grunt-contrib-watch": "~0.5",
     "grunt-dojo": "~0.3",
-    "grunt-esri-slurp": "~0",   
+    "grunt-esri-slurp": "~0",
     "grunt-newer": "~0",
-    "grunt-processhtml": "^0.3" 
+    "grunt-processhtml": "^0.3",
+    "grunt-if-missing": "^1.0.0"
   },
   "scripts": {
     "test": "grunt travis --verbose"

@@ -62,13 +62,13 @@ module.exports = function(grunt) {
         dojo: {
             prod: {
                 options: {
-                    // You can also specify options to be used in all your tasks                
+                    // You can also specify options to be used in all your tasks
                     profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js'] // Profile for build
                 }
             },
             stage: {
                 options: {
-                    // You can also specify options to be used in all your tasks                
+                    // You can also specify options to be used in all your tasks
                     profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js'] // Profile for build
                 }
             },
@@ -114,7 +114,10 @@ module.exports = function(grunt) {
                 beautify: true
             }
         },
-        clean: ['dist']
+        clean: ['dist'],
+        missing: {
+            dest: 'src/esri'
+        }
     });
 
     // Loading dependencies
@@ -123,14 +126,26 @@ module.exports = function(grunt) {
             grunt.loadNpmTasks(key);
         }
     }
-    
+
     // Default task.
-    grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'connect', 'watch']);
+    grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'if-missing:esri_slurp:missing', 'connect', 'watch']);
 
     grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:app']);
 
-    grunt.registerTask('build',
-        ['newer:imagemin:dynamic', 'clean', 'dojo:prod', 'copy', 'processhtml:dist']);
-    grunt.registerTask('stage-build',
-        ['newer:imagemin:dynamic', 'clean', 'dojo:stage', 'copy', 'processhtml:dist']);
+    grunt.registerTask('build', [
+        'if-missing:esri_slurp:missing',
+        'newer:imagemin:dynamic',
+        'clean',
+        'dojo:prod',
+        'copy',
+        'processhtml:dist'
+    ]);
+    grunt.registerTask('stage-build', [
+        'if-missing:esri_slurp:missing',
+        'newer:imagemin:dynamic',
+        'clean',
+        'dojo:stage',
+        'copy',
+        'processhtml:dist'
+    ]);
 };
