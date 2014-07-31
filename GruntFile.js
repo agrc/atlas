@@ -112,12 +112,12 @@ module.exports = function(grunt) {
             options: {
                 version: 3.9,
                 beautify: true
+            },
+            missing: {
+                dest: 'src/esri'
             }
         },
-        clean: ['dist'],
-        missing: {
-            dest: 'src/esri'
-        }
+        clean: ['dist']
     });
 
     // Loading dependencies
