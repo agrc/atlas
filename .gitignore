@@ -1,4 +1,6 @@
+*.odc
 *.pyc
+*.sde
 *.sublime-workspace
 .DS_Store
 .grunt/
