@@ -47,10 +47,6 @@ var profile = {
         // We aren’t loading tests in production
         'dojo-test-sniff':0
     },
-    packages: [{
-        name: 'esri',
-        resourceTags: amdTag
-    }],
     // this is to make sure that the widget templates get built into the layer file.
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
