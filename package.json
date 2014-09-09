@@ -20,6 +20,7 @@
     "grunt-dojo": "^0.3",
     "grunt-esri-slurp": "^0",
     "grunt-if-missing": "^1",
+    "grunt-newer": "^0.7.0",
     "grunt-processhtml": "^0",
     "grunt-ssh": "^0"
   },

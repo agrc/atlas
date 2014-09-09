@@ -121,20 +121,20 @@ module.exports = function(grunt) {
             }
         },
         imagemin: {
-            dynamic: {
+            main: {
                 options: {
                     optimizationLevel: 3
                 },
                 files: [{
                     expand: true, // Enable dynamic expansion
                     cwd: 'src/', // Src matches are relative to this path
-                    src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
-                    dest: 'dist/' // Destination path prefix
+                    src: '**/*.{png,jpg,gif}', // Actual patterns to match
+                    dest: 'src/' // Destination path prefix
                 }]
             }
         },
         jasmine: {
-            app: {
+            main: {
                 src: ['src/app/run.js'],
                 options: {
                     specs: ['src/app/**/Spec*.js'],
@@ -157,7 +157,7 @@ module.exports = function(grunt) {
         },
         processhtml: {
             options: {},
-            dist: {
+            main: {
                 files: {
                     'dist/index.html': ['src/index.html']
                 }
@@ -230,7 +230,7 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', [
-        'jasmine:app:build',
+        'jasmine:main:build',
         'jshint',
         'if-missing:esri_slurp:dev',
         'connect',
@@ -238,18 +238,20 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('build', [
         'clean:build',
+        'if-missing:esri_slurp:dev',
+        'newer:imagemin:main',
         'dojo:prod',
-        'imagemin:dynamic',
-        'copy',
-        'processhtml:dist',
+        'copy:main',
+        'processhtml:main',
         'compress:main'
     ]);
     grunt.registerTask('stage', [
         'clean:build',
+        'if-missing:esri_slurp:dev',
+        'newer:imagemin:main',
         'dojo:stage',
-        'imagemin:dynamic',
-        'copy',
-        'processhtml:dist',
+        'copy:main',
+        'processhtml:main',
         'compress:main'
     ]);
     grunt.registerTask('deploy', [
@@ -261,6 +263,6 @@ module.exports = function(grunt) {
         'esri_slurp:travis',
         'jshint',
         'connect',
-        'jasmine:app'
+        'jasmine:main'
     ]);
 };

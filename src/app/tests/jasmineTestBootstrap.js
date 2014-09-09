@@ -9,7 +9,7 @@ var dojoConfig = {
     },{
         name: 'stubmodule',
         location: 'stubmodule/src',
-        main: 'stubmodule'
+        main: 'stub-module'
     }],
     has: {
         'dojo-undef-api': true
