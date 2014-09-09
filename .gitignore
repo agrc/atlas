@@ -4,8 +4,10 @@
 *.sublime-workspace
 .DS_Store
 .grunt/
+deploy
 dist/
 node_modules/
+secrets.json
 src/agrc/
 src/bootstrap/
 src/dijit/
