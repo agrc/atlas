@@ -236,7 +236,7 @@ module.exports = function(grunt) {
         'connect',
         'watch'
     ]);
-    grunt.registerTask('build', [
+    grunt.registerTask('build-prod', [
         'clean:build',
         'if-missing:esri_slurp:dev',
         'newer:imagemin:main',
@@ -245,7 +245,7 @@ module.exports = function(grunt) {
         'processhtml:main',
         'compress:main'
     ]);
-    grunt.registerTask('stage', [
+    grunt.registerTask('build-stage', [
         'clean:build',
         'if-missing:esri_slurp:dev',
         'newer:imagemin:main',
@@ -254,10 +254,15 @@ module.exports = function(grunt) {
         'processhtml:main',
         'compress:main'
     ]);
-    grunt.registerTask('deploy', [
+    grunt.registerTask('deploy-prod', [
         'clean:deploy',
         'sftp:prod',
         'sshexec:prod'
+    ]);
+    grunt.registerTask('deploy-stage', [
+        'clean:deploy',
+        'sftp:stage',
+        'sshexec:stage'
     ]);
     grunt.registerTask('travis', [
         'esri_slurp:travis',
