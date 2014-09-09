@@ -1,6 +1,6 @@
 {
   "name": "Atlas",
-  "version": "0.0.0",
+  "version": "2.3.0",
   "dependencies": {
     "agrc": "agrc-widgets#",
     "bootstrap": "~3",

@@ -1,30 +1,31 @@
 /* jshint camelcase:false */
 module.exports = function(grunt) {
-    var jsFiles = 'src/app/**/*.js';
-    var otherFiles = [
+    var jsFiles = 'src/app/**/*.js',
+    otherFiles = [
         'src/app/**/*.html',
         'src/app/**/*.css',
         'src/index.html',
         'src/ChangeLog.html'
+    ],
+    gruntFile = 'GruntFile.js',
+    internFile = 'tests/intern.js',
+    jshintFiles = [
+        jsFiles,
+        gruntFile,
+        internFile
+    ],
+    bumpFiles = [
+        'package.json',
+        'bower.json',
+        'src/app/package.json',
+        'src/app/config.js'
     ];
-    var gruntFile = 'GruntFile.js';
-    var internFile = 'tests/intern.js';
-    var jshintFiles = [jsFiles, gruntFile, internFile];
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jasmine: {
-            // for embedded map projects...
-            // app: {
-            //   src: ['src/EmbeddedMapLoader.js'],
-            //   options: {
-            //     specs: ['src/app/tests/spec/*.js']
-            //   }
-            // }
-
-            // for regular apps...
-            'default': {
+            app: {
                 src: ['src/app/run.js'],
                 options: {
                     specs: ['src/app/**/Spec*.js'],
@@ -62,13 +63,13 @@ module.exports = function(grunt) {
         dojo: {
             prod: {
                 options: {
-                    // You can also specify options to be used in all your tasks                
+                    // You can also specify options to be used in all your tasks
                     profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js'] // Profile for build
                 }
             },
             stage: {
                 options: {
-                    // You can also specify options to be used in all your tasks                
+                    // You can also specify options to be used in all your tasks
                     profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js'] // Profile for build
                 }
             },
@@ -110,10 +111,28 @@ module.exports = function(grunt) {
         },
         esri_slurp: {
             options: {
-                version: 3.9
+                version: '3.10'
+            },
+            dev: {
+                options: {
+                    beautify: true
+                },
+                dest: 'src/esri'
+            },
+            travis: {
+                options: {
+                    beautify: false
+                }
             }
         },
-        clean: ['dist']
+        clean: ['dist'],
+        bump: {
+            options: {
+                files: bumpFiles,
+                commitFiles: bumpFiles,
+                push: false
+            }
+        }
     });
 
     // Loading dependencies
@@ -122,10 +141,10 @@ module.exports = function(grunt) {
             grunt.loadNpmTasks(key);
         }
     }
-    
+
     // Default task.
-    grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
+    grunt.registerTask('default', ['jasmine:app:build', 'jshint', 'if-missing:esri_slurp:dev', 'connect', 'watch']);
     grunt.registerTask('build', ['clean', 'dojo:prod', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
-    grunt.registerTask('stage-build', ['clean', 'dojo:stage', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
-    grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:default']);
+    grunt.registerTask('stage', ['clean', 'dojo:stage', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
+    grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:app']);
 };

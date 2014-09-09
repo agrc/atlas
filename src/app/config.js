@@ -8,7 +8,7 @@ define(['dojo/has'], function (has) {
         //      global reference to App
         app: null,
 
-        // version: String
+        // version.: String
         //      The version number.
         version: '2.3.0',
 
