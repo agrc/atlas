@@ -1,9 +1,9 @@
 For Single Page Apps
 ====================
-- copy mxd's to `hnas/serverprojects`
+- copy mxd's to `//(53)/ArcGISServer/serverprojects`
 - add analytics code
-- update api keys in `config.js`
+- update api keys in `config.js`, if needed
 - `grunt bump`
-- `grunt build --force`
+- `grunt build-prod -v -f`
 - test in `/dist`
-- `grunt publish`
+- `grunt deploy-prod -v`
