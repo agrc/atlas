@@ -29,6 +29,10 @@
                 name: 'bootstrap',
                 location: 'bootstrap',
                 main: 'dist/js/bootstrap'
+            },{
+                name: 'spin',
+                location: 'spinjs',
+                main: 'spin'
             }
         ]
     };

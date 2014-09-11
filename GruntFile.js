@@ -1,30 +1,140 @@
 /* jshint camelcase:false */
 module.exports = function(grunt) {
-    var jsFiles = 'src/app/**/*.js';
-    var otherFiles = [
-        'src/app/**/*.html',
-        'src/app/**/*.css',
-        'src/index.html',
-        'src/ChangeLog.html'
-    ];
-    var gruntFile = 'GruntFile.js';
-    var internFile = 'tests/intern.js';
-    var jshintFiles = [jsFiles, gruntFile, internFile];
+    var jsFiles = 'src/app/**/*.js',
+        otherFiles = [
+            'src/app/**/*.html',
+            'src/app/**/*.css',
+            'src/index.html',
+            'src/ChangeLog.html'
+        ],
+        gruntFile = 'GruntFile.js',
+        internFile = 'tests/intern.js',
+        jshintFiles = [
+            jsFiles,
+            gruntFile,
+            internFile
+        ],
+        bumpFiles = [
+            'package.json',
+            'bower.json',
+            'src/app/package.json',
+            'src/app/config.js'
+        ],
+        deployFiles = [
+            '**',
+            '!build-report.txt',
+            '!util/**',
+            '!jasmine-favicon-reporter/**',
+            '!**/*.uncompressed.js',
+            '!**/*consoleStripped.js',
+            '!**/*.min.*',
+            '!**/tests/**',
+            '!**/bootstrap/test-infra/**',
+            '!**/bootstrap/less/**'
+        ],
+        deployDir = 'wwwroot/SGID',
+        secrets;
+    try {
+        secrets = grunt.file.readJSON('secrets.json');
+    } catch (e) {
+        // swallow for build server
+        secrets = {
+            stageHost: '',
+            prodHost: '',
+            username: '',
+            password: ''
+        };
+    }
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        bump: {
+            options: {
+                files: bumpFiles,
+                commitFiles: bumpFiles,
+                push: false
+            }
+        },
+        clean: {
+            build: ['dist'],
+            deploy: ['deploy']
+        },
+        compress: {
+            main: {
+                options: {
+                    archive: 'deploy/deploy.zip'
+                },
+                files: [{
+                    src: deployFiles,
+                    dest: './',
+                    cwd: 'dist/',
+                    expand: true
+                }]
+            }
+        },
+        connect: {
+            uses_defaults: {}
+        },
+        copy: {
+            main: {
+                src: 'src/ChangeLog.html',
+                dest: 'dist/ChangeLog.html'
+            }
+        },
+        dojo: {
+            prod: {
+                options: {
+                    // You can also specify options to be used in all your tasks
+                    profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js'] // Profile for build
+                }
+            },
+            stage: {
+                options: {
+                    // You can also specify options to be used in all your tasks
+                    profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js'] // Profile for build
+                }
+            },
+            options: {
+                // You can also specify options to be used in all your tasks
+                dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source
+                load: 'build', // Optional: Utility to bootstrap (Default: 'build')
+                releaseDir: '../dist',
+                require: 'src/app/run.js', // Optional: Module to require for the build (Default: nothing)
+                basePath: './src'
+            }
+        },
+        esri_slurp: {
+            options: {
+                version: '3.10'
+            },
+            dev: {
+                options: {
+                    beautify: true
+                },
+                dest: 'src/esri'
+            },
+            travis: {
+                options: {
+                    beautify: false
+                }
+            }
+        },
+        imagemin: {
+            main: {
+                options: {
+                    optimizationLevel: 3
+                },
+                files: [{
+                    expand: true, // Enable dynamic expansion
+                    cwd: 'src/', // Src matches are relative to this path
+                    src: '**/*.{png,jpg,gif}', // Actual patterns to match
+                    dest: 'src/' // Destination path prefix
+                }]
+            }
+        },
         jasmine: {
-            // for embedded map projects...
-            // app: {
-            //   src: ['src/EmbeddedMapLoader.js'],
-            //   options: {
-            //     specs: ['src/app/tests/spec/*.js']
-            //   }
-            // }
-
-            // for regular apps...
-            'default': {
+            main: {
                 src: ['src/app/run.js'],
                 options: {
                     specs: ['src/app/**/Spec*.js'],
@@ -32,7 +142,8 @@ module.exports = function(grunt) {
                         'src/jasmine-favicon-reporter/vendor/favico.js',
                         'src/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
                         'src/app/tests/jasmineTestBootstrap.js',
-                        'src/dojo/dojo.js'
+                        'src/dojo/dojo.js',
+                        'src/app/tests/jasmineAMDErrorChecking.js'
                     ],
                     host: 'http://localhost:8000'
                 }
@@ -42,6 +153,58 @@ module.exports = function(grunt) {
             files: jshintFiles,
             options: {
                 jshintrc: '.jshintrc'
+            }
+        },
+        processhtml: {
+            options: {},
+            main: {
+                files: {
+                    'dist/index.html': ['src/index.html']
+                }
+            }
+        },
+        secrets: secrets,
+        sftp: {
+            stage: {
+                files: {
+                    './': 'deploy/deploy.zip'
+                },
+                options: {
+                    host: '<%= secrets.stageHost %>'
+                }
+            },
+            prod: {
+                files: {
+                    './': 'deploy/deploy.zip'
+                },
+                options: {
+                    host: '<%= secrets.prodHost %>'
+                }
+            },
+            options: {
+                path: './' + deployDir + '/',
+                srcBasePath: 'deploy/',
+                username: '<%= secrets.username %>',
+                password: '<%= secrets.password %>',
+                showProgress: true
+            }
+        },
+        sshexec: {
+            options: {
+                username: '<%= secrets.username %>',
+                password: '<%= secrets.password %>'
+            },
+            stage: {
+                command: ['cd ' + deployDir, 'unzip -o deploy.zip', 'rm deploy.zip'].join(';'),
+                options: {
+                    host: '<%= secrets.stageHost %>'
+                }
+            },
+            prod: {
+                command: ['cd ' + deployDir, 'unzip -o deploy.zip', 'rm deploy.zip'].join(';'),
+                options: {
+                    host: '<%= secrets.prodHost %>'
+                }
             }
         },
         watch: {
@@ -55,65 +218,7 @@ module.exports = function(grunt) {
                     livereload: true
                 }
             }
-        },
-        connect: {
-            uses_defaults: {}
-        },
-        dojo: {
-            prod: {
-                options: {
-                    // You can also specify options to be used in all your tasks                
-                    profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js'] // Profile for build
-                }
-            },
-            stage: {
-                options: {
-                    // You can also specify options to be used in all your tasks                
-                    profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js'] // Profile for build
-                }
-            },
-            options: {
-                // You can also specify options to be used in all your tasks
-                dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source
-                load: 'build', // Optional: Utility to bootstrap (Default: 'build')
-                releaseDir: '../dist',
-                require: 'src/app/run.js', // Optional: Module to require for the build (Default: nothing)
-                basePath: './src'
-            }
-        },
-        processhtml: {
-            options: {},
-            dist: {
-                files: {
-                    'dist/index.html': ['src/index.html']
-                }
-            }
-        },
-        imagemin: {
-            dynamic: {
-                options: {
-                    optimizationLevel: 3
-                },
-                files: [{
-                    expand: true, // Enable dynamic expansion
-                    cwd: 'src/', // Src matches are relative to this path
-                    src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
-                    dest: 'dist/' // Destination path prefix
-                }]
-            }
-        },
-        copy: {
-            main: {
-                src: 'src/ChangeLog.html',
-                dest: 'dist/ChangeLog.html'
-            }
-        },
-        esri_slurp: {
-            options: {
-                version: 3.9
-            }
-        },
-        clean: ['dist']
+        }
     });
 
     // Loading dependencies
@@ -122,10 +227,47 @@ module.exports = function(grunt) {
             grunt.loadNpmTasks(key);
         }
     }
-    
+
     // Default task.
-    grunt.registerTask('default', ['jasmine:default:build', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('build', ['clean', 'dojo:prod', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
-    grunt.registerTask('stage-build', ['clean', 'dojo:stage', 'imagemin:dynamic', 'copy', 'processhtml:dist']);
-    grunt.registerTask('travis', ['esri_slurp', 'jshint', 'connect', 'jasmine:default']);
+    grunt.registerTask('default', [
+        'jasmine:main:build',
+        'jshint',
+        'if-missing:esri_slurp:dev',
+        'connect',
+        'watch'
+    ]);
+    grunt.registerTask('build-prod', [
+        'clean:build',
+        'if-missing:esri_slurp:dev',
+        'newer:imagemin:main',
+        'dojo:prod',
+        'copy:main',
+        'processhtml:main',
+        'compress:main'
+    ]);
+    grunt.registerTask('build-stage', [
+        'clean:build',
+        'if-missing:esri_slurp:dev',
+        'newer:imagemin:main',
+        'dojo:stage',
+        'copy:main',
+        'processhtml:main',
+        'compress:main'
+    ]);
+    grunt.registerTask('deploy-prod', [
+        'clean:deploy',
+        'sftp:prod',
+        'sshexec:prod'
+    ]);
+    grunt.registerTask('deploy-stage', [
+        'clean:deploy',
+        'sftp:stage',
+        'sshexec:stage'
+    ]);
+    grunt.registerTask('travis', [
+        'esri_slurp:travis',
+        'jshint',
+        'connect',
+        'jasmine:main'
+    ]);
 };

@@ -1,6 +1,6 @@
 {
-    "name": "app",
-    "version": "0.1",
+    "name": "Atlas.app",
+    "version": "2.3.1",
     "main": "main",
     "description": "AGRC Boilerplate",
     "homepage": "https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate",
