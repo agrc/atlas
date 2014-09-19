@@ -5,7 +5,7 @@
     "agrc": "agrc-widgets#~2.5.1",
     "bootstrap": "~3",
     "dijit": "~1.9",
-    "dojo": "~1.9",
+    "dojo": "~1.9.5",
     "dojox": "~1.9",
     "ijit": "agrc-ijit#~2.5.4",
     "jasmine-favicon-reporter": "*",
