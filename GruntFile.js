@@ -110,13 +110,13 @@ module.exports = function(grunt) {
             },
             dev: {
                 options: {
-                    beautify: true
-                },
-                dest: 'src/esri'
+                    beautify: true,
+                    dest: 'src/esri'
+                }
             },
             travis: {
                 options: {
-                    beautify: false
+                    dest: 'src/esri'
                 }
             }
         },
