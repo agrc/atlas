@@ -10,6 +10,7 @@ node_modules/
 secrets.json
 src/agrc/
 src/bootstrap/
+src/dgrid/
 src/dijit/
 src/dojo/
 src/dojox/
@@ -18,6 +19,11 @@ src/favico.js/
 src/ijit/
 src/jasmine-favicon-reporter/
 src/jquery/
+src/ladda-bootstrap/
+src/mustache/
+src/put-selector/
+src/spin.js/
 src/spinjs/
 src/stubmodule/
 src/util/
+src/xstyle/

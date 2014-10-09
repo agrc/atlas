@@ -19,55 +19,28 @@
             'ijit',
             {
                 name: 'proj4',
-                location: 'proj4js',
+                location: './proj4js',
                 main: 'proj4'
             },{
                 name: 'jquery',
-                location: 'jquery/dist',
+                location: './jquery/dist',
                 main: 'jquery'
             },{
                 name: 'bootstrap',
-                location: 'bootstrap',
+                location: './bootstrap',
                 main: 'dist/js/bootstrap'
             },{
                 name: 'spin',
-                location: 'spinjs',
+                location: './spinjs',
                 main: 'spin'
+            },{
+                name: 'ladda',
+                location: './ladda-bootstrap',
+                main: 'dist/ladda'
             }
         ]
     };
-    require(config, [
-        'jquery',
-
-        'app/App',
-
-        'dojo/_base/lang',
-        'dojo/dom',
-
-        'esri/config',
-
-
-        'dojo/domReady!'
-    ],
-
-    function (
-        $,
-
-        App,
-
-        lang,
-        dom,
-
-        esriConfig
-        ) {
-        // force api to use CORS on mapserv thus removing the test request on app load
-        // e.g. http://mapserv.utah.gov/ArcGIS/rest/info?f=json
-        esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
-
-        // don't initialize if this is the jasmine test runner
-        if (!lang.getObject('dojoConfig.isJasmineTestRunner')) {
-            var app = new App({}, dom.byId('appDiv'));
-            app.startup();
-        }
+    require(config, ['dojo/parser', 'jquery', 'dojo/domReady!'], function (parser) {
+        parser.parse();
     });
 })();

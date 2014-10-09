@@ -77,10 +77,7 @@ module.exports = function(grunt) {
             uses_defaults: {}
         },
         copy: {
-            main: {
-                src: 'src/ChangeLog.html',
-                dest: 'dist/ChangeLog.html'
-            }
+            files: [{expand: true, cwd: 'src/', src: ['*.html'], dest: 'dist/'}]
         },
         dojo: {
             prod: {
@@ -124,10 +121,11 @@ module.exports = function(grunt) {
                     optimizationLevel: 3
                 },
                 files: [{
-                    expand: true, // Enable dynamic expansion
-                    cwd: 'src/', // Src matches are relative to this path
-                    src: '**/*.{png,jpg,gif}', // Actual patterns to match
-                    dest: 'src/' // Destination path prefix
+                    expand: true,
+                    cwd: 'src/',
+                    // exclude tests because some images in dojox throw errors
+                    src: ['**/*.{png,jpg,gif}', '!**/tests/**/*.*'],
+                    dest: 'src/'
                 }]
             }
         },
@@ -157,7 +155,8 @@ module.exports = function(grunt) {
             options: {},
             main: {
                 files: {
-                    'dist/index.html': ['src/index.html']
+                    'dist/index.html': ['src/index.html'],
+                    'dist/user_admin.html': ['src/user_admin.html']
                 }
             }
         },

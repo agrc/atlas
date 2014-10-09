@@ -6,7 +6,6 @@
             "src/dojox",
             "src/util",
             "src/dijit",
-            "src/esri",
             "node_modules",
             ".grunt"
         ],
