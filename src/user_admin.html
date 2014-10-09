@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fiber Availability User Admin</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="stylesheet" href="app/resources/UserAdmin.css">
+
+        <!-- JAVASCRIPT -->
+        <!-- build:template
+        <script data-dojo-config="deps:['app/run']" src='dojo/dojo.js'></script>
+        /build -->
+
+        <!-- build:remove -->
+        <script data-dojo-config="isDebug: 1" src='dojo/dojo.js'></script>
+        <script src='app/run.js'></script>
+        <!-- /build -->
+    </head>
+    <body>
+        <div id="widget-div"></div>
+
+        <script>
+            require([
+                'ijit/widgets/authentication/UserAdmin',
+                'app/config',
+                'dojo/domReady!'
+            ], function (UserAdmin, config) {
+                new UserAdmin({
+                    title: 'DEQ Interactive Map',
+                    appName: config.appName
+                }, 'widget-div');
+            });
+        </script>
+    </body>
+</html>

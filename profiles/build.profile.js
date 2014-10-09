@@ -21,6 +21,7 @@ var profile = {
                 'dojo/i18n',
                 'dojo/domReady',
                 'app/run',
+                'app/App',
                 'dojox/gfx/path',
                 'dojox/gfx/svg',
                 'dojox/gfx/shape'
@@ -28,6 +29,9 @@ var profile = {
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
+        },
+        'ijit/widgets/authentication/UserAdmin': {
+            exclude: ['dojo/dojo']
         }
     },
     staticHasFeatures: {

@@ -2,14 +2,14 @@
   "name": "Atlas",
   "version": "2.3.1",
   "dependencies": {
-    "agrc": "agrc-widgets#~2.5.1",
-    "bootstrap": "~3",
+    "agrc": "agrc-widgets#2.7.0",
+    "bootstrap": "~3.2",
     "dijit": "~1.9",
     "dojo": "~1.9",
     "dojox": "~1.9",
-    "ijit": "agrc-ijit#~2.5.4",
+    "ijit": "agrc-ijit#3.0.4",
     "jasmine-favicon-reporter": "*",
-    "stubmodule": "~0.4.0",
+    "stubmodule": "0.6.0",
     "util": "dojo-util#~1.9"
   }
 }
