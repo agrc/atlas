@@ -207,7 +207,7 @@ module.exports = function(grunt) {
         watch: {
             jshint: {
                 files: jshintFiles,
-                tasks: ['jshint', 'jasmine:default:build']
+                tasks: ['jshint', 'jasmine:main:build']
             },
             src: {
                 files: jshintFiles.concat(otherFiles),
