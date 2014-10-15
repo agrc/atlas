@@ -77,7 +77,9 @@ module.exports = function(grunt) {
             uses_defaults: {}
         },
         copy: {
-            files: [{expand: true, cwd: 'src/', src: ['*.html'], dest: 'dist/'}]
+            main: {
+                files: [{expand: true, cwd: 'src/', src: ['*.html'], dest: 'dist/'}]
+            }
         },
         dojo: {
             prod: {
