@@ -148,7 +148,10 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            files: jshintFiles,
+            main: {
+                // must use src for newer to work
+                src: jshintFiles
+            },
             options: {
                 jshintrc: '.jshintrc'
             }
@@ -209,7 +212,7 @@ module.exports = function(grunt) {
         watch: {
             jshint: {
                 files: jshintFiles,
-                tasks: ['jshint', 'jasmine:main:build']
+                tasks: ['newer:jshint:main', 'jasmine:main:build']
             },
             src: {
                 files: jshintFiles.concat(otherFiles),
@@ -230,7 +233,7 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', [
         'jasmine:main:build',
-        'jshint',
+        'newer:jshint:main',
         'if-missing:esri_slurp:dev',
         'connect',
         'watch'
