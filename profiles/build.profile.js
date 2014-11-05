@@ -1,6 +1,6 @@
 /*jshint unused:false */
 
-// Useful for tagging packages such as proj4 as AMD 
+// Useful for tagging packages such as proj4 as AMD
 // to help the build system work with them better.
 var amdTag = function (filename, mid) {
     return (/.*\.js$/).test(filename);
@@ -11,8 +11,8 @@ var profile = {
     action: 'release',
     cssOptimize: 'comments',
     mini: true,
-    optimize: 'closure',
-    layerOptimize: 'closure',
+    optimize: 'uglify',
+    layerOptimize: 'uglify',
     stripConsole: 'all',
     selectorEngine: 'acme',
     layers: {
@@ -44,7 +44,7 @@ var profile = {
 
         // We’re fully async, so get rid of the legacy loader
         'dojo-sync-loader':0,
-        
+
         // dojo-xhr-factory relies on dojo-sync-loader
         'dojo-xhr-factory':0,
 
