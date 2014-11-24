@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate.svg?branch=master)](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate)
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/steveoh.svg)](https://saucelabs.com/u/stdavis)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/steveoh.svg)](https://saucelabs.com/u/steveoh)
 AGRC JavaScript Project Boilerplate
 ===================================
 
