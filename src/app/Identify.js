@@ -100,7 +100,7 @@ define([
             this.utmY.innerHTML = Math.round(evt.mapPoint.y);
 
             // lat/long coords
-            var ll = proj4(config.utm12wkt, proj4.WGS84, lang.clone(evt.mapPoint));
+            var ll = proj4(config.utm12wkt, config.wgs84wkt, lang.clone(evt.mapPoint));
             this.lat.innerHTML = Math.round(ll.y * 100000)/100000;
             this.lng.innerHTML = Math.round(ll.x * 100000)/100000;
 
