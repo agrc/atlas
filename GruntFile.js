@@ -1,4 +1,80 @@
 /* jshint camelcase:false */
+var osx = 'OS X 10.10';
+var windows = 'Windows 8.1';
+var browsers = [{
+
+    // OSX
+
+//     browserName: 'firefox',
+//     // no version = latest
+//     platform: osx
+// }, {
+//     browserName: 'chrome',
+//     platform: osx
+// }, {
+    browserName: 'safari',
+    platform: osx
+}, {
+
+//     // iOS
+
+//     browserName: 'iPad',
+//     platform: osx,
+//     version: '8.1'
+// }, {
+//     browserName: 'iPad',
+//     platform: osx,
+//     version: '8.0'
+// }, {
+//     browserName: 'iPad',
+//     platform: osx,
+//     version: '7.1'
+// },{
+
+    // Android
+
+//     browserName: 'android',
+//     platform: 'Linux',
+//     version: 4.4
+// },{
+//     browserName: 'android',
+//     platform: 'Linux',
+//     version: 4.3
+// },{
+//     browserName: 'android',
+//     platform: 'Linux',
+//     version: 4.2
+// },{
+//     browserName: 'android',
+//     platform: 'Linux',
+//     version: 4.0
+// },{
+//     browserName: 'android',
+//     platform: 'Linux',
+//     version: 2.3
+// },{
+
+    // Windows
+
+    browserName: 'firefox',
+    platform: windows
+}, {
+    browserName: 'chrome',
+    platform: windows
+}, {
+    browserName: 'internet explorer',
+    platform: windows,
+    version: '11'
+}, {
+    browserName: 'internet explorer',
+    platform: 'Windows 8',
+    version: '10'
+}, {
+    browserName: 'internet explorer',
+    platform: 'Windows 7',
+    version: '9'
+}];
+
 module.exports = function(grunt) {
     var jsFiles = 'src/app/**/*.js',
         otherFiles = [
@@ -22,15 +98,19 @@ module.exports = function(grunt) {
         ],
         deployFiles = [
             '**',
-            '!build-report.txt',
-            '!util/**',
-            '!jasmine-favicon-reporter/**',
+            '!**/*.min.*',
             '!**/*.uncompressed.js',
             '!**/*consoleStripped.js',
-            '!**/*.min.*',
-            '!**/tests/**',
+            '!**/bootstrap/less/**',
             '!**/bootstrap/test-infra/**',
-            '!**/bootstrap/less/**'
+            '!**/tests/**',
+            '!build-report.txt',
+            '!components-jasmine/**',
+            '!favico.js/**',
+            '!jasmine-favicon-reporter/**',
+            '!jasmine-jsreporter/**',
+            '!stubmodule/**',
+            '!util/**'
         ],
         deployDir = 'wwwroot/SGID',
         secrets;
@@ -139,8 +219,10 @@ module.exports = function(grunt) {
                     vendor: [
                         'src/jasmine-favicon-reporter/vendor/favico.js',
                         'src/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
+                        'src/jasmine-jsreporter/jasmine-jsreporter.js',
                         'src/app/tests/jasmineTestBootstrap.js',
                         'src/dojo/dojo.js',
+                        'src/app/tests/jsReporterSanitizer.js',
                         'src/app/tests/jasmineAMDErrorChecking.js'
                     ],
                     host: 'http://localhost:8000'
@@ -162,6 +244,19 @@ module.exports = function(grunt) {
                 files: {
                     'dist/index.html': ['src/index.html'],
                     'dist/user_admin.html': ['src/user_admin.html']
+                }
+            }
+        },
+        'saucelabs-jasmine': {
+            all: {
+                options: {
+                    urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
+                    tunnelTimeout: 5,
+                    build: process.env.TRAVIS_JOB_ID,
+                    browsers: browsers,
+                    testname: 'atlas',
+                    maxRetries: 5,
+                    'public': 'public'
                 }
             }
         },
@@ -266,11 +361,15 @@ module.exports = function(grunt) {
         'sftp:stage',
         'sshexec:stage'
     ]);
+    grunt.registerTask('sauce', [
+        'jasmine:main:build',
+        'connect',
+        'saucelabs-jasmine'
+    ]);
     grunt.registerTask('travis', [
         'if-missing:esri_slurp:travis',
         'jshint',
-        'connect',
-        'jasmine:main',
+        'sauce',
         'build-prod'
     ]);
 };

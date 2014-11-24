@@ -10,6 +10,8 @@
     "ijit": "agrc-ijit#3.1.0",
     "jasmine-favicon-reporter": "*",
     "stubmodule": "0.6.0",
-    "util": "dojo-util#~1.10"
+    "util": "dojo-util#~1.10",
+    "proj4": "1.4.1",
+    "jasmine-jsreporter": "~0.1.2"
   }
 }
