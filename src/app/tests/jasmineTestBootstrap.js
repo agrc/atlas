@@ -1,4 +1,4 @@
-/* global JasmineFaviconReporter */
+/* global JasmineFaviconReporter, jasmineRequire */
 /*jshint unused:false*/
 var dojoConfig = {
     // isDebug: false,
@@ -18,3 +18,4 @@ var dojoConfig = {
 
 // for jasmine-favicon-reporter
 jasmine.getEnv().addReporter(new JasmineFaviconReporter());
+jasmine.getEnv().addReporter(new jasmineRequire.JSReporter2());

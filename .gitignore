@@ -10,6 +10,7 @@ node_modules/
 secrets.json
 src/agrc/
 src/bootstrap/
+src/components-jasmine/
 src/dgrid/
 src/dijit/
 src/dojo/
@@ -18,6 +19,7 @@ src/esri/
 src/favico.js/
 src/ijit/
 src/jasmine-favicon-reporter/
+src/jasmine-jsreporter/
 src/jquery/
 src/ladda-bootstrap/
 src/mustache/

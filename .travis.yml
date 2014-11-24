@@ -8,3 +8,7 @@ before_install:
 notifications:
   email:
     on_success: never
+env:
+  global:
+    - secure: ZX9C+N0QWgdhgGw0FZ+1LMptOh0F+9S2DoUtuJJTckGnKxSHtVIXUvAIDYdZ95Izxk8OcTsjY1tDLbqIjgReBj2xMGSTOMHIhadJgbTSm3nNzXuIsS0uoxq2O1qg5CXB3LcObVFsW0Q2N8UTokY1XhN6ou1K1jNyWM2eMgx3SoA=
+    - secure: StjALoPl1N8StwcnwSTS2kbeDio8TE18l28g9vWLDkxVgfbjLlWkRpnT3IqreMTWc+adXVcH5jHl6ALIiGcqEJ0x+5t0VCQRzJLDpRZjTCxGC4GJ0c4L32R54afvT4wWcjqjMP3d43edIIY5/1uW4C6nBis5nqMMKz1DuzNun1o=

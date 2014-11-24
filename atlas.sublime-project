@@ -1,17 +1,34 @@
 {
-    "folders": [{
-        "folder_exclude_patterns": [
-            "dist",
-            "src/dojo",
-            "src/dojox",
-            "src/util",
-            "src/dijit",
-            "node_modules",
-            ".grunt"
-        ],
-        "file_exclude_patterns": [
-            "*.sublime-workspace"
-        ],
-        "path": "/"
-    }]
+	"build_systems":
+	[
+		{
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "python -u \"$file\""
+		}
+	],
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*.sublime-workspace"
+			],
+			"folder_exclude_patterns":
+			[
+				".grunt",
+				"dist",
+				"node_modules",
+				"src/dijit",
+				"src/dojo",
+				"src/dojox",
+				"src/util"
+			],
+			"path": "/"
+		}
+	],
+	"settings":
+	{
+		"amd_packages_base_path": false
+	}
 }

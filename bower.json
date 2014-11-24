@@ -11,6 +11,7 @@
     "jasmine-favicon-reporter": "*",
     "stubmodule": "0.6.0",
     "util": "dojo-util#~1.10",
-    "proj4": "1.4.1"
+    "proj4": "1.4.1",
+    "jasmine-jsreporter": "~0.1.2"
   }
 }
