@@ -12,7 +12,9 @@ define([
 
     'proj4',
 
-    './config'
+    './config',
+
+    'xstyle/css!app/resources/Identify.css'
 
 ], function(
     template,

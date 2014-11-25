@@ -26,6 +26,7 @@ var profile = {
                 'dojox/gfx/svg',
                 'dojox/gfx/shape'
             ],
+            targetStylesheet: 'app/resources/App.css',
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
@@ -51,11 +52,9 @@ var profile = {
         // We aren’t loading tests in production
         'dojo-test-sniff':0
     },
-    packages: [{
-        name: 'esri',
-        resourceTags: amdTag
-    }],
-    // this is to make sure that the widget templates get built into the layer file.
+    plugins: {
+        'xstyle/css': 'xstyle/build/amd-css'
+    },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
     }
