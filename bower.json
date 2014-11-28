@@ -14,5 +14,8 @@
     "proj4": "1.4.1",
     "jasmine-jsreporter": "~0.1.2",
     "xstyle": "master"
+  },
+  "resolutions": {
+    "xstyle": "master"
   }
 }
