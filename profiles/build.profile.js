@@ -1,11 +1,5 @@
 /*jshint unused:false */
 
-// Useful for tagging packages such as proj4 as AMD
-// to help the build system work with them better.
-var amdTag = function (filename, mid) {
-    return (/.*\.js$/).test(filename);
-};
-
 var profile = {
     basePath: '../src',
     action: 'release',
@@ -35,6 +29,14 @@ var profile = {
             exclude: ['dojo/dojo']
         }
     },
+    packages: [{
+        name: 'proj4',
+        resourceTags: {
+            copyOnly: function () {
+                return true;
+            }
+        }
+    }],
     staticHasFeatures: {
         // The trace & log APIs are used for debugging the loader, so we don’t need them in the build
         'dojo-trace-api':0,
