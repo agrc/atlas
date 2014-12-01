@@ -18,6 +18,7 @@
             'dojox',
             'esri',
             'ijit',
+            'proj4',
             'put-selector',
             'xstyle',
             {
@@ -36,10 +37,6 @@
                 name: 'mustache',
                 location: './mustache',
                 main: 'mustache'
-            },{
-                name: 'proj4',
-                location: './proj4/proj4',
-                main: 'core'
             },{
                 name: 'spin',
                 location: './spinjs',

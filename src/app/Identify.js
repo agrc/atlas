@@ -1,34 +1,29 @@
 define([
-    'dojo/text!./templates/Identify.html',
+    './config',
 
+    'dijit/_TemplatedMixin',
+    'dijit/_WidgetBase',
+
+    'dojo/_base/array',
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/_base/array',
-    'dojo/request',
     'dojo/query',
+    'dojo/request',
+    'dojo/text!./templates/Identify.html',
 
-    'dijit/_WidgetBase',
-    'dijit/_TemplatedMixin',
-
-    'proj4',
-
-    './config'
-
+    'xstyle/css!app/resources/Identify.css'
 ], function(
-    template,
+    config,
 
+    _TemplatedMixin,
+    _WidgetBase,
+
+    array,
     declare,
     lang,
-    array,
-    request,
     query,
-
-    _WidgetBase,
-    _TemplatedMixin,
-
-    proj4,
-
-    config
+    request,
+    template
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
         // description:
@@ -46,6 +41,11 @@ define([
             // summary:
             //      description
             console.log('app/Identify::constructor', arguments);
+
+            var that = this;
+            require(['proj4/dist/proj4'], function (proj4) {
+                that.proj4 = proj4;
+            });
         
             lang.mixin(this, params);
 
@@ -100,7 +100,7 @@ define([
             this.utmY.innerHTML = Math.round(evt.mapPoint.y);
 
             // lat/long coords
-            var ll = proj4(config.utm12wkt, config.wgs84wkt, lang.clone(evt.mapPoint));
+            var ll = this.proj4(config.utm12wkt, config.wgs84wkt, lang.clone(evt.mapPoint));
             this.lat.innerHTML = Math.round(ll.y * 100000)/100000;
             this.lng.innerHTML = Math.round(ll.x * 100000)/100000;
 

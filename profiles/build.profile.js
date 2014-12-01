@@ -1,11 +1,5 @@
 /*jshint unused:false */
 
-// Useful for tagging packages such as proj4 as AMD
-// to help the build system work with them better.
-var amdTag = function (filename, mid) {
-    return (/.*\.js$/).test(filename);
-};
-
 var profile = {
     basePath: '../src',
     action: 'release',
@@ -26,6 +20,7 @@ var profile = {
                 'dojox/gfx/svg',
                 'dojox/gfx/shape'
             ],
+            targetStylesheet: 'app/resources/App.css',
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
@@ -34,6 +29,14 @@ var profile = {
             exclude: ['dojo/dojo']
         }
     },
+    packages: [{
+        name: 'proj4',
+        resourceTags: {
+            copyOnly: function () {
+                return true;
+            }
+        }
+    }],
     staticHasFeatures: {
         // The trace & log APIs are used for debugging the loader, so we don’t need them in the build
         'dojo-trace-api':0,
@@ -51,11 +54,9 @@ var profile = {
         // We aren’t loading tests in production
         'dojo-test-sniff':0
     },
-    packages: [{
-        name: 'esri',
-        resourceTags: amdTag
-    }],
-    // this is to make sure that the widget templates get built into the layer file.
+    plugins: {
+        'xstyle/css': 'xstyle/build/amd-css'
+    },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
     }

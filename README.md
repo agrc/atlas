@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate.svg?branch=master)](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/steveoh.svg)](https://saucelabs.com/u/steveoh)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/agrc.svg)](https://saucelabs.com/u/agrc)
 AGRC JavaScript Project Boilerplate
 ===================================
 
-Based heavily upon: [https://github.com/csnover/dojo-boilerplate](https://github.com/csnover/dojo-boilerplate)
+Dojo config based heavily upon: [https://github.com/csnover/dojo-boilerplate](https://github.com/csnover/dojo-boilerplate)
 
 To Use
 ======
