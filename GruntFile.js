@@ -256,7 +256,9 @@ module.exports = function(grunt) {
                     browsers: browsers,
                     testname: 'atlas',
                     maxRetries: 5,
-                    'public': 'public'
+                    'public': 'public',
+                    username: secrets.sauce_name,
+                    key: secrets.sauce_key
                 }
             }
         },
