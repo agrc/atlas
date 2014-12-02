@@ -113,9 +113,20 @@ module.exports = function(grunt) {
             '!util/**'
         ],
         deployDir = 'wwwroot/SGID',
-        secrets;
+        secrets,
+        sauceConfig = {
+            urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
+            tunnelTimeout: 5,
+            build: process.env.TRAVIS_JOB_ID,
+            browsers: browsers,
+            testname: 'atlas',
+            maxRetries: 5,
+            'public': 'public'
+        };
     try {
         secrets = grunt.file.readJSON('secrets.json');
+        sauceConfig.username = secrets.sauce_name;
+        sauceConfig.key = secrets.sauce_key;
     } catch (e) {
         // swallow for build server
         secrets = {
@@ -249,17 +260,7 @@ module.exports = function(grunt) {
         },
         'saucelabs-jasmine': {
             all: {
-                options: {
-                    urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
-                    tunnelTimeout: 5,
-                    build: process.env.TRAVIS_JOB_ID,
-                    browsers: browsers,
-                    testname: 'atlas',
-                    maxRetries: 5,
-                    'public': 'public',
-                    username: secrets.sauce_name,
-                    key: secrets.sauce_key
-                }
+                options: sauceConfig
             }
         },
         secrets: secrets,
