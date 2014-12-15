@@ -116,11 +116,12 @@ module.exports = function(grunt) {
         secrets,
         sauceConfig = {
             urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
-            tunnelTimeout: 15,
+            tunnelTimeout: 20,
             build: process.env.TRAVIS_JOB_ID,
             browsers: browsers,
             testname: 'atlas',
-            maxRetries: 5,
+            maxRetries: 10,
+            maxPollRetries: 10,
             'public': 'public'
         };
     try {
