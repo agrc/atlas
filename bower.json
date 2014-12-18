@@ -13,9 +13,9 @@
     "util": "dojo-util#~1.10",
     "proj4": "1.4.1",
     "jasmine-jsreporter": "~0.1.2",
-    "xstyle": "c74590a20ed00fc0020ee8102a6073caab32303d"
+    "xstyle": "~0.3"
   },
   "resolutions": {
-    "xstyle": "c74590a20ed00fc0020ee8102a6073caab32303d"
+    "xstyle": "~0.3"
   }
 }
