@@ -122,7 +122,11 @@ module.exports = function(grunt) {
             testname: 'atlas',
             maxRetries: 10,
             maxPollRetries: 10,
-            'public': 'public'
+            'public': 'public',
+            throttled: 3,
+            sauceConfig: {
+                'max-duration': 10800
+            }
         };
     try {
         secrets = grunt.file.readJSON('secrets.json');
