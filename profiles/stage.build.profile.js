@@ -1,6 +1,6 @@
 /*jshint unused:false */
 var profile = {
     staticHasFeatures: {
-        'agrc-api-key': '"stage"'
+        'agrc-build': '"stage"'
     }
 };
