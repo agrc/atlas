@@ -25,6 +25,7 @@
     "grunt-processhtml": "^0",
     "grunt-saucelabs": "^8",
     "grunt-ssh": "^0",
+    "jshint-stylish": "^1",
     "uglify-js": "^2"
   },
   "scripts": {
