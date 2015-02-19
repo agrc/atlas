@@ -35,9 +35,10 @@ body, html, .app {
     letter-spacing: -2px;
 }
 .app .title-container .version {
-    font-size: 16px;
+    font-size: 10px;
     text-decoration: none;
-    color: gray;
+    vertical-align: sub;
+    margin-left: -10px;
     letter-spacing: 0;
 }
 .app .title-container .version:hover {
