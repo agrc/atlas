@@ -8,6 +8,7 @@
         "expect", 
         "it", 
         "jasmine", 
+        "JSON",
         "module",
         "process",
         "require",

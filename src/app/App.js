@@ -163,7 +163,8 @@ define([
 
             this.map = new BaseMap(this.mapDiv, {
                 useDefaultBaseMap: false,
-                showAttribution: false
+                showAttribution: false,
+                router: true
             });
 
             this.childWidgets.push(
