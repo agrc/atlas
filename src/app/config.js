@@ -61,7 +61,7 @@ define(['dojo/has', 'esri/config'], function (has, esriConfig) {
         window.AGRC.apiKey = 'AGRC-AC122FA9671436';
     } else {
         // localhost
-        window.AGRC.apiKey = 'AGRC-63E1FF17767822';
+        window.AGRC.apiKey = 'AGRC-E5B94F99865799';
     }
 
     return window.AGRC;

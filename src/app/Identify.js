@@ -80,7 +80,7 @@ define([
                     config.featureClassNames.nationalGrid,
                     config.fieldNames.GRID1Mil + ',' + config.fieldNames.GRIS100K,
                     this.nationalGrid,
-                    '{griD1MIL}{griD100K}{x}{y}'
+                    '{griD1MIL} {griD100K} {x} {y}'
                 ]
             ];
         },
