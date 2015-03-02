@@ -98,7 +98,6 @@ module.exports = function(grunt) {
         ],
         deployFiles = [
             '**',
-            '!**/*.min.*',
             '!**/*.uncompressed.js',
             '!**/*consoleStripped.js',
             '!**/bootstrap/less/**',
