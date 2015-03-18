@@ -31,7 +31,7 @@ Check out [BUILD_STEPS.md](https://github.com/agrc/AGRCJavaScriptProjectBoilerPl
 
 ## Step 4 - Deploy
 
-Create a `secrets.json` file using [`secrets.json.sample`](secrets.json.sample) as a template. Run `grunt deploy-stage` or `grunt deploy-prod` to deploy your app to the server.
+Create a `secrets.json` file using [`secrets.sample.json`](secrets.sample.json) as a template. Run `grunt deploy-stage` or `grunt deploy-prod` to deploy your app to the server.
 
 # Tool Versions
 
