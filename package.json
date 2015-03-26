@@ -17,6 +17,7 @@
     "grunt-contrib-imagemin": "^0",
     "grunt-contrib-jasmine": "^0",
     "grunt-contrib-jshint": "^0",
+    "grunt-contrib-stylus": "^0.21.0",
     "grunt-contrib-watch": "^0",
     "grunt-dojo": "^1.0.1",
     "grunt-esri-slurp": "^1",
