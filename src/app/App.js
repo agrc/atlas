@@ -151,7 +151,7 @@ define([
             });
 
             this.printer.on('print-complete', function() {
-                domStyle.set(that.popupBlurb, 'display', 'block');
+                domStyle.set(that.popupBlockerBlurb, 'display', 'block');
             });
 
             this.inherited(arguments);

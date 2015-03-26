@@ -312,6 +312,20 @@ module.exports = function(grunt) {
                 }
             }
         },
+        stylus: {
+            main: {
+                options: {
+                    compress: false
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['app/**/*.styl'],
+                    dest: 'src/',
+                    ext: '.css'
+                }]
+            }
+        },
         watch: {
             jshint: {
                 files: jshintFiles,
@@ -319,9 +333,11 @@ module.exports = function(grunt) {
             },
             src: {
                 files: jshintFiles.concat(otherFiles),
-                options: {
-                    livereload: true
-                }
+                options: { livereload: true }
+            },
+            stylus: {
+                files: 'src/app/**/*.styl',
+                tasks: ['newer:stylus']
             }
         }
     });
@@ -339,12 +355,14 @@ module.exports = function(grunt) {
         'newer:jshint:main',
         'if-missing:esri_slurp:dev',
         'connect',
+        'stylus',
         'watch'
     ]);
     grunt.registerTask('build-prod', [
         'clean:build',
         'if-missing:esri_slurp:dev',
         'newer:imagemin:main',
+        'stylus',
         'dojo:prod',
         'copy:main',
         'processhtml:main'
@@ -353,6 +371,7 @@ module.exports = function(grunt) {
         'clean:build',
         'if-missing:esri_slurp:dev',
         'newer:imagemin:main',
+        'stylus',
         'dojo:stage',
         'copy:main',
         'processhtml:main'

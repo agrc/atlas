@@ -1,0 +1,102 @@
+@import '../../dijit/themes/claro/claro.css';
+@import '../../esri/css/esri.css';
+@import '../../bootstrap/dist/css/bootstrap.css';
+@import '../../agrc/resources/map/BaseMap.css';
+@import '../../ijit/themes/standard/layout/SideBarToggler.css';
+@import '../../ijit/themes/standard/layout/PaneStack.css';
+@import '../../agrc/resources/map/BaseMapSelector.css';
+@import '../../agrc/resources/locate/FindAddress.css';
+@import '../../agrc/resources/locate/MagicZoom.css';
+
+$side-bar-width = 300px
+$container-margin = 5px
+
+body, html, .app
+    width 100%
+    height 100%
+    margin 0
+    padding 0
+    overflow hidden
+    color #444
+
+.app
+    .container-with-border
+        border 1px solid #b5bcc7
+
+/* TITLE PANE */
+    .title-container
+        position absolute
+        top $container-margin
+        left $container-margin
+        right $container-margin
+        padding 8px
+        h1
+            font-family Arial, sans-serif
+            margin 5px 0 0 5px
+            font-size 40px
+            letter-spacing -2px
+        .version
+            font-size 10px
+            text-decoration none
+            vertical-align sub
+            margin-left -10px
+            letter-spacing 0
+        .version:hover 
+            text-decoration underline !important
+        >img
+            position absolute
+            top -3px
+            right 0
+    [data-dojo-attach-point='popupBlockerBlurb']
+        display none
+
+    /* SIDE BAR */
+    .side-bar-container
+        width $side-bar-width
+        overflow-y auto
+        overflow-x hidden
+        position absolute
+        left $container-margin
+        top 75px
+        bottom $container-margin
+        .magic-zoom
+            position relative
+        .magic-zoom.first
+            z-index 27
+    .side-bar-padder
+        padding 10px
+        width $side-bar-width
+        margin -1px
+
+    /* CENTER (MAP) */
+    .center-container
+        position absolute
+        top 75px
+        left $side-bar-width + (2 * $container-margin)
+        bottom $container-margin
+        right $container-margin
+        overflow hidden
+        [data-dojo-attach-point='mapDiv']
+            position absolute
+            top 0
+            bottom 0
+            left 0
+            right 0
+
+
+/* GENERAL STUFF */
+/* remove orange outline in chrome */
+*focus 
+    outline none
+
+.map .tooltip
+    width 100px
+    position absolute
+    border 1px solid #7EABCD
+    background-color white
+    padding 5px
+    font-size 9pt
+    z-index 9999
+    border-radius 4px
+    opacity 1
+
