@@ -2,20 +2,20 @@
   "name": "Atlas",
   "version": "2.4.0",
   "dependencies": {
-    "agrc": "agrc-widgets#2.10.0",
-    "bootstrap": "~3.2",
-    "dijit": "~1.10",
-    "dojo": "~1.10",
-    "dojox": "~1.10",
+    "agrc": "agrc-widgets#2.11.1",
+    "bootstrap": "^3.3",
+    "dijit": "^1.10",
+    "dojo": "^1.10",
+    "dojox": "^1.10",
     "ijit": "agrc-ijit#3.1.1",
     "jasmine-favicon-reporter": "*",
-    "stubmodule": "0.6.0",
-    "util": "dojo-util#~1.10",
+    "stubmodule": "^0.6",
+    "util": "dojo-util#^1.10",
     "proj4": "1.4.1",
-    "jasmine-jsreporter": "~0.1.2",
-    "xstyle": "~0.3"
+    "jasmine-jsreporter": "^0.1.2",
+    "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d"
   },
   "resolutions": {
-    "xstyle": "~0.3"
+    "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d"
   }
 }
