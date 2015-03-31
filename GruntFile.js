@@ -111,7 +111,7 @@ module.exports = function(grunt) {
             '!stubmodule/**',
             '!util/**'
         ],
-        deployDir = 'wwwroot/SGID',
+        deployDir = 'SGID',
         secrets,
         sauceConfig = {
             urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
@@ -134,10 +134,16 @@ module.exports = function(grunt) {
     } catch (e) {
         // swallow for build server
         secrets = {
-            stageHost: '',
-            prodHost: '',
-            username: '',
-            password: ''
+            stage: {
+                host: '',
+                username: '',
+                password: ''
+            },
+            prod: {
+                host: '',
+                username: '',
+                password: ''
+            }
         };
     }
 
@@ -275,7 +281,9 @@ module.exports = function(grunt) {
                     './': 'deploy/deploy.zip'
                 },
                 options: {
-                    host: '<%= secrets.stageHost %>'
+                    host: '<%= secrets.stage.host %>',
+                    username: '<%= secrets.stage.username %>',
+                    password: '<%= secrets.stage.password %>'
                 }
             },
             prod: {
@@ -283,32 +291,37 @@ module.exports = function(grunt) {
                     './': 'deploy/deploy.zip'
                 },
                 options: {
-                    host: '<%= secrets.prodHost %>'
+                    host: '<%= secrets.prod.host %>',
+                    username: '<%= secrets.prod.username %>',
+                    password: '<%= secrets.prod.password %>',
+                    path: './upload/' + deployDir
                 }
             },
             options: {
-                path: './' + deployDir + '/',
+                createDirectories: true,
+                path: './wwwroot' + deployDir + '/',
                 srcBasePath: 'deploy/',
-                username: '<%= secrets.username %>',
-                password: '<%= secrets.password %>',
                 showProgress: true
             }
         },
         sshexec: {
             options: {
-                username: '<%= secrets.username %>',
-                password: '<%= secrets.password %>'
+
             },
             stage: {
-                command: ['cd ' + deployDir, 'unzip -oq deploy.zip', 'rm deploy.zip'].join(';'),
+                command: ['cd wwwroot/' + deployDir, 'unzip -oq deploy.zip', 'rm deploy.zip'].join(';'),
                 options: {
-                    host: '<%= secrets.stageHost %>'
+                    host: '<%= secrets.stage.host %>',
+                    username: '<%= secrets.stage.username %>',
+                    password: '<%= secrets.stage.password %>'
                 }
             },
             prod: {
-                command: ['cd ' + deployDir, 'unzip -oq deploy.zip', 'rm deploy.zip'].join(';'),
+                command: ['cd wwwroot/' + deployDir, 'unzip -oq deploy.zip', 'rm deploy.zip'].join(';'),
                 options: {
-                    host: '<%= secrets.prodHost %>'
+                    host: '<%= secrets.prod.host %>',
+                    username: '<%= secrets.prod.username %>',
+                    password: '<%= secrets.prod.password %>'
                 }
             }
         },
@@ -379,8 +392,8 @@ module.exports = function(grunt) {
     grunt.registerTask('deploy-prod', [
         'clean:deploy',
         'compress:main',
-        'sftp:prod',
-        'sshexec:prod'
+        'sftp:prod'
+        //,'sshexec:prod'
     ]);
     grunt.registerTask('deploy-stage', [
         'clean:deploy',
