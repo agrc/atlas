@@ -125,7 +125,8 @@ module.exports = function(grunt) {
             throttled: 3,
             sauceConfig: {
                 'max-duration': 10800
-            }
+            },
+            statusCheckAttempts: 500
         };
     try {
         secrets = grunt.file.readJSON('secrets.json');
