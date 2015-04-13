@@ -17,7 +17,7 @@ require(['dojo/domReady!'], function () {
             var check = function () {
                 console.log('require.waiting', require.waiting);
                 if (hasProps(require.waiting)) {
-                    // Keep checking until jasmine default timeout. 
+                    // Keep checking until jasmine default timeout.
                     // xstyle/css seems to make this take an extra few milliseconds.
                     if (tries < maxTries) {
                         window.setTimeout(check, pause);

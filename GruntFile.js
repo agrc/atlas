@@ -5,54 +5,54 @@ var browsers = [{
 
     // OSX
 
-//     browserName: 'firefox',
-//     // no version = latest
-//     platform: osx
-// }, {
-//     browserName: 'chrome',
-//     platform: osx
-// }, {
+    //     browserName: 'firefox',
+    //     // no version = latest
+    //     platform: osx
+    // }, {
+    //     browserName: 'chrome',
+    //     platform: osx
+    // }, {
     browserName: 'safari',
     platform: osx
 }, {
 
-//     // iOS
+    //     // iOS
 
-//     browserName: 'iPad',
-//     platform: osx,
-//     version: '8.1'
-// }, {
-//     browserName: 'iPad',
-//     platform: osx,
-//     version: '8.0'
-// }, {
-//     browserName: 'iPad',
-//     platform: osx,
-//     version: '7.1'
-// },{
+    //     browserName: 'iPad',
+    //     platform: osx,
+    //     version: '8.1'
+    // }, {
+    //     browserName: 'iPad',
+    //     platform: osx,
+    //     version: '8.0'
+    // }, {
+    //     browserName: 'iPad',
+    //     platform: osx,
+    //     version: '7.1'
+    // },{
 
     // Android
 
-//     browserName: 'android',
-//     platform: 'Linux',
-//     version: 4.4
-// },{
-//     browserName: 'android',
-//     platform: 'Linux',
-//     version: 4.3
-// },{
-//     browserName: 'android',
-//     platform: 'Linux',
-//     version: 4.2
-// },{
-//     browserName: 'android',
-//     platform: 'Linux',
-//     version: 4.0
-// },{
-//     browserName: 'android',
-//     platform: 'Linux',
-//     version: 2.3
-// },{
+    //     browserName: 'android',
+    //     platform: 'Linux',
+    //     version: 4.4
+    // },{
+    //     browserName: 'android',
+    //     platform: 'Linux',
+    //     version: 4.3
+    // },{
+    //     browserName: 'android',
+    //     platform: 'Linux',
+    //     version: 4.2
+    // },{
+    //     browserName: 'android',
+    //     platform: 'Linux',
+    //     version: 4.0
+    // },{
+    //     browserName: 'android',
+    //     platform: 'Linux',
+    //     version: 2.3
+    // },{
 
     // Windows
 
@@ -75,59 +75,61 @@ var browsers = [{
     version: '9'
 }];
 
-module.exports = function(grunt) {
-    var jsFiles = 'src/app/**/*.js',
-        otherFiles = [
-            'src/app/**/*.html',
-            'src/app/**/*.css',
-            'src/index.html',
-            'src/ChangeLog.html'
-        ],
-        gruntFile = 'GruntFile.js',
-        internFile = 'tests/intern.js',
-        jshintFiles = [
-            jsFiles,
-            gruntFile,
-            internFile
-        ],
-        bumpFiles = [
-            'package.json',
-            'bower.json',
-            'src/app/package.json',
-            'src/app/config.js'
-        ],
-        deployFiles = [
-            '**',
-            '!**/*.uncompressed.js',
-            '!**/*consoleStripped.js',
-            '!**/bootstrap/less/**',
-            '!**/bootstrap/test-infra/**',
-            '!**/tests/**',
-            '!build-report.txt',
-            '!components-jasmine/**',
-            '!favico.js/**',
-            '!jasmine-favicon-reporter/**',
-            '!jasmine-jsreporter/**',
-            '!stubmodule/**',
-            '!util/**'
-        ],
-        deployDir = 'SGID',
-        secrets,
-        sauceConfig = {
-            urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
-            tunnelTimeout: 120,
-            build: process.env.TRAVIS_JOB_ID,
-            browsers: browsers,
-            testname: 'atlas',
-            maxRetries: 10,
-            maxPollRetries: 10,
-            'public': 'public',
-            throttled: 3,
-            sauceConfig: {
-                'max-duration': 10800
-            },
-            statusCheckAttempts: 500
-        };
+module.exports = function (grunt) {
+    require('load-grunt-tasks')(grunt);
+
+    var jsAppFiles = 'src/app/**/*.js';
+    var otherFiles = [
+        'src/app/**/*.html',
+        'src/app/**/*.css',
+        'src/index.html',
+        'src/ChangeLog.html'
+    ];
+    var gruntFile = 'GruntFile.js';
+    var internFile = 'tests/intern.js';
+    var jsFiles = [
+        jsAppFiles,
+        gruntFile,
+        internFile
+    ];
+    var bumpFiles = [
+        'package.json',
+        'bower.json',
+        'src/app/package.json',
+        'src/app/config.js'
+    ];
+    var deployFiles = [
+        '**',
+        '!**/*.uncompressed.js',
+        '!**/*consoleStripped.js',
+        '!**/bootstrap/less/**',
+        '!**/bootstrap/test-infra/**',
+        '!**/tests/**',
+        '!build-report.txt',
+        '!components-jasmine/**',
+        '!favico.js/**',
+        '!jasmine-favicon-reporter/**',
+        '!jasmine-jsreporter/**',
+        '!stubmodule/**',
+        '!util/**'
+    ];
+    var deployDir = 'SGID';
+    var secrets;
+    var sauceConfig = {
+        urls: ['http://127.0.0.1:8000/_SpecRunner.html'],
+        tunnelTimeout: 120,
+        build: process.env.TRAVIS_JOB_ID,
+        browsers: browsers,
+        testname: 'atlas',
+        maxRetries: 10,
+        maxPollRetries: 10,
+        'public': 'public',
+        throttled: 3,
+        sauceConfig: {
+            'max-duration': 1800
+        },
+        statusCheckAttempts: 500
+    };
     try {
         secrets = grunt.file.readJSON('secrets.json');
         sauceConfig.username = secrets.sauce_name;
@@ -251,10 +253,27 @@ module.exports = function(grunt) {
                 }
             }
         },
+        jscs: {
+            main: {
+                src: jsFiles
+            },
+            force: {
+                src: jsFiles,
+                options: {
+                    force: true
+                }
+            }
+        },
         jshint: {
             main: {
+                src: jsFiles
+            },
+            force: {
                 // must use src for newer to work
-                src: jshintFiles
+                src: jsFiles,
+                options: {
+                    force: true
+                }
             },
             options: {
                 reporter: require('jshint-stylish'),
@@ -342,11 +361,11 @@ module.exports = function(grunt) {
         },
         watch: {
             jshint: {
-                files: jshintFiles,
-                tasks: ['newer:jshint:main', 'jasmine:main:build']
+                files: jsFiles,
+                tasks: ['newer:jshint:main', 'newer:jscs:main', 'jasmine:main:build']
             },
             src: {
-                files: jshintFiles.concat(otherFiles),
+                files: jsFiles.concat(otherFiles),
                 options: { livereload: true }
             },
             stylus: {
@@ -356,17 +375,10 @@ module.exports = function(grunt) {
         }
     });
 
-    // Loading dependencies
-    for (var key in grunt.file.readJSON('package.json').devDependencies) {
-        if (key !== 'grunt' && key.indexOf('grunt') === 0) {
-            grunt.loadNpmTasks(key);
-        }
-    }
-
-    // Default task.
     grunt.registerTask('default', [
         'jasmine:main:build',
-        'newer:jshint:main',
+        'jshint:force',
+        'jscs:force',
         'if-missing:esri_slurp:dev',
         'connect',
         'stylus',
@@ -409,7 +421,8 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('travis', [
         'if-missing:esri_slurp:travis',
-        'jshint',
+        'jshint:main',
+        'jscs:main',
         'sauce',
         'build-prod'
     ]);
