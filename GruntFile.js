@@ -126,7 +126,7 @@ module.exports = function (grunt) {
         'public': 'public',
         throttled: 3,
         sauceConfig: {
-            'max-duration': 10800
+            'max-duration': 1800
         },
         statusCheckAttempts: 500
     };
