@@ -3,24 +3,26 @@ require([
 
     'stubmodule'
 
-], function(
+], function (
     ClassUnderTest,
 
     stubmodule
 ) {
-    describe('app/Identify', function() {
+    describe('app/Identify', function () {
         var testWidget;
         var map;
         var evt = {
             mapPoint: {
                 x: 415652.65472246887,
                 y: 4447848.04338003,
-                toJson: function () {return {};}
+                toJson: function () {
+                    return {};
+                }
             }
         };
         var infoWindow;
 
-        afterEach(function() {
+        afterEach(function () {
             if (testWidget) {
                 if (testWidget.destroy) {
                     testWidget.destroy();
@@ -30,7 +32,7 @@ require([
             }
         });
 
-        beforeEach(function() {
+        beforeEach(function () {
             map = jasmine.createSpyObj('map', ['on']);
             infoWindow = jasmine.createSpyObj('infoWindow',
                 ['show', 'setTitle', 'setContent', 'resize']
@@ -41,8 +43,8 @@ require([
             });
         });
 
-        describe('Sanity', function() {
-            it('should create a Identify', function() {
+        describe('Sanity', function () {
+            it('should create a Identify', function () {
                 expect(testWidget).toEqual(jasmine.any(ClassUnderTest));
                 expect(testWidget.map).toBe(map);
             });
@@ -89,7 +91,9 @@ require([
         describe('getElevation', function () {
             it('passes the point to the request', function (done) {
                 var point = {
-                    toJson: function () {return {a: 'a'};}
+                    toJson: function () {
+                        return {a: 'a'};
+                    }
                 };
                 var request = jasmine.createSpy('request')
                     .and.returnValue({then: function () {}});

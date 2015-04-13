@@ -12,7 +12,7 @@ define([
     'dojo/text!./templates/Identify.html',
 
     'xstyle/css!app/resources/Identify.css'
-], function(
+], function (
     config,
 
     _TemplatedMixin,
@@ -46,7 +46,7 @@ define([
             require(['proj4/dist/proj4'], function (proj4) {
                 that.proj4 = proj4;
             });
-        
+
             lang.mixin(this, params);
 
             this.map.on('click', lang.hitch(this, 'onMapClick'));
@@ -57,7 +57,7 @@ define([
             // summary:
             //      description
             console.log('app/Identify:postCreate', arguments);
-        
+
             this.map.infoWindow.setContent(this.domNode);
 
             this.requests = [
@@ -66,17 +66,17 @@ define([
                     config.fieldNames.NAME,
                     this.county,
                     '{name}' // because the api returns weird field names for now
-                ],[
+                ], [
                     config.featureClassNames.municipalities,
                     config.fieldNames.NAME,
                     this.municipality,
                     '{name}' // because the api returns weird field names for now
-                ],[
+                ], [
                     config.featureClassNames.landOwnership,
                     config.fieldNames.STATE_LGD,
                     this.landOwner,
                     '{statE_LGD}' // because the api returns weird field names for now
-                ],[
+                ], [
                     config.featureClassNames.nationalGrid,
                     config.fieldNames.GRID1Mil + ',' + config.fieldNames.GRIS100K,
                     this.nationalGrid,
@@ -95,14 +95,14 @@ define([
             this.clearValues();
             this.map.infoWindow.show(evt.mapPoint);
 
-            // utm coords 
+            // utm coords
             this.utmX.innerHTML = Math.round(evt.mapPoint.x);
             this.utmY.innerHTML = Math.round(evt.mapPoint.y);
 
             // lat/long coords
             var ll = this.proj4(config.utm12wkt, config.wgs84wkt, lang.clone(evt.mapPoint));
-            this.lat.innerHTML = Math.round(ll.y * 100000)/100000;
-            this.lng.innerHTML = Math.round(ll.x * 100000)/100000;
+            this.lat.innerHTML = Math.round(ll.y * 100000) / 100000;
+            this.lng.innerHTML = Math.round(ll.x * 100000) / 100000;
 
             array.forEach(this.requests, function (r) {
                 var url = lang.replace(config.urls.search, [r[0], r[1]]);
@@ -144,7 +144,7 @@ define([
             //      queries the identify service for the DEM image server
             // point: esri/geometry/Point
             console.log('app/Identify::getElevation', arguments);
-        
+
             var that = this;
             request(config.urls.dem, {
                 query: {

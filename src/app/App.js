@@ -27,7 +27,7 @@ define([
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
-], function(
+], function (
     template,
 
     declare,
@@ -68,7 +68,7 @@ define([
         // map: agrc.widgets.map.Basemap
         map: null,
 
-        constructor: function() {
+        constructor: function () {
             // summary:
             //      first function to fire after page loads
             console.info('app.App::constructor', arguments);
@@ -78,7 +78,7 @@ define([
 
             this.inherited(arguments);
         },
-        postCreate: function() {
+        postCreate: function () {
             // summary:
             //      Fires when
             console.log('app.App::postCreate', arguments);
@@ -138,7 +138,7 @@ define([
 
             this.inherited(arguments);
         },
-        startup: function() {
+        startup: function () {
             // summary:
             //      Fires after postCreate when all of the child widgets are finished laying out.
             console.log('app.App::startup', arguments);
@@ -150,13 +150,13 @@ define([
                 widget.startup();
             });
 
-            this.printer.on('print-complete', function() {
+            this.printer.on('print-complete', function () {
                 domStyle.set(that.popupBlockerBlurb, 'display', 'block');
             });
 
             this.inherited(arguments);
         },
-        initMap: function() {
+        initMap: function () {
             // summary:
             //      Sets up the map
             console.info('app.App::initMap', arguments);

@@ -6,7 +6,7 @@ var dojoConfig = {
     packages: [{
         name: 'matchers',
         location: 'matchers/src'
-    },{
+    }, {
         name: 'stubmodule',
         location: 'stubmodule/src',
         main: 'stub-module'
