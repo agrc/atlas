@@ -6,7 +6,7 @@ define('app/tests/jsReporterSanitizer', function () {
     // https://github.com/axemclion/grunt-saucelabs/issues/109#issuecomment-64239913
     var old = jasmine.getJSReport;
     var sanitize = function (obj) {
-        if (obj.suites) {
+        if (obj && obj.suites) {
             obj.suites = obj.suites.filter(function (s) {
                 return !s.passed;
             }).map(function (s) {
