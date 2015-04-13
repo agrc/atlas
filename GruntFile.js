@@ -76,7 +76,9 @@ var browsers = [{
 }];
 
 module.exports = function(grunt) {
-    var jsFiles = 'src/app/**/*.js',
+    require('load-grunt-tasks')(grunt);
+
+    var jsAppFiles = 'src/app/**/*.js',
         otherFiles = [
             'src/app/**/*.html',
             'src/app/**/*.css',
@@ -85,8 +87,8 @@ module.exports = function(grunt) {
         ],
         gruntFile = 'GruntFile.js',
         internFile = 'tests/intern.js',
-        jshintFiles = [
-            jsFiles,
+        jsFiles = [
+            jsAppFiles,
             gruntFile,
             internFile
         ],
@@ -251,10 +253,27 @@ module.exports = function(grunt) {
                 }
             }
         },
+        jscs: {
+            main: {
+                src: jsFiles
+            },
+            force: {
+                src: jsFiles,
+                options: {
+                    force: true
+                }
+            }
+        },
         jshint: {
             main: {
+                src: jsFiles
+            },
+            force: {
                 // must use src for newer to work
-                src: jshintFiles
+                src: jsFiles,
+                options: {
+                    force: true
+                }
             },
             options: {
                 reporter: require('jshint-stylish'),
@@ -342,11 +361,11 @@ module.exports = function(grunt) {
         },
         watch: {
             jshint: {
-                files: jshintFiles,
-                tasks: ['newer:jshint:main', 'jasmine:main:build']
+                files: jsFiles,
+                tasks: ['newer:jshint:main', 'newer:jscs:main', 'jasmine:main:build']
             },
             src: {
-                files: jshintFiles.concat(otherFiles),
+                files: jsFiles.concat(otherFiles),
                 options: { livereload: true }
             },
             stylus: {
@@ -356,17 +375,10 @@ module.exports = function(grunt) {
         }
     });
 
-    // Loading dependencies
-    for (var key in grunt.file.readJSON('package.json').devDependencies) {
-        if (key !== 'grunt' && key.indexOf('grunt') === 0) {
-            grunt.loadNpmTasks(key);
-        }
-    }
-
-    // Default task.
     grunt.registerTask('default', [
         'jasmine:main:build',
-        'newer:jshint:main',
+        'newer:jshint:force',
+        'newer:jscs:force',
         'if-missing:esri_slurp:dev',
         'connect',
         'stylus',
@@ -409,7 +421,8 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('travis', [
         'if-missing:esri_slurp:travis',
-        'jshint',
+        'jshint:main',
+        'jscs:main',
         'sauce',
         'build-prod'
     ]);
