@@ -1,19 +1,16 @@
 /* global JasmineFaviconReporter, jasmineRequire */
-var dojoConfig = { // eslint-disable-line no-unused-vars
-    // isDebug: false,
-    isJasmineTestRunner: true,
+/*jshint unused:false*/
+require({
     packages: [{
-        name: 'matchers',
-        location: 'matchers/src'
+        name: 'agrc-jasmine-matchers',
+        location: 'agrc-jasmine-matchers/src'
     }, {
         name: 'stubmodule',
         location: 'stubmodule/src',
         main: 'stub-module'
     }],
-    has: {
-        'dojo-undef-api': true
-    }
-};
+    baseUrl: '/src/'
+});
 
 // for jasmine-favicon-reporter
 jasmine.getEnv().addReporter(new JasmineFaviconReporter());

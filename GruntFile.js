@@ -238,8 +238,9 @@ module.exports = function (grunt) {
                         'src/jasmine-favicon-reporter/vendor/favico.js',
                         'src/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
                         'src/jasmine-jsreporter/jasmine-jsreporter.js',
-                        'src/app/tests/jasmineTestBootstrap.js',
+                        'src/app/tests/jasmineDojoConfig.js',
                         'src/dojo/dojo.js',
+                        'src/app/tests/jasmineTestBootstrap.js',
                         'src/app/tests/jsReporterSanitizer.js',
                         'src/app/tests/jasmineAMDErrorChecking.js'
                     ],
