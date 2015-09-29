@@ -62,5 +62,6 @@
     "disallowNewlineBeforeBlockStatements": true,
     "disallowMultipleLineStrings": true,
     "requireSpaceBeforeObjectValues": true,
-    "disallowMultipleVarDecl": true
+    "disallowMultipleVarDecl": true,
+    "validateQuoteMarks": "'"
 }
