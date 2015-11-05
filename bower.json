@@ -13,7 +13,8 @@
     "util": "dojo-util#^1.10",
     "proj4": "1.4.1",
     "jasmine-jsreporter": "^0.1.2",
-    "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d"
+    "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
+    "dgauges": "*"
   },
   "resolutions": {
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d"

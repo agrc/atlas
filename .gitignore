@@ -13,6 +13,7 @@ src/app/**/*.css
 src/bootstrap/
 src/components-jasmine/
 src/dgrid/
+src/dgauges/
 src/dijit/
 src/dojo/
 src/dojox/
