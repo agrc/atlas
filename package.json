@@ -1,14 +1,21 @@
 {
   "name": "Atlas",
   "version": "2.5.0",
-  "homepage": "https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate",
+  "description": "A starting point for new projects and atlas.utah.gov",
+  "homepage": "https://atlas.utah.gov",
   "repository": {
     "type": "git",
     "url": "https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate.git"
   },
+  "keywords": [
+    "esri",
+    "arcgis",
+    "javascript",
+    "gis"
+  ],
+  "license": "MIT",
   "devDependencies": {
     "dojo": "^1.10",
-    "grunt": "^0.4",
     "grunt-bump": "^0",
     "grunt-contrib-clean": "^0",
     "grunt-contrib-compress": "^0.8.0",
@@ -16,19 +23,17 @@
     "grunt-contrib-copy": "^0",
     "grunt-contrib-imagemin": "^0",
     "grunt-contrib-jasmine": "^0",
-    "grunt-contrib-jshint": "^0",
     "grunt-contrib-stylus": "^0.21.0",
     "grunt-contrib-watch": "^0",
-    "grunt-dojo": "^1.0.1",
-    "grunt-esri-slurp": "^2",
+    "grunt-dojo": "^1",
+    "grunt-eslint": "^17.3.1",
     "grunt-if-missing": "^1",
-    "grunt-jscs": "^1.6.0",
-    "grunt-newer": "^1.1.0",
+    "grunt-newer": "^1",
     "grunt-processhtml": "^0",
     "grunt-saucelabs": "^8",
     "grunt-ssh": "^0",
-    "jshint-stylish": "^1",
-    "load-grunt-tasks": "^3.1.0",
+    "grunt": "^0.4",
+    "load-grunt-tasks": "^3",
     "uglify-js": "^2"
   },
   "scripts": {

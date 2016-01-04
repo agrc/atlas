@@ -207,18 +207,12 @@ module.exports = function (grunt) {
                 basePath: './src'
             }
         },
-        esri_slurp: {
+        eslint: {
             options: {
-                version: '3.14'
+                configFile: '.eslintrc'
             },
-            dev: {
-                options: {
-                    beautify: true
-                },
-                dest: 'src/esri'
-            },
-            travis: {
-                dest: 'src/esri'
+            main: {
+                src: jsFiles
             }
         },
         imagemin: {
@@ -251,33 +245,6 @@ module.exports = function (grunt) {
                     ],
                     host: 'http://localhost:8000'
                 }
-            }
-        },
-        jscs: {
-            main: {
-                src: jsFiles
-            },
-            force: {
-                src: jsFiles,
-                options: {
-                    force: true
-                }
-            }
-        },
-        jshint: {
-            main: {
-                src: jsFiles
-            },
-            force: {
-                // must use src for newer to work
-                src: jsFiles,
-                options: {
-                    force: true
-                }
-            },
-            options: {
-                reporter: require('jshint-stylish'),
-                jshintrc: '.jshintrc'
             }
         },
         processhtml: {
@@ -360,9 +327,9 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            jshint: {
+            eslint: {
                 files: jsFiles,
-                tasks: ['newer:jshint:main', 'newer:jscs:main', 'jasmine:main:build']
+                tasks: ['newer:eslint:main', 'jasmine:main:build']
             },
             src: {
                 files: jsFiles.concat(otherFiles),
@@ -377,16 +344,14 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jasmine:main:build',
-        'jshint:force',
-        'jscs:force',
-        'if-missing:esri_slurp:dev',
+        'eslint:main',
         'connect',
         'stylus',
         'watch'
     ]);
     grunt.registerTask('build-prod', [
+        'eslint:main',
         'clean:build',
-        'if-missing:esri_slurp:dev',
         'newer:imagemin:main',
         'stylus',
         'dojo:prod',
@@ -394,8 +359,8 @@ module.exports = function (grunt) {
         'processhtml:main'
     ]);
     grunt.registerTask('build-stage', [
+        'eslint:main',
         'clean:build',
-        'if-missing:esri_slurp:dev',
         'newer:imagemin:main',
         'stylus',
         'dojo:stage',
@@ -405,8 +370,8 @@ module.exports = function (grunt) {
     grunt.registerTask('deploy-prod', [
         'clean:deploy',
         'compress:main',
-        'sftp:prod'
-        //,'sshexec:prod'
+        'sftp:prod',
+        'sshexec:prod'
     ]);
     grunt.registerTask('deploy-stage', [
         'clean:deploy',
@@ -420,9 +385,7 @@ module.exports = function (grunt) {
         'saucelabs-jasmine'
     ]);
     grunt.registerTask('travis', [
-        'if-missing:esri_slurp:travis',
-        'jshint:main',
-        'jscs:main',
+        'eslint:main',
         'sauce',
         'build-prod'
     ]);
