@@ -28,19 +28,13 @@
     <script type="text/javascript" src="../../jquery/dist/jquery.js"></script>
     <script type='text/javascript' src="../../bootstrap/dist/js/bootstrap.js"></script>
     <script type='text/javascript' src="../../dojo/dojo.js"></script>
+    <script type='text/javascript' src="../../app/packages.js"></script>
     <script type="text/javascript">
         var baseUrl = window.location.pathname.replace(/\/[^\/]+$/, '') + '/' + '../../';
         var widgetUnderTest;
 
         require({
-            baseUrl: baseUrl,
-            packages: ['app', 'agrc', 'ijit', 'esri', 'dojo', 'dijit', 'dojox',
-            {
-                name: 'proj4',
-                location: 'proj4',
-                main: 'dist/proj4-src'
-            }
-                ]
+            baseUrl: '../../'
         }, [
             'app/Identify',
 

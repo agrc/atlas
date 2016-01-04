@@ -42,11 +42,6 @@ define([
             //      description
             console.log('app/Identify::constructor', arguments);
 
-            var that = this;
-            require(['proj4/dist/proj4'], function (proj4) {
-                that.proj4 = proj4;
-            });
-
             lang.mixin(this, params);
 
             this.map.on('click', lang.hitch(this, 'onMapClick'));
@@ -57,6 +52,11 @@ define([
             // summary:
             //      description
             console.log('app/Identify:postCreate', arguments);
+
+            var that = this;
+            require(['proj4/dist/proj4'], function (proj4) {
+                that.proj4 = proj4;
+            });
 
             this.map.infoWindow.setContent(this.domNode);
 

@@ -203,7 +203,7 @@ module.exports = function (grunt) {
                 dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source
                 load: 'build', // Optional: Utility to bootstrap (Default: 'build')
                 releaseDir: '../dist',
-                require: 'src/app/run.js', // Optional: Module to require for the build (Default: nothing)
+                requires: ['src/app/packages.js', 'src/app/run.js'], // Optional: Module to require for the build (Default: nothing)
                 basePath: './src'
             }
         },
@@ -231,16 +231,15 @@ module.exports = function (grunt) {
         },
         jasmine: {
             main: {
-                src: ['src/app/run.js'],
                 options: {
                     specs: ['src/app/**/Spec*.js'],
                     vendor: [
                         'src/jasmine-favicon-reporter/vendor/favico.js',
                         'src/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
                         'src/jasmine-jsreporter/jasmine-jsreporter.js',
-                        'src/app/tests/jasmineDojoConfig.js',
-                        'src/dojo/dojo.js',
                         'src/app/tests/jasmineTestBootstrap.js',
+                        'src/dojo/dojo.js',
+                        'src/app/packages.js',
                         'src/app/tests/jsReporterSanitizer.js',
                         'src/app/tests/jasmineAMDErrorChecking.js'
                     ],

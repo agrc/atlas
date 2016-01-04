@@ -1,7 +1,8 @@
 /* global JasmineFaviconReporter, jasmineRequire */
-/*jshint unused:false*/
-require({
-    packages: [{
+var dojoConfig = { // eslint-disable-line no-unused-var
+    baseUrl: '/src/',
+    packages: ['dojo',  // dojo is required here since we are defining baseUrl before loading dojo
+    {
         name: 'agrc-jasmine-matchers',
         location: 'agrc-jasmine-matchers/src'
     }, {
@@ -9,8 +10,10 @@ require({
         location: 'stubmodule/src',
         main: 'stub-module'
     }],
-    baseUrl: '/src/'
-});
+    has: {
+        'dojo-undef-api': true
+    }
+};
 
 // for jasmine-favicon-reporter
 jasmine.getEnv().addReporter(new JasmineFaviconReporter());
