@@ -37,6 +37,6 @@
     "uglify-js": "^2"
   },
   "scripts": {
-    "test": "grunt travis --verbose"
+    "test": "grunt travis"
   }
 }
