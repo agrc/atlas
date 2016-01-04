@@ -1,15 +1,16 @@
 /* global JasmineFaviconReporter, jasmineRequire */
-var dojoConfig = { // eslint-disable-line no-unused-var
+var dojoConfig = {  // eslint-disable-line no-unused-vars
     baseUrl: '/src/',
     packages: ['dojo',  // dojo is required here since we are defining baseUrl before loading dojo
-    {
-        name: 'agrc-jasmine-matchers',
-        location: 'agrc-jasmine-matchers/src'
-    }, {
-        name: 'stubmodule',
-        location: 'stubmodule/src',
-        main: 'stub-module'
-    }],
+        {
+            name: 'agrc-jasmine-matchers',
+            location: 'agrc-jasmine-matchers/src'
+        }, {
+            name: 'stubmodule',
+            location: 'stubmodule/src',
+            main: 'stub-module'
+        }
+    ],
     has: {
         'dojo-undef-api': true
     }
