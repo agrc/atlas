@@ -50,8 +50,16 @@ require([
             });
         });
         describe('onMapClick', function () {
-            beforeEach(function () {
-                testWidget.onMapClick(evt);
+            beforeEach(function (done) {
+                var request = jasmine.createSpy('request')
+                    .and.returnValue({then: function () {}});
+                stubmodule('app/Identify', {
+                    'dojo/request': request
+                }).then(function (StubbedModule) {
+                    testWidget = new StubbedModule({map: map});
+                    testWidget.onMapClick(evt);
+                    done();
+                });
             });
             it('shows the popup', function () {
                 expect(infoWindow.show).toHaveBeenCalledWith(evt.mapPoint);
