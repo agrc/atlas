@@ -207,6 +207,14 @@ module.exports = function (grunt) {
                 basePath: './src'
             }
         },
+        eslint: {
+            options: {
+                configFile: '.eslintrc'
+            },
+            main: {
+                src: jsFiles
+            }
+        },
         imagemin: {
             main: {
                 options: {
@@ -237,33 +245,6 @@ module.exports = function (grunt) {
                     ],
                     host: 'http://localhost:8000'
                 }
-            }
-        },
-        jscs: {
-            main: {
-                src: jsFiles
-            },
-            force: {
-                src: jsFiles,
-                options: {
-                    force: true
-                }
-            }
-        },
-        jshint: {
-            main: {
-                src: jsFiles
-            },
-            force: {
-                // must use src for newer to work
-                src: jsFiles,
-                options: {
-                    force: true
-                }
-            },
-            options: {
-                reporter: require('jshint-stylish'),
-                jshintrc: '.jshintrc'
             }
         },
         processhtml: {
@@ -346,9 +327,9 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            jshint: {
+            eslint: {
                 files: jsFiles,
-                tasks: ['newer:jshint:main', 'newer:jscs:main', 'jasmine:main:build']
+                tasks: ['newer:eslint:main', 'jasmine:main:build']
             },
             src: {
                 files: jsFiles.concat(otherFiles),
@@ -363,13 +344,13 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jasmine:main:build',
-        'jshint:force',
-        'jscs:force',
+        'eslint:main',
         'connect',
         'stylus',
         'watch'
     ]);
     grunt.registerTask('build-prod', [
+        'eslint:main',
         'clean:build',
         'newer:imagemin:main',
         'stylus',
@@ -378,6 +359,7 @@ module.exports = function (grunt) {
         'processhtml:main'
     ]);
     grunt.registerTask('build-stage', [
+        'eslint:main',
         'clean:build',
         'newer:imagemin:main',
         'stylus',
@@ -388,8 +370,8 @@ module.exports = function (grunt) {
     grunt.registerTask('deploy-prod', [
         'clean:deploy',
         'compress:main',
-        'sftp:prod'
-        //,'sshexec:prod'
+        'sftp:prod',
+        'sshexec:prod'
     ]);
     grunt.registerTask('deploy-stage', [
         'clean:deploy',
@@ -403,8 +385,7 @@ module.exports = function (grunt) {
         'saucelabs-jasmine'
     ]);
     grunt.registerTask('travis', [
-        'jshint:main',
-        'jscs:main',
+        'eslint:main',
         'sauce',
         'build-prod'
     ]);
