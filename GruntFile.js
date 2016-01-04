@@ -2,60 +2,9 @@
 var osx = 'OS X 10.10';
 var windows = 'Windows 8.1';
 var browsers = [{
-
-    // OSX
-
-    //     browserName: 'firefox',
-    //     // no version = latest
-    //     platform: osx
-    // }, {
-    //     browserName: 'chrome',
-    //     platform: osx
-    // }, {
     browserName: 'safari',
     platform: osx
 }, {
-
-    //     // iOS
-
-    //     browserName: 'iPad',
-    //     platform: osx,
-    //     version: '8.1'
-    // }, {
-    //     browserName: 'iPad',
-    //     platform: osx,
-    //     version: '8.0'
-    // }, {
-    //     browserName: 'iPad',
-    //     platform: osx,
-    //     version: '7.1'
-    // },{
-
-    // Android
-
-    //     browserName: 'android',
-    //     platform: 'Linux',
-    //     version: 4.4
-    // },{
-    //     browserName: 'android',
-    //     platform: 'Linux',
-    //     version: 4.3
-    // },{
-    //     browserName: 'android',
-    //     platform: 'Linux',
-    //     version: 4.2
-    // },{
-    //     browserName: 'android',
-    //     platform: 'Linux',
-    //     version: 4.0
-    // },{
-    //     browserName: 'android',
-    //     platform: 'Linux',
-    //     version: 2.3
-    // },{
-
-    // Windows
-
     browserName: 'firefox',
     platform: windows
 }, {
@@ -127,7 +76,7 @@ module.exports = function (grunt) {
         maxRetries: 10,
         maxPollRetries: 10,
         'public': 'public',
-        throttled: 3,
+        throttled: 5,
         sauceConfig: {
             'max-duration': 1800
         },
