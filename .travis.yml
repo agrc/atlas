@@ -20,14 +20,25 @@ cache:
     directories:
         - node_modules
         - src/agrc
-        - src/bootstrap
-        - src/dijit
-        - src/dojo
-        - src/dojox
-        - src/ijit
-        - src/jasmine-favicon-reporter
-        - src/stubmodule
-        - src/util
-        - src/proj4
-        - src/jasmine-jsreporter
-        - src/xstyle
+        - src/bootstrap/
+        - src/components-jasmine/
+        - src/dgrid/
+        - src/dgauges/
+        - src/dijit/
+        - src/dojo/
+        - src/dojox/
+        - src/esri/
+        - src/favico.js/
+        - src/ijit/
+        - src/jasmine-favicon-reporter/
+        - src/jasmine-jsreporter/
+        - src/jquery/
+        - src/ladda-bootstrap/
+        - src/mustache/
+        - src/proj4/
+        - src/put-selector/
+        - src/spin.js/
+        - src/spinjs/
+        - src/stubmodule/
+        - src/util/
+        - src/xstyle/
