@@ -358,6 +358,11 @@ module.exports = function (grunt) {
         'copy:main',
         'processhtml:main'
     ]);
+    grunt.registerTask('deploy-prod', [
+        'clean:deploy',
+        'compress:main',
+        'sftp:prod'
+    ]);
     grunt.registerTask('build-stage', [
         'eslint:main',
         'clean:build',
@@ -366,12 +371,6 @@ module.exports = function (grunt) {
         'dojo:stage',
         'copy:main',
         'processhtml:main'
-    ]);
-    grunt.registerTask('deploy-prod', [
-        'clean:deploy',
-        'compress:main',
-        'sftp:prod',
-        'sshexec:prod'
     ]);
     grunt.registerTask('deploy-stage', [
         'clean:deploy',
