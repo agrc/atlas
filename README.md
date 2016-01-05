@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate.svg?branch=master)](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/agrc.svg)](https://saucelabs.com/u/agrc) [![Build Status](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate.svg?branch=master)](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate) [![Dependency Status](https://gemnasium.com/agrc/AGRCJavaScriptProjectBoilerPlate.svg)](https://gemnasium.com/agrc/AGRCJavaScriptProjectBoilerPlate)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/agrc.svg)](https://saucelabs.com/u/agrc)
 AGRC JavaScript Project Boilerplate
 ===================================
 
