@@ -55,7 +55,7 @@ define(['dojo/has', 'esri/config'], function (has, esriConfig) {
     };
 
     if (has('agrc-build') === 'prod') {
-        // mapserv.utah.gov
+        // atlas.utah.gov
         window.AGRC.apiKey = 'AGRC-A94B063C533889';
     } else if (has('agrc-build') === 'stage') {
         // test.mapserv.utah.gov
