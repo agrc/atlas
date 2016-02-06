@@ -29,7 +29,7 @@
     "grunt-eslint": "^17.3.1",
     "grunt-if-missing": "^1",
     "grunt-newer": "^1",
-    "grunt-processhtml": "^0",
+    "grunt-processhtml": "^0.3.10",
     "grunt-saucelabs": "^8",
     "grunt-ssh": "^0",
     "grunt": "^0.4",
