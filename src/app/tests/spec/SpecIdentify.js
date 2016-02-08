@@ -41,6 +41,7 @@ require([
             testWidget = new ClassUnderTest({
                 map: map
             });
+            testWidget.startup();
         });
 
         describe('Sanity', function () {
@@ -54,7 +55,7 @@ require([
                 var request = jasmine.createSpy('request')
                     .and.returnValue({then: function () {}});
                 stubmodule('app/Identify', {
-                    'dojo/request': request
+                    'dojo/request/xhr': request
                 }).then(function (StubbedModule) {
                     testWidget = new StubbedModule({map: map});
                     testWidget.onMapClick(evt);
@@ -106,7 +107,7 @@ require([
                 var request = jasmine.createSpy('request')
                     .and.returnValue({then: function () {}});
                 stubmodule('app/Identify', {
-                    'dojo/request': request
+                    'dojo/request/xhr': request
                 }).then(function (StubbedModule) {
                     var testWidget2 = new StubbedModule({map: map});
 

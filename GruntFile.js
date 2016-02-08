@@ -9,7 +9,7 @@ var browsers = [{
     platform: windows
 }, {
     browserName: 'chrome',
-    platform: windows
+    platform: osx
 }, {
     browserName: 'microsoftedge',
     platform: 'Windows 10'
@@ -42,7 +42,8 @@ module.exports = function (grunt) {
     var jsFiles = [
         jsAppFiles,
         gruntFile,
-        internFile
+        internFile,
+        'profiles/**/*.js'
     ];
     var bumpFiles = [
         'package.json',
@@ -278,6 +279,12 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        verbosity: {
+            main: {
+                options: {mode: 'normal'},
+                tasks: ['saucelabs-jasmine']
+            }
+        },
         watch: {
             eslint: {
                 files: jsFiles,
@@ -336,6 +343,7 @@ module.exports = function (grunt) {
         'saucelabs-jasmine'
     ]);
     grunt.registerTask('travis', [
+        'verbosity:main',
         'eslint:main',
         'sauce',
         'build-prod'

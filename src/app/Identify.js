@@ -1,15 +1,15 @@
 define([
-    './config',
+    'app/config',
 
     'dijit/_TemplatedMixin',
     'dijit/_WidgetBase',
 
+    'dojo/query',
+    'dojo/request/xhr',
+    'dojo/text!app/templates/Identify.html',
     'dojo/_base/array',
     'dojo/_base/declare',
     'dojo/_base/lang',
-    'dojo/query',
-    'dojo/request',
-    'dojo/text!./templates/Identify.html',
 
     'xstyle/css!app/resources/Identify.css'
 ], function (
@@ -18,12 +18,12 @@ define([
     _TemplatedMixin,
     _WidgetBase,
 
-    array,
-    declare,
-    lang,
     query,
     request,
-    template
+    template,
+    array,
+    declare,
+    lang
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
         // description:

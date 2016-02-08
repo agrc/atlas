@@ -1,5 +1,4 @@
-/*jshint unused:false */
-
+/*eslint-disable no-unused-vars*/
 var profile = {
     basePath: '../src',
     action: 'release',
@@ -60,10 +59,5 @@ var profile = {
     },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
-    },
-    map: {
-        '*': {
-            'dojox/dgauges': 'dgauges'
-        }
     }
 };

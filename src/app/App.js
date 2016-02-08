@@ -1,57 +1,52 @@
 define([
-    'dojo/text!app/templates/App.html',
+    'app/config',
+    'app/Identify',
 
-    'dojo/_base/declare',
-    'dojo/_base/array',
+    'agrc/widgets/locate/FindAddress',
+    'agrc/widgets/locate/MagicZoom',
+    'agrc/widgets/map/BaseMap',
+    'agrc/widgets/map/BaseMapSelector',
+
+    'dijit/registry',
+    'dijit/_TemplatedMixin',
+    'dijit/_WidgetBase',
+    'dijit/_WidgetsInTemplateMixin',
 
     'dojo/dom',
     'dojo/dom-style',
-
-    'dijit/_WidgetBase',
-    'dijit/_TemplatedMixin',
-    'dijit/_WidgetsInTemplateMixin',
-    'dijit/registry',
-
-    'agrc/widgets/map/BaseMap',
-    'agrc/widgets/map/BaseMapSelector',
-    'agrc/widgets/locate/FindAddress',
-    'agrc/widgets/locate/MagicZoom',
-
-    'ijit/widgets/layout/SideBarToggler',
+    'dojo/text!app/templates/App.html',
+    'dojo/_base/array',
+    'dojo/_base/declare',
 
     'esri/dijit/Print',
 
-    './config',
-    './Identify',
-
+    'ijit/widgets/layout/SideBarToggler',
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
 ], function (
-    template,
+    config,
+    Identify,
 
-    declare,
-    array,
+    FindAddress,
+    MagicZoom,
+    BaseMap,
+    BaseMapSelector,
+
+    registry,
+    _TemplatedMixin,
+    _WidgetBase,
+    _WidgetsInTemplateMixin,
 
     dom,
     domStyle,
-
-    _WidgetBase,
-    _TemplatedMixin,
-    _WidgetsInTemplateMixin,
-    registry,
-
-    BaseMap,
-    BaseMapSelector,
-    FindAddress,
-    MagicZoom,
-
-    SideBarToggler,
+    template,
+    array,
+    declare,
 
     Print,
 
-    config,
-    Identify
+    SideBarToggler
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
