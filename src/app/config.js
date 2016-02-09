@@ -62,7 +62,16 @@ define(['dojo/has', 'esri/config'], function (has, esriConfig) {
         window.AGRC.apiKey = 'AGRC-AC122FA9671436';
     } else {
         // localhost
-        window.AGRC.apiKey = 'AGRC-E5B94F99865799';
+        xhr(require.baseUrl + 'secrets.json', {
+            handleAs: 'json',
+            sync: true
+        }).then(function (secrets) {
+            window.AGRC.quadWord = secrets.quadWord;
+            window.AGRC.apiKey = secrets.apiKey;
+        }, function () {
+            throw 'Error getting secrets!';
+        });
+
     }
 
     return window.AGRC;

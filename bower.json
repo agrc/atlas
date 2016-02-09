@@ -11,11 +11,13 @@
     "stubmodule": "^0.6",
     "proj4": "1.4.1",
     "jasmine-jsreporter": "^0.1.2",
-    "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d"
+    "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
+    "layer-selector": "agrc-layer-selector#~0.4.0"
   },
   "resolutions": {
     "xstyle": "09b4d603f63df3e7aa5acc04784e36710a75671d",
     "dgrid": "0.3.17/esri-3.14.0",
-    "dojo": "v1.10.4/esri-3.14.0"
+    "dojo": "v1.10.4/esri-3.14.0",
+    "esri": "~3.15.0"
   }
 }
