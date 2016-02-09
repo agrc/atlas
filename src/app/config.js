@@ -1,9 +1,20 @@
 /* jshint maxlen:false */
-define(['dojo/has', 'esri/config'], function (has, esriConfig) {
+define([
+    'dojo/has',
+    'dojo/request/xhr',
+
+    'esri/config'
+], function (
+    has,
+    xhr,
+
+    esriConfig
+) {
     // force api to use CORS on mapserv thus removing the test request on app load
     // e.g. http://mapserv.utah.gov/ArcGIS/rest/info?f=json
     esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('basemaps.utah.gov');
+    esriConfig.defaults.io.corsEnabledServers.push('api.mapserv.utah.gov');
 
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
@@ -57,8 +68,10 @@ define(['dojo/has', 'esri/config'], function (has, esriConfig) {
     if (has('agrc-build') === 'prod') {
         // atlas.utah.gov
         window.AGRC.apiKey = 'AGRC-A94B063C533889';
+        window.AGRC.quadWord = 'career-exhibit-panel-stadium';
     } else if (has('agrc-build') === 'stage') {
         // test.mapserv.utah.gov
+        window.AGRC.quadWord = '';
         window.AGRC.apiKey = 'AGRC-AC122FA9671436';
     } else {
         // localhost
@@ -71,7 +84,6 @@ define(['dojo/has', 'esri/config'], function (has, esriConfig) {
         }, function () {
             throw 'Error getting secrets!';
         });
-
     }
 
     return window.AGRC;

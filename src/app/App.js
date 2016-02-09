@@ -5,7 +5,6 @@ define([
     'agrc/widgets/locate/FindAddress',
     'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMap',
-    'agrc/widgets/map/BaseMapSelector',
 
     'dijit/registry',
     'dijit/_TemplatedMixin',
@@ -19,8 +18,11 @@ define([
     'dojo/_base/declare',
 
     'esri/dijit/Print',
+    'esri/geometry/Extent',
 
     'ijit/widgets/layout/SideBarToggler',
+
+    'layer-selector',
 
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
@@ -31,7 +33,6 @@ define([
     FindAddress,
     MagicZoom,
     BaseMap,
-    BaseMapSelector,
 
     registry,
     _TemplatedMixin,
@@ -45,8 +46,11 @@ define([
     declare,
 
     Print,
+    Extent,
 
-    SideBarToggler
+    SideBarToggler,
+
+    BaseMapSelector
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -91,12 +95,13 @@ define([
                 }, this.sidebarToggle),
                 new FindAddress({
                     map: this.map,
-                    apiKey: config.apiKey
+                    apiKey: config.apiKey,
+                    zoomLevel: 17
                 }, this.geocodeNode),
                 new MagicZoom({
                     map: this.map,
-                    mapServiceURL: config.urls.vector,
-                    searchLayerIndex: 4,
+                    apiKey: config.apiKey,
+                    wkid: 3857,
                     searchField: 'NAME',
                     placeHolder: 'place name...',
                     maxResultsToDisplay: 10,
@@ -104,10 +109,11 @@ define([
                 }, this.gnisNode),
                 new MagicZoom({
                     map: this.map,
-                    mapServiceURL: config.urls.vector,
-                    searchLayerIndex: 1,
+                    apiKey: config.apiKey,
+                    searchLayer: 'SGID10.Boundaries.Municipalities',
                     searchField: 'NAME',
                     placeHolder: 'city name...',
+                    wkid: 3857,
                     maxResultsToDisplay: 10
                 }, this.cityNode),
                 this.printer = new Print({
@@ -159,14 +165,23 @@ define([
             this.map = new BaseMap(this.mapDiv, {
                 useDefaultBaseMap: false,
                 showAttribution: false,
-                router: true
+                router: true,
+                extent: new Extent({
+                    xmax: -12010849.397533866,
+                    xmin: -12898741.918094235,
+                    ymax: 5224652.298632992,
+                    ymin: 4422369.249751998,
+                    spatialReference: {
+                        wkid: 3857
+                    }
+                })
             });
 
             this.childWidgets.push(
                 new BaseMapSelector({
                     map: this.map,
-                    id: 'claro',
-                    position: 'TR'
+                    quadWord: config.quadWord,
+                    baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR']
                 }),
                 new Identify({map: this.map})
             );
