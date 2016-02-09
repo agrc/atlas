@@ -8,6 +8,7 @@ require({
         'dojox',
         'esri',
         'ijit',
+        'layer-selector',
         'put-selector',
         'xstyle',
         {
