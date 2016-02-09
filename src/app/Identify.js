@@ -95,20 +95,23 @@ define([
             this.clearValues();
             this.map.infoWindow.show(evt.mapPoint);
 
-            // utm coords
-            this.utmX.innerHTML = Math.round(evt.mapPoint.x);
-            this.utmY.innerHTML = Math.round(evt.mapPoint.y);
-
             // lat/long coords
-            var ll = this.proj4(config.utm12wkt, config.wgs84wkt, lang.clone(evt.mapPoint));
-            this.lat.innerHTML = Math.round(ll.y * 100000) / 100000;
+            var ll = this.proj4(config.wkt3857, config.wkt4326, lang.clone(evt.mapPoint));
             this.lng.innerHTML = Math.round(ll.x * 100000) / 100000;
+            this.lat.innerHTML = Math.round(ll.y * 100000) / 100000;
+
+            // utm coords
+            var utm = this.proj4(config.wkt3857, config.wkt26912, lang.clone(evt.mapPoint));
+            var utmx = Math.round(utm.x);
+            var utmy = Math.round(utm.y);
+            this.utmX.innerHTML = utmx;
+            this.utmY.innerHTML = utmy;
 
             array.forEach(this.requests, function (r) {
                 var url = lang.replace(config.urls.search, [r[0], r[1]]);
                 request(url, {
                     query: {
-                        geometry: 'point:' + JSON.stringify([evt.mapPoint.x, evt.mapPoint.y]),
+                        geometry: 'point:' + JSON.stringify([utmx, utmy]),
                         apiKey: config.apiKey
                     },
                     headers: {
