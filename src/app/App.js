@@ -96,7 +96,8 @@ define([
                 new FindAddress({
                     map: this.map,
                     apiKey: config.apiKey,
-                    zoomLevel: 17
+                    zoomLevel: 17,
+                    wkid: 3857
                 }, this.geocodeNode),
                 new MagicZoom({
                     map: this.map,
