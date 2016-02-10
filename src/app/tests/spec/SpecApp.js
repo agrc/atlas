@@ -2,9 +2,7 @@ require([
     'app/App',
     'dojo/dom-construct',
     'dojo/_base/window'
-
 ],
-
 function (
     App,
     domConstruct,

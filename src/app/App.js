@@ -178,7 +178,7 @@ define([
 
             parent.insertBefore(node, clone.nextSibling);
 
-            this.map.on('extent-change', function _showLevel(changeEvt){
+            this.map.on('extent-change', function _showLevel(changeEvt) {
                 node.innerHTML = 'level: ' + changeEvt.lod.level + ' ';
             });
         },

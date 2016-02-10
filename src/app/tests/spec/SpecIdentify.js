@@ -54,11 +54,13 @@ require([
             beforeEach(function (done) {
                 var request = jasmine.createSpy('request')
                     .and.returnValue({then: function () {}});
+
                 stubmodule('app/Identify', {
                     'dojo/request/xhr': request
                 }).then(function (StubbedModule) {
                     testWidget = new StubbedModule({map: map});
                     testWidget.onMapClick(evt);
+
                     done();
                 });
             });
