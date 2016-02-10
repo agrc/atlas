@@ -9,9 +9,7 @@ define([
     'dojo/text!app/templates/Identify.html',
     'dojo/_base/array',
     'dojo/_base/declare',
-    'dojo/_base/lang',
-
-    'xstyle/css!app/resources/Identify.css'
+    'dojo/_base/lang'
 ], function (
     config,
 
