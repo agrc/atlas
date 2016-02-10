@@ -50,8 +50,8 @@ define([
 
         urls: {
             search: 'http://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
-            vector: 'http://mapserv.utah.gov/arcgis/rest/services/BaseMaps/Vector/MapServer',
-            dem: 'http://mapserv.utah.gov/arcgis/rest/services/DEM/ImageServer/identify'
+            dem: 'http://mapserv.utah.gov/arcgis/rest/services/DEM/ImageServer/identify',
+            reverseGeocode: 'http://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}'
         },
 
         fieldNames: {

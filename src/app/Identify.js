@@ -132,6 +132,7 @@ define([
             });
 
             this.getElevation(evt.mapPoint);
+            this.reverseGeocode(utm);
         },
         clearValues: function () {
             // summary:
@@ -165,6 +166,31 @@ define([
                     var feet = Math.round(meters * 3.28084);
                     that.elevMeters.innerHTML = meters;
                     that.elevFeet.innerHTML = feet;
+                }
+            });
+        },
+        reverseGeocode: function (point) {
+            // summary:
+            //      hits the web api reverse geocode endpoint
+            // point: esri/geometry/point
+            console.log('app/Identify::reverseGeocode', arguments);
+
+            var that = this;
+            var url = lang.replace(config.urls.reverseGeocode, [point.x, point.y]);
+            request(url, {
+                query: {
+                    apiKey: config.apiKey,
+                    distance: 50
+                },
+                headers: {
+                    'X-Requested-With': null
+                },
+                handleAs: 'json'
+            }).then(function (data) {
+                if (data.status && data.status === 200 && data.result.address) {
+                    that.address.innerHTML = data.result.address.street;
+                } else {
+                    that.address.innerHTML = 'n/a';
                 }
             });
         }
