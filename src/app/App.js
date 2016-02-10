@@ -157,6 +157,31 @@ define([
 
             this.inherited(arguments);
         },
+        showLevel: function (evt) {
+            // summary:
+            //      Fires after postCreate when all of the child widgets are finished laying out.
+            console.log('app.App::showLevel', arguments);
+
+            var clone = evt.target.cloneNode();
+            while (evt.target.firstChild) {
+                clone.appendChild(evt.target.lastChild);
+            }
+
+            evt.target.parentNode.replaceChild(clone, evt.target);
+
+            var parent = clone.parentNode;
+
+            var node = document.createElement('span');
+            node.setAttribute('class', 'version');
+            node.setAttribute('style', 'padding-right:15px;margin-left:-43px;');
+            node.innerHTML = 'level: ' + this.map.getLevel() + ' ';
+
+            parent.insertBefore(node, clone.nextSibling);
+
+            this.map.on('extent-change', function _showLevel(changeEvt){
+                node.innerHTML = 'level: ' + changeEvt.lod.level + ' ';
+            });
+        },
         initMap: function () {
             // summary:
             //      Sets up the map
