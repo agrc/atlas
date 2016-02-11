@@ -89,6 +89,10 @@ module.exports = function (grunt) {
         sauceConfig.key = secrets.sauce_key;
     } catch (e) {
         // swallow for build server
+
+        // still print a message so you can catch bad syntax in the secrets file.
+        grunt.log.write(e);
+
         secrets = {
             stage: {
                 host: '',
