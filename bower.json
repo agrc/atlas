@@ -1,6 +1,6 @@
 {
   "name": "Atlas",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "dependencies": {
     "agrc": "agrc-widgets#4.0.0",
     "agrc-jasmine-matchers": "~0.1.0",
