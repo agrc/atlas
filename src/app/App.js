@@ -24,10 +24,7 @@ define([
 
     'ijit/widgets/layout/SideBarToggler',
 
-    'layer-selector',
-
-    'dijit/layout/BorderContainer',
-    'dijit/layout/ContentPane'
+    'layer-selector'
 ], function (
     FindAddress,
     MagicZoom,
