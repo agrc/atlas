@@ -30,7 +30,7 @@
     "grunt-eslint": "^17.3.1",
     "grunt-newer": "^1",
     "grunt-parallel": "^0.4.1",
-    "grunt-processhtml": "^0.3.10",
+    "grunt-processhtml": "^0.3.11",
     "grunt-saucelabs": "^8",
     "grunt-ssh": "^0",
     "grunt-verbosity": "^0.2.2",
