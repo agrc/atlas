@@ -200,6 +200,17 @@ module.exports = function (grunt) {
                 }
             }
         },
+        parallel: {
+            options: {
+                grunt: true
+            },
+            assets: {
+                tasks: ['eslint:main', 'stylus', 'jasmine:main:build']
+            },
+            buildAssets: {
+                tasks: ['eslint:main', 'clean:build', 'newer:imagemin:main', 'stylus']
+            }
+        },
         processhtml: {
             options: {},
             main: {
@@ -302,17 +313,12 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', [
-        'jasmine:main:build',
-        'eslint:main',
+        'parallel:assets',
         'connect',
-        'stylus',
         'watch'
     ]);
     grunt.registerTask('build-prod', [
-        'eslint:main',
-        'clean:build',
-        'newer:imagemin:main',
-        'stylus',
+        'parallel:buildAssets',
         'dojo:prod',
         'copy:main',
         'processhtml:main'
@@ -323,10 +329,7 @@ module.exports = function (grunt) {
         'sftp:prod'
     ]);
     grunt.registerTask('build-stage', [
-        'eslint:main',
-        'clean:build',
-        'newer:imagemin:main',
-        'stylus',
+        'parallel:buildAssets',
         'dojo:stage',
         'copy:main',
         'processhtml:main'
