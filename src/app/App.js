@@ -1,10 +1,10 @@
 define([
-    'app/config',
-    'app/Identify',
-
     'agrc/widgets/locate/FindAddress',
     'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMap',
+
+    'app/config',
+    'app/Identify',
 
     'dijit/registry',
     'dijit/_TemplatedMixin',
@@ -13,9 +13,11 @@ define([
 
     'dojo/dom',
     'dojo/dom-style',
+    'dojo/on',
     'dojo/text!app/templates/App.html',
     'dojo/_base/array',
     'dojo/_base/declare',
+    'dojo/_base/lang',
 
     'esri/dijit/Print',
     'esri/geometry/Extent',
@@ -27,12 +29,12 @@ define([
     'dijit/layout/BorderContainer',
     'dijit/layout/ContentPane'
 ], function (
-    config,
-    Identify,
-
     FindAddress,
     MagicZoom,
     BaseMap,
+
+    config,
+    Identify,
 
     registry,
     _TemplatedMixin,
@@ -41,9 +43,11 @@ define([
 
     dom,
     domStyle,
+    on,
     template,
     array,
     declare,
+    lang,
 
     Print,
     Extent,
@@ -139,6 +143,15 @@ define([
             );
 
             this.inherited(arguments);
+
+            this.setupConnections();
+        },
+        setupConnections: function () {
+            // summary:
+            //      Fires when
+            console.log('app.App::setupConnections', arguments);
+
+            on.once(this.egg, 'dblclick', lang.hitch(this, 'showLevel'));
         },
         startup: function () {
             // summary:
@@ -158,26 +171,19 @@ define([
 
             this.inherited(arguments);
         },
-        showLevel: function (evt) {
+        showLevel: function () {
             // summary:
-            //      Fires after postCreate when all of the child widgets are finished laying out.
+            //      shows the current map level
             console.log('app.App::showLevel', arguments);
 
-            var clone = evt.target.cloneNode();
-            while (evt.target.firstChild) {
-                clone.appendChild(evt.target.lastChild);
-            }
-
-            evt.target.parentNode.replaceChild(clone, evt.target);
-
-            var parent = clone.parentNode;
+            var parent = this.egg.parentNode;
 
             var node = document.createElement('span');
             node.setAttribute('class', 'version');
             node.setAttribute('style', 'padding-right:15px;margin-left:-43px;');
             node.innerHTML = 'level: ' + this.map.getLevel() + ' ';
 
-            parent.insertBefore(node, clone.nextSibling);
+            parent.insertBefore(node, this.egg.nextSibling);
 
             this.map.on('extent-change', function _showLevel(changeEvt) {
                 node.innerHTML = 'level: ' + changeEvt.lod.level + ' ';
