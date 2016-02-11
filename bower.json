@@ -9,7 +9,7 @@
     "ijit": "agrc-ijit#3.1.1",
     "jasmine-favicon-reporter": "*",
     "stubmodule": "^0.6",
-    "proj4": "1.4.1",
+    "proj4": "2.3.12",
     "jasmine-jsreporter": "^0.1.2",
     "layer-selector": "agrc-layer-selector#~0.4.0"
   },

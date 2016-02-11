@@ -32,8 +32,11 @@ var profile = {
     packages: [{
         name: 'proj4',
         resourceTags: {
-            copyOnly: function () {
+            amd: function () {
                 return true;
+            },
+            copyOnly: function () {
+                return false;
             }
         }
     }],

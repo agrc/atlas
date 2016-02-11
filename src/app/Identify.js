@@ -9,7 +9,8 @@ define([
     'dojo/text!app/templates/Identify.html',
     'dojo/_base/array',
     'dojo/_base/declare',
-    'dojo/_base/lang'
+    'dojo/_base/lang',
+    'proj4'
 ], function (
     config,
 
@@ -21,7 +22,8 @@ define([
     template,
     array,
     declare,
-    lang
+    lang,
+    proj4
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
         // description:
@@ -50,11 +52,6 @@ define([
             // summary:
             //      description
             console.log('app/Identify:postCreate', arguments);
-
-            var that = this;
-            require(['proj4/dist/proj4'], function (proj4) {
-                that.proj4 = proj4;
-            });
 
             this.map.infoWindow.setContent(this.domNode);
 
@@ -94,12 +91,12 @@ define([
             this.map.infoWindow.show(evt.mapPoint);
 
             // lat/long coords
-            var ll = this.proj4(config.wkt3857, config.wkt4326, lang.clone(evt.mapPoint));
+            var ll = proj4(config.wkt3857, config.wkt4326, lang.clone(evt.mapPoint));
             this.lng.innerHTML = Math.round(ll.x * 100000) / 100000;
             this.lat.innerHTML = Math.round(ll.y * 100000) / 100000;
 
             // utm coords
-            var utm = this.proj4(config.wkt3857, config.wkt26912, lang.clone(evt.mapPoint));
+            var utm = proj4(config.wkt3857, config.wkt26912, lang.clone(evt.mapPoint));
             var utmx = Math.round(utm.x);
             var utmy = Math.round(utm.y);
             this.utmX.innerHTML = utmx;
