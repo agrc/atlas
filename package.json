@@ -25,7 +25,7 @@
     "grunt-contrib-jasmine": "^0",
     "grunt-contrib-stylus": "^0.21.0",
     "grunt-contrib-watch": "^0",
-    "grunt-dojo": "^1",
+    "grunt-dojo": "^1.1.1",
     "grunt-eslint": "^17.3.1",
     "grunt-if-missing": "^1",
     "grunt-newer": "^1",
