@@ -26,9 +26,9 @@
         "no-undef": 2,
         "no-unused-vars": 2,
         "space-return-throw-case": 0,
-        "space-after-keywords": [
+        "keyword-spacing": [
             2,
-            "always"
+            {"after": true}
         ],
         "space-before-blocks": [
             2,
