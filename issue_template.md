@@ -17,8 +17,8 @@ Tell us what happens instead
 
 ### Logs
 #### Browser log
-```
 
+```
 Insert your browser log here, this could for example include:
 
 a) The javascript console log
