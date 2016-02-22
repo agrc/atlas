@@ -1,34 +1,34 @@
 /* jshint camelcase:false */
-    var osx = 'OS X 10.10';
-    var windows = 'Windows 8.1';
-    var browsers = [{
-        // OSX
-        browserName: 'safari',
-        platform: osx
-    }, {
-        // Windows
-        browserName: 'firefox',
-        platform: windows
-    }, {
-        browserName: 'chrome',
-        platform: windows,
-        version: '47'
-    }, {
-        browserName: 'microsoftedge',
-        platform: 'Windows 10'
-    }, {
-        browserName: 'internet explorer',
-        platform: windows,
-        version: '11'
-    }, {
-        browserName: 'internet explorer',
-        platform: 'Windows 8',
-        version: '10'
-    }, {
-        browserName: 'internet explorer',
-        platform: 'Windows 7',
-        version: '9'
-    }];
+var osx = 'OS X 10.10';
+var windows = 'Windows 8.1';
+var browsers = [{
+    // OSX
+    browserName: 'safari',
+    platform: osx
+}, {
+    // Windows
+    browserName: 'firefox',
+    platform: windows
+}, {
+    browserName: 'chrome',
+    platform: windows,
+    version: '47'
+}, {
+    browserName: 'microsoftedge',
+    platform: 'Windows 10'
+}, {
+    browserName: 'internet explorer',
+    platform: windows,
+    version: '11'
+}, {
+    browserName: 'internet explorer',
+    platform: 'Windows 8',
+    version: '10'
+}, {
+    browserName: 'internet explorer',
+    platform: 'Windows 7',
+    version: '9'
+}];
 
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
