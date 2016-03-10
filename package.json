@@ -33,6 +33,7 @@
     "grunt-processhtml": "^0.3.13",
     "grunt-saucelabs": "^8",
     "grunt-ssh": "^0",
+    "grunt-ts": "^5.3.2",
     "grunt-verbosity": "^0.2.2",
     "load-grunt-tasks": "^3",
     "uglify-js": "^2.6.2"

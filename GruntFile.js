@@ -297,6 +297,12 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        ts: {
+            main: {
+                tsconfig: true,
+                html: ['src/app/**/*.html']
+            }
+        },
         verbosity: {
             main: {
                 options: {mode: 'normal'},
@@ -312,6 +318,10 @@ module.exports = function (grunt) {
                 files: jsFiles.concat(otherFiles),
                 options: { livereload: true }
             },
+            typescript: {
+                files: ['src/app/**/*.ts', 'src/app/**/*.html'],
+                tasks: ['ts']
+            },
             stylus: {
                 files: 'src/app/**/*.styl',
                 tasks: ['newer:stylus']
@@ -320,6 +330,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', [
+        'ts',
         'parallel:assets',
         'connect',
         'watch'

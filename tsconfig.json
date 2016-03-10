@@ -1,0 +1,23 @@
+{
+    "version": "1.7.0",
+    "compilerOptions": {
+        "declaration": false,
+        "module": "amd",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "target": "es5",
+        "experimentalDecorators": true,
+        "sourceMaps": true,
+        "moduleResolution": "classic"
+    },
+    "filesGlob": [
+        "./src/app/*.ts"
+    ],
+    "files": [
+        "src/app/App.ts",
+        "src/app/Identify.ts",
+        "src/app/config.ts",
+        "src/app/packages.ts",
+        "src/app/run.ts"
+    ]
+}
