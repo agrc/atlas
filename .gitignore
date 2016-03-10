@@ -7,9 +7,11 @@ deploy/
 dist/
 node_modules/
 secrets.json
-src/agrc/
 src/agrc-jasmine-matchers/
+src/agrc/
 src/app/**/*.css
+src/app/**/*.html.ts
+src/app/**/*.map
 src/bootstrap/
 src/components-jasmine/
 src/dgauges/
