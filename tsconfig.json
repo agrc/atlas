@@ -3,7 +3,6 @@
     "compilerOptions": {
         "declaration": false,
         "module": "amd",
-        "noImplicitAny": true,
         "removeComments": false,
         "target": "es5",
         "experimentalDecorators": true,
@@ -11,28 +10,17 @@
         "moduleResolution": "classic"
     },
     "filesGlob": [
-        "./src/app/*.ts",
-        "./node_modules/dojo-typings/dojo/1.11/index.d.ts",
-        "./node_modules/dojo-typings/dojo/1.11/modules.d.ts",
-        "./node_modules/dojo-typings/dijit/1.11/index.d.ts",
-        "./node_modules/dojo-typings/dijit/1.11/modules.d.ts",
-        "./node_modules/dojo-typings/dojox/1.11/index.d.ts",
-        "./node_modules/dojo-typings/dojox/1.11/modules.d.ts"
+        "./src/app/*.ts"
     ],
     "files": [
-        "./src/app/App.ts",
-        "./src/app/config.ts",
-        "./src/app/Identify.ts",
-        "./src/app/packages.ts",
-        "./src/app/run.ts",
-        "./node_modules/dojo-typings/dojo/1.11/index.d.ts",
-        "./node_modules/dojo-typings/dojo/1.11/modules.d.ts",
-        "./node_modules/dojo-typings/dijit/1.11/index.d.ts",
-        "./node_modules/dojo-typings/dijit/1.11/modules.d.ts",
-        "./node_modules/dojo-typings/dojox/1.11/index.d.ts",
-        "./node_modules/dojo-typings/dojox/1.11/modules.d.ts"
+        "src/app/App.ts",
+        "src/app/Identify.ts",
+        "src/app/config.ts",
+        "src/app/packages.ts",
+        "src/app/run.ts"
     ],
     "atom": {
-        "rewriteTsconfig": true
+        "rewriteTsconfig": false,
+        "compileOnSave": false
     }
 }
