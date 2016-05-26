@@ -11,12 +11,13 @@
     "stubmodule": "^0.6",
     "proj4": "2.3.12",
     "jasmine-jsreporter": "^0.1.2",
-    "layer-selector": "agrc-layer-selector#~0.4.0"
+    "layer-selector": "agrc-layer-selector#~0.4.0",
+    "xstyle": "0.3.2"
   },
   "resolutions": {
     "dgrid": "0.3.17/esri-3.14.0",
     "dojo": "v1.10.4/esri-3.14.0",
     "esri": "~3.15.0",
-    "xstyle": "~0.2.1"
+    "xstyle": "0.3.2"
   }
 }
