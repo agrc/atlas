@@ -1,29 +1,29 @@
-import FindAddress = require('agrc/widgets/locate/FindAddress');
-import MagicZoom = require('agrc/widgets/locate/MagicZoom');
-import BaseMap = require('agrc/widgets/map/BaseMap');
+import * as FindAddress from 'agrc/widgets/locate/FindAddress';
+import * as MagicZoom from 'agrc/widgets/locate/MagicZoom';
+import * as BaseMap from 'agrc/widgets/map/BaseMap';
 
-import config = require('app/config');
-import Identify = require('app/Identify');
+import * as config from 'app/config';
+import * as Identify from 'app/Identify';
 
-import registry = require('dijit/registry');
-import _TemplatedMixin = require('dijit/_TemplatedMixin');
-import _WidgetBase = require('dijit/_WidgetBase');
-import _WidgetsInTemplateMixin = require('dijit/_WidgetsInTemplateMixin');
+import * as registry from 'dijit/registry';
+import * as _TemplatedMixin from 'dijit/_TemplatedMixin';
+import * as _WidgetBase from 'dijit/_WidgetBase';
+import * as _WidgetsInTemplateMixin from 'dijit/_WidgetsInTemplateMixin';
 
-import dom = require('dojo/dom');
-import domStyle = require('dojo/dom-style');
-import on = require('dojo/on');
-import template = require('dojo/text!app/templates/App.html');
-import array = require('dojo/_base/array');
-import dojoDeclare = require('dojo/_base/declare');
-import lang = require('dojo/_base/lang');
+import * as dom from 'dojo/dom';
+import * as domStyle from 'dojo/dom-style';
+import * as on from 'dojo/on';
+import * as template from 'dojo/text!app/templates/App.html';
+import * as array from 'dojo/_base/array';
+import * as dojoDeclare from 'dojo/_base/declare';
+import * as lang from 'dojo/_base/lang';
 
-import Print = require('esri/dijit/Print');
-import Extent = require('esri/geometry/Extent');
+import * as Print from 'esri/dijit/Print';
+import * as Extent from 'esri/geometry/Extent';
 
-import SideBarToggler = require('ijit/widgets/layout/SideBarToggler');
+import * as SideBarToggler from 'ijit/widgets/layout/SideBarToggler';
 
-import BaseMapSelector = require('layer-selector');
+import * as BaseMapSelector from 'layer-selector';
 
 export = dojoDeclare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
     // summary:
