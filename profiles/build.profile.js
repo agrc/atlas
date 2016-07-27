@@ -52,6 +52,22 @@ var profile = {
                 return /\.js$/.test(filename);
             }
         }
+    }, {
+        name: 'bootstrap',
+        location: './bootstrap',
+        main: 'dist/js/bootstrap',
+        trees: [
+          // don't bother with these
+          ['.', '.', /(\/\.)|(~$)|(grunt|nuget)/]
+        ]
+    }, {
+        name: 'jquery',
+        location: './jquery/src',
+        main: 'jquery',
+        trees: [
+          // don't bother with these
+          ['.', '.', /(\/\.)|(~$)|(outro|intro)/]
+        ]
     }],
     staticHasFeatures: {
         // The trace & log APIs are used for debugging the loader, so we don’t need them in the build
