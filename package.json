@@ -35,7 +35,7 @@
     "grunt-ssh": "^0",
     "grunt-verbosity": "^1.0.1",
     "load-grunt-tasks": "^3.5.1",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.7.1"
   },
   "scripts": {
     "test": "grunt travis -v"
