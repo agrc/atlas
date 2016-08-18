@@ -3,12 +3,14 @@ require({
         'agrc',
         'app',
         'dgrid',
+        'dgauges',
         'dijit',
         'dojo',
         'dojox',
         'esri',
         'ijit',
         'layer-selector',
+        'moment',
         'put-selector',
         'xstyle',
         {
@@ -17,8 +19,11 @@ require({
             main: 'dist/js/bootstrap'
         }, {
             name: 'jquery',
-            location: './jquery/dist',
+            location: './jquery/src',
             main: 'jquery'
+        }, {
+            name: 'external',
+            location: './jquery/external'
         }, {
             name: 'ladda',
             location: './ladda-bootstrap',
