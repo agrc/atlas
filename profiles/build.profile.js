@@ -4,9 +4,8 @@ var profile = {
     action: 'release',
     cssOptimize: 'comments',
     mini: true,
-    optimize: 'uglify',
-    layerOptimize: 'uglify',
-    stripConsole: 'all',
+    optimize: false,
+    layerOptimize: false,
     selectorEngine: 'acme',
     layers: {
         'dojo/dojo': {
@@ -16,8 +15,10 @@ var profile = {
                 'app/packages',
                 'app/run',
                 'app/App',
+                'dojox/gfx/filters',
                 'dojox/gfx/path',
                 'dojox/gfx/svg',
+                'dojox/gfx/svgext',
                 'dojox/gfx/shape'
             ],
             targetStylesheet: 'app/resources/App.css',
@@ -31,12 +32,29 @@ var profile = {
     },
     packages: [{
         name: 'proj4',
+        trees: [
+          // don't bother with .hidden, tests, min, src, and templates
+          ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|html)/]
+        ],
         resourceTags: {
             amd: function () {
                 return true;
             },
             copyOnly: function () {
                 return false;
+            }
+        }
+    }, {
+        name: 'moment',
+        location: 'moment',
+        main: 'moment',
+        trees: [
+          // don't bother with .hidden, tests, min, src, and templates
+          ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|templates)/]
+        ],
+        resourceTags: {
+            amd: function (filename, mid) {
+                return /\.js$/.test(filename);
             }
         }
     }],
@@ -62,5 +80,10 @@ var profile = {
     },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri', 'layer-selector']
+    },
+    map: {
+        '*': {
+            'dojox/dgauges': 'dgauges'
+        }
     }
 };

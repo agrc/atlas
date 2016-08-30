@@ -15,6 +15,7 @@ define([
     esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('basemaps.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('api.mapserv.utah.gov');
+    esriConfig.defaults.io.corsEnabledServers.push('discover.utah.gov');
 
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
@@ -50,7 +51,6 @@ define([
 
         urls: {
             search: 'http://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
-            dem: 'http://mapserv.utah.gov/arcgis/rest/services/DEM/ImageServer/identify',
             reverseGeocode: 'http://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}'
         },
 
@@ -58,14 +58,17 @@ define([
             NAME: 'NAME', // counties & municipalities
             STATE_LGD: 'STATE_LGD', // state
             GRID1Mil: 'GRID1Mil',
-            GRIS100K: 'GRID100K'
+            GRIS100K: 'GRID100K',
+            FEET: 'feet',
+            METERS: 'value'
         },
 
         featureClassNames: {
             counties: 'SGID10.Boundaries.Counties',
             municipalities: 'SGID10.Boundaries.Municipalities',
             landOwnership: 'SGID10.Cadastre.LandOwnership',
-            nationalGrid: 'SGID10.Indices.NationalGrid'
+            nationalGrid: 'SGID10.Indices.NationalGrid',
+            dem: 'SGID10.RASTER.DEM_10METER'
         }
     };
 
