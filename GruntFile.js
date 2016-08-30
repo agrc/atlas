@@ -298,6 +298,34 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        uglify: {
+            options: {
+                preserveComments: false,
+                sourceMap: true,
+                compress: {
+                    drop_console: true,
+                    passes: 2,
+                    dead_code: true
+                }
+            },
+            stage: {
+                options: {
+                    compress: {
+                        drop_console: false
+                    }
+                },
+                src: ['dist/dojo/dojo.js'],
+                dest: 'dist/dojo/dojo.js'
+            },
+            prod: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist',
+                    src: '**/*.js',
+                    dest: 'dist'
+                }]
+            }
+        },
         verbosity: {
             main: {
                 options: {mode: 'normal'},
@@ -328,6 +356,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-prod', [
         'parallel:buildAssets',
         'dojo:prod',
+        'uglify:prod',
         'copy:main',
         'processhtml:main'
     ]);
@@ -339,6 +368,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-stage', [
         'parallel:buildAssets',
         'dojo:stage',
+        'uglify:stage',
         'copy:main',
         'processhtml:main'
     ]);
