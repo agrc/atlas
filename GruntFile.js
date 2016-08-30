@@ -387,6 +387,6 @@ module.exports = function (grunt) {
         'verbosity:main',
         'eslint:main',
         'sauce',
-        'build-prod'
+        'build-stage'
     ]);
 };
