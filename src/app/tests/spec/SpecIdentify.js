@@ -99,28 +99,5 @@ require([
                 expect(testWidget.elevFeet.innerHTML).toEqual('');
             });
         });
-        describe('getElevation', function () {
-            it('passes the point to the request', function (done) {
-                var point = {
-                    toJson: function () {
-                        return {a: 'a'};
-                    }
-                };
-                var request = jasmine.createSpy('request')
-                    .and.returnValue({then: function () {}});
-                stubmodule('app/Identify', {
-                    'dojo/request/xhr': request
-                }).then(function (StubbedModule) {
-                    var testWidget2 = new StubbedModule({map: map});
-
-                    testWidget2.getElevation(point);
-
-                    expect(request.calls.mostRecent().args[1].query.geometry)
-                        .toEqual('{"a":"a"}');
-
-                    done();
-                });
-            });
-        });
     });
 });
