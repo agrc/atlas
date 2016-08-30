@@ -54,28 +54,61 @@ define([
             console.log('app/Identify:postCreate', arguments);
 
             this.map.infoWindow.setContent(this.domNode);
-
+            var that = this;
             this.requests = [
                 [
                     config.featureClassNames.counties,
                     config.fieldNames.NAME,
-                    this.county,
-                    '{name}' // because the api returns weird field names for now
+                    function setCounty(data) {
+                        if (!data) {
+                            that.county.innerHTML = 'Outside of Utah';
+                            return;
+                        }
+                        that.county.innerHTML = data[config.fieldNames.NAME]
+                    }
                 ], [
                     config.featureClassNames.municipalities,
                     config.fieldNames.NAME,
-                    this.municipality,
-                    '{name}' // because the api returns weird field names for now
+                    function setMuni(data) {
+                        if (!data) {
+                            that.municipality.innerHTML = 'Unincorporated';
+                            return;
+                        }
+                        that.municipality.innerHTML = data[config.fieldNames.NAME]
+                    }
                 ], [
                     config.featureClassNames.landOwnership,
                     config.fieldNames.STATE_LGD,
-                    this.landOwner,
-                    '{statE_LGD}' // because the api returns weird field names for now
+                    function setLandowner(data) {
+                        if (!data) {
+                            that.landOwner.innerHTML = 'Outside of Utah';
+                            return;
+                        }
+                        that.landOwner.innerHTML = data[config.fieldNames.STATE_LGD]
+                    }
                 ], [
                     config.featureClassNames.nationalGrid,
                     config.fieldNames.GRID1Mil + ',' + config.fieldNames.GRIS100K,
-                    this.nationalGrid,
-                    '{griD1MIL} {griD100K} {x} {y}'
+                    function setGrid(data) {
+                        if (!data) {
+                            that.nationalGrid.innerHTML = 'Outside of Utah';
+                            return;
+                        }
+                        var values = [data[config.fieldNames.GRID1Mil], data[config.fieldNames.GRIS100K], data.x, data.y];
+                        that.nationalGrid.innerHTML = lang.replace('{0} {1} {2} {3}', values);
+                    }
+                ], [
+                    config.featureClassNames.dem,
+                    config.fieldNames.FEET + ',' + config.fieldNames.METERS,
+                    function setElevation(data) {
+                        if (!data) {
+                            that.elevFeet.innerHTML = 'Outside of Utah';
+                            that.elevMeters.innerHTML = 'Outside of Utah';
+                            return;
+                        }
+                        that.elevFeet.innerHTML = data[config.fieldNames.FEET];
+                        that.elevMeters.innerHTML = data[config.fieldNames.METERS];
+                    }
                 ]
             ];
         },
@@ -107,6 +140,7 @@ define([
                 request(url, {
                     query: {
                         geometry: 'point:' + JSON.stringify([utmx, utmy]),
+                        attributeStyle: 'identical',
                         apiKey: config.apiKey
                     },
                     headers: {
@@ -114,19 +148,17 @@ define([
                     },
                     handleAs: 'json'
                 }).then(function (data) {
+                    var f;
                     if (data.result.length > 0) {
-                        var f = lang.mixin(data.result[0].attributes, {
+                        f = lang.mixin(data.result[0].attributes || [], {
                             x: that.utmX.innerHTML.slice(-5),
                             y: that.utmY.innerHTML.slice(-5)
                         });
-                        r[2].innerHTML = lang.replace(r[3], f);
-                    } else {
-                        r[2].innerHTML = 'n/a';
                     }
+                    r[2](f);
                 });
             });
 
-            this.getElevation(evt.mapPoint);
             this.reverseGeocode(utm);
         },
         clearValues: function () {
@@ -136,32 +168,6 @@ define([
 
             query('span', this.domNode).forEach(function (n) {
                 n.innerHTML = '';
-            });
-        },
-        getElevation: function (point) {
-            // summary:
-            //      queries the identify service for the DEM image server
-            // point: esri/geometry/Point
-            console.log('app/Identify::getElevation', arguments);
-
-            var that = this;
-            request(config.urls.dem, {
-                query: {
-                    geometry: JSON.stringify(point.toJson()),
-                    f: 'json',
-                    geometryType: 'esriGeometryPoint'
-                },
-                handleAs: 'json',
-                headers: {
-                    'X-Requested-With': null
-                }
-            }).then(function (grid) {
-                if (grid.value) {
-                    var meters = grid.value;
-                    var feet = Math.round(meters * 3.28084);
-                    that.elevMeters.innerHTML = meters;
-                    that.elevFeet.innerHTML = feet;
-                }
             });
         },
         reverseGeocode: function (point) {
@@ -185,7 +191,7 @@ define([
                 if (data.status && data.status === 200 && data.result.address) {
                     that.address.innerHTML = data.result.address.street;
                 } else {
-                    that.address.innerHTML = 'n/a';
+                    that.address.innerHTML = 'Outside of Utah.';
                 }
             });
         }
