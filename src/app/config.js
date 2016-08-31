@@ -35,7 +35,7 @@ define([
 
         // exportWebMapUrl: String
         //      print task url
-        exportWebMapUrl: 'http://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
+        exportWebMapUrl: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
 
         // wkt26912: String
         //      The well known text for utm zone 12 nad83 for use with proj4
@@ -50,8 +50,8 @@ define([
         wkt3857: 'PROJCS["WGS_1984_Web_Mercator_Auxiliary_Sphere",GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Mercator_Auxiliary_Sphere"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",0.0],PARAMETER["Standard_Parallel_1",0.0],PARAMETER["Auxiliary_Sphere_Type",0.0],UNIT["Meter",1.0]]',
 
         urls: {
-            search: 'http://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
-            reverseGeocode: 'http://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}'
+            search: 'https://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
+            reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}'
         },
 
         fieldNames: {
