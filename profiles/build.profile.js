@@ -30,7 +30,7 @@ var profile = {
             exclude: ['dojo/dojo']
         }
     },
-    packages: [{
+    packages: ['app','dijit','dojox','agrc','ijit','esri','layer-selector', {
         name: 'proj4',
         trees: [
           // don't bother with .hidden, tests, min, src, and templates
@@ -77,9 +77,6 @@ var profile = {
     },
     plugins: {
         'xstyle/css': 'xstyle/build/amd-css'
-    },
-    userConfig: {
-        packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri', 'layer-selector']
     },
     map: {
         '*': {
