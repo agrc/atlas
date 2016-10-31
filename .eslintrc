@@ -5,6 +5,9 @@
         "amd": true,
         "node": true
     },
+    "plugins": [
+        "html"
+    ],
     "globals": {},
     "rules": {
         "no-bitwise": 2,

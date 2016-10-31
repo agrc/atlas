@@ -16,6 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "dojo": "^1.11.2",
+    "eslint": "^3.9.0",
+    "eslint-plugin-html": "^1.5.5",
     "grunt": "^1.0.1",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-clean": "^1.0.0",
