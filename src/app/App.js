@@ -107,7 +107,7 @@ define([
                     searchField: 'NAME',
                     placeHolder: 'place name...',
                     maxResultsToDisplay: 10,
-                    'class': 'first'
+                    class: 'first'
                 }, this.gnisNode),
                 new MagicZoom({
                     map: this.map,

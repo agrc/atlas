@@ -29,7 +29,7 @@ var browsers = [{
     version: '9'
 }];
 
-module.exports = function (grunt) {
+module.exports = function configure(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var jsAppFiles = 'src/app/**/*.js';
@@ -78,13 +78,14 @@ module.exports = function (grunt) {
         testname: 'atlas',
         maxRetries: 10,
         maxPollRetries: 10,
-        'public': 'public',
+        public: 'public',
         throttled: 5,
         sauceConfig: {
             'max-duration': 1800
         },
         statusCheckAttempts: 500
     };
+
     try {
         secrets = grunt.file.readJSON('secrets.json');
         sauceConfig.username = secrets.sauce_name;
@@ -137,32 +138,41 @@ module.exports = function (grunt) {
             }
         },
         connect: {
-            uses_defaults: {}
+            uses_defaults: { // eslint-disable-line camelcase
+            }
         },
         copy: {
             main: {
-                files: [{expand: true, cwd: 'src/', src: ['*.html'], dest: 'dist/'}]
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['*.html'],
+                    dest: 'dist/'
+                }]
             }
         },
         dojo: {
             prod: {
                 options: {
                     // You can also specify options to be used in all your tasks
-                    profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js'] // Profile for build
+                    profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js']
                 }
             },
             stage: {
                 options: {
                     // You can also specify options to be used in all your tasks
-                    profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js'] // Profile for build
+                    profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js']
                 }
             },
             options: {
                 // You can also specify options to be used in all your tasks
-                dojo: 'src/dojo/dojo.js', // Path to dojo.js file in dojo source
-                load: 'build', // Optional: Utility to bootstrap (Default: 'build')
+                // Path to dojo.js file in dojo source
+                dojo: 'src/dojo/dojo.js',
+                // Optional: Utility to bootstrap (Default: 'build')
+                load: 'build',
                 releaseDir: '../dist',
-                requires: ['src/app/packages.js', 'src/app/run.js'], // Optional: Module to require for the build (Default: nothing)
+                // Optional: Module to require for the build (Default: nothing)
+                requires: ['src/app/packages.js', 'src/app/run.js'],
                 basePath: './src'
             }
         },
@@ -302,15 +312,15 @@ module.exports = function (grunt) {
                 preserveComments: false,
                 sourceMap: true,
                 compress: {
-                    drop_console: true,
+                    drop_console: true, // eslint-disable-line camelcase
                     passes: 2,
-                    dead_code: true
+                    dead_code: true // eslint-disable-line camelcase
                 }
             },
             stage: {
                 options: {
                     compress: {
-                        drop_console: false
+                        drop_console: false // eslint-disable-line camelcase
                     }
                 },
                 src: ['dist/dojo/dojo.js'],
@@ -338,7 +348,7 @@ module.exports = function (grunt) {
             },
             src: {
                 files: jsFiles.concat(otherFiles),
-                options: { livereload: true }
+                options: {livereload: true}
             },
             stylus: {
                 files: 'src/app/**/*.styl',

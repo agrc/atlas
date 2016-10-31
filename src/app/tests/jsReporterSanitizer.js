@@ -13,6 +13,7 @@ define('app/tests/jsReporterSanitizer', function () {
                 return sanitize(s);
             });
         }
+
         return obj;
     };
     jasmine.getJSReport = function () {

@@ -68,10 +68,11 @@ require([
                 expect(infoWindow.show).toHaveBeenCalledWith(evt.mapPoint);
             });
             it('rounds utms to whole numbers and lat/longs to 5 decimal places', function () {
+                var decimalPlaces = 5;
                 expect(testWidget.utmX.innerHTML.split('.').length).toBe(1);
                 expect(testWidget.utmY.innerHTML.split('.').length).toBe(1);
-                expect(testWidget.lat.innerHTML.split('.')[1].length).toBe(5);
-                expect(testWidget.lng.innerHTML.split('.')[1].length).toBe(5);
+                expect(testWidget.lat.innerHTML.split('.')[1].length).toBe(decimalPlaces);
+                expect(testWidget.lng.innerHTML.split('.')[1].length).toBe(decimalPlaces);
             });
         });
         describe('clearValues', function () {

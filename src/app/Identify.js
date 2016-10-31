@@ -44,9 +44,12 @@ define([
 
             lang.mixin(this, params);
 
+            var width = 300;
+            var height = 400;
+
             this.map.on('click', lang.hitch(this, 'onMapClick'));
             this.map.infoWindow.setTitle('Map Click Information');
-            this.map.infoWindow.resize(300, 400);
+            this.map.infoWindow.resize(width, height);
         },
         postCreate: function () {
             // summary:
@@ -62,6 +65,7 @@ define([
                     function setCounty(data) {
                         if (!data) {
                             that.county.innerHTML = 'Outside of Utah';
+
                             return;
                         }
                         that.county.innerHTML = data[config.fieldNames.NAME];
@@ -72,6 +76,7 @@ define([
                     function setMuni(data) {
                         if (!data) {
                             that.municipality.innerHTML = 'Unincorporated';
+
                             return;
                         }
                         that.municipality.innerHTML = data[config.fieldNames.NAME];
@@ -82,6 +87,7 @@ define([
                     function setLandowner(data) {
                         if (!data) {
                             that.landOwner.innerHTML = 'Outside of Utah';
+
                             return;
                         }
                         that.landOwner.innerHTML = data[config.fieldNames.STATE_LGD];
@@ -92,9 +98,14 @@ define([
                     function setGrid(data) {
                         if (!data) {
                             that.nationalGrid.innerHTML = 'Outside of Utah';
+
                             return;
                         }
-                        var values = [data[config.fieldNames.GRID1Mil], data[config.fieldNames.GRIS100K], data.x, data.y];
+
+                        var values = [
+                            data[config.fieldNames.GRID1Mil],
+                            data[config.fieldNames.GRIS100K], data.x, data.y
+                        ];
                         that.nationalGrid.innerHTML = lang.replace('{0} {1} {2} {3}', values);
                     }
                 ], [
@@ -104,6 +115,7 @@ define([
                         if (!data) {
                             that.elevFeet.innerHTML = 'Outside of Utah';
                             that.elevMeters.innerHTML = 'Outside of Utah';
+
                             return;
                         }
                         that.elevFeet.innerHTML = data[config.fieldNames.FEET];
@@ -125,8 +137,9 @@ define([
 
             // lat/long coords
             var ll = proj4(config.wkt3857, config.wkt4326, lang.clone(evt.mapPoint));
-            this.lng.innerHTML = Math.round(ll.x * 100000) / 100000;
-            this.lat.innerHTML = Math.round(ll.y * 100000) / 100000;
+            var decimalPlaces = 100000;
+            this.lng.innerHTML = Math.round(ll.x * decimalPlaces) / decimalPlaces;
+            this.lat.innerHTML = Math.round(ll.y * decimalPlaces) / decimalPlaces;
 
             // utm coords
             var utm = proj4(config.wkt3857, config.wkt26912, lang.clone(evt.mapPoint));
@@ -149,10 +162,11 @@ define([
                     handleAs: 'json'
                 }).then(function (data) {
                     var f;
+                    var decimalLength = -5;
                     if (data.result.length > 0) {
                         f = lang.mixin(data.result[0].attributes || [], {
-                            x: that.utmX.innerHTML.slice(-5),
-                            y: that.utmY.innerHTML.slice(-5)
+                            x: that.utmX.innerHTML.slice(decimalLength),
+                            y: that.utmY.innerHTML.slice(decimalLength)
                         });
                     }
                     r[2](f);
@@ -176,12 +190,13 @@ define([
             // point: esri/geometry/point
             console.log('app/Identify::reverseGeocode', arguments);
 
+            var distanceInMeters = 50;
             var that = this;
             var url = lang.replace(config.urls.reverseGeocode, [point.x, point.y]);
             request(url, {
                 query: {
                     apiKey: config.apiKey,
-                    distance: 50
+                    distance: distanceInMeters
                 },
                 headers: {
                     'X-Requested-With': null
