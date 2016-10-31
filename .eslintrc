@@ -90,7 +90,7 @@
         no-underscore-dangle: "error",
         no-unneeded-ternary: "error",
         no-whitespace-before-property: "error",
-        object-curly-spacing: ["error", "never"],
+        object-curly-spacing: ["error", "always"],
         object-property-newline: "error",
         one-var-declaration-per-line: ["error", "always"],
         one-var: ["error", "never"],
