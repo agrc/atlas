@@ -16,6 +16,8 @@
   "license": "MIT",
   "devDependencies": {
     "dojo": "^1.11.2",
+    "eslint": "^3.9.0",
+    "eslint-plugin-html": "^1.5.5",
     "grunt": "^1.0.1",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-clean": "^1.0.0",
@@ -27,16 +29,16 @@
     "grunt-contrib-stylus": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-dojo": "^1",
+    "grunt-dojo": "^1.1.2",
     "grunt-eslint": "^19.0.0",
     "grunt-newer": "^1.1.2",
     "grunt-parallel": "^0.5.1",
-    "grunt-processhtml": "^0.4.0",
+    "grunt-processhtml": "^0.4.1",
     "grunt-saucelabs": "^9.0.0",
     "grunt-ssh": "^0",
     "grunt-verbosity": "^1.0.1",
     "load-grunt-tasks": "^3.5.1",
-    "uglify-js": "^2.7.3"
+    "uglify-js": "^2.7.4"
   },
   "scripts": {
     "test": "grunt travis -v"
