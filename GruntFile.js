@@ -1,4 +1,3 @@
-/* jshint camelcase:false */
 var osx = 'OS X 10.10';
 var windows = 'Windows 8.1';
 var browsers = [{
