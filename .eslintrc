@@ -6,9 +6,11 @@
         node: true
     },
     globals: {},
+    "plugins": [
+        "html"
+    ],
     extends: "eslint:recommended",
     rules: {
-        consistent-return: ["error", { "treatUndefinedAsUnspecified": true }],
         curly: "error",
         default-case: "error",
         dot-notation: ["error", { "allowPattern": "^[a-z]+(_[a-z]+)+$" }],
@@ -51,7 +53,6 @@
         no-unused-expressions: "error",
         no-useless-concat: "error",
         no-useless-escape: "error",
-        no-useless-return: "error",
         no-with: "error",
         radix: "error",
         wrap-iife: "error",
