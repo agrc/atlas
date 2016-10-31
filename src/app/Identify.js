@@ -64,7 +64,7 @@ define([
                             that.county.innerHTML = 'Outside of Utah';
                             return;
                         }
-                        that.county.innerHTML = data[config.fieldNames.NAME]
+                        that.county.innerHTML = data[config.fieldNames.NAME];
                     }
                 ], [
                     config.featureClassNames.municipalities,
@@ -74,7 +74,7 @@ define([
                             that.municipality.innerHTML = 'Unincorporated';
                             return;
                         }
-                        that.municipality.innerHTML = data[config.fieldNames.NAME]
+                        that.municipality.innerHTML = data[config.fieldNames.NAME];
                     }
                 ], [
                     config.featureClassNames.landOwnership,
@@ -84,7 +84,7 @@ define([
                             that.landOwner.innerHTML = 'Outside of Utah';
                             return;
                         }
-                        that.landOwner.innerHTML = data[config.fieldNames.STATE_LGD]
+                        that.landOwner.innerHTML = data[config.fieldNames.STATE_LGD];
                     }
                 ], [
                     config.featureClassNames.nationalGrid,
