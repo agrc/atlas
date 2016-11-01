@@ -5,7 +5,7 @@
   "homepage": "https://atlas.utah.gov",
   "repository": {
     "type": "git",
-    "url": "https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate.git"
+    "url": "https://github.com/agrc/atlas.git"
   },
   "keywords": [
     "esri",
