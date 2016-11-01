@@ -211,7 +211,7 @@ define([
                     quadWord: config.quadWord,
                     baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR']
                 }),
-                new Identify({map: this.map})
+                new Identify({ map: this.map })
             );
         }
     });

@@ -337,7 +337,7 @@ module.exports = function configure(grunt) {
         },
         verbosity: {
             main: {
-                options: {mode: 'normal'},
+                options: { mode: 'normal' },
                 tasks: ['saucelabs-jasmine']
             }
         },
@@ -348,7 +348,7 @@ module.exports = function configure(grunt) {
             },
             src: {
                 files: jsFiles.concat(otherFiles),
-                options: {livereload: true}
+                options: { livereload: true }
             },
             stylus: {
                 files: 'src/app/**/*.styl',
