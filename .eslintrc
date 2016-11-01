@@ -76,7 +76,6 @@
         indent: ["error", 4, { "SwitchCase": 1 }],
         key-spacing: ["error", { "afterColon": true }],
         keyword-spacing: ["error", { "after": true }],
-        line-comment-position: ["error", { "position": "above" }],
         max-len: ["error", 120],
         new-cap: "error",
         newline-before-return: "error",
