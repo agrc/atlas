@@ -107,7 +107,7 @@ define([
                     searchField: 'NAME',
                     placeHolder: 'place name...',
                     maxResultsToDisplay: 10,
-                    'class': 'first'
+                    class: 'first'
                 }, this.gnisNode),
                 new MagicZoom({
                     map: this.map,
@@ -211,7 +211,7 @@ define([
                     quadWord: config.quadWord,
                     baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR']
                 }),
-                new Identify({map: this.map})
+                new Identify({ map: this.map })
             );
         }
     });

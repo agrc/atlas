@@ -1,5 +1,5 @@
-/*eslint-disable no-unused-vars, no-undef */
-profile = {
+/* eslint-disable no-unused-vars, no-undef */
+var profile = {
     resourceTags: {
         test: function (mid) {
             return /\/Spec/.test(mid);
@@ -18,4 +18,3 @@ profile = {
         }
     }
 };
-/*eslint-enable no-unused-vars, no-undef */

@@ -1,4 +1,4 @@
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/agrc.svg)](https://saucelabs.com/u/agrc) [![Build Status](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate.svg?branch=master)](https://travis-ci.org/agrc/AGRCJavaScriptProjectBoilerPlate) [![Dependency Status](https://gemnasium.com/agrc/AGRCJavaScriptProjectBoilerPlate.svg)](https://gemnasium.com/agrc/AGRCJavaScriptProjectBoilerPlate)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/agrc.svg)](https://saucelabs.com/u/agrc) [![Build Status](https://travis-ci.org/agrc/atlas.svg?branch=master)](https://travis-ci.org/agrc/atlas) [![Dependency Status](https://gemnasium.com/agrc/atlas.svg)](https://gemnasium.com/agrc/atlas)
 
 AGRC JavaScript Project Boilerplate
 ===================================
@@ -10,8 +10,8 @@ Dojo config based heavily upon: [https://github.com/csnover/dojo-boilerplate](ht
 ## Step 1 - Boilerplate
 
 ```
-git clone https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate.git
-cd AGRCJavaScriptProjectBoilerPlate
+git clone https://github.com/agrc/atlas.git
+cd atlas
 npm install
 bower install
 ```
@@ -26,7 +26,7 @@ Run [`grunt`](http://gruntjs.com/) to automatically lint your files and run unit
 
 ## Step 3 - Optimize
 
-Check out [BUILD_STEPS.md](https://github.com/agrc/AGRCJavaScriptProjectBoilerPlate/blob/master/BUILD_STEPS.md) to prepare to run `grunt build-stage` or `grunt build-prod`. This will use the [dojo build system](http://dojotoolkit.org/reference-guide/build/) to create an optimized version of your app in the `dist` directory that you can then upload to your server.
+Check out [BUILD_STEPS.md](https://github.com/agrc/atlas/blob/master/BUILD_STEPS.md) to prepare to run `grunt build-stage` or `grunt build-prod`. This will use the [dojo build system](http://dojotoolkit.org/reference-guide/build/) to create an optimized version of your app in the `dist` directory that you can then upload to your server.
 
 ## Step 4 - Deploy
 

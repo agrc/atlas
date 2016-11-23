@@ -9,7 +9,7 @@ require([
             var obj = {
                 durationSec: 0.456,
                 passed: true,
-                suites: [{passed: true}]
+                suites: [{ passed: true }]
             };
 
             expect(jsReporterSanitizer(obj)).toEqual({

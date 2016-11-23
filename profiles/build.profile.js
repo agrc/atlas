@@ -1,4 +1,4 @@
-/*eslint-disable no-unused-vars*/
+/* eslint-disable no-unused-vars */
 var profile = {
     basePath: '../src',
     action: 'release',
@@ -37,10 +37,10 @@ var profile = {
           ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|html)/]
         ],
         resourceTags: {
-            amd: function () {
+            amd: function amd() {
                 return true;
             },
-            copyOnly: function () {
+            copyOnly: function copyOnly() {
                 return false;
             }
         }
@@ -53,7 +53,7 @@ var profile = {
           ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|templates)/]
         ],
         resourceTags: {
-            amd: function (filename, mid) {
+            amd: function amd(filename, mid) {
                 return /\.js$/.test(filename);
             }
         }
