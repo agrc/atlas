@@ -26,6 +26,12 @@ var profile = {
             customBase: true,
             boot: true
         },
+        'esri/layers/VectorTileLayerImpl': {
+            include: [
+                'esri/layers/VectorTileLayerImpl'
+            ],
+            includeLocales: ['en-us']
+        },
         'ijit/widgets/authentication/UserAdmin': {
             exclude: ['dojo/dojo']
         }
