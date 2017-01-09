@@ -39,10 +39,6 @@ require({
             name: 'spin',
             location: './spinjs',
             main: 'spin'
-        }, {
-            name: 'stubmodule',
-            location: './stubmodule',
-            main: 'src/stub-module'
         }
     ]
 });
