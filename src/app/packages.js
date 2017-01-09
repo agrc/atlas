@@ -3,10 +3,12 @@ require({
         'agrc',
         'app',
         'dgrid',
+        'dgrid1',
         'dgauges',
         'dijit',
         'dojo',
         'dojox',
+        'dstore',
         'esri',
         'ijit',
         'layer-selector',
@@ -37,10 +39,6 @@ require({
             name: 'spin',
             location: './spinjs',
             main: 'spin'
-        }, {
-            name: 'stubmodule',
-            location: './stubmodule',
-            main: 'src/stub-module'
         }
     ]
 });

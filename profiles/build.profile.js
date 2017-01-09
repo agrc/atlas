@@ -15,6 +15,7 @@ var profile = {
                 'app/packages',
                 'app/run',
                 'app/App',
+                'esri/layers/VectorTileLayerImpl',
                 'dojox/gfx/filters',
                 'dojox/gfx/path',
                 'dojox/gfx/svg',
@@ -80,10 +81,5 @@ var profile = {
     },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri', 'layer-selector']
-    },
-    map: {
-        '*': {
-            'dojox/dgauges': 'dgauges'
-        }
     }
 };

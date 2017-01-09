@@ -14,6 +14,7 @@ src/bootstrap/
 src/components-jasmine/
 src/dgauges/
 src/dgrid/
+src/dgrid1/
 src/dijit/
 src/dojo/
 src/dojo-themes/
