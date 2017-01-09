@@ -15,6 +15,7 @@ var profile = {
                 'app/packages',
                 'app/run',
                 'app/App',
+                'esri/layers/VectorTileLayerImpl',
                 'dojox/gfx/filters',
                 'dojox/gfx/path',
                 'dojox/gfx/svg',
@@ -25,12 +26,6 @@ var profile = {
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
-        },
-        'esri/layers/VectorTileLayerImpl': {
-            include: [
-                'esri/layers/VectorTileLayerImpl'
-            ],
-            includeLocales: ['en-us']
         },
         'ijit/widgets/authentication/UserAdmin': {
             exclude: ['dojo/dojo']
