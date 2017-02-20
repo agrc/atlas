@@ -22,7 +22,6 @@ var profile = {
                 'dojox/gfx/svgext',
                 'dojox/gfx/shape'
             ],
-            targetStylesheet: 'app/resources/App.css',
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
@@ -75,9 +74,6 @@ var profile = {
 
         // We aren’t loading tests in production
         'dojo-test-sniff': 0
-    },
-    plugins: {
-        'xstyle/css': 'xstyle/build/amd-css'
     },
     userConfig: {
         packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri', 'layer-selector', 'sherlock']
