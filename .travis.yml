@@ -1,13 +1,10 @@
 language: node_js
 node_js:
-    - "4.2"
+    - "node"
 before_install:
-    - npm install -g grunt-cli
-    - npm install -g bower
-    - npm install -g npm
+    - yarn global add grunt-cli
+    - yarn global add bower
     - bower install
-    - npm update
-    - bower update
 notifications:
     email:
         on_success: change
@@ -17,3 +14,5 @@ env:
         - secure: UEXAYK3f2bGw7YmWsMlpAydto7sYu+qd9sUA6J3qvXH+QEan6fc8Yo831hYfsUe66WW6Oz4vp2BwE/r+gQBjJgqpxyq1N4T/7b6p1x7KUwXms6rM8GZfswfUOdlTkIzlWwXyAsnSCuqUlfuT5lKsHi5yurDBgTMVWcSAdi0BQjc=
         - secure: Ir46Mp7v2T1QLfuVRzZbCQ1NrLj8q8kiVzAgNsNDeuuBZGlOLJSfOeZ4zbOy/FdXe0iUSw/K5eGaSIKyQdoDJiNdXAm3tOWo0TOfwc0VIvWLEABYcLNxFiHVO7Ju+hUJKFwJgmOo39fmsi63gYNDrEw5+naOB5FQZgCkRO8oCg==
 sudo: false
+cache:
+    yarn: true
