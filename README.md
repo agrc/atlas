@@ -1,4 +1,4 @@
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/agrc.svg)](https://saucelabs.com/u/agrc) [![Build Status](https://travis-ci.org/agrc/atlas.svg?branch=master)](https://travis-ci.org/agrc/atlas) [![Dependency Status](https://gemnasium.com/agrc/atlas.svg)](https://gemnasium.com/agrc/atlas)
+[![Build Status](https://travis-ci.org/agrc/atlas.svg?branch=master)](https://travis-ci.org/agrc/atlas) [![Dependency Status](https://gemnasium.com/agrc/atlas.svg)](https://gemnasium.com/agrc/atlas)
 
 AGRC JavaScript Project Boilerplate
 ===================================

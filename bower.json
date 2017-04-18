@@ -22,6 +22,7 @@
     "esri": "~3.19.0",
     "dgrid": "0.3.17/esri-3.14.0",
     "xstyle": "v0.3.2",
-    "dstore": "v1.1.1"
+    "dstore": "v1.1.1",
+    "dojo-themes": "1.12.1"
   }
 }

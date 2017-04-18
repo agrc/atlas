@@ -34,11 +34,10 @@
     "grunt-newer": "^1.1.2",
     "grunt-parallel": "^0.5.1",
     "grunt-processhtml": "^0.4.1",
-    "grunt-saucelabs": "^9.0.0",
     "grunt-ssh": "^0",
-    "grunt-verbosity": "^1.0.1",
     "load-grunt-tasks": "^3.5.1",
-    "uglify-js": "^2.7.4"
+    "uglify-js": "^2.7.4",
+    "phantomjs-prebuilt": "^2.1.7"
   },
   "scripts": {
     "test": "grunt travis -v"
