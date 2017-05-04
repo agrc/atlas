@@ -27,13 +27,20 @@ acorn@^5.0.1:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.0.3.tgz#c460df08491463f028ccb82eab3730bf01087b3d"
 
+agent-base@2:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-2.0.1.tgz#bd8f9e86a8eb221fffa07bd14befd55df142815e"
+  dependencies:
+    extend "~3.0.0"
+    semver "~5.0.1"
+
 ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
 ajv@^4.7.0, ajv@^4.9.1:
-  version "4.11.7"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.7.tgz#8655a5d86d0824985cc471a1d913fb6729a0ec48"
+  version "4.11.8"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
   dependencies:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
@@ -90,11 +97,19 @@ archiver@^1.0.0:
     zip-stream "^1.1.0"
 
 are-we-there-yet@~1.1.2:
+<<<<<<< HEAD
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.2.tgz#80e470e95a084794fe1899262c5667c6e88de1b3"
   dependencies:
     delegates "^1.0.0"
     readable-stream "^2.0.0 || ^1.1.13"
+=======
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.4.tgz#bb5dca382bb94f05e15194373d16fd3ba1ca110d"
+  dependencies:
+    delegates "^1.0.0"
+    readable-stream "^2.0.6"
+>>>>>>> update bower & npm dependencies
 
 argparse@^1.0.2, argparse@^1.0.7:
   version "1.0.9"
@@ -159,8 +174,13 @@ async@1.5.2, async@>=1.0.0, async@^1.5.0, async@^1.5.2, async@~1.5.2:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
 async@^2.0.0:
+<<<<<<< HEAD
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.3.0.tgz#1013d1051047dd320fe24e494d5c66ecaf6147d9"
+=======
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.4.0.tgz#4990200f18ea5b837c2cc4f8c031a6985c385611"
+>>>>>>> update bower & npm dependencies
   dependencies:
     lodash "^4.14.0"
 
@@ -251,8 +271,13 @@ bin-wrapper@^3.0.0:
     os-filter-obj "^1.0.0"
 
 bl@^1.0.0:
+<<<<<<< HEAD
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/bl/-/bl-1.2.0.tgz#1397e7ec42c5f5dc387470c500e34a9f6be9ea98"
+=======
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/bl/-/bl-1.2.1.tgz#cac328f7bee45730d404b692203fcb590e172d5e"
+>>>>>>> update bower & npm dependencies
   dependencies:
     readable-stream "^2.0.5"
 
@@ -495,11 +520,19 @@ connect-livereload@^0.5.0:
   resolved "https://registry.yarnpkg.com/connect-livereload/-/connect-livereload-0.5.4.tgz#80157d1371c9f37cc14039ab1895970d119dc3bc"
 
 connect@^3.4.0:
+<<<<<<< HEAD
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/connect/-/connect-3.6.0.tgz#f09a4f7dcd17324b663b725c815bdb1c4158a46e"
   dependencies:
     debug "2.6.1"
     finalhandler "1.0.0"
+=======
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/connect/-/connect-3.6.1.tgz#b7760693a74f0454face1d9378edb3f885b43227"
+  dependencies:
+    debug "2.6.3"
+    finalhandler "1.0.1"
+>>>>>>> update bower & npm dependencies
     parseurl "~1.3.1"
     utils-merge "1.0.0"
 
@@ -586,11 +619,19 @@ dateformat@~1.0.12:
     get-stdin "^4.0.1"
     meow "^3.3.0"
 
+<<<<<<< HEAD
 debug@*, debug@^2.1.1, debug@^2.2.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
     ms "0.7.2"
+=======
+debug@*, debug@2, debug@^2.1.1, debug@^2.2.0:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.6.tgz#a9fa6fbe9ca43cf1e79f73b75c0189cbb7d6db5a"
+  dependencies:
+    ms "0.7.3"
+>>>>>>> update bower & npm dependencies
 
 debug@0.7.4:
   version "0.7.4"
@@ -602,6 +643,21 @@ debug@2.6.1:
   dependencies:
     ms "0.7.2"
 
+<<<<<<< HEAD
+=======
+debug@2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
+  dependencies:
+    ms "0.7.2"
+
+debug@2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
+  dependencies:
+    ms "0.7.3"
+
+>>>>>>> update bower & npm dependencies
 debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
@@ -741,8 +797,13 @@ domhandler@^2.3.0:
     domelementtype "1"
 
 domutils@^1.5.1:
+<<<<<<< HEAD
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
+=======
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.6.0.tgz#853de07f013287f976b7fe0461740222ea14ecbb"
+>>>>>>> update bower & npm dependencies
   dependencies:
     dom-serializer "0"
     domelementtype "1"
@@ -955,8 +1016,13 @@ eslint@^3.0.0, eslint@^3.9.1:
     user-home "^2.0.0"
 
 espree@^3.4.0:
+<<<<<<< HEAD
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.4.1.tgz#28a83ab4aaed71ed8fe0f5efe61b76a05c13c4d2"
+=======
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/espree/-/espree-3.4.2.tgz#38dbdedbedc95b8961a1fbf04734a8f6a9c8c592"
+>>>>>>> update bower & npm dependencies
   dependencies:
     acorn "^5.0.1"
     acorn-jsx "^3.0.0"
@@ -1051,9 +1117,15 @@ extend-shallow@^2.0.1:
   dependencies:
     is-extendable "^0.1.0"
 
+<<<<<<< HEAD
 extend@^3.0.0, extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
+=======
+extend@3, extend@^3.0.0, extend@~3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
+>>>>>>> update bower & npm dependencies
 
 extglob@^0.3.1:
   version "0.3.2"
@@ -1097,6 +1169,16 @@ fd-slicer@~1.0.1:
   dependencies:
     pend "~1.2.0"
 
+<<<<<<< HEAD
+=======
+fg-lodash@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/fg-lodash/-/fg-lodash-0.0.2.tgz#988352537f427da6af222129bb63acca49e62fa3"
+  dependencies:
+    lodash "^2.4.1"
+    underscore.string "~2.3.3"
+
+>>>>>>> update bower & npm dependencies
 figures@^1.0.1, figures@^1.3.5:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-1.7.0.tgz#cbe1e3affcf1cd44b80cadfed28dc793a9701d2e"
@@ -1120,8 +1202,13 @@ file-type@^3.1.0:
   resolved "https://registry.yarnpkg.com/file-type/-/file-type-3.9.0.tgz#257a078384d1db8087bc449d107d52a52672b9e9"
 
 filename-regex@^2.0.0:
+<<<<<<< HEAD
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.0.tgz#996e3e80479b98b9897f15a8a58b3d084e926775"
+=======
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
+>>>>>>> update bower & npm dependencies
 
 filename-reserved-regex@^1.0.0:
   version "1.0.0"
@@ -1145,11 +1232,19 @@ fill-range@^2.1.0:
     repeat-element "^1.1.2"
     repeat-string "^1.5.2"
 
+<<<<<<< HEAD
 finalhandler@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.0.0.tgz#b5691c2c0912092f18ac23e9416bde5cd7dc6755"
   dependencies:
     debug "2.6.1"
+=======
+finalhandler@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.0.1.tgz#bcd15d1689c0e5ed729b6f7f541a6df984117db8"
+  dependencies:
+    debug "2.6.3"
+>>>>>>> update bower & npm dependencies
     encodeurl "~1.0.1"
     escape-html "~1.0.3"
     on-finished "~2.3.0"
@@ -1248,8 +1343,13 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
     rimraf "2"
 
 gauge@~2.7.1:
+<<<<<<< HEAD
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.3.tgz#1c23855f962f17b3ad3d0dc7443f304542edfe09"
+=======
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
+>>>>>>> update bower & npm dependencies
   dependencies:
     aproba "^1.0.3"
     console-control-strings "^1.0.0"
@@ -1291,8 +1391,13 @@ getobject@~0.1.0:
   resolved "https://registry.yarnpkg.com/getobject/-/getobject-0.1.0.tgz#047a449789fa160d018f5486ed91320b6ec7885c"
 
 getpass@^0.1.1:
+<<<<<<< HEAD
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.6.tgz#283ffd9fc1256840875311c1b60e8c40187110e6"
+=======
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
+>>>>>>> update bower & npm dependencies
   dependencies:
     assert-plus "^1.0.0"
 
@@ -1606,6 +1711,20 @@ grunt-processhtml@^0.4.1:
     htmlprocessor "^0.2.4"
     lodash.clonedeep "^4.3.2"
 
+<<<<<<< HEAD
+=======
+grunt-saucelabs@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/grunt-saucelabs/-/grunt-saucelabs-9.0.0.tgz#d688025a05501decac0a9e129dd4e4f50a42014a"
+  dependencies:
+    colors "~1.1.2"
+    lodash "~4.13.1"
+    q "~1.4.1"
+    requestretry "~1.9.0"
+    sauce-tunnel "~2.5.0"
+    saucelabs "~1.2.0"
+
+>>>>>>> update bower & npm dependencies
 grunt-ssh@^0:
   version "0.12.9"
   resolved "https://registry.yarnpkg.com/grunt-ssh/-/grunt-ssh-0.12.9.tgz#21551a373981f0ea28dc799d38a769e54cd4d904"
@@ -1614,6 +1733,13 @@ grunt-ssh@^0:
     progress "~1.1.3"
     ssh2 "~0.4.6"
 
+<<<<<<< HEAD
+=======
+grunt-verbosity@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/grunt-verbosity/-/grunt-verbosity-1.0.1.tgz#77b3499ce19a1a37bb314eefb7869cfc3cad1f83"
+
+>>>>>>> update bower & npm dependencies
 grunt@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.0.1.tgz#e8778764e944b18f32bb0f10b9078475c9dfb56b"
@@ -1811,17 +1937,37 @@ http2@^3.3.4:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/http2/-/http2-3.3.6.tgz#7df06227e02b5b5a5841deea08239b3198d04bec"
 
+<<<<<<< HEAD
+=======
+https-proxy-agent@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-1.0.0.tgz#35f7da6c48ce4ddbfa264891ac593ee5ff8671e6"
+  dependencies:
+    agent-base "2"
+    debug "2"
+    extend "3"
+
+>>>>>>> update bower & npm dependencies
 iconv-lite@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
 
 iconv-lite@~0.4.13:
+<<<<<<< HEAD
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
 
 ignore@^3.2.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.7.tgz#4810ca5f1d8eca5595213a34b94f2eb4ed926bbd"
+=======
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.17.tgz#4fdaa3b38acbc2c031b045d0edcdfe1ecab18c8d"
+
+ignore@^3.2.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.0.tgz#3812d22cbe9125f2c2b4915755a1b8abd745a001"
+>>>>>>> update bower & npm dependencies
 
 iltorb@^1.0.13:
   version "1.2.1"
@@ -1923,8 +2069,13 @@ inquirer@^0.12.0:
     through "^2.3.6"
 
 interpret@^1.0.0:
+<<<<<<< HEAD
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.2.tgz#f4f623f0bb7122f15f5717c8e254b8161b5c5b2d"
+=======
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.3.tgz#cbc35c62eeee73f19ab7b10a801511401afc0f90"
+>>>>>>> update bower & npm dependencies
 
 ip-regex@^1.0.1:
   version "1.0.3"
@@ -1940,7 +2091,11 @@ is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
 
+<<<<<<< HEAD
 is-buffer@^1.0.2:
+=======
+is-buffer@^1.1.5:
+>>>>>>> update bower & npm dependencies
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
 
@@ -2225,10 +2380,17 @@ kew@~0.7.0:
   resolved "https://registry.yarnpkg.com/kew/-/kew-0.7.0.tgz#79d93d2d33363d6fdd2970b335d9141ad591d79b"
 
 kind-of@^3.0.2:
+<<<<<<< HEAD
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.1.0.tgz#475d698a5e49ff5e53d14e3e732429dc8bf4cf47"
   dependencies:
     is-buffer "^1.0.2"
+=======
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.0.tgz#b58abe4d5c044ad33726a8c1525b48cf891bff07"
+  dependencies:
+    is-buffer "^1.1.5"
+>>>>>>> update bower & npm dependencies
 
 klaw@^1.0.0:
   version "1.3.1"
@@ -2367,6 +2529,13 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
+<<<<<<< HEAD
+=======
+lodash@^2.4.1, lodash@~2.4.1:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
+
+>>>>>>> update bower & npm dependencies
 lodash@^3.10.1, lodash@~3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
@@ -2375,9 +2544,15 @@ lodash@^4.0.0, lodash@^4.14.0, lodash@^4.3.0, lodash@^4.7.0, lodash@^4.8.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
+<<<<<<< HEAD
 lodash@~2.4.1:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
+=======
+lodash@~4.13.1:
+  version "4.13.1"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.13.1.tgz#83e4b10913f48496d4d16fec4a560af2ee744b68"
+>>>>>>> update bower & npm dependencies
 
 lodash@~4.16.4:
   version "4.16.6"
@@ -2540,6 +2715,17 @@ ms@0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
+<<<<<<< HEAD
+=======
+ms@0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
+
+ms@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-1.0.0.tgz#59adcd22edc543f7b5381862d31387b1f4bc9473"
+
+>>>>>>> update bower & npm dependencies
 multimatch@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-2.1.0.tgz#9c7906a22fb4c02919e2f5f75161b4cdbd4b2a2b"
@@ -2609,8 +2795,13 @@ nopt@~3.0.6:
     abbrev "1"
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
+<<<<<<< HEAD
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.3.6.tgz#498fa420c96401f787402ba21e600def9f981fff"
+=======
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.3.8.tgz#d819eda2a9dedbd1ffa563ea4071d936782295bb"
+>>>>>>> update bower & npm dependencies
   dependencies:
     hosted-git-info "^2.1.4"
     is-builtin-module "^1.0.0"
@@ -2802,7 +2993,11 @@ performance-now@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
+<<<<<<< HEAD
 phantomjs-prebuilt@^2.1.3, phantomjs-prebuilt@^2.1.7:
+=======
+phantomjs-prebuilt@^2.1.3:
+>>>>>>> update bower & npm dependencies
   version "2.1.14"
   resolved "https://registry.yarnpkg.com/phantomjs-prebuilt/-/phantomjs-prebuilt-2.1.14.tgz#d53d311fcfb7d1d08ddb24014558f1188c516da0"
   dependencies:
@@ -2883,7 +3078,11 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+<<<<<<< HEAD
 q@^1.1.2:
+=======
+q@^1.1.2, q@~1.4.1:
+>>>>>>> update bower & npm dependencies
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.4.1.tgz#55705bcd93c5f3673530c2c2cbc0c2b3addc286e"
 
@@ -2966,7 +3165,11 @@ read-pkg@^1.0.0:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
+<<<<<<< HEAD
 readable-stream@^2.0.0, "readable-stream@^2.0.0 || ^1.1.13", readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2:
+=======
+readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2:
+>>>>>>> update bower & npm dependencies
   version "2.2.9"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.9.tgz#cf78ec6f4a6d1eb43d26488cac97f042e74b7fc8"
   dependencies:
@@ -3054,7 +3257,11 @@ request-progress@~2.0.1:
   dependencies:
     throttleit "^1.0.0"
 
+<<<<<<< HEAD
 request@^2.81.0:
+=======
+request@^2.72.0, request@^2.74.x, request@^2.81.0:
+>>>>>>> update bower & npm dependencies
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:
@@ -3106,6 +3313,18 @@ request@~2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
+<<<<<<< HEAD
+=======
+requestretry@~1.9.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/requestretry/-/requestretry-1.9.1.tgz#0a2a004eaf211969c4cc2cfebf3fe9e57b92c74e"
+  dependencies:
+    extend "^3.0.0"
+    fg-lodash "0.0.2"
+    request "^2.74.x"
+    when "~3.7.5"
+
+>>>>>>> update bower & npm dependencies
 require-uncached@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/require-uncached/-/require-uncached-1.0.3.tgz#4e0d56d6c9662fd31e43011c4b95aa49955421d3"
@@ -3162,6 +3381,23 @@ safe-buffer@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
 
+<<<<<<< HEAD
+=======
+sauce-tunnel@~2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/sauce-tunnel/-/sauce-tunnel-2.5.0.tgz#0ee4c4ff9b47e013e8b072cbfac495b7fed8e8eb"
+  dependencies:
+    chalk "^1.1.3"
+    request "^2.72.0"
+    split "^1.0.0"
+
+saucelabs@~1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/saucelabs/-/saucelabs-1.2.0.tgz#5e80476b36da1b42d10f39707e9af2a53b03d88a"
+  dependencies:
+    https-proxy-agent "^1.0.0"
+
+>>>>>>> update bower & npm dependencies
 sax@0.5.x:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/sax/-/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
@@ -3194,11 +3430,23 @@ semver@^4.0.3:
   version "4.3.6"
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
 
+<<<<<<< HEAD
 send@0.15.1:
   version "0.15.1"
   resolved "https://registry.yarnpkg.com/send/-/send-0.15.1.tgz#8a02354c26e6f5cca700065f5f0cdeba90ec7b5f"
   dependencies:
     debug "2.6.1"
+=======
+semver@~5.0.1:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.0.3.tgz#77466de589cd5d3c95f138aa78bc569a3cb5d27a"
+
+send@0.15.2:
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/send/-/send-0.15.2.tgz#f91fab4403bcf87e716f70ceb5db2f578bdc17d6"
+  dependencies:
+    debug "2.6.4"
+>>>>>>> update bower & npm dependencies
     depd "~1.1.0"
     destroy "~1.0.4"
     encodeurl "~1.0.1"
@@ -3207,7 +3455,11 @@ send@0.15.1:
     fresh "0.5.0"
     http-errors "~1.6.1"
     mime "1.3.4"
+<<<<<<< HEAD
     ms "0.7.2"
+=======
+    ms "1.0.0"
+>>>>>>> update bower & npm dependencies
     on-finished "~2.3.0"
     range-parser "~1.2.0"
     statuses "~1.3.1"
@@ -3225,13 +3477,22 @@ serve-index@^1.7.1:
     parseurl "~1.3.1"
 
 serve-static@^1.10.0:
+<<<<<<< HEAD
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.12.1.tgz#7443a965e3ced647aceb5639fa06bf4d1bbe0039"
+=======
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.12.2.tgz#e546e2726081b81b4bcec8e90808ebcdd323afba"
+>>>>>>> update bower & npm dependencies
   dependencies:
     encodeurl "~1.0.1"
     escape-html "~1.0.3"
     parseurl "~1.3.1"
+<<<<<<< HEAD
     send "0.15.1"
+=======
+    send "0.15.2"
+>>>>>>> update bower & npm dependencies
 
 set-blocking@~2.0.0:
   version "2.0.0"
@@ -3299,6 +3560,15 @@ spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
 
+<<<<<<< HEAD
+=======
+split@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/split/-/split-1.0.0.tgz#c4395ce683abcd254bc28fe1dabb6e5c27dcffae"
+  dependencies:
+    through "2"
+
+>>>>>>> update bower & npm dependencies
 sprintf-js@~1.0.2, sprintf-js@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
@@ -3563,7 +3833,11 @@ through2@^2.0.0, through2@~2.0.0:
     readable-stream "^2.1.5"
     xtend "~4.0.1"
 
+<<<<<<< HEAD
 through@^2.3.6:
+=======
+through@2, through@^2.3.6:
+>>>>>>> update bower & npm dependencies
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
@@ -3654,6 +3928,13 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
+<<<<<<< HEAD
+=======
+underscore.string@~2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-2.3.3.tgz#71c08bf6b428b1133f37e78fa3a21c82f7329b0d"
+
+>>>>>>> update bower & npm dependencies
 underscore.string@~3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-3.2.3.tgz#806992633665d5e5fcb4db1fb3a862eb68e9e6da"
@@ -3800,6 +4081,13 @@ websocket-extensions@>=0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.1.tgz#76899499c184b6ef754377c2dbb0cd6cb55d29e7"
 
+<<<<<<< HEAD
+=======
+when@~3.7.5:
+  version "3.7.8"
+  resolved "https://registry.yarnpkg.com/when/-/when-3.7.8.tgz#c7130b6a7ea04693e842cdc9e7a1f2aa39a39f82"
+
+>>>>>>> update bower & npm dependencies
 whet.extend@~0.9.9:
   version "0.9.9"
   resolved "https://registry.yarnpkg.com/whet.extend/-/whet.extend-0.9.9.tgz#f877d5bf648c97e5aa542fadc16d6a259b9c11a1"

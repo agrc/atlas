@@ -5,7 +5,7 @@
     "agrc": "agrc-widgets#6.0.2",
     "agrc-jasmine-matchers": "~0.1.0",
     "bootstrap": "3.3.6",
-    "esri": "arcgis-js-api#~3.23.0",
+    "esri": "arcgis-js-api#~4.3",
     "ijit": "agrc-ijit#3.1.3",
     "jasmine-favicon-reporter": "*",
     "stubmodule": "^0.6",
@@ -14,7 +14,7 @@
     "layer-selector": "agrc-layer-selector#~1.1.1"
   },
   "resolutions": {
-    "esri": "~3.23.0",
+    "esri": "~4.3",
     "dgrid": "0.3.17/esri-3.20.0",
     "xstyle": "0.3.2",
     "dojo": "v1.13.0/esri-3.23.0",
