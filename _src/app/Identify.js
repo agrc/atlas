@@ -34,8 +34,8 @@ define([
 
         // Properties to be sent into constructor
 
-        // map: esri/map
-        map: null,
+        // map: esri/views/MapView
+        mapView: null,
 
         constructor: function (params) {
             // summary:
@@ -44,19 +44,15 @@ define([
 
             lang.mixin(this, params);
 
-            var width = 300;
-            var height = 400;
-
-            this.map.on('click', lang.hitch(this, 'onMapClick'));
-            this.map.infoWindow.setTitle('Map Click Information');
-            this.map.infoWindow.resize(width, height);
+            this.mapView.on('click', lang.hitch(this, 'onMapClick'));
+            this.mapView.popup.title = 'Map Click Information';
         },
         postCreate: function () {
             // summary:
             //      description
             console.log('app/Identify:postCreate', arguments);
 
-            this.map.infoWindow.setContent(this.domNode);
+            this.mapView.popup.content = this.domNode;
             var that = this;
             this.requests = [
                 [
@@ -133,16 +129,18 @@ define([
             var that = this;
 
             this.clearValues();
-            this.map.infoWindow.show(evt.mapPoint);
+            this.mapView.popup.open({
+                location: evt.mapPoint
+            });
 
             // lat/long coords
-            var ll = proj4(config.wkt3857, config.wkt4326, lang.clone(evt.mapPoint));
+            var ll = proj4(config.wkt3857, config.wkt4326, evt.mapPoint.toJSON());
             var decimalPlaces = 100000;
             this.lng.innerHTML = Math.round(ll.x * decimalPlaces) / decimalPlaces;
             this.lat.innerHTML = Math.round(ll.y * decimalPlaces) / decimalPlaces;
 
             // utm coords
-            var utm = proj4(config.wkt3857, config.wkt26912, lang.clone(evt.mapPoint));
+            var utm = proj4(config.wkt3857, config.wkt26912, evt.mapPoint.toJSON());
             var utmx = Math.round(utm.x);
             var utmy = Math.round(utm.y);
             this.utmX.innerHTML = utmx;

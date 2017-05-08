@@ -4,7 +4,7 @@ module.exports = function configure(grunt) {
     var jsAppFiles = '_src/app/**/*.js';
     var otherFiles = [
         '_src/app/**/*.html',
-        '_src/app/**/*.css',
+        '_src/app/**/*.styl',
         'src/index.html',
         'src/ChangeLog.html'
     ];

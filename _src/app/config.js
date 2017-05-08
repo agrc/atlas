@@ -35,6 +35,10 @@ define([
         // acquire at developer.mapserv.utah.gov
         apiKey: '',
 
+        // exportWebMapUrl: String
+        //      print task url
+        exportWebMapUrl: 'http://localhost/arcgis/rest/services/Print/GPServer/PrintProxy',
+
         // wkt26912: String
         //      The well known text for utm zone 12 nad83 for use with proj4
         /* eslint-disable max-len */

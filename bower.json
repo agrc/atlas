@@ -11,7 +11,8 @@
     "stubmodule": "^0.6",
     "proj4": "2.4.4",
     "jasmine-jsreporter": "^0.1.2",
-    "layer-selector": "agrc-layer-selector#~1.1.1"
+    "layer-selector": "agrc-layer-selector#4.x",
+    "map-tools": "agrc-map-tools#map-view"
   },
   "resolutions": {
     "esri": "~4.3",

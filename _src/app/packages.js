@@ -11,6 +11,7 @@ require({
         'esri',
         'ijit',
         'layer-selector',
+        'map-tools',
         'moment',
         'put-selector',
         'xstyle',
