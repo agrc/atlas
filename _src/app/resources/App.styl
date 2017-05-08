@@ -1,6 +1,6 @@
 @import 'nib';
 @import '../../dijit/themes/claro/claro.css';
-@import '../../esri/css/esri.css';
+@import '../../esri/css/main.css';
 @import '../../bootstrap/dist/css/bootstrap.css';
 @import '../../agrc/resources/map/BaseMap.css';
 @import '../../ijit/themes/standard/layout/SideBarToggler.css';
@@ -11,6 +11,7 @@
 @import 'Identify';
 
 $side-bar-width = 300px
+$side-bar-padding = 10px
 $container-margin = 5px
 
 body, html, .app
@@ -25,7 +26,7 @@ body, html, .app
     .container-with-border
         border 1px solid #b5bcc7
 
-/* TITLE PANE */
+    /* TITLE PANE */
     .title-container
         position absolute
         top $container-margin
@@ -66,9 +67,14 @@ body, html, .app
         .magic-zoom.first
             z-index 27
     .side-bar-padder
-        padding 10px
+        padding $side-bar-padding
         width $side-bar-width
         margin -1px
+    .esri-print
+        width $side-bar-width - $side-bar-padding * 2
+        padding 0
+        header
+            font-size 18px
 
     /* CENTER (MAP) */
     .center-container

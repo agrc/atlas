@@ -19,13 +19,16 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
 
-    'esri/dijit/Print',
     'esri/geometry/Extent',
-    'esri/layers/FeatureLayer',
+    'esri/Map',
+    'esri/views/MapView',
+    'esri/widgets/Print',
 
     'ijit/widgets/layout/SideBarToggler',
 
-    'layer-selector'
+    'layer-selector',
+
+    'map-tools/MapView'
 ], function (
     config,
     Identify,
@@ -47,13 +50,16 @@ define([
     declare,
     lang,
 
-    Print,
     Extent,
-    FeatureLayer,
+    Map,
+    MapView,
+    Print,
 
     SideBarToggler,
 
-    BaseMapSelector
+    LayerSelector,
+
+    AGRCMapView
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -90,56 +96,59 @@ define([
 
             this.initMap();
 
-            this.childWidgets.push(
-                new SideBarToggler({
-                    sidebar: this.sideBar,
-                    map: this.map,
-                    centerContainer: this.centerContainer
-                }, this.sidebarToggle),
-                new FindAddress({
-                    map: this.map,
-                    apiKey: config.apiKey,
-                    zoomLevel: 17,
-                    wkid: 3857
-                }, this.geocodeNode),
-                new MagicZoom({
-                    map: this.map,
-                    apiKey: config.apiKey,
-                    wkid: 3857,
-                    searchField: 'NAME',
-                    placeHolder: 'place name...',
-                    maxResultsToDisplay: 10,
-                    class: 'first'
-                }, this.gnisNode),
-                new MagicZoom({
-                    map: this.map,
-                    apiKey: config.apiKey,
-                    searchLayer: 'SGID10.Boundaries.Municipalities',
-                    searchField: 'NAME',
-                    placeHolder: 'city name...',
-                    wkid: 3857,
-                    maxResultsToDisplay: 10
-                }, this.cityNode),
+            this.mapView.then(() => {
+                this.childWidgets.push(
+                    new SideBarToggler({
+                        sidebar: this.sideBar,
+                        map: this.map,
+                        centerContainer: this.centerContainer
+                    }, this.sidebarToggle),
+                    // new FindAddress({
+                    //     map: this.map,
+                    //     apiKey: config.apiKey,
+                    //     zoomLevel: 17,
+                    //     wkid: 3857
+                    // }, this.geocodeNode),
+                    // new MagicZoom({
+                    //     map: this.map,
+                    //     apiKey: config.apiKey,
+                    //     wkid: 3857,
+                    //     searchField: 'NAME',
+                    //     placeHolder: 'place name...',
+                    //     maxResultsToDisplay: 10,
+                    //     class: 'first'
+                    // }, this.gnisNode),
+                    // new MagicZoom({
+                    //     map: this.map,
+                    //     apiKey: config.apiKey,
+                    //     searchLayer: 'SGID10.Boundaries.Municipalities',
+                    //     searchField: 'NAME',
+                    //     placeHolder: 'city name...',
+                    //     wkid: 3857,
+                    //     maxResultsToDisplay: 10
+                    // }, this.cityNode),
+                );
                 this.printer = new Print({
-                    map: this.map,
-                    url: config.urls.printProxy,
-                    templates: [{
-                        label: 'Portrait (PDF)',
-                        format: 'PDF',
-                        layout: 'Letter ANSI A Portrait',
-                        options: {
-                            legendLayers: []
-                        }
-                    }, {
-                        label: 'Landscape (PDF)',
-                        format: 'PDF',
-                        layout: 'Letter ANSI A Landscape',
-                        options: {
-                            legendLayers: []
-                        }
-                    }]
-                }, this.printDiv)
-            );
+                    container: this.printDiv,
+                    view: this.mapView,
+                    printServiceUrl: config.exportWebMapUrl
+                    // templates: [{
+                    //     label: 'Portrait (PDF)',
+                    //     format: 'PDF',
+                    //     layout: 'Letter ANSI A Portrait',
+                    //     options: {
+                    //         legendLayers: []
+                    //     }
+                    // }, {
+                    //     label: 'Landscape (PDF)',
+                    //     format: 'PDF',
+                    //     layout: 'Letter ANSI A Landscape',
+                    //     options: {
+                    //         legendLayers: []
+                    //     }
+                    // }]
+                });
+            });
 
             this.printer.extraParams = {
                 'ExportWebMapService_URL': config.urls.exportWebMap // eslint-disable-line
@@ -168,10 +177,6 @@ define([
                 widget.startup();
             });
 
-            this.printer.on('print-complete', function () {
-                domStyle.set(that.popupBlockerBlurb, 'display', 'block');
-            });
-
             this.inherited(arguments);
         },
         showLevel: function () {
@@ -188,7 +193,7 @@ define([
 
             parent.insertBefore(node, this.egg.nextSibling);
 
-            this.map.on('extent-change', function _showLevel(changeEvt) {
+            this.mapView.on('extent-change', function _showLevel(changeEvt) {
                 node.innerHTML = 'level: ' + changeEvt.lod.level + ' ';
             });
         },
@@ -197,22 +202,18 @@ define([
             //      Sets up the map
             console.info('app.App::initMap', arguments);
 
-            this.map = new BaseMap(this.mapDiv, {
-                useDefaultBaseMap: false,
-                extent: new Extent({
-                    xmax: -12010849.397533866,
-                    xmin: -12898741.918094235,
-                    ymax: 5224652.298632992,
-                    ymin: 4422369.249751998,
-                    spatialReference: {
-                        wkid: 3857
-                    }
-                })
+            let map = new Map();
+
+            this.mapView = new MapView({
+                map,
+                container: this.mapDiv
             });
 
+            this.agrcMapView = new AGRCMapView(this.mapView);
+
             this.childWidgets.push(
-                new BaseMapSelector({
-                    map: this.map,
+                new LayerSelector({
+                    mapView: this.mapView,
                     quadWord: config.quadWord,
                     baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
                     overlays: ['Address Points', {
@@ -222,7 +223,7 @@ define([
                         opacity: 0.5
                     }]
                 }),
-                new Identify({ map: this.map })
+                new Identify({ mapView: this.mapView })
             );
         }
     });
