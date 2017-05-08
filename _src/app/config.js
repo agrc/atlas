@@ -12,11 +12,11 @@ define([
 ) {
     // force api to use CORS on mapserv thus removing the test request on app load
     // e.g. http://mapserv.utah.gov/ArcGIS/rest/info?f=json
-    esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
-    esriConfig.defaults.io.corsEnabledServers.push('basemaps.utah.gov');
-    esriConfig.defaults.io.corsEnabledServers.push('api.mapserv.utah.gov');
-    esriConfig.defaults.io.corsEnabledServers.push('discover.agrc.utah.gov');
-    esriConfig.defaults.io.corsEnabledServers.push('gis.trustlands.utah.gov');
+    esriConfig.request.corsEnabledServers.push('mapserv.utah.gov');
+    esriConfig.request.corsEnabledServers.push('basemaps.utah.gov');
+    esriConfig.request.corsEnabledServers.push('api.mapserv.utah.gov');
+    esriConfig.request.corsEnabledServers.push('discover.agrc.utah.gov');
+    esriConfig.request.corsEnabledServers.push('gis.trustlands.utah.gov');
 
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
