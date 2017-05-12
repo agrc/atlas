@@ -12,11 +12,11 @@
     "proj4": "2.4.4",
     "jasmine-jsreporter": "^0.1.2",
     "layer-selector": "agrc-layer-selector#4.x",
+    "dart-board": "dart-board#find-address",
     "map-tools": "agrc-map-tools#map-view"
   },
   "resolutions": {
     "esri": "~4.3",
-    "dgrid": "0.3.17/esri-3.20.0",
     "xstyle": "0.3.2",
     "dojo": "v1.13.0/esri-3.23.0",
     "dojox": "v1.13.0/esri-3.23.0",

@@ -2,7 +2,9 @@ define([
     './config',
     './Identify',
 
-    'agrc/widgets/locate/FindAddress',
+    'dart-board/FindAddress',
+    // 'agrc/widgets/locate/MagicZoom',
+
     'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMap',
 
@@ -30,6 +32,7 @@ define([
 
     'map-tools/MapView'
 ], function (
+    // MagicZoom,
     config,
     Identify,
 
@@ -103,12 +106,11 @@ define([
                         map: this.map,
                         centerContainer: this.centerContainer
                     }, this.sidebarToggle),
-                    // new FindAddress({
-                    //     map: this.map,
-                    //     apiKey: config.apiKey,
-                    //     zoomLevel: 17,
-                    //     wkid: 3857
-                    // }, this.geocodeNode),
+                    new FindAddress({
+                        mapView: this.mapView,
+                        apiKey: config.apiKey,
+                        zoomLevel: 17
+                    }, this.geocodeNode),
                     // new MagicZoom({
                     //     map: this.map,
                     //     apiKey: config.apiKey,

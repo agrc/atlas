@@ -2,6 +2,7 @@ require({
     packages: [
         'agrc',
         'app',
+        'dart-board',
         'dgrid',
         'dgrid1',
         'dijit',
