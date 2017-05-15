@@ -7,7 +7,7 @@
 @import '../../ijit/themes/standard/layout/PaneStack.css';
 @import '../../layer-selector/resources/LayerSelector.css';
 @import '../../dart-board/resources/FindAddress.css';
-@import '../../agrc/resources/locate/MagicZoom.css';
+@import '../../sherlock/resources/Sherlock.css';
 @import 'Identify';
 
 $side-bar-width = 300px
@@ -62,10 +62,12 @@ body, html, .app
         left $container-margin
         top 75px
         bottom $container-margin
-        .magic-zoom
-            position relative
-        .magic-zoom.first
-            z-index 27
+        .sherlock
+            position inherit
+            width 100%
+            padding 0
+            .input-group
+                width 100%
     .side-bar-padder
         padding $side-bar-padding
         width $side-bar-width
@@ -93,6 +95,8 @@ body, html, .app
             .esri-popup__main-container
                 width 290px
 
+.matches-table
+    width 290px
 
 /* GENERAL STUFF */
 /* remove orange outline in chrome */

@@ -3,6 +3,7 @@ require({
         'agrc',
         'app',
         'dart-board',
+        'dgauges',
         'dgrid',
         'dgrid1',
         'dijit',
@@ -15,6 +16,8 @@ require({
         'map-tools',
         'moment',
         'put-selector',
+        'sherlock',
+        'spinjs',
         'xstyle',
         {
             name: 'bootstrap',

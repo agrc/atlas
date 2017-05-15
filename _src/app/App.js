@@ -1,12 +1,8 @@
 define([
-    './config',
-    './Identify',
+    'app/config',
+    'app/Identify',
 
     'dart-board/FindAddress',
-    // 'agrc/widgets/locate/MagicZoom',
-
-    'agrc/widgets/locate/MagicZoom',
-    'agrc/widgets/map/BaseMap',
 
     'dijit/registry',
     'dijit/_TemplatedMixin',
@@ -30,15 +26,15 @@ define([
 
     'layer-selector',
 
-    'map-tools/MapView'
+    'map-tools/MapView',
+
+    'sherlock/providers/WebAPI',
+    'sherlock/Sherlock'
 ], function (
-    // MagicZoom,
     config,
     Identify,
 
     FindAddress,
-    MagicZoom,
-    BaseMap,
 
     registry,
     _TemplatedMixin,
@@ -62,7 +58,10 @@ define([
 
     LayerSelector,
 
-    AGRCMapView
+    AGRCMapView,
+
+    WebAPI,
+    Sherlock
 ) {
     return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         // summary:
@@ -103,7 +102,6 @@ define([
                 this.childWidgets.push(
                     new SideBarToggler({
                         sidebar: this.sideBar,
-                        map: this.map,
                         centerContainer: this.centerContainer
                     }, this.sidebarToggle),
                     new FindAddress({
@@ -111,24 +109,18 @@ define([
                         apiKey: config.apiKey,
                         zoomLevel: 17
                     }, this.geocodeNode),
-                    // new MagicZoom({
-                    //     map: this.map,
-                    //     apiKey: config.apiKey,
-                    //     wkid: 3857,
-                    //     searchField: 'NAME',
-                    //     placeHolder: 'place name...',
-                    //     maxResultsToDisplay: 10,
-                    //     class: 'first'
-                    // }, this.gnisNode),
-                    // new MagicZoom({
-                    //     map: this.map,
-                    //     apiKey: config.apiKey,
-                    //     searchLayer: 'SGID10.Boundaries.Municipalities',
-                    //     searchField: 'NAME',
-                    //     placeHolder: 'city name...',
-                    //     wkid: 3857,
-                    //     maxResultsToDisplay: 10
-                    // }, this.cityNode),
+                    new Sherlock({
+                        provider: new WebAPI(config.apiKey, config.featureClassNames.gnis, 'NAME'),
+                        mapView: this.mapView,
+                        maxResultsToDisplay: 10,
+                        placeHolder: 'place name ...'
+                    }, this.gnisNode),
+                    new Sherlock({
+                        provider: new WebAPI(config.apiKey, config.featureClassNames.municipalities, 'NAME'),
+                        mapView: this.mapView,
+                        maxResultsToDisplay: 10,
+                        placeHolder: 'city name ...'
+                    }, this.cityNode)
                 );
                 this.printer = new Print({
                     container: this.printDiv,
