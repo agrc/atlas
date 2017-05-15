@@ -13,7 +13,8 @@
     "jasmine-jsreporter": "^0.1.2",
     "layer-selector": "agrc-layer-selector#4.x",
     "dart-board": "dart-board#find-address",
-    "map-tools": "agrc-map-tools#map-view"
+    "map-tools": "agrc-map-tools#map-view",
+    "sherlock": "agrc-sherlock#4.x"
   },
   "resolutions": {
     "esri": "~4.3",
