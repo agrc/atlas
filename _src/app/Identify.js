@@ -10,6 +10,10 @@ define([
     'dojo/_base/array',
     'dojo/_base/declare',
     'dojo/_base/lang',
+
+    'esri/Graphic',
+    'esri/symbols/SimpleMarkerSymbol',
+
     'proj4'
 ], function (
     config,
@@ -23,6 +27,10 @@ define([
     array,
     declare,
     lang,
+
+    Graphic,
+    SimpleMarkerSymbol,
+
     proj4
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
@@ -52,48 +60,55 @@ define([
             //      description
             console.log('app/Identify:postCreate', arguments);
 
-            this.mapView.popup.content = this.domNode;
-            var that = this;
+            this.mapView.popup.set({
+                content: this.domNode,
+                dockEnabled: true,
+                dockOptions: {
+                    breakpoint: false,
+                    buttonEnabled: false
+                }
+            });
+
             this.requests = [
                 [
                     config.featureClassNames.counties,
                     config.fieldNames.NAME,
-                    function setCounty(data) {
+                    (data) => {
                         if (!data) {
-                            that.county.innerHTML = 'Outside of Utah';
+                            this.county.innerHTML = 'Outside of Utah';
 
                             return;
                         }
-                        that.county.innerHTML = data[config.fieldNames.NAME];
+                        this.county.innerHTML = data[config.fieldNames.NAME];
                     }
                 ], [
                     config.featureClassNames.municipalities,
                     config.fieldNames.NAME,
-                    function setMuni(data) {
+                    (data) => {
                         if (!data) {
-                            that.municipality.innerHTML = 'Unincorporated';
+                            this.municipality.innerHTML = 'Unincorporated';
 
                             return;
                         }
-                        that.municipality.innerHTML = data[config.fieldNames.NAME];
+                        this.municipality.innerHTML = data[config.fieldNames.NAME];
                     }
                 ], [
                     config.featureClassNames.landOwnership,
                     config.fieldNames.STATE_LGD,
-                    function setLandowner(data) {
+                    (data) => {
                         if (!data) {
-                            that.landOwner.innerHTML = 'Outside of Utah';
+                            this.landOwner.innerHTML = 'Outside of Utah';
 
                             return;
                         }
-                        that.landOwner.innerHTML = data[config.fieldNames.STATE_LGD];
+                        this.landOwner.innerHTML = data[config.fieldNames.STATE_LGD];
                     }
                 ], [
                     config.featureClassNames.nationalGrid,
                     config.fieldNames.GRID1Mil + ',' + config.fieldNames.GRIS100K,
-                    function setGrid(data) {
+                    (data) => {
                         if (!data) {
-                            that.nationalGrid.innerHTML = 'Outside of Utah';
+                            this.nationalGrid.innerHTML = 'Outside of Utah';
 
                             return;
                         }
@@ -102,23 +117,28 @@ define([
                             data[config.fieldNames.GRID1Mil],
                             data[config.fieldNames.GRIS100K], data.x, data.y
                         ];
-                        that.nationalGrid.innerHTML = lang.replace('{0} {1} {2} {3}', values);
+                        this.nationalGrid.innerHTML = lang.replace('{0} {1} {2} {3}', values);
                     }
                 ], [
                     config.featureClassNames.dem,
                     config.fieldNames.FEET + ',' + config.fieldNames.METERS,
-                    function setElevation(data) {
+                    (data) => {
                         if (!data) {
-                            that.elevFeet.innerHTML = 'Outside of Utah';
-                            that.elevMeters.innerHTML = 'Outside of Utah';
+                            this.elevFeet.innerHTML = 'Outside of Utah';
+                            this.elevMeters.innerHTML = 'Outside of Utah';
 
                             return;
                         }
-                        that.elevFeet.innerHTML = data[config.fieldNames.FEET];
-                        that.elevMeters.innerHTML = data[config.fieldNames.METERS];
+                        this.elevFeet.innerHTML = data[config.fieldNames.FEET];
+                        this.elevMeters.innerHTML = data[config.fieldNames.METERS];
                     }
                 ]
             ];
+            this.symbol = new SimpleMarkerSymbol({
+                style: 'circle',
+                size: 7,
+                color: '#F012BE' // just for steveoh
+            });
         },
         onMapClick: function (evt) {
             // summary:
@@ -126,9 +146,15 @@ define([
             // evt: Map Click Event
             console.log('app/Identify:onMapClick', arguments);
 
-            var that = this;
+            evt.stopPropagation();
 
             this.clearValues();
+
+            this.mapView.graphics.add(new Graphic({
+                symbol: this.symbol,
+                geometry: evt.mapPoint
+            }));
+
             this.mapView.popup.open({
                 location: evt.mapPoint
             });
@@ -146,7 +172,7 @@ define([
             this.utmX.innerHTML = utmx;
             this.utmY.innerHTML = utmy;
 
-            array.forEach(this.requests, function (r) {
+            array.forEach(this.requests, (r) => {
                 var url = lang.replace(config.urls.search, [r[0], r[1]]);
                 request(url, {
                     query: {
@@ -158,13 +184,13 @@ define([
                         'X-Requested-With': null
                     },
                     handleAs: 'json'
-                }).then(function (data) {
+                }).then((data) => {
                     var f;
                     var decimalLength = -5;
                     if (data.result.length > 0) {
                         f = lang.mixin(data.result[0].attributes || [], {
-                            x: that.utmX.innerHTML.slice(decimalLength),
-                            y: that.utmY.innerHTML.slice(decimalLength)
+                            x: this.utmX.innerHTML.slice(decimalLength),
+                            y: this.utmY.innerHTML.slice(decimalLength)
                         });
                     }
                     r[2](f);
@@ -177,6 +203,8 @@ define([
             // summary:
             //      clears all of the values for the widget
             console.log('app/Identify:clearValues', arguments);
+
+            this.mapView.graphics.removeAll();
 
             query('span', this.domNode).forEach(function (n) {
                 n.innerHTML = '';
