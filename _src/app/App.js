@@ -122,26 +122,26 @@ define([
                         placeHolder: 'city name ...'
                     }, this.cityNode)
                 );
-                this.printer = new Print({
-                    container: this.printDiv,
-                    view: this.mapView,
-                    printServiceUrl: config.exportWebMapUrl
-                    // templates: [{
-                    //     label: 'Portrait (PDF)',
-                    //     format: 'PDF',
-                    //     layout: 'Letter ANSI A Portrait',
-                    //     options: {
-                    //         legendLayers: []
-                    //     }
-                    // }, {
-                    //     label: 'Landscape (PDF)',
-                    //     format: 'PDF',
-                    //     layout: 'Letter ANSI A Landscape',
-                    //     options: {
-                    //         legendLayers: []
-                    //     }
-                    // }]
-                });
+                // this.printer = new Print({
+                //     container: this.printDiv,
+                //     view: this.mapView,
+                //     printServiceUrl: config.exportWebMapUrl
+                //     // templates: [{
+                //     //     label: 'Portrait (PDF)',
+                //     //     format: 'PDF',
+                //     //     layout: 'Letter ANSI A Portrait',
+                //     //     options: {
+                //     //         legendLayers: []
+                //     //     }
+                //     // }, {
+                //     //     label: 'Landscape (PDF)',
+                //     //     format: 'PDF',
+                //     //     layout: 'Letter ANSI A Landscape',
+                //     //     options: {
+                //     //         legendLayers: []
+                //     //     }
+                //     // }]
+                // });
             });
 
             this.printer.extraParams = {
