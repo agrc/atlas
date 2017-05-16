@@ -17,6 +17,7 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
 
+    'esri/core/watchUtils',
     'esri/geometry/Extent',
     'esri/Map',
     'esri/views/MapView',
@@ -49,6 +50,7 @@ define([
     declare,
     lang,
 
+    watchUtils,
     Extent,
     Map,
     MapView,
@@ -183,13 +185,18 @@ define([
             var node = document.createElement('span');
             node.setAttribute('class', 'version');
             node.setAttribute('style', 'padding-right:15px;margin-left:-43px;');
-            node.innerHTML = 'level: ' + this.map.getLevel() + ' ';
 
             parent.insertBefore(node, this.egg.nextSibling);
 
-            this.mapView.on('extent-change', function _showLevel(changeEvt) {
-                node.innerHTML = 'level: ' + changeEvt.lod.level + ' ';
+            const updateLevel = () => {
+                node.innerHTML = 'level: ' + this.mapView.zoom + ' ';
+            };
+
+            watchUtils.whenTrue(this.mapView, 'stationary', () => {
+                updateLevel();
             });
+
+            updateLevel();
         },
         initMap: function () {
             // summary:
