@@ -3,8 +3,8 @@ define([
     'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMap',
 
-    'app/config',
-    'app/Identify',
+    './config',
+    './Identify',
 
     'dijit/registry',
     'dijit/_TemplatedMixin',
@@ -14,7 +14,7 @@ define([
     'dojo/dom',
     'dojo/dom-style',
     'dojo/on',
-    'dojo/text!app/templates/App.html',
+    'dojo/text!./templates/App.html',
     'dojo/_base/array',
     'dojo/_base/declare',
     'dojo/_base/lang',
