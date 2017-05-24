@@ -37,7 +37,7 @@ module.exports = function configure(grunt) {
         '!stubmodule/**',
         '!util/**'
     ];
-    var deployDir = 'SGID';
+    var deployDir = 'atlas';
     var secrets;
 
     try {
@@ -209,21 +209,16 @@ module.exports = function configure(grunt) {
                 options: {
                     host: '<%= secrets.prod.host %>',
                     username: '<%= secrets.prod.username %>',
-                    password: '<%= secrets.prod.password %>',
-                    path: './upload/' + deployDir
+                    password: '<%= secrets.prod.password %>'
                 }
             },
             options: {
-                createDirectories: true,
                 path: './wwwroot/' + deployDir + '/',
                 srcBasePath: 'deploy/',
                 showProgress: true
             }
         },
         sshexec: {
-            options: {
-
-            },
             stage: {
                 command: ['cd wwwroot/' + deployDir, 'unzip -oq deploy.zip', 'rm deploy.zip'].join(';'),
                 options: {
@@ -315,7 +310,8 @@ module.exports = function configure(grunt) {
     grunt.registerTask('deploy-prod', [
         'clean:deploy',
         'compress:main',
-        'sftp:prod'
+        'sftp:prod',
+        'sshexec:prod'
     ]);
     grunt.registerTask('build-stage', [
         'parallel:buildAssets',
