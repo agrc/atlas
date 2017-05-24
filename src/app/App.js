@@ -122,7 +122,7 @@ define([
                 }, this.cityNode),
                 this.printer = new Print({
                     map: this.map,
-                    url: config.exportWebMapUrl,
+                    url: config.urls.printProxy,
                     templates: [{
                         label: 'Portrait (PDF)',
                         format: 'PDF',
