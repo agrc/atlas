@@ -27,7 +27,7 @@
     "grunt-contrib-imagemin": "^1.0.0",
     "grunt-contrib-jasmine": "^1.0.0",
     "grunt-contrib-stylus": "^1.0.0",
-    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-uglify": "^3.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dojo": "^1.1.2",
     "grunt-eslint": "^19.0.0",
@@ -36,7 +36,7 @@
     "grunt-processhtml": "^0.4.1",
     "grunt-ssh": "^0",
     "load-grunt-tasks": "^3.5.1",
-    "uglify-js": "^2.7.4",
+    "uglify-js": "^3.0.11",
     "phantomjs-prebuilt": "^2.1.7"
   },
   "scripts": {
