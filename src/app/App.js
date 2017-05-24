@@ -193,7 +193,6 @@ define([
 
             this.map = new BaseMap(this.mapDiv, {
                 useDefaultBaseMap: false,
-                showAttribution: false,
                 extent: new Extent({
                     xmax: -12010849.397533866,
                     xmin: -12898741.918094235,
