@@ -54,7 +54,9 @@ define([
 
         urls: {
             search: 'https://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
-            reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}'
+            reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
+            landown: 'https://tlamap.trustlands.utah.gov/' +
+                     'arcgis/rest/services/SpecialProject/UT_SITLA_LandOwnership_WM/FeatureServer/0'
         },
 
         fieldNames: {

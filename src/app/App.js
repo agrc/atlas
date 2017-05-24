@@ -1,10 +1,10 @@
 define([
+    './config',
+    './Identify',
+
     'agrc/widgets/locate/FindAddress',
     'agrc/widgets/locate/MagicZoom',
     'agrc/widgets/map/BaseMap',
-
-    './config',
-    './Identify',
 
     'dijit/registry',
     'dijit/_TemplatedMixin',
@@ -21,17 +21,18 @@ define([
 
     'esri/dijit/Print',
     'esri/geometry/Extent',
+    'esri/layers/FeatureLayer',
 
     'ijit/widgets/layout/SideBarToggler',
 
     'layer-selector'
 ], function (
+    config,
+    Identify,
+
     FindAddress,
     MagicZoom,
     BaseMap,
-
-    config,
-    Identify,
 
     registry,
     _TemplatedMixin,
@@ -48,6 +49,7 @@ define([
 
     Print,
     Extent,
+    FeatureLayer,
 
     SideBarToggler,
 
@@ -208,7 +210,13 @@ define([
                 new BaseMapSelector({
                     map: this.map,
                     quadWord: config.quadWord,
-                    baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR']
+                    baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
+                    overlays: ['Address Points', {
+                        Factory: FeatureLayer,
+                        url: config.urls.landown,
+                        id: 'Land Ownership',
+                        opacity: 0.5
+                    }]
                 }),
                 new Identify({ map: this.map })
             );
