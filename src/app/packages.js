@@ -4,7 +4,6 @@ require({
         'app',
         'dgrid',
         'dgrid1',
-        'dgauges',
         'dijit',
         'dojo',
         'dojox',
