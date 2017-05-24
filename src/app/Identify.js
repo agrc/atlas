@@ -1,5 +1,5 @@
 define([
-    'app/config',
+    './config',
 
     'dijit/_TemplatedMixin',
     'dijit/_WidgetBase',
