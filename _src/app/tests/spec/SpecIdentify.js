@@ -1,4 +1,13 @@
-require(['app/Identify', 'stubmodule'], function (ClassUnderTest, stubmodule) {
+require([
+    'app/Identify',
+
+    'stubmodule'
+
+], function (
+    ClassUnderTest,
+
+    stubmodule
+) {
     describe('app/Identify', function () {
         var testWidget;
         var map;
@@ -6,7 +15,7 @@ require(['app/Identify', 'stubmodule'], function (ClassUnderTest, stubmodule) {
             mapPoint: {
                 x: 415652.65472246887,
                 y: 4447848.04338003,
-                toJson: function toJson() {
+                toJson: function () {
                     return {};
                 }
             }
@@ -25,7 +34,9 @@ require(['app/Identify', 'stubmodule'], function (ClassUnderTest, stubmodule) {
 
         beforeEach(function () {
             map = jasmine.createSpyObj('map', ['on']);
-            infoWindow = jasmine.createSpyObj('infoWindow', ['show', 'setTitle', 'setContent', 'resize']);
+            infoWindow = jasmine.createSpyObj('infoWindow',
+                ['show', 'setTitle', 'setContent', 'resize']
+            );
             map.infoWindow = infoWindow;
             testWidget = new ClassUnderTest({
                 map: map
@@ -41,7 +52,8 @@ require(['app/Identify', 'stubmodule'], function (ClassUnderTest, stubmodule) {
         });
         describe('onMapClick', function () {
             beforeEach(function (done) {
-                var request = jasmine.createSpy('request').and.returnValue({ then: function then() {} });
+                var request = jasmine.createSpy('request')
+                    .and.returnValue({ then: function () {} });
 
                 stubmodule('app/Identify', {
                     'dojo/request/xhr': request

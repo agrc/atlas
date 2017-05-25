@@ -15,10 +15,12 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "babel-preset-es2015-without-strict": "0.0.4",
     "dojo": "^1.11.2",
     "eslint": "^3.9.1",
     "eslint-plugin-html": "^2.0.1",
     "grunt": "^1.0.1",
+    "grunt-babel": "^6.0.0",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compress": "^1.3.0",
@@ -35,9 +37,11 @@
     "grunt-parallel": "^0.5.1",
     "grunt-processhtml": "^0.4.1",
     "grunt-ssh": "^0",
+    "grunt-stylint": "^0.2.0",
     "load-grunt-tasks": "^3.5.1",
-    "uglify-js": "^3.0.11",
-    "phantomjs-prebuilt": "^2.1.7"
+    "phantomjs-prebuilt": "^2.1.7",
+    "stylint-stylish": "^1.4.0",
+    "uglify-js": "^3.0.11"
   },
   "scripts": {
     "test": "grunt travis -v"

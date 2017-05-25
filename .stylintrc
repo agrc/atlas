@@ -1,0 +1,62 @@
+{
+      "brackets": {
+          "expect": "never",
+          "error": true
+      },
+      "colons": {
+          "expect": "nevert",
+          "error": true
+      },
+      "color": {
+          "expect": "always",
+          "error": true
+      },
+      "commaSpace": {
+          "expect": "always",
+          "error": true
+      },
+      "commentSpace": {
+          "expect": "always",
+          "error": true
+      },
+      "duplicates": {
+          "expect": true,
+          "error": true
+      },
+      "efficient": {
+          "expect": "always",
+          "error": true
+      },
+      "globalDupe": {
+          "expect": true,
+          "error": true
+      },
+      "indentPref": {
+          "expect": 2,
+          "error": true
+      },
+      "leadingZero": {
+          "expect": "never",
+          "error": true
+      },
+      "namingConvention": {
+          "expect": "BEM",
+          "error": true
+      },
+      "namingConventionStrict": {
+          "expect": true,
+          "error": true
+      },
+      "none": {
+          "expect": "never",
+          "error": true
+      },
+      "noImportant": {
+          "expect": true,
+          "error": true
+      },
+      "semicolons": {
+          "expect": "never",
+          "error": true
+      }
+  }

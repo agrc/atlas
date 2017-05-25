@@ -1,5 +1,15 @@
 /* jshint maxlen:false */
-define(['dojo/has', 'dojo/request/xhr', 'esri/config'], function (has, xhr, esriConfig) {
+define([
+    'dojo/has',
+    'dojo/request/xhr',
+
+    'esri/config'
+], function (
+    has,
+    xhr,
+
+    esriConfig
+) {
     // force api to use CORS on mapserv thus removing the test request on app load
     // e.g. http://mapserv.utah.gov/ArcGIS/rest/info?f=json
     esriConfig.defaults.io.corsEnabledServers.push('mapserv.utah.gov');
@@ -41,9 +51,11 @@ define(['dojo/has', 'dojo/request/xhr', 'esri/config'], function (has, xhr, esri
         urls: {
             search: 'https://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
             reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
-            landown: 'https://tlamap.trustlands.utah.gov/' + 'arcgis/rest/services/SpecialProject/UT_SITLA_LandOwnership_WM/FeatureServer/0',
+            landown: 'https://tlamap.trustlands.utah.gov/' +
+                     'arcgis/rest/services/SpecialProject/UT_SITLA_LandOwnership_WM/FeatureServer/0',
             printProxy: 'https://mapserv.utah.gov/arcgis/rest/services/PrintProxy/GPServer/PrintProxy',
-            exportWebMap: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/' + 'PrintingTools/GPServer/Export%20Web%20Map%20Task'
+            exportWebMap: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/' +
+                          'PrintingTools/GPServer/Export%20Web%20Map%20Task'
         },
 
         fieldNames: {

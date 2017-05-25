@@ -5,7 +5,7 @@ require(['dojo/domReady!'], function () {
             var tries = 1;
             var maxTries = 10;
 
-            var hasProps = function hasProps(obj) {
+            var hasProps = function (obj) {
                 for (var prop in obj) {
                     if (obj.hasOwnProperty(prop)) {
                         return true;
@@ -15,7 +15,7 @@ require(['dojo/domReady!'], function () {
                 return false;
             };
 
-            var check = function check() {
+            var check = function () {
                 console.log('require.waiting', require.waiting);
                 if (hasProps(require.waiting)) {
                     // Keep checking until jasmine default timeout.

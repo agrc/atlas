@@ -1,26 +1,24 @@
 module.exports = function configure(grunt) {
     require('load-grunt-tasks')(grunt);
 
-    var jsAppFiles = 'src/app/**/*.js';
+    var jsAppFiles = '_src/app/**/*.js';
     var otherFiles = [
-        'src/app/**/*.html',
-        'src/app/**/*.css',
-        'src/index.html',
-        'src/ChangeLog.html'
+        '_src/app/**/*.html',
+        '_src/app/**/*.styl',
+        '_src/index.html',
+        '_src/ChangeLog.html'
     ];
     var gruntFile = 'GruntFile.js';
-    var internFile = 'tests/intern.js';
     var jsFiles = [
         jsAppFiles,
         gruntFile,
-        internFile,
         'profiles/**/*.js'
     ];
     var bumpFiles = [
         'package.json',
         'bower.json',
-        'src/app/package.json',
-        'src/app/config.js'
+        '_src/app/package.json',
+        '_src/app/config.js'
     ];
     var deployFiles = [
         '**',
@@ -65,6 +63,20 @@ module.exports = function configure(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        babel: {
+            options: {
+                sourceMap: false,
+                presets: ['es2015-without-strict']
+            },
+            src: {
+                files: [{
+                    expand: true,
+                    cwd: '_src',
+                    src: ['**/*.js'],
+                    dest: 'src'
+                }]
+            }
+        },
         bump: {
             options: {
                 files: bumpFiles,
@@ -74,7 +86,8 @@ module.exports = function configure(grunt) {
         },
         clean: {
             build: ['dist'],
-            deploy: ['deploy']
+            deploy: ['deploy'],
+            src: ['src/app']
         },
         compress: {
             main: {
@@ -94,26 +107,28 @@ module.exports = function configure(grunt) {
             }
         },
         copy: {
-            main: {
-                files: [{
-                    expand: true,
-                    cwd: 'src/',
-                    src: ['*.html'],
-                    dest: 'dist/'
-                }]
+            dist: {
+                src: 'src/ChangeLog.html',
+                dest: 'dist/ChangeLog.html'
+            },
+            src: {
+                expand: true,
+                cwd: '_src',
+                src: ['**/*.html', '**/*.css', '**/*.png', '**/*.jpg', 'secrets.json', 'app/packages.json'],
+                dest: 'src'
             }
         },
         dojo: {
             prod: {
                 options: {
                     // You can also specify options to be used in all your tasks
-                    profiles: ['profiles/prod.build.profile.js', 'profiles/build.profile.js']
+                    profiles: ['src/profiles/prod.build.profile.js', 'src/profiles/build.profile.js']
                 }
             },
             stage: {
                 options: {
                     // You can also specify options to be used in all your tasks
-                    profiles: ['profiles/stage.build.profile.js', 'profiles/build.profile.js']
+                    profiles: ['src/profiles/stage.build.profile.js', 'src/profiles/build.profile.js']
                 }
             },
             options: {
@@ -143,10 +158,10 @@ module.exports = function configure(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'src/',
+                    cwd: '_src/',
                     // exclude tests because some images in dojox throw errors
                     src: ['**/*.{png,jpg,gif}', '!**/tests/**/*.*'],
-                    dest: 'src/'
+                    dest: '_src/'
                 }]
             }
         },
@@ -175,10 +190,10 @@ module.exports = function configure(grunt) {
                 grunt: true
             },
             assets: {
-                tasks: ['eslint:main', 'stylus', 'jasmine:main:build']
+                tasks: ['eslint', 'stylus', 'babel', 'jasmine:main:build']
             },
             buildAssets: {
-                tasks: ['eslint:main', 'clean:build', 'newer:imagemin:main', 'stylus']
+                tasks: ['eslint', 'clean:build', 'newer:imagemin:main', 'stylus']
             }
         },
         processhtml: {
@@ -236,6 +251,9 @@ module.exports = function configure(grunt) {
                 }
             }
         },
+        stylint: {
+            src: ['_src/**/*.styl']
+        },
         stylus: {
             main: {
                 options: {
@@ -244,7 +262,7 @@ module.exports = function configure(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'src/',
+                    cwd: '_src/',
                     src: ['app/**/*.styl'],
                     dest: 'src/',
                     ext: '.css'
@@ -280,28 +298,25 @@ module.exports = function configure(grunt) {
             }
         },
         watch: {
-            eslint: {
-                files: jsFiles,
-                tasks: ['newer:eslint:main', 'jasmine:main:build']
-            },
             src: {
                 files: jsFiles.concat(otherFiles),
-                options: { livereload: true }
-            },
-            stylus: {
-                files: 'src/app/**/*.styl',
-                tasks: ['newer:stylus']
+                options: { livereload: true },
+                tasks: ['eslint', 'stylint', 'stylus', 'babel', 'copy:src']
             }
         }
     });
 
     grunt.registerTask('default', [
+        'clean:src',
         'parallel:assets',
+        'copy:src',
         'connect',
         'watch'
     ]);
     grunt.registerTask('build-prod', [
+        'clean:src',
         'parallel:buildAssets',
+        'copy:src',
         'dojo:prod',
         'uglify:prod',
         'copy:main',
@@ -314,7 +329,9 @@ module.exports = function configure(grunt) {
         'sshexec:prod'
     ]);
     grunt.registerTask('build-stage', [
+        'clean:src',
         'parallel:buildAssets',
+        'copy:src',
         'dojo:stage',
         'uglify:stage',
         'copy:main',
@@ -327,11 +344,14 @@ module.exports = function configure(grunt) {
         'sshexec:stage'
     ]);
     grunt.registerTask('test', [
+        'clean:src',
+        'parallel:assets',
+        'copy:src',
         'connect',
         'jasmine'
     ]);
     grunt.registerTask('travis', [
-        'eslint:main',
+        'eslint',
         'test',
         'build-prod'
     ]);

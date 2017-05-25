@@ -5,7 +5,7 @@ define('app/tests/jsReporterSanitizer', function () {
     // Sauce supposedly is going to fix this:
     // https://github.com/axemclion/grunt-saucelabs/issues/109#issuecomment-64239913
     var old = jasmine.getJSReport;
-    var sanitize = function sanitize(obj) {
+    var sanitize = function (obj) {
         if (obj && obj.suites) {
             obj.suites = obj.suites.filter(function (s) {
                 return !s.passed;
