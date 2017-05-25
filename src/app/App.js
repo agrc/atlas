@@ -141,6 +141,10 @@ define([
                 }, this.printDiv)
             );
 
+            this.printer.extraParams = {
+                'ExportWebMapService_URL': config.urls.exportWebMap // eslint-disable-line
+            };
+
             this.inherited(arguments);
 
             this.setupConnections();
