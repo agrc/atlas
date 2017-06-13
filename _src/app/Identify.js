@@ -148,7 +148,7 @@ define([
             ];
             this.symbol = new SimpleMarkerSymbol({
                 style: 'circle',
-                size: 7,
+                size: 10,
                 color: '#F012BE' // just for steveoh
             });
         },
@@ -210,6 +210,8 @@ define([
             });
 
             this.reverseGeocode(utm);
+
+            this.googleMapsLink.href = `https://www.google.com/maps?q&layer=c&cbll=${ll.y},${ll.x}`;
         },
         clearValues: function () {
             // summary:
