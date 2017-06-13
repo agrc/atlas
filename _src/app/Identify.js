@@ -132,6 +132,18 @@ define([
                         this.elevFeet.innerHTML = data[config.fieldNames.FEET];
                         this.elevMeters.innerHTML = data[config.fieldNames.METERS];
                     }
+                ], [
+                    config.featureClassNames.zip,
+                    config.fieldNames.ZIP5,
+                    (data) => {
+                        if (!data) {
+                            this.zip.innerHTML = 'Outside of Utah';
+
+                            return;
+                        }
+
+                        this.zip.innerHTML = data[config.fieldNames.ZIP5];
+                    }
                 ]
             ];
             this.symbol = new SimpleMarkerSymbol({

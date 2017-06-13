@@ -71,16 +71,18 @@ define([
             GRID1Mil: 'GRID1Mil',
             GRIS100K: 'GRID100K',
             FEET: 'feet',
-            METERS: 'value'
+            METERS: 'value',
+            ZIP5: 'ZIP5'
         },
 
         featureClassNames: {
-            counties: 'SGID10.Boundaries.Counties',
-            municipalities: 'SGID10.Boundaries.Municipalities',
-            landOwnership: 'SGID10.Cadastre.LandOwnership',
-            nationalGrid: 'SGID10.Indices.NationalGrid',
+            counties: 'SGID10.BOUNDARIES.Counties',
+            municipalities: 'SGID10.BOUNDARIES.Municipalities',
+            landOwnership: 'SGID10.CADASTRE.LandOwnership',
+            nationalGrid: 'SGID10.INDICES.NationalGrid',
             dem: 'SGID10.RASTER.USGS_DEM_10METER',
-            gnis: 'SGID10.LOCATION.PlaceNamesGNIS2010'
+            gnis: 'SGID10.LOCATION.PlaceNamesGNIS2010',
+            zip: 'SGID10.BOUNDARIES.ZipCodes'
         }
     };
 
