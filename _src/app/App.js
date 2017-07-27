@@ -19,6 +19,7 @@ define([
 
     'esri/core/watchUtils',
     'esri/geometry/Extent',
+    'esri/layers/FeatureLayer',
     'esri/Map',
     'esri/views/MapView',
     'esri/widgets/Print',
@@ -52,6 +53,7 @@ define([
 
     watchUtils,
     Extent,
+    FeatureLayer,
     Map,
     MapView,
     Print,
