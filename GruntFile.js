@@ -302,11 +302,15 @@ module.exports = function configure(grunt) {
         watch: {
             jsFiles: {
                 files: jsFiles,
-                tasks: ['newer:eslint:main', 'newer:babel', 'newer:copy:src', 'jasmine:main:build']
+                tasks: ['newer:eslint:main', 'newer:babel', 'jasmine:main:build']
             },
-            src: {
-                files: jsFiles.concat(otherFiles),
+            livereload: {
+                files: 'src/**/*.*',
                 options: { livereload: true }
+            },
+            copy: {
+                files: otherFiles,
+                tasks: ['newer:copy:src']
             },
             stylus: {
                 files: '_src/app/**/*.styl',
