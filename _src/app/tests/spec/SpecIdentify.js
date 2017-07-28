@@ -2,7 +2,6 @@ require([
     'app/Identify',
 
     'stubmodule'
-
 ], function (
     ClassUnderTest,
 
@@ -10,15 +9,16 @@ require([
 ) {
     describe('app/Identify', function () {
         var testWidget;
-        var map;
+        var mapView;
         var evt = {
             mapPoint: {
                 x: 415652.65472246887,
                 y: 4447848.04338003,
-                toJson: function () {
-                    return {};
+                toJSON() {
+                    return this;
                 }
-            }
+            },
+            stopPropagation() {}
         };
         var infoWindow;
 
@@ -33,13 +33,14 @@ require([
         });
 
         beforeEach(function () {
-            map = jasmine.createSpyObj('map', ['on']);
+            mapView = jasmine.createSpyObj('mapView', ['on']);
+            mapView.graphics = jasmine.createSpyObj('graphics', ['removeAll', 'add']);
             infoWindow = jasmine.createSpyObj('infoWindow',
-                ['show', 'setTitle', 'setContent', 'resize']
+                ['set', 'open']
             );
-            map.infoWindow = infoWindow;
+            mapView.popup = infoWindow;
             testWidget = new ClassUnderTest({
-                map: map
+                mapView
             });
             testWidget.startup();
         });
@@ -47,7 +48,7 @@ require([
         describe('Sanity', function () {
             it('should create a Identify', function () {
                 expect(testWidget).toEqual(jasmine.any(ClassUnderTest));
-                expect(testWidget.map).toBe(map);
+                expect(testWidget.mapView).toBe(mapView);
             });
         });
         describe('onMapClick', function () {
@@ -58,14 +59,14 @@ require([
                 stubmodule('app/Identify', {
                     'dojo/request/xhr': request
                 }).then(function (StubbedModule) {
-                    testWidget = new StubbedModule({ map: map });
+                    testWidget = new StubbedModule({ mapView });
                     testWidget.onMapClick(evt);
 
                     done();
                 });
             });
             it('shows the popup', function () {
-                expect(infoWindow.show).toHaveBeenCalledWith(evt.mapPoint);
+                expect(infoWindow.open).toHaveBeenCalledWith({ location: evt.mapPoint });
             });
             it('rounds utms to whole numbers and lat/longs to 5 decimal places', function () {
                 var decimalPlaces = 5;
