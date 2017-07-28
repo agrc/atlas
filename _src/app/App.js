@@ -31,7 +31,9 @@ define([
     'map-tools/MapView',
 
     'sherlock/providers/WebAPI',
-    'sherlock/Sherlock'
+    'sherlock/Sherlock',
+
+    'bootstrap'
 ], function (
     config,
     Identify,
@@ -126,31 +128,27 @@ define([
                         placeHolder: 'city name ...'
                     }, this.cityNode)
                 );
-                // this.printer = new Print({
-                //     container: this.printDiv,
-                //     view: this.mapView,
-                //     printServiceUrl: config.exportWebMapUrl
-                //     // templates: [{
-                //     //     label: 'Portrait (PDF)',
-                //     //     format: 'PDF',
-                //     //     layout: 'Letter ANSI A Portrait',
-                //     //     options: {
-                //     //         legendLayers: []
-                //     //     }
-                //     // }, {
-                //     //     label: 'Landscape (PDF)',
-                //     //     format: 'PDF',
-                //     //     layout: 'Letter ANSI A Landscape',
-                //     //     options: {
-                //     //         legendLayers: []
-                //     //     }
-                //     // }]
-                // });
+                this.printer = new Print({
+                    container: this.printDiv,
+                    view: this.mapView,
+                    printServiceUrl: config.urls.exportWebMap,
+                    templates: [{
+                        label: 'Portrait (PDF)',
+                        format: 'PDF',
+                        layout: 'Letter ANSI A Portrait',
+                        options: {
+                            legendLayers: []
+                        }
+                    }, {
+                        label: 'Landscape (PDF)',
+                        format: 'PDF',
+                        layout: 'Letter ANSI A Landscape',
+                        options: {
+                            legendLayers: []
+                        }
+                    }]
+                });
             });
-
-            this.printer.extraParams = {
-                'ExportWebMapService_URL': config.urls.exportWebMap // eslint-disable-line
-            };
 
             this.inherited(arguments);
 

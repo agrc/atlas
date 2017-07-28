@@ -4,12 +4,12 @@
             <span class='title' data-dojo-attach-point='egg'>Atlas Utah</span>
             <a data-dojo-attach-point='version' class='version' href='ChangeLog.html'></a>
         </h1>
-        <img src="app/resources/agrc_logo.jpg" alt="agrc logo">
+        <img src='app/resources/agrc_logo.jpg' alt='agrc logo'>
     </div>
     <div data-dojo-attach-point='sideBar'
         class='side-bar-container container-with-border'>
-        <div class="side-bar-padder"> <!-- required for side bar toggle widget -->
-            Data and services provided by <a href="http://gis.utah.gov">Utah AGRC</a>
+        <div class='side-bar-padder'> <!-- required for side bar toggle widget -->
+            Data and services provided by <a href='http://gis.utah.gov'>Utah AGRC</a>
             <p>Click a location on the map for more information</p>
 
             <h4>Find Address</h4>
@@ -21,7 +21,20 @@
             <h4>Find City</h4>
             <div data-dojo-attach-point='cityNode'></div>
 
-            <div data-dojo-attach-point='printDiv'></div>
+            <div class='panel panel-default'>
+                <div class='panel-heading' role='tab'>
+                    <h4 class='panel-title'>
+                        <a role='button' data-toggle='collapse' data-target='#collapseExport' class='collapsed'>
+                            Export Map
+                        </a>
+                    </h4>
+                </div>
+                <div id='collapseExport' class='panel-collapse collapse' role='tabpanel'>
+                    <div class='panel-body'>
+                        <div data-dojo-attach-point='printDiv'></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div data-dojo-attach-point='centerContainer'
