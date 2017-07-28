@@ -35,10 +35,6 @@ define([
         // acquire at developer.mapserv.utah.gov
         apiKey: '',
 
-        // exportWebMapUrl: String
-        //      print task url
-        exportWebMapUrl: 'http://localhost/arcgis/rest/services/Print/GPServer/PrintProxy',
-
         // wkt26912: String
         //      The well known text for utm zone 12 nad83 for use with proj4
         /* eslint-disable max-len */
@@ -58,7 +54,6 @@ define([
             reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
             landown: 'https://gis.trustlands.utah.gov/server/' +
                      '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
-            printProxy: 'https://mapserv.utah.gov/arcgis/rest/services/PrintProxy/GPServer/PrintProxy',
             exportWebMap: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/' +
                           'PrintingTools/GPServer/Export%20Web%20Map%20Task'
         },
