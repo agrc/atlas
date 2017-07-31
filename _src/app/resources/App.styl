@@ -2,9 +2,6 @@
 @import '../../dijit/themes/claro/claro.css';
 @import '../../esri/css/main.css';
 @import '../../bootstrap/dist/css/bootstrap.css';
-@import '../../agrc/resources/map/BaseMap.css';
-@import '../../ijit/themes/standard/layout/SideBarToggler.css';
-@import '../../ijit/themes/standard/layout/PaneStack.css';
 @import '../../layer-selector/resources/LayerSelector.css';
 @import '../../dart-board/resources/FindAddress.css';
 @import '../../sherlock/resources/Sherlock.css';
@@ -13,6 +10,7 @@
 $side-bar-width = 300px
 $side-bar-padding = 10px
 $container-margin = 5px
+$animation-duration = 100ms
 
 body, html, .app
     width 100%
@@ -55,13 +53,21 @@ body, html, .app
 
     /* SIDE BAR */
     .side-bar-container
-        width $side-bar-width
         overflow-y auto
         overflow-x hidden
         position absolute
         left $container-margin
         top 75px
         bottom $container-margin
+        &.open
+            width $side-bar-width
+            animation-name sidebar-open
+            animation-duration $animation-duration
+        &.closed
+            width 0
+            border none
+            animation-name sidebar-close
+            animation-duration $animation-duration
         .sherlock
             position inherit
             width 100%
@@ -81,15 +87,27 @@ body, html, .app
         .panel-body
             padding 8px
 
-
     /* CENTER (MAP) */
     .center-container
         position absolute
         top 75px
-        left $side-bar-width + (2 * $container-margin)
         bottom $container-margin
         right $container-margin
         overflow hidden
+        .sidebar-toggler
+            position absolute
+            left 0
+            top 0
+            z-index 99
+            margin -2px
+        &.sidebar-open
+            left $side-bar-width + (2 * $container-margin)
+            animation-name center-sidebar-open
+            animation-duration $animation-duration
+        &.sidebar-closed
+            left $container-margin
+            animation-name center-sidebar-close
+            animation-duration $animation-duration
         [data-dojo-attach-point='mapDiv']
             position absolute
             top 0
@@ -98,6 +116,27 @@ body, html, .app
             right 0
             .esri-popup__main-container
                 width 290px
+
+@keyframes sidebar-open
+    from
+        width 0
+    to
+        width $side-bar-width
+@keyframes sidebar-close
+    from
+        width $side-bar-width
+    to
+        width 0
+@keyframes center-sidebar-close
+    from
+        left $side-bar-width + (2 * $container-margin)
+    to
+        left $container-margin
+@keyframes center-sidebar-open
+    from
+        left 0
+    to
+        left $side-bar-width + (2 * $container-margin)
 
 .matches-table
     width 280px

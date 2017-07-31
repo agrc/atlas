@@ -11,7 +11,6 @@ require({
         'dojox',
         'dstore',
         'esri',
-        'ijit',
         'layer-selector',
         'map-tools',
         'moment',
@@ -44,5 +43,10 @@ require({
             location: './spinjs',
             main: 'spin'
         }
-    ]
+    ],
+    map: {
+        '*': {
+            spinjs: 'spin'
+        }
+    }
 });
