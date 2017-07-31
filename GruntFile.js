@@ -367,6 +367,7 @@ module.exports = function configure(grunt) {
     ]);
     grunt.registerTask('travis', [
         'eslint:main',
+        'parallel:assets',
         'test',
         'build-prod'
     ]);
