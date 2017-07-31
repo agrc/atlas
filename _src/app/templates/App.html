@@ -6,7 +6,7 @@
     </h1>
     <img src="app/resources/agrc_logo.jpg" alt="agrc logo" />
   </div>
-  <div data-dojo-attach-point="sideBar" class="side-bar-container container-with-border">
+  <div data-dojo-attach-point="sideBar" class="side-bar-container container-with-border open">
     <div class="side-bar-padder">
       <!-- required for side bar toggle widget -->
       Data and services provided by <a href="http://gis.utah.gov">Utah AGRC</a>
@@ -37,8 +37,11 @@
       </div>
     </div>
   </div>
-  <div data-dojo-attach-point="centerContainer" class="center-container container-with-border">
-    <div data-dojo-attach-point="sidebarToggle"></div>
+  <div data-dojo-attach-point="centerContainer" class="center-container container-with-border sidebar-open">
+    <button class="sidebar-toggler btn btn-default btn-xs"
+      data-dojo-attach-event="click:toggleSidebar">
+      <span class="glyphicon glyphicon-chevron-left" data-dojo-attach-point="sideBarToggle"></span>
+    </button>
     <div data-dojo-attach-point="mapDiv"></div>
   </div>
 </div>

@@ -10,6 +10,7 @@ define([
     'dijit/_WidgetsInTemplateMixin',
 
     'dojo/dom',
+    'dojo/dom-class',
     'dojo/dom-style',
     'dojo/on',
     'dojo/text!./templates/App.html',
@@ -23,8 +24,6 @@ define([
     'esri/Map',
     'esri/views/MapView',
     'esri/widgets/Print',
-
-    'ijit/widgets/layout/SideBarToggler',
 
     'layer-selector',
 
@@ -46,6 +45,7 @@ define([
     _WidgetsInTemplateMixin,
 
     dom,
+    domClass,
     domStyle,
     on,
     template,
@@ -59,8 +59,6 @@ define([
     Map,
     MapView,
     Print,
-
-    SideBarToggler,
 
     LayerSelector,
 
@@ -81,8 +79,8 @@ define([
         //      container for holding custom child widgets
         childWidgets: null,
 
-        // map: agrc.widgets.map.Basemap
-        map: null,
+        // mapView: map-tools/MapView
+        mapView: null,
 
         constructor: function () {
             // summary:
@@ -106,10 +104,6 @@ define([
 
             this.mapView.then(() => {
                 this.childWidgets.push(
-                    new SideBarToggler({
-                        sidebar: this.sideBar,
-                        centerContainer: this.centerContainer
-                    }, this.sidebarToggle),
                     new FindAddress({
                         mapView: this.mapView,
                         apiKey: config.apiKey,
@@ -153,6 +147,15 @@ define([
             this.inherited(arguments);
 
             this.setupConnections();
+        },
+        toggleSidebar() {
+            // summary:
+            //      Toggles the CSS classes to make the side bar collapse/expand
+            console.log('app.App:toggleSidebar', arguments);
+
+            domClass.toggle(this.sideBar, 'open closed');
+            domClass.toggle(this.centerContainer, 'sidebar-open sidebar-closed');
+            domClass.toggle(this.sideBarToggle, 'glyphicon-chevron-right glyphicon-chevron-left');
         },
         setupConnections: function () {
             // summary:
