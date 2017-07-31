@@ -34,6 +34,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dojo": "^1.1.2",
     "grunt-eslint": "^20.1.0",
+    "grunt-htmlhint": "^0.9.13",
     "grunt-newer": "^1.1.2",
     "grunt-parallel": "^0.5.1",
     "grunt-processhtml": "^0.4.1",

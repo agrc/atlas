@@ -2,11 +2,10 @@ module.exports = function configure(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var jsAppFiles = '_src/app/**/*.js';
+    var htmlFiles = '_src/**/*.html';
     var otherFiles = [
-        '_src/app/**/*.html',
-        '_src/app/**/*.styl',
-        'src/index.html',
-        'src/ChangeLog.html'
+        htmlFiles,
+        '_src/app/**/*.styl'
     ];
     var gruntFile = 'GruntFile.js';
     var internFile = 'tests/intern.js';
@@ -156,6 +155,14 @@ module.exports = function configure(grunt) {
                 src: jsFiles
             }
         },
+        htmlhint: {
+            options: {
+                htmlhintrc: '.htmlhintrc'
+            },
+            main: {
+                src: [htmlFiles]
+            }
+        },
         imagemin: {
             main: {
                 options: {
@@ -195,7 +202,7 @@ module.exports = function configure(grunt) {
                 grunt: true
             },
             assets: {
-                tasks: ['eslint:main', 'stylus', 'babel', 'copy:src']
+                tasks: ['eslint:main', 'htmlhint', 'stylus', 'babel', 'copy:src']
             },
             buildAssets: {
                 tasks: ['clean:build', 'newer:imagemin:main', 'stylus', 'babel', 'copy:src']
@@ -310,7 +317,7 @@ module.exports = function configure(grunt) {
             },
             copy: {
                 files: otherFiles,
-                tasks: ['newer:copy:src']
+                tasks: ['htmlhint', 'newer:copy:src']
             },
             stylus: {
                 files: '_src/app/**/*.styl',
