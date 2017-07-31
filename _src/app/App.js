@@ -159,7 +159,7 @@ define([
             //      Fires when
             console.log('app.App::setupConnections', arguments);
 
-            on.once(this.egg, 'dblclick', lang.hitch(this, 'showLevel'));
+            on.once(this.egg, 'dblclick', this.showLevel.bind(this));
         },
         startup: function () {
             // summary:
