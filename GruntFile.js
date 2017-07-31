@@ -309,7 +309,7 @@ module.exports = function configure(grunt) {
         watch: {
             jsFiles: {
                 files: jsFiles,
-                tasks: ['newer:eslint:main', 'newer:babel', 'jasmine:main:build']
+                tasks: ['eslint:main', 'newer:babel', 'jasmine:main:build']
             },
             livereload: {
                 files: 'src/**/*.*',
