@@ -23,6 +23,9 @@
     "dijit": "v1.12.2/esri-3.21.0",
     "dgrid": "v1.1.0/esri-3.20.0",
     "dstore": "1.1.1",
-    "spinjs": "~2.3.2"
+    "spinjs": "~2.3.2",
+    "util": "v1.12.2/esri-3.21.0",
+    "moment": "2.18.1",
+    "dojo-themes": "1.12.2"
   }
 }
