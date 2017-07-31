@@ -52,7 +52,7 @@ define([
 
             lang.mixin(this, params);
 
-            this.mapView.on('click', lang.hitch(this, 'onMapClick'));
+            this.mapView.on('click', this.onMapClick.bind(this));
             this.mapView.popup.title = 'Map Click Information';
         },
         postCreate: function () {
