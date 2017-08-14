@@ -11,7 +11,7 @@
     "proj4": "2.4.4",
     "jasmine-jsreporter": "^0.1.2",
     "layer-selector": "agrc-layer-selector#4.x",
-    "dart-board": "dart-board#~1.0.0",
+    "dart-board": "dart-board#~1.0.2",
     "map-tools": "agrc-map-tools#~1.0.0",
     "sherlock": "agrc-sherlock#4.x"
   },
