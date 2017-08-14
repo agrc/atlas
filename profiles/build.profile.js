@@ -19,19 +19,21 @@ var profile = {
                 'dojox/gfx/path',
                 'dojox/gfx/shape',
                 'dojox/gfx/svg',
-                'dojox/gfx/svgext',
-                'esri/dijit/Attribution',
-                'esri/layers/VectorTileLayerImpl'
+                'dojox/gfx/svgext'
             ],
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
-        },
-        'ijit/widgets/authentication/UserAdmin': {
-            exclude: ['dojo/dojo']
         }
     },
     packages: [{
+        name: 'agrc',
+        resourceTags: {
+            miniExclude: function miniExclude(filename, mid) {
+                return mid !== 'agrc/modules/WebAPI';
+            }
+        }
+    }, {
         name: 'proj4',
         trees: [
             // don't bother with .hidden, tests, min, src, and templates
