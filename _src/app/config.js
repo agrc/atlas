@@ -84,7 +84,7 @@ define([
         config.quadWord = 'career-exhibit-panel-stadium';
     } else if (has('agrc-build') === 'stage') {
         // test.mapserv.utah.gov
-        config.quadWord = '';
+        config.quadWord = 'opera-event-little-pinball';
         config.apiKey = 'AGRC-AC122FA9671436';
     } else {
         // localhost
