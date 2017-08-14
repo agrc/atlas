@@ -18,7 +18,7 @@ define([
     esriConfig.request.corsEnabledServers.push('discover.agrc.utah.gov');
     esriConfig.request.corsEnabledServers.push('gis.trustlands.utah.gov');
 
-    window.AGRC = {
+    const config = {
         // app: app.App
         //      global reference to App
         app: null,
@@ -80,24 +80,24 @@ define([
 
     if (has('agrc-build') === 'prod') {
         // atlas.utah.gov
-        window.AGRC.apiKey = 'AGRC-A94B063C533889';
-        window.AGRC.quadWord = 'career-exhibit-panel-stadium';
+        config.apiKey = 'AGRC-A94B063C533889';
+        config.quadWord = 'career-exhibit-panel-stadium';
     } else if (has('agrc-build') === 'stage') {
         // test.mapserv.utah.gov
-        window.AGRC.quadWord = '';
-        window.AGRC.apiKey = 'AGRC-AC122FA9671436';
+        config.quadWord = '';
+        config.apiKey = 'AGRC-AC122FA9671436';
     } else {
         // localhost
         xhr(require.baseUrl + 'secrets.json', {
             handleAs: 'json',
             sync: true
         }).then(function (secrets) {
-            window.AGRC.quadWord = secrets.quadWord;
-            window.AGRC.apiKey = secrets.apiKey;
+            config.quadWord = secrets.quadWord;
+            config.apiKey = secrets.apiKey;
         }, function () {
             throw 'Error getting secrets!';
         });
     }
 
-    return window.AGRC;
+    return config;
 });
