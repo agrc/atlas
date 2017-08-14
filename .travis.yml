@@ -2,8 +2,8 @@ language: node_js
 node_js:
     - "lts/*"
 before_install:
-    - yarn global add grunt-cli
-    - yarn global add bower
+    - npm install -g grunt-cli
+    - npm install -g bower
     - bower install
 notifications:
     email:
@@ -11,4 +11,5 @@ notifications:
         on_failure: change
 sudo: false
 cache:
-    yarn: true
+    directories:
+        - node_modules
