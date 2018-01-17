@@ -34,8 +34,8 @@ var profile = {
     packages: [{
         name: 'proj4',
         trees: [
-          // don't bother with .hidden, tests, min, src, and templates
-          ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|html)/]
+            // don't bother with .hidden, tests, min, src, and templates
+            ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|html)/]
         ],
         resourceTags: {
             amd: function amd() {
@@ -50,8 +50,8 @@ var profile = {
         location: 'moment',
         main: 'moment',
         trees: [
-          // don't bother with .hidden, tests, min, src, and templates
-          ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|templates)/]
+            // don't bother with .hidden, tests, min, src, and templates
+            ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|templates)/]
         ],
         resourceTags: {
             amd: function amd(filename, mid) {

@@ -2,7 +2,7 @@ require([
     // 'app/tests/jsReporterSanitizer'
 ], function (
     // jsReporterSanitizer
-    ) {
+) {
     var jsReporterSanitizer = require('app/tests/jsReporterSanitizer');
     describe('jsReporterSanitizer removes all passed specs and suites', function () {
         it('all specs passing', function () {
