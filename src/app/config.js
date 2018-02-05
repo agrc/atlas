@@ -16,6 +16,7 @@ define([
     esriConfig.defaults.io.corsEnabledServers.push('basemaps.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('api.mapserv.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('discover.agrc.utah.gov');
+    esriConfig.defaults.io.corsEnabledServers.push('gis.trustlands.utah.gov');
 
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
