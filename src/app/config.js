@@ -16,6 +16,7 @@ define([
     esriConfig.defaults.io.corsEnabledServers.push('basemaps.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('api.mapserv.utah.gov');
     esriConfig.defaults.io.corsEnabledServers.push('discover.agrc.utah.gov');
+    esriConfig.defaults.io.corsEnabledServers.push('gis.trustlands.utah.gov');
 
     window.AGRC = {
         // errorLogger: ijit.modules.ErrorLogger
@@ -51,8 +52,8 @@ define([
         urls: {
             search: 'https://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
             reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
-            landown: 'https://tlamap.trustlands.utah.gov/' +
-                     'arcgis/rest/services/SpecialProject/UT_SITLA_LandOwnership_WM/FeatureServer/0',
+            landown: 'https://gis.trustlands.utah.gov/server/' +
+                     '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
             printProxy: 'https://mapserv.utah.gov/arcgis/rest/services/PrintProxy/GPServer/PrintProxy',
             exportWebMap: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/' +
                           'PrintingTools/GPServer/Export%20Web%20Map%20Task'
