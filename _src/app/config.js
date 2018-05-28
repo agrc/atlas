@@ -51,8 +51,8 @@ define([
             reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
             landown: 'https://gis.trustlands.utah.gov/server/' +
                      '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
-            exportWebMap: 'https://mapserv.utah.gov/arcgis/rest/services/Utilities/' +
-                          'PrintingTools/GPServer/Export%20Web%20Map%20Task'
+            exportWebMap: 'https://us-central1-utahkoopserver.cloudfunctions.net/printproxy/2' +
+                '7/arcgis/rest/services/GPServer/export'
         },
 
         fieldNames: {
