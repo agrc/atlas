@@ -25,6 +25,7 @@
     "spinjs": "~2.3.2",
     "util": "v1.12.2/esri-3.21.0",
     "moment": "2.18.1",
-    "dojo-themes": "1.12.2"
+    "dojo-themes": "1.12.2",
+    "xstyle": "0.3.2"
   }
 }
