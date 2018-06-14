@@ -44,9 +44,9 @@ define([
             search: 'https://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
             reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
             landown: 'https://gis.trustlands.utah.gov/server/' +
-                     '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
-            exportWebMap: 'https://us-central1-utahkoopserver.cloudfunctions.net/printproxy/2' +
-                '7/arcgis/rest/services/GPServer/export'
+                '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
+            exportWebMap: 'https://us-central1-utahkoopserver.cloudfunctions.net/printproxy/7' +
+                '/arcgis/rest/services/GPServer/export'
         },
 
         fieldNames: {
