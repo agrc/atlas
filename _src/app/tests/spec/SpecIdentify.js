@@ -1,9 +1,15 @@
 require([
     'app/Identify',
 
+    'esri/geometry/Point',
+    'esri/geometry/projection',
+
     'stubmodule'
 ], function (
     ClassUnderTest,
+
+    Point,
+    projection,
 
     stubmodule
 ) {
@@ -11,13 +17,11 @@ require([
         var testWidget;
         var mapView;
         var evt = {
-            mapPoint: {
-                x: 415652.65472246887,
-                y: 4447848.04338003,
-                toJSON() {
-                    return this;
-                }
-            },
+            mapPoint: new Point({
+                x: -12486050.929706214,
+                y: 4939045.9648487745,
+                spatialReference: { wkid: 3857 }
+            }),
             stopPropagation() {}
         };
         var infoWindow;
@@ -60,9 +64,7 @@ require([
                     'dojo/request/xhr': request
                 }).then(function (StubbedModule) {
                     testWidget = new StubbedModule({ mapView });
-                    testWidget.onMapClick(evt);
-
-                    done();
+                    testWidget.onMapClick(evt).always(done);
                 });
             });
             it('shows the popup', function () {
@@ -72,8 +74,8 @@ require([
                 var decimalPlaces = 5;
                 expect(testWidget.utmX.innerHTML.split('.').length).toBe(1);
                 expect(testWidget.utmY.innerHTML.split('.').length).toBe(1);
-                expect(testWidget.lat.innerHTML.split('.')[1].length).toBe(decimalPlaces);
-                expect(testWidget.lng.innerHTML.split('.')[1].length).toBe(decimalPlaces);
+                expect(testWidget.lat.innerHTML.split('.')[1].length).toBeLessThanOrEqual(decimalPlaces);
+                expect(testWidget.lng.innerHTML.split('.')[1].length).toBeLessThanOrEqual(decimalPlaces);
             });
         });
         describe('clearValues', function () {

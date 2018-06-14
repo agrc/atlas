@@ -1,5 +1,5 @@
 define([
-    './config',
+    'app/config',
 
     'dijit/_TemplatedMixin',
     'dijit/_WidgetBase',
@@ -11,10 +11,9 @@ define([
     'dojo/_base/declare',
     'dojo/_base/lang',
 
+    'esri/geometry/projection',
     'esri/Graphic',
-    'esri/symbols/SimpleMarkerSymbol',
-
-    'proj4'
+    'esri/symbols/SimpleMarkerSymbol'
 ], function (
     config,
 
@@ -28,10 +27,9 @@ define([
     declare,
     lang,
 
+    projection,
     Graphic,
-    SimpleMarkerSymbol,
-
-    proj4
+    SimpleMarkerSymbol
 ) {
     return declare([_WidgetBase, _TemplatedMixin], {
         // description:
@@ -61,6 +59,7 @@ define([
             console.log('app/Identify:postCreate', arguments);
 
             this.mapView.popup.set({
+                actions: [],
                 content: this.domNode,
                 dockEnabled: true,
                 dockOptions: {
@@ -156,7 +155,11 @@ define([
             // summary:
             //      user clicks on the map
             // evt: Map Click Event
+            //
+            // returns: Promise || null
             console.log('app/Identify:onMapClick', arguments);
+
+            let promise = null;
 
             evt.stopPropagation();
 
@@ -171,26 +174,33 @@ define([
                 location: evt.mapPoint
             });
 
-            // lat/long coords
-            var ll = proj4(config.wkt3857, config.wkt4326, evt.mapPoint.toJSON());
-            var decimalPlaces = 100000;
-            this.lng.innerHTML = Math.round(ll.x * decimalPlaces) / decimalPlaces;
-            this.lat.innerHTML = Math.round(ll.y * decimalPlaces) / decimalPlaces;
+            if (projection.isSupported()) {
+                promise = projection.load().then(() => {
+                    // lat/long coords
+                    const ll = projection.project(evt.mapPoint, { wkid: 4326 });
+                    const decimalPlaces = 100000;
+                    this.lng.innerHTML = Math.round(ll.x * decimalPlaces) / decimalPlaces;
+                    this.lat.innerHTML = Math.round(ll.y * decimalPlaces) / decimalPlaces;
 
-            // utm coords
-            var utm = proj4(config.wkt3857, config.wkt26912, evt.mapPoint.toJSON());
-            var utmx = Math.round(utm.x);
-            var utmy = Math.round(utm.y);
-            this.utmX.innerHTML = utmx;
-            this.utmY.innerHTML = utmy;
+                    // utm coords
+                    const utm = projection.project(evt.mapPoint, { wkid: 26912 });
+                    const utmx = Math.round(utm.x);
+                    const utmy = Math.round(utm.y);
+                    this.utmX.innerHTML = utmx;
+                    this.utmY.innerHTML = utmy;
+
+                    this.googleMapsLink.href = `https://www.google.com/maps?q&layer=c&cbll=${ll.y},${ll.x}`;
+                });
+            }
 
             array.forEach(this.requests, (r) => {
                 var url = lang.replace(config.urls.search, [r[0], r[1]]);
                 request(url, {
                     query: {
-                        geometry: 'point:' + JSON.stringify([utmx, utmy]),
+                        geometry: `point: ${JSON.stringify(evt.mapPoint.toJSON())}`,
                         attributeStyle: 'identical',
-                        apiKey: config.apiKey
+                        apiKey: config.apiKey,
+                        spatialReference: 3857
                     },
                     headers: {
                         'X-Requested-With': null
@@ -209,9 +219,9 @@ define([
                 });
             });
 
-            this.reverseGeocode(utm);
+            this.reverseGeocode(evt.mapPoint);
 
-            this.googleMapsLink.href = `https://www.google.com/maps?q&layer=c&cbll=${ll.y},${ll.x}`;
+            return promise;
         },
         clearValues: function () {
             // summary:
@@ -236,7 +246,8 @@ define([
             request(url, {
                 query: {
                     apiKey: config.apiKey,
-                    distance: distanceInMeters
+                    distance: distanceInMeters,
+                    spatialReference: 3857
                 },
                 headers: {
                     'X-Requested-With': null
@@ -246,7 +257,7 @@ define([
                 if (data.status && data.status === 200 && data.result.address) {
                     that.address.innerHTML = data.result.address.street;
                 } else {
-                    that.address.innerHTML = 'Outside of Utah.';
+                    that.address.innerHTML = 'Not found.';
                 }
             });
         }
