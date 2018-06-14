@@ -62,10 +62,6 @@ var profile = {
         location: '../node_modules/jquery/dist',
         main: 'jquery'
     }, {
-        name: 'proj4',
-        location: '../node_modules/proj4/dist',
-        main: 'proj4'
-    }, {
         name: 'layer-selector',
         location: '../node_modules/@agrc/layer-selector'
     }, {

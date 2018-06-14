@@ -22,10 +22,6 @@ require({
             location: 'jquery/dist',
             main: 'jquery'
         }, {
-            name: 'proj4',
-            location: 'proj4/dist',
-            main: 'proj4'
-        }, {
             name: 'layer-selector',
             location: '@agrc/layer-selector'
         }, {
