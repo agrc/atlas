@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "babel-plugin-transform-remove-strict-mode": "^0.0.2",
-    "babel-preset-latest": "^6.24.1",
+    "babel-preset-env": "1.7.0",
     "eslint": "4.19.1",
     "eslint-config-agrc": "^1.2.0",
     "eslint-plugin-html": "^4.0.1",
