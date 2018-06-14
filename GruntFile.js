@@ -17,7 +17,6 @@ module.exports = function configure(grunt) {
     ];
     var bumpFiles = [
         'package.json',
-        'bower.json',
         '_src/app/package.json',
         '_src/app/config.js'
     ];
@@ -136,15 +135,10 @@ module.exports = function configure(grunt) {
                 }
             },
             options: {
-                // You can also specify options to be used in all your tasks
-                // Path to dojo.js file in dojo source
-                dojo: 'src/dojo/dojo.js',
-                // Optional: Utility to bootstrap (Default: 'build')
+                // dojo: 'node_modules/dojo/dojo.js',
+                dojo: 'dojoConfig.js',
                 load: 'build',
-                releaseDir: '../dist',
-                // Optional: Module to require for the build (Default: nothing)
-                requires: ['_src/app/packages.js', '_src/app/run.js'],
-                basePath: './src'
+                releaseDir: '../dist'
             }
         },
         eslint: {
@@ -182,15 +176,13 @@ module.exports = function configure(grunt) {
                 options: {
                     specs: ['src/app/**/Spec*.js'],
                     vendor: [
-                        'src/jasmine-favicon-reporter/vendor/favico.js',
-                        'src/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
-                        'src/jasmine-jsreporter/jasmine-jsreporter.js',
+                        'node_modules/jasmine-favicon-reporter/vendor/favico.js',
+                        'node_modules/jasmine-favicon-reporter/jasmine-favicon-reporter.js',
                         'src/app/tests/jasmineTestBootstrap.js',
-                        'src/dojo/dojo.js',
+                        'node_modules/dojo/dojo.js',
                         'src/app/packages.js',
-                        'src/app/tests/jsReporterSanitizer.js',
                         'src/app/tests/jasmineAMDErrorChecking.js',
-                        'src/jquery/dist/jquery.js'
+                        'node_modules/jquery/dist/jquery.js'
                     ],
                     host: 'http://localhost:8000',
                     keepRunner: true

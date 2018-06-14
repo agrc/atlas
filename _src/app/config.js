@@ -18,6 +18,14 @@ define([
     esriConfig.request.corsEnabledServers.push('discover.agrc.utah.gov');
     esriConfig.request.corsEnabledServers.push('gis.trustlands.utah.gov');
 
+    if (!has('dojo-built')) {
+        esriConfig.workers.loaderConfig = {
+            paths: {
+                esri: '../arcgis-js-api'
+            }
+        };
+    }
+
     const config = {
         // app: app.App
         //      global reference to App
@@ -88,7 +96,7 @@ define([
         config.apiKey = 'AGRC-AC122FA9671436';
     } else {
         // localhost
-        xhr(require.baseUrl + 'secrets.json', {
+        xhr('secrets.json', {
             handleAs: 'json',
             sync: true
         }).then(function (secrets) {

@@ -11,11 +11,12 @@
   <div data-dojo-type="app/App"></div>
 
   <!-- build:template
-  <script data-dojo-config="deps:['app/packages', 'app/run']" src="dojo/dojo.js"></script>
+  <script src="dojo/dojo.js"></script>
+  <script>require(['app/run']);</script>
   /build -->
 
   <!-- build:remove -->
-  <script data-dojo-config="isDebug: 1" src="dojo/dojo.js"></script>
+  <script data-dojo-config="isDebug: 1" src="../node_modules/dojo/dojo.js"></script>
   <script src="app/packages.js"></script>
   <script src="app/run.js"></script>
   <!-- /build -->

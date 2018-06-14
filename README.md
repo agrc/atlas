@@ -13,7 +13,6 @@ Dojo config based heavily upon: [https://github.com/csnover/dojo-boilerplate](ht
 git clone https://github.com/agrc/atlas.git
 cd atlas
 npm install
-bower install
 ```
 
 ## Step 2 - Develop
@@ -34,7 +33,7 @@ Create a `secrets.json` file using [`secrets.sample.json`](secrets.sample.json) 
 
 # Tool Versions
 
-See [`bower.json`](bower.json) and [`package.json`](package.json) for dependency versions.
+See [`package.json`](package.json) for dependency versions.
 
 # Notes
 
@@ -42,7 +41,6 @@ The build script uses a special AMD build of the ESRI api to get all modules int
 
 Before beginning development make sure to run:
 ```
-bower install
 npm install
 ```
 to bring in all required dependencies.
