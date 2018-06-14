@@ -135,7 +135,6 @@ module.exports = function configure(grunt) {
                 }
             },
             options: {
-                // dojo: 'node_modules/dojo/dojo.js',
                 dojo: 'dojoConfig.js',
                 load: 'build',
                 releaseDir: '../dist'
