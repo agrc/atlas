@@ -17,10 +17,10 @@
   "devDependencies": {
     "babel-plugin-transform-remove-strict-mode": "^0.0.2",
     "babel-preset-latest": "^6.24.1",
-    "dojo": "1.13.0",
+    "eslint": "4.19.1",
     "eslint-config-agrc": "^1.2.0",
     "eslint-plugin-html": "^4.0.1",
-    "eslint": "4.19.1",
+    "grunt": "1.0.3",
     "grunt-babel": "^6.0.0",
     "grunt-bump": "^0.8.0",
     "grunt-contrib-clean": "^1.0.0",
@@ -28,7 +28,7 @@
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-imagemin": "^2.0.1",
-    "grunt-contrib-jasmine": "2.0.0",
+    "grunt-contrib-jasmine": "2.0.1",
     "grunt-contrib-stylus": "^1.0.0",
     "grunt-contrib-uglify": "3.3.0",
     "grunt-contrib-watch": "1.1.0",
@@ -40,11 +40,22 @@
     "grunt-processhtml": "^0.4.1",
     "grunt-ssh": "^0",
     "grunt-verbosity": "^1.0.1",
-    "grunt": "1.0.2",
-    "load-grunt-tasks": "^3.5.1",
-    "uglify-js": "^3.0.27"
+    "jasmine-favicon-reporter": "1.0.0",
+    "load-grunt-tasks": "4.0.0",
+    "stub-module": "0.6.1",
+    "uglify-js": "3.4.0"
   },
   "scripts": {
     "test": "grunt travis -v"
+  },
+  "dependencies": {
+    "@agrc/dart-board": "2.0.4",
+    "@agrc/helpers": "1.0.1",
+    "@agrc/layer-selector": "2.0.1",
+    "@agrc/map-tools": "2.0.2",
+    "@agrc/sherlock": "2.0.2",
+    "arcgis-js-api": "4.7.2",
+    "bootstrap": "3.3.6",
+    "jquery": "2.2.4"
   }
 }

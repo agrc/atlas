@@ -1,5 +1,5 @@
 (function () {
-    require({ baseUrl: './' }, ['dojo/parser', 'jquery', 'dojo/domReady!'], function (parser) {
+    require(['dojo/parser', 'jquery', 'dojo/domReady!'], function (parser) {
         parser.parse();
     });
 }());

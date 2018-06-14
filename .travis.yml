@@ -3,8 +3,6 @@ node_js:
     - "lts/*"
 before_install:
     - npm install -g grunt-cli
-    - npm install -g bower
-    - bower install
 notifications:
     email:
         on_success: change

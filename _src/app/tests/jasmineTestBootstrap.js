@@ -1,6 +1,6 @@
-/* global JasmineFaviconReporter, jasmineRequire */
+/* global JasmineFaviconReporter */
 var dojoConfig = { // eslint-disable-line no-unused-vars
-    baseUrl: '/src/',
+    baseUrl: '/node_modules',
     // dojo is required here since we are defining baseUrl before loading dojo
     packages: ['dojo',
         {
@@ -8,7 +8,7 @@ var dojoConfig = { // eslint-disable-line no-unused-vars
             location: 'agrc-jasmine-matchers/src'
         }, {
             name: 'stubmodule',
-            location: 'stubmodule/src',
+            location: 'stub-module/src',
             main: 'stub-module'
         }
     ],
@@ -19,4 +19,3 @@ var dojoConfig = { // eslint-disable-line no-unused-vars
 
 // for jasmine-favicon-reporter
 jasmine.getEnv().addReporter(new JasmineFaviconReporter());
-jasmine.getEnv().addReporter(new jasmineRequire.JSReporter2());
