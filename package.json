@@ -46,7 +46,7 @@
     "uglify-js": "3.4.0"
   },
   "scripts": {
-    "test": "grunt travis -v"
+    "test": "grunt travis"
   },
   "dependencies": {
     "@agrc/dart-board": "2.0.4",
