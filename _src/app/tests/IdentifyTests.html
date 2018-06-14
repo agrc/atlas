@@ -7,67 +7,80 @@
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="../../esri/css/esri.css" />
-  <link rel="stylesheet" href="../../bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" href="../resources/App.css" />
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/arcgis-js-api/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="../resources/App.css" />
   <style type="text/css">
     body {
       padding: 50px;
     }
-    #mapDiv {
-      border: solid gray 1px;
+    .map--full-screen {
+      width: 100%;
+      height: 100%;
     }
-    .identify-widget {
-      border: solid gray 1px;
-      width: 270px;
-      padding: 10px 6px 6px 10px;
+    .map--border-gray {
+        border: solid gray 1px;
     }
   </style>
 
   <!-- JAVASCRIPT -->
-  <script type="text/javascript" src="../../jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="../../bootstrap/dist/js/bootstrap.js"></script>
-  <script type="text/javascript" src="../../dojo/dojo.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="../../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../../../node_modules/dojo/dojo.js"></script>
   <script type="text/javascript" src="../../app/packages.js"></script>
   <script type="text/javascript">
-    var widgetUnderTest;
-
     require({
-        baseUrl: '../../'
+        baseUrl: '../../../node_modules',
+        packages: [
+            'dojo',
+            'dijit',
+            'moment',
+        {
+            name: 'esri',
+            location: 'arcgis-js-api'
+        }, {
+            name: 'maquette',
+            location: 'maquette',
+            main: 'dist/maquette.umd'
+        }, {
+            name: 'maquette-css-transitions',
+            location: 'maquette-css-transitions',
+            main: 'dist/maquette-css-transitions.umd'
+        }, {
+            name: 'maquette-jsx',
+            location: 'maquette-jsx',
+            main: 'dist/maquette-jsx.umd'
+        }]
     }, [
         'app/Identify',
 
-        'map-tools/BaseMap',
+        'map-tools/MapView',
 
-        'dojo/dom-construct',
+        'esri/Map',
+        'esri/views/MapView',
 
         'dojo/domReady!'
     ], function (
       Module,
 
-      BaseMap,
+      AGRCMapView,
 
-      domConstruct
+      Map,
+      MapView
     ) {
-        widgetUnderTest = new Module({
-            map: new BaseMap('mapDiv')
+        let map = new Map({basemap: 'streets'});
+        let mapView = new MapView({
+            map,
+            container: 'div'
         });
-        widgetUnderTest.startup();
+        new AGRCMapView(mapView);
 
-        domConstruct.place(widgetUnderTest.domNode, document.body);
-
-        widgetUnderTest.onMapClick({
-            mapPoint: {
-                x: 438888.5113211562,
-                y: 4435618.118854405
-            }
-        });
+        const identify = new Module({ mapView })
     });
   </script>
 </head>
 
-<body class="claro">
-  <div id="node"></div>
-  <div id="mapDiv"></div>
+<body>
+  <div id="div" class="map--full-screen map--border-gray"></div>
 </body>
 </html>
