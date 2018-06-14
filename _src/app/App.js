@@ -102,7 +102,7 @@ define([
 
             this.initMap();
 
-            this.mapView.then(() => {
+            this.mapView.when(() => {
                 this.childWidgets.push(
                     new FindAddress({
                         mapView: this.mapView,
@@ -171,7 +171,6 @@ define([
 
             var that = this;
             array.forEach(this.childWidgets, function (widget) {
-                console.log(widget.declaredClass);
                 that.own(widget);
                 widget.startup();
             });
@@ -206,7 +205,7 @@ define([
             //      Sets up the map
             console.info('app.App::initMap', arguments);
 
-            let map = new Map();
+            const map = new Map();
 
             this.mapView = new MapView({
                 map,
