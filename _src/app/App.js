@@ -97,6 +97,10 @@ define([
             //      Fires when
             console.log('app.App::postCreate', arguments);
 
+            if (window.innerWidth < config.minWidthToShowSidebarOnLoad) {
+                this.toggleSidebar();
+            }
+
             // set version number
             this.version.innerHTML = config.version;
 
