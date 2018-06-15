@@ -74,6 +74,12 @@ define([
         // mapView: map-tools/MapView
         mapView: null,
 
+        //      used to preserve the current extent between sessions
+        localStorageKeys: {
+            zoom: 'agrc-atlas-current-zoom',
+            center: 'agrc-atlas-current-center'
+        },
+
         constructor: function () {
             // summary:
             //      first function to fire after page loads
@@ -212,7 +218,23 @@ define([
 
             this.agrcMapView = new AGRCMapView(this.mapView);
 
-            this.mapView.extent = new Polygon(randomExtent.geometry).extent;
+            const center = localStorage.getItem(this.localStorageKeys.center);
+            const zoom = localStorage.getItem(this.localStorageKeys.zoom);
+            if (zoom && center) {
+                this.mapView.zoom = zoom;
+                this.mapView.center = JSON.parse(center);
+            } else {
+                this.mapView.extent = new Polygon(randomExtent.geometry).extent;
+            }
+
+            watchUtils.whenTrue(this.mapView, 'stationary', () => {
+                if (!this.mapView.zoom || !this.mapView.center) {
+                    return;
+                }
+
+                localStorage.setItem(this.localStorageKeys.zoom, this.mapView.zoom);
+                localStorage.setItem(this.localStorageKeys.center, JSON.stringify(this.mapView.center.toJSON()));
+            });
 
             this.childWidgets.push(
                 new LayerSelector({
