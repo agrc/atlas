@@ -39,6 +39,8 @@ define([
         // acquire at developer.mapserv.utah.gov
         apiKey: '',
 
+        minWidthToShowSidebarOnLoad: 624,
+
         urls: {
             search: 'https://api.mapserv.utah.gov/api/v1/search/{0}/{1}',
             reverseGeocode: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse/{0}/{1}',
