@@ -51,7 +51,7 @@
   "dependencies": {
     "@agrc/dart-board": "2.0.4",
     "@agrc/helpers": "1.0.1",
-    "@agrc/layer-selector": "2.0.1",
+    "@agrc/layer-selector": "2.0.2",
     "@agrc/map-tools": "2.0.2",
     "@agrc/sherlock": "2.0.2",
     "arcgis-js-api": "4.7.2",
