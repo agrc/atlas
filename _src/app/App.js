@@ -1,25 +1,21 @@
 define([
-    'app/config',
-    'app/Identify',
+    './config',
+    './Identify',
 
     'dart-board/FindAddress',
 
-    'dijit/registry',
     'dijit/_TemplatedMixin',
     'dijit/_WidgetBase',
     'dijit/_WidgetsInTemplateMixin',
 
-    'dojo/dom',
     'dojo/dom-class',
-    'dojo/dom-style',
     'dojo/on',
+    'dojo/text!./data/cityExtents.json',
     'dojo/text!./templates/App.html',
-    'dojo/_base/array',
     'dojo/_base/declare',
-    'dojo/_base/lang',
 
     'esri/core/watchUtils',
-    'esri/geometry/Extent',
+    'esri/geometry/Polygon',
     'esri/layers/FeatureLayer',
     'esri/Map',
     'esri/views/MapView',
@@ -39,22 +35,18 @@ define([
 
     FindAddress,
 
-    registry,
     _TemplatedMixin,
     _WidgetBase,
     _WidgetsInTemplateMixin,
 
-    dom,
     domClass,
-    domStyle,
     on,
+    cityExtentsTxt,
     template,
-    array,
     declare,
-    lang,
 
     watchUtils,
-    Extent,
+    Polygon,
     FeatureLayer,
     Map,
     MapView,
@@ -173,9 +165,8 @@ define([
             //      Fires after postCreate when all of the child widgets are finished laying out.
             console.log('app.App::startup', arguments);
 
-            var that = this;
-            array.forEach(this.childWidgets, function (widget) {
-                that.own(widget);
+            this.childWidgets.forEach((widget) => {
+                this.own(widget);
                 widget.startup();
             });
 
@@ -216,7 +207,12 @@ define([
                 container: this.mapDiv
             });
 
+            const cityExtents = JSON.parse(cityExtentsTxt);
+            const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
+
             this.agrcMapView = new AGRCMapView(this.mapView);
+
+            this.mapView.extent = new Polygon(randomExtent.geometry).extent;
 
             this.childWidgets.push(
                 new LayerSelector({
