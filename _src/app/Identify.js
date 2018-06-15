@@ -43,7 +43,7 @@ define([
         // map: esri/views/MapView
         mapView: null,
 
-        constructor: function (params) {
+        constructor(params) {
             // summary:
             //      description
             console.log('app/Identify::constructor', arguments);
@@ -53,10 +53,12 @@ define([
             this.mapView.on('click', this.onMapClick.bind(this));
             this.mapView.popup.title = 'Map Click Information';
         },
-        postCreate: function () {
+        postCreate() {
             // summary:
             //      description
             console.log('app/Identify:postCreate', arguments);
+
+            const outside = 'Outside of Utah';
 
             this.mapView.popup.set({
                 actions: [],
@@ -74,7 +76,7 @@ define([
                     config.fieldNames.NAME,
                     (data) => {
                         if (!data) {
-                            this.county.innerHTML = 'Outside of Utah';
+                            this.county.innerHTML = outside;
 
                             return;
                         }
@@ -96,7 +98,7 @@ define([
                     config.fieldNames.STATE_LGD,
                     (data) => {
                         if (!data) {
-                            this.landOwner.innerHTML = 'Outside of Utah';
+                            this.landOwner.innerHTML = outside;
 
                             return;
                         }
@@ -107,12 +109,12 @@ define([
                     config.fieldNames.GRID1Mil + ',' + config.fieldNames.GRIS100K,
                     (data) => {
                         if (!data) {
-                            this.nationalGrid.innerHTML = 'Outside of Utah';
+                            this.nationalGrid.innerHTML = outside;
 
                             return;
                         }
 
-                        var values = [
+                        const values = [
                             data[config.fieldNames.GRID1Mil],
                             data[config.fieldNames.GRIS100K], data.x, data.y
                         ];
@@ -123,8 +125,8 @@ define([
                     config.fieldNames.FEET + ',' + config.fieldNames.METERS,
                     (data) => {
                         if (!data) {
-                            this.elevFeet.innerHTML = 'Outside of Utah';
-                            this.elevMeters.innerHTML = 'Outside of Utah';
+                            this.elevFeet.innerHTML = outside;
+                            this.elevMeters.innerHTML = outside;
 
                             return;
                         }
@@ -136,7 +138,7 @@ define([
                     config.fieldNames.ZIP5,
                     (data) => {
                         if (!data) {
-                            this.zip.innerHTML = 'Outside of Utah';
+                            this.zip.innerHTML = outside;
 
                             return;
                         }
@@ -151,7 +153,7 @@ define([
                 color: '#F012BE' // just for steveoh
             });
         },
-        onMapClick: function (evt) {
+        onMapClick(evt) {
             // summary:
             //      user clicks on the map
             // evt: Map Click Event
@@ -194,7 +196,7 @@ define([
             }
 
             array.forEach(this.requests, (r) => {
-                var url = lang.replace(config.urls.search, [r[0], r[1]]);
+                const url = lang.replace(config.urls.search, [r[0], r[1]]);
                 request(url, {
                     query: {
                         geometry: `point: ${JSON.stringify(evt.mapPoint.toJSON())}`,
@@ -207,8 +209,8 @@ define([
                     },
                     handleAs: 'json'
                 }).then((data) => {
-                    var f;
-                    var decimalLength = -5;
+                    let f;
+                    const decimalLength = -5;
                     if (data.result.length > 0) {
                         f = lang.mixin(data.result[0].attributes || [], {
                             x: this.utmX.innerHTML.slice(decimalLength),
@@ -223,7 +225,7 @@ define([
 
             return promise;
         },
-        clearValues: function () {
+        clearValues() {
             // summary:
             //      clears all of the values for the widget
             console.log('app/Identify:clearValues', arguments);
@@ -234,15 +236,14 @@ define([
                 n.innerHTML = '';
             });
         },
-        reverseGeocode: function (point) {
+        reverseGeocode(point) {
             // summary:
             //      hits the web api reverse geocode endpoint
             // point: esri/geometry/point
             console.log('app/Identify::reverseGeocode', arguments);
 
-            var distanceInMeters = 50;
-            var that = this;
-            var url = lang.replace(config.urls.reverseGeocode, [point.x, point.y]);
+            const distanceInMeters = 50;
+            const url = lang.replace(config.urls.reverseGeocode, [point.x, point.y]);
             request(url, {
                 query: {
                     apiKey: config.apiKey,
@@ -253,11 +254,11 @@ define([
                     'X-Requested-With': null
                 },
                 handleAs: 'json'
-            }).then(function (data) {
+            }).then((data) => {
                 if (data.status && data.status === 200 && data.result.address) {
-                    that.address.innerHTML = data.result.address.street;
+                    this.address.innerHTML = data.result.address.street;
                 } else {
-                    that.address.innerHTML = 'Not found.';
+                    this.address.innerHTML = 'Not found.';
                 }
             });
         }

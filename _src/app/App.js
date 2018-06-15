@@ -80,20 +80,20 @@ define([
             center: 'agrc-atlas-current-center'
         },
 
-        constructor: function () {
+        constructor() {
             // summary:
             //      first function to fire after page loads
-            console.info('app.App::constructor', arguments);
+            console.log('app/App:constructor', arguments);
 
             config.app = this;
             this.childWidgets = [];
 
             this.inherited(arguments);
         },
-        postCreate: function () {
+        postCreate() {
             // summary:
             //      Fires when
-            console.log('app.App::postCreate', arguments);
+            console.log('app/App:postCreate', arguments);
 
             if (window.innerWidth < config.minWidthToShowSidebarOnLoad) {
                 this.toggleSidebar();
@@ -153,23 +153,23 @@ define([
         toggleSidebar() {
             // summary:
             //      Toggles the CSS classes to make the side bar collapse/expand
-            console.log('app.App:toggleSidebar', arguments);
+            console.log('app/App:toggleSidebar', arguments);
 
             domClass.toggle(this.sideBar, 'open closed');
             domClass.toggle(this.centerContainer, 'sidebar-open sidebar-closed');
             domClass.toggle(this.sideBarToggle, 'glyphicon-chevron-right glyphicon-chevron-left');
         },
-        setupConnections: function () {
+        setupConnections() {
             // summary:
             //      Fires when
-            console.log('app.App::setupConnections', arguments);
+            console.log('app/App:setupConnections', arguments);
 
             on.once(this.egg, 'dblclick', this.showLevel.bind(this));
         },
-        startup: function () {
+        startup() {
             // summary:
             //      Fires after postCreate when all of the child widgets are finished laying out.
-            console.log('app.App::startup', arguments);
+            console.log('app/App:startup', arguments);
 
             this.childWidgets.forEach((widget) => {
                 this.own(widget);
@@ -178,21 +178,21 @@ define([
 
             this.inherited(arguments);
         },
-        showLevel: function () {
+        showLevel() {
             // summary:
             //      shows the current map level
-            console.log('app.App::showLevel', arguments);
+            console.log('app/App:showLevel', arguments);
 
-            var parent = this.egg.parentNode;
+            const parent = this.egg.parentNode;
 
-            var node = document.createElement('span');
+            const node = document.createElement('span');
             node.setAttribute('class', 'version');
             node.setAttribute('style', 'padding-right:15px;margin-left:-43px;');
 
             parent.insertBefore(node, this.egg.nextSibling);
 
             const updateLevel = () => {
-                node.innerHTML = 'level: ' + this.mapView.zoom + ' ';
+                node.innerHTML = `level: ${this.mapView.zoom} `;
             };
 
             watchUtils.whenTrue(this.mapView, 'stationary', () => {
@@ -201,10 +201,10 @@ define([
 
             updateLevel();
         },
-        initMap: function () {
+        initMap() {
             // summary:
             //      Sets up the map
-            console.info('app.App::initMap', arguments);
+            console.log('app/App:initMap', arguments);
 
             const map = new Map();
 
@@ -212,9 +212,6 @@ define([
                 map,
                 container: this.mapDiv
             });
-
-            const cityExtents = JSON.parse(cityExtentsTxt);
-            const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
 
             this.agrcMapView = new AGRCMapView(this.mapView);
 
@@ -224,6 +221,8 @@ define([
                 this.mapView.zoom = zoom;
                 this.mapView.center = JSON.parse(center);
             } else {
+                const cityExtents = JSON.parse(cityExtentsTxt);
+                const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
                 this.mapView.extent = new Polygon(randomExtent.geometry).extent;
             }
 
