@@ -112,7 +112,9 @@ define([
                         zoomLevel: 17
                     }, this.geocodeNode),
                     new Sherlock({
-                        provider: new WebAPI(config.apiKey, config.featureClassNames.gnis, 'NAME'),
+                        provider: new WebAPI(config.apiKey, config.featureClassNames.gnis, 'NAME', {
+                            contextField: 'COUNTY'
+                        }),
                         mapView: this.mapView,
                         maxResultsToDisplay: 10,
                         placeHolder: 'place name ...'
