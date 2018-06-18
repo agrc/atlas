@@ -85,6 +85,21 @@ module.exports = function configure(grunt) {
                 push: false
             }
         },
+        cachebreaker: {
+            main: {
+                options: {
+                    match: [
+                        'dojo/dojo.js',
+                        'app/resources/App.css',
+                        'app/run.js',
+                        'app/resources/UserAdmin.css'
+                    ]
+                },
+                files: {
+                    src: ['dist/*.html']
+                }
+            }
+        },
         clean: {
             build: ['dist'],
             deploy: ['deploy'],
@@ -111,13 +126,13 @@ module.exports = function configure(grunt) {
             dist: {
                 expand: true,
                 cwd: 'src/',
-                src: ['*.html'],
+                src: ['*.html', 'web.config'],
                 dest: 'dist/'
             },
             src: {
                 expand: true,
                 cwd: '_src',
-                src: ['**/*.html', '**/*.css', '**/*.png', '**/*.jpg', '**/*.json', 'app/package.json'],
+                src: ['**/*.html', '**/*.css', '**/*.png', '**/*.jpg', '**/*.json', 'app/package.json', 'web.config'],
                 dest: 'src'
             }
         },
@@ -330,7 +345,8 @@ module.exports = function configure(grunt) {
         'dojo:prod',
         'uglify:prod',
         'copy:dist',
-        'processhtml:main'
+        'processhtml:main',
+        'cachebreaker'
     ]);
     grunt.registerTask('deploy-prod', [
         'clean:deploy',
@@ -344,7 +360,8 @@ module.exports = function configure(grunt) {
         'dojo:stage',
         'uglify:stage',
         'copy:dist',
-        'processhtml:main'
+        'processhtml:main',
+        'cachebreaker'
     ]);
     grunt.registerTask('deploy-stage', [
         'clean:deploy',
