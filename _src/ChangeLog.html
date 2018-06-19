@@ -14,6 +14,32 @@
   <h1>Atlas Utah Change Log</h1>
   <a href="./" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Back to the app</a>
   <a href="https://github.com/agrc/atlas/issues?state=open" class="btn btn-default">Open Issues</a>
+  <h2>4.0.0 <small>Jun 19, 2018</small></h2>
+  <ul>
+    <li>Updated Esri JS Api from 3.x to 4.x</li>
+    <li>Implemented Babel (<a href="https://github.com/agrc/atlas/issues/195">#195</a>).</li>
+    <li>Upgraded from MagicZoom to Sherlock.</li>
+    <li>Implemented eslint-agrc-config.</li>
+    <li>Upgraded from agrc.widgets to dart-board (FindAddress) and map-tools (MapView & extentRouter).</li>
+    <li>Added link to Google Street View to popup.</li>
+    <li>Implemented Esri Print Widget.</li>
+    <li>Implemented htmlhint.</li>
+    <li>Ditch yarn for npm.</li>
+    <li>Removed newer grunt task from eslint.</li>
+    <li>Upgraded eslint from 3.x to 4.x.</li>
+    <li>Upgrade grunt-contrib-jasmine thus kicking phantomjs to the curb.</li>
+    <li>Switch from bower to npm for front end dependency management.</li>
+    <li>Switched from eslint preset latest to env.</li>
+    <li>Remove proj4 dependency in favor of esri/geometry/projection.</li>
+    <li>Removed EmbeddedMapLoader.js (not used for years).</li>
+    <li>Make slightly more mobile friendly by hiding the sidebar (on load) and AGRC logo on smaller width devices.</li>
+    <li>Randomly choose from the capitols of the four most populous counties as the default extent on load.</li>
+    <li>Persist map extent between sessions (via local storage)</li>
+    <li>Upgrade all code to use modern ES6 JavaScript sytax.</li>
+    <li>Implement grunt-cache-breaker to help make sure that users always have the latest version deployed to the server (<a href="https://github.com/agrc/atlas/issues/148">#148</a>).</li>
+    <li>Add COUNTY as a context field for the Points of Interest search (<a href="https://github.com/agrc/atlas/issues/150">#150</a>).</li>
+    <li>Implement map-tools/extentRouter which adds URL parameters for determining the current map extent (<a href="https://github.com/agrc/atlas/issues/202">#202</a>).</li>
+  </ul>
   <h2>3.2.1 <small>Feb 12, 2018</small></h2>
   <ul>
     <li>Updated URL to SITLA's new Land Ownership service.</li>
