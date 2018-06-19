@@ -23,6 +23,7 @@ define([
 
     'layer-selector',
 
+    'map-tools/extentRouter',
     'map-tools/MapView',
 
     'sherlock/providers/WebAPI',
@@ -54,6 +55,7 @@ define([
 
     LayerSelector,
 
+    extentRouter,
     AGRCMapView,
 
     WebAPI,
@@ -214,6 +216,8 @@ define([
                 map,
                 container: this.mapDiv
             });
+
+            extentRouter(this.mapView);
 
             this.agrcMapView = new AGRCMapView(this.mapView);
 
