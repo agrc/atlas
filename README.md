@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/agrc/atlas.svg?branch=master)](https://travis-ci.org/agrc/atlas) [![Dependency Status](https://gemnasium.com/agrc/atlas.svg)](https://gemnasium.com/agrc/atlas)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fagrc%2Fatlas.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fagrc%2Fatlas?ref=badge_shield)
 
 AGRC JavaScript Project Boilerplate
 ===================================
@@ -46,3 +47,7 @@ npm install
 to bring in all required dependencies.
 
 A WASM MIME type that is used in the Esri JS API (geometry engine) is defined in [web.config](_src/web.config). This will cause a server error in IIS if you have the same type defined in a parent directory. If you experience this error you will need to remove one of the duplicate MIME type definitions.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fagrc%2Fatlas.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fagrc%2Fatlas?ref=badge_large)
