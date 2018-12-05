@@ -1,0 +1,37 @@
+.sherlock__match-dropdown {
+  width: 280px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  position: absolute;
+  z-index: 9999;
+}
+.sherlock__matches {
+  display: block;
+  width: 100%;
+  padding-inline-start: 0;
+  margin-bottom: 0;
+}
+.sherlock__match-item {
+  padding: 2px 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.sherlock__match-item:hover,
+.sherlock__match-item--selected {
+  background-color: #428bca;
+  color: #fff;
+  cursor: pointer;
+}
+.sherlock__match-item[disabled],
+.sherlock__match-item[disabled]:hover {
+  pointer-events: none;
+  justify-content: center;
+}
+.sherlock__message {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.dropdown-menu form .sherlock {
+  position: relative;
+}

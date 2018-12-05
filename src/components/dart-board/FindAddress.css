@@ -1,0 +1,11 @@
+.find-address__help-block {
+  display: none;
+}
+
+.find-address .has-error .help-block {
+  display: inline;
+}
+
+.find-address .has-error {
+  display: inline-block;
+}
