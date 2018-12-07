@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
 import './Sherlock.css'
 import { Input, Button, InputGroup, InputGroupAddon } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
