@@ -20,7 +20,7 @@ export default class App extends Component {
       }
     },
     mapClick: {},
-    sideBarOpen: true,
+    sideBarOpen: window.innerWidth >= config.MIN_DESKTOP_WIDTH,
     showIdentify: false,
     showPrint: false
   };
