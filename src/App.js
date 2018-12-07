@@ -8,6 +8,7 @@ import MapView from './components/esrijs/MapView';
 import Printer from './components/esrijs/Print';
 import { IdentifyInformation, IdentifyContainer } from './components/Identify';
 import { Collapse, Button, Card } from 'reactstrap';
+import config from './config';
 import './App.css';
 
 export default class App extends Component {
@@ -39,14 +40,14 @@ export default class App extends Component {
 
     const findAddressOptions = {
       apiKey: apiKey,
-      wkid: 3857,
+      wkid: config.WEB_MERCATOR_WKID,
       symbol: {
         type: 'simple-marker',
         style: 'diamond',
-        color: [130, 65, 47, 0.5],
+        color: config.MARKER_FILL_COLOR,
         size: '18px',
         outline: {
-          color: [230, 126, 21, 0.7],
+          color: config.MARKER_OUTLINE_COLOR,
           width: 1
         }
       }
