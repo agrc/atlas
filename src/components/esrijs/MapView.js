@@ -44,7 +44,6 @@ export default class ReactMapView extends Component {
     this.view = new MapView({
       container: this.mapViewDiv,
       map: this.map,
-      zoom: 4,
       extent: {
         xmax: -11762120.612131765,
         xmin: -13074391.513731329,
