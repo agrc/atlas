@@ -7,19 +7,13 @@ assignees: ''
 
 ---
 
----
-name: Bug Report
-about: Create a report to help us improve
-labels: bug, unconfirmed
---
-
 ### Details for the issue
 
 <!--
 
 Thanks for coming here to report an issue. :)
 
-Please describe it in this section, fill out the correct check boxes
+Please describe it in this section, fill out the correct checkboxes
 below with an "x" eg: [x], then click the "Submit new issue" button at the bottom
 
 -->
@@ -50,7 +44,7 @@ The info below often helps, please fill it out if you're able to. :)
 
 <!--
 
-To open the developer tools in most broswers, Right-click and choose Inspect Element. Navigate to the console and network tabs and repeate the process that is failing. Copy paste or take a screen shot and save it with this issue.
+To open the developer tools in most browsers, Right-click and choose Inspect Element. Navigate to the console and network tabs and repeat the process that is failing. Copy paste or take a screenshot and save it with this issue.
 
 -->
 
