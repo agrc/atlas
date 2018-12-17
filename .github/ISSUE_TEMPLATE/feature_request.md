@@ -7,6 +7,10 @@ assignees: ''
 
 ---
 
+<!--
+Thanks for coming here to suggest a new feature. :)
+-->
+
 ### Describe the new feature
 
 ### Additional info
