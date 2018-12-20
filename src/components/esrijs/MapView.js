@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { loadModules, loadCss } from 'esri-loader';
+import debounce from "lodash.debounce";
 import { LayerSelectorContainer, LayerSelector } from '../../components/LayerSelector/LayerSelector';
 import cityExtents from './data/cityExtents.json';
 
 
 export default class ReactMapView extends Component {
   zoomLevel = 5;
+  wait = 25;
   displayedZoomGraphic = null;
   urls = {
     landownership: 'https://gis.trustlands.utah.gov/server/' +
@@ -81,6 +83,7 @@ export default class ReactMapView extends Component {
       selectorNode);
 
     this.view.on('click', this.props.onClick);
+    this.view.on('pointer-move', debounce((evt) => this.props.onMouseMove(this.view.toMap({ x: evt.x, y: evt.y })), this.wait));
   }
 
   componentDidUpdate(prevProps) {

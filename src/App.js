@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MapLens from './components/MapLens';
 import FindAddress from './components/dart-board/FindAddress';
+import MouseTrap from './components/MouseTrap/MouseTrap';
 import { Sherlock, WebApiProvider } from './components/Sherlock/Sherlock';
 import MapView from './components/esrijs/MapView';
 import Printer from './components/esrijs/Print';
@@ -20,6 +21,7 @@ export default class App extends Component {
       }
     },
     mapClick: {},
+    mousePoint: {},
     sideBarOpen: window.innerWidth >= config.MIN_DESKTOP_WIDTH,
     showIdentify: false,
     showPrint: false
@@ -27,19 +29,38 @@ export default class App extends Component {
 
   onFindAddress = this.onFindAddress.bind(this);
   onMapClick = this.onMapClick.bind(this);
+  onMouseMove = this.onMouseMove.bind(this);
   showIdentify = this.showIdentify.bind(this);
   onSherlockMatch = this.onSherlockMatch.bind(this);
   togglePrint = this.togglePrint.bind(this);
   toggleSidebar = this.toggleSidebar.bind(this);
   setView = this.setView.bind(this);
 
-  render() {
-    const quadWord = process.env.REACT_APP_DISCOVER;
-    const apiKey = process.env.REACT_APP_WEB_API;
-    const version = process.env.REACT_APP_VERSION;
+  quadWord = process.env.REACT_APP_DISCOVER;
+  apiKey = process.env.REACT_APP_WEB_API;
+  version = process.env.REACT_APP_VERSION;
 
+  gnisSherlock = {
+    provider: new WebApiProvider(this.apiKey, 'SGID10.LOCATION.PlaceNamesGNIS2010', 'NAME', {
+      contextField: 'COUNTY'
+    }),
+    label: 'Find Point of Interest',
+    placeHolder: 'place name ...',
+    maxResultsToDisplay: 10,
+    onSherlockMatch: this.onSherlockMatch
+  };
+
+  citySherlock = {
+    provider: new WebApiProvider(this.apiKey, 'SGID10.BOUNDARIES.Municipalities', 'NAME'),
+    label: 'Find City',
+    placeHolder: 'city name ...',
+    maxResultsToDisplay: 10,
+    onSherlockMatch: this.onSherlockMatch
+  };
+
+  render() {
     const findAddressOptions = {
-      apiKey: apiKey,
+      apiKey: this.apiKey,
       wkid: config.WEB_MERCATOR_WKID,
       symbol: {
         type: 'simple-marker',
@@ -53,28 +74,11 @@ export default class App extends Component {
       }
     };
 
-    const gnisSherlock = {
-      provider: new WebApiProvider(apiKey, 'SGID10.LOCATION.PlaceNamesGNIS2010', 'NAME', {
-        contextField: 'COUNTY'
-      }),
-      label: 'Find Point of Interest',
-      placeHolder: 'place name ...',
-      maxResultsToDisplay: 10,
-      onSherlockMatch: this.onSherlockMatch
-    };
-
-    const citySherlock = {
-      provider: new WebApiProvider(apiKey, 'SGID10.BOUNDARIES.Municipalities', 'NAME'),
-      label: 'Find City',
-      placeHolder: 'city name ...',
-      maxResultsToDisplay: 10,
-      onSherlockMatch: this.onSherlockMatch
-    };
-
     const mapOptions = {
-      discoverKey: quadWord,
+      discoverKey: this.quadWord,
       zoomToGraphic: this.state.zoomToGraphic,
       onClick: this.onMapClick,
+      onMouseMove: this.onMouseMove,
       setView: this.setView
     }
 
@@ -85,7 +89,7 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <Header title="Atlas Utah" version={version} />
+        <Header title="Atlas Utah" version={this.version} />
         {this.state.showIdentify ?
         <IdentifyContainer show={this.showIdentify}>
           <IdentifyInformation apiKey={findAddressOptions.apiKey} location={this.state.mapClick} />
@@ -104,9 +108,9 @@ export default class App extends Component {
               onFindAddressError={this.onFindAddressError} />
           </div>
 
-          <Sherlock {...gnisSherlock}></Sherlock>
+          <Sherlock {...this.gnisSherlock}></Sherlock>
 
-          <Sherlock {...citySherlock}></Sherlock>
+          <Sherlock {...this.citySherlock}></Sherlock>
 
           <Card>
             <Button block onClick={this.togglePrint}>Export Map</Button>
@@ -116,7 +120,9 @@ export default class App extends Component {
                 : null}
             </Collapse>
           </Card>
-
+          {this.state.mousePoint.x ?
+            <MouseTrap point={this.state.mousePoint}></MouseTrap>
+            : null}
         </Sidebar>
         <MapLens {...sidebarOptions}>
           <MapView {...mapOptions} />
@@ -146,6 +152,10 @@ export default class App extends Component {
     });
   }
 
+  onMouseMove(point) {
+    this.setState({ mousePoint: point });
+  }
+
   showIdentify(value) {
     this.setState({ showIdentify: value });
   }
@@ -169,9 +179,7 @@ export default class App extends Component {
   }
 
   togglePrint() {
-    this.setState({
-      showPrint: !this.state.showPrint
-    });
+    this.setState({ showPrint: !this.state.showPrint });
   }
 
   toggleSidebar() {
