@@ -97,7 +97,7 @@ class Sherlock extends Component {
               <h4>{this.props.label}</h4>
               <div style={{ paddingBottom: '1em' }}>
                 <InputGroup>
-                  <Input {...getInputProps()} placeholder={this.props.placeHolder}></Input>
+                  <Input {...getInputProps()} placeholder={this.props.placeHolder} autocomplete="nope"></Input>
                   <InputGroupAddon addonType="append">
                     <Button size="sm" color="secondary" disabled>
                       <FontAwesomeIcon icon={faSearch} size="lg"></FontAwesomeIcon>
