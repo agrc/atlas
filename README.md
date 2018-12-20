@@ -9,6 +9,7 @@
 ### Step 1 - Boilerplate
 
 Checkout repository and install dependencies
+
 ```bash
 git clone https://github.com/agrc/atlas.git
 cd atlas
@@ -38,10 +39,12 @@ Execute `serve -s build` to view the website
 ### Step 4 - Deploy
 
 One-time tasks:
+
 - [ ] Update the analytics code in `public/index.html`
 - [ ] Create and populate `secrets.json` based on `secrets.sample.json`
 
 Tasks to be completed for each release:
+
 - [ ] Semantically update `.env` property `REACT_APP_VERSION` and `package.json` version
 - [ ] Update `public/changelog.html`
 - [ ] Verify all tests are passing (`npm test`)
