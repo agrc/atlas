@@ -33,6 +33,8 @@ export default class FindAddress extends Component {
   };
 
   render() {
+    console.log('FindAddress:render', arguments);
+
     return (
       <Form className={'find-address' + (this.inline ? ' form-inline' : '')}>
         <FormGroup>

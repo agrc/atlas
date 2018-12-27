@@ -70,14 +70,14 @@ class Sherlock extends Component {
   };
 
   itemToString(item) {
-    console.log('Clue:itemToString', arguments);
+    console.log('Sherlock:itemToString', arguments);
     const { searchField } = this.props.provider;
 
     return item ? item.attributes[searchField]: '';
   }
 
   render() {
-    console.log('SherlockDownshift:render', arguments);
+    console.log('Sherlock:render', arguments);
     const props = {
       itemToString: this.itemToString,
       onChange: this.handleStateChange
