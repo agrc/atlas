@@ -1,14 +1,15 @@
-import React, { PureComponent } from 'react';
+import { Component } from 'react';
 import './MouseTrap.css';
 
-export default class MouseTrap extends PureComponent {
+export default class MouseTrap extends Component {
   decimals = 3;
+
   render() {
-    console.log('MouseTrap:render');
-    return (
-      <div className="mouse-trap">
-        {this.props.point.x.toFixed(3)}, {this.props.point.y.toFixed(3)}
-      </div>
-    )
+    const point = {
+      x: this.props.point.x.toFixed(this.decimals),
+      y: this.props.point.y.toFixed(this.decimals)
+    };
+
+    return this.props.children(point);
   }
 }

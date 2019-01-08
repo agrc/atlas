@@ -121,8 +121,14 @@ export default class App extends Component {
             </Collapse>
           </Card>
           {this.state.mousePoint.x ?
-            <MouseTrap point={this.state.mousePoint}></MouseTrap>
-            : null}
+            <MouseTrap point={this.state.mousePoint}>
+              {(trap) => (
+                <div className="mouse-trap">
+                  {trap.x}, {trap.y}
+                </div>
+              )}
+            </MouseTrap>
+          : null}
         </Sidebar>
         <MapLens {...sidebarOptions}>
           <MapView {...mapOptions} />
