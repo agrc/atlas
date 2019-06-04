@@ -2,7 +2,7 @@
 
 ## AGRC JavaScript Project Boilerplate
 
-[![Build Status](https://travis-ci.org/agrc/atlas.svg?branch=master)](https://travis-ci.org/agrc/atlas)
+[![Build Status](https://travis-ci.com/agrc/atlas.svg?branch=master)](https://travis-ci.com/agrc/atlas)
 
 ## To Use
 
