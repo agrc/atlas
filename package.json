@@ -3,7 +3,7 @@
   "version": "5.0.2",
   "private": true,
   "dependencies": {
-    "@agrc/layer-selector": "^3.0.1-alpha.88",
+    "@agrc/layer-selector": "^3.0.1-alpha.93",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
