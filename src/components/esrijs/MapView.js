@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { loadModules, loadCss } from 'esri-loader';
-import { LayerSelectorContainer, LayerSelector } from '../../components/LayerSelector/LayerSelector';
+import { LayerSelectorContainer, LayerSelector } from '@agrc/layer-selector';
 import cityExtents from './data/cityExtents.json';
 
 
@@ -71,7 +71,7 @@ export default class ReactMapView extends Component {
         id: 'Land Ownership',
         opacity: 0.3
       }],
-      modules: [LOD, TileInfo, WebTileLayer, Basemap]
+      modules: { LOD, TileInfo, WebTileLayer, Basemap }
     }
 
     ReactDOM.render(
