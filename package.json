@@ -4,21 +4,21 @@
   "private": true,
   "dependencies": {
     "@agrc/layer-selector": "^3.2.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "downshift": "^3.4.8",
-    "esri-loader": "^2.15.0",
+    "esri-loader": "^2.16.0",
     "lodash.debounce": "^4.0.8",
     "lodash.escaperegexp": "^4.1.2",
     "lodash.sortby": "^4.7.0",
     "lodash.uniqwith": "^4.5.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-fast-compare": "^2.0.4",
     "react-scripts": "^3.4.3",
-    "reactstrap": "^8.5.1"
+    "reactstrap": "^8.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,6 +42,7 @@
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compress": "^1.6.0",
     "grunt-ssh": "^0.12.9",
-    "load-grunt-tasks": "^5.1.0"
+    "load-grunt-tasks": "^5.1.0",
+    "puppeteer": "^5.3.1"
   }
 }
