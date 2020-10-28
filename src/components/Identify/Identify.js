@@ -2,7 +2,7 @@ import React, { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './Identify.css';
 import { Container, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Helpers from '../../Helpers';
@@ -148,7 +148,7 @@ class IdentifyInformation extends Component {
     return (
       <Container fluid className="identify">
         <Col>
-          <h4>What's here?</h4>
+          <h4>What&apos;s here?</h4>
           <hr />
         </Col>
         <Col>
@@ -305,11 +305,11 @@ class IdentifyInformation extends Component {
     const [projection] = await loadModules(['esri/geometry/projection']);
     // lat/long coords
     console.log("loaded: ", projection.isLoaded());
-    console.log("supported: ", projection.isSupported())
+    console.log("supported: ", projection.isSupported());
 
     await projection.load();
 
-    console.log(projection.isLoaded())
+    console.log(projection.isLoaded());
 
     return projection.project(mapPoint, { wkid: srid });
   }
@@ -334,4 +334,4 @@ class IdentifyContainer extends PureComponent {
   }
 }
 
-export { IdentifyContainer, IdentifyInformation }
+export { IdentifyContainer, IdentifyInformation };

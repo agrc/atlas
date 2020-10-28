@@ -76,21 +76,21 @@ export default class App extends Component {
       zoomToGraphic: this.state.zoomToGraphic,
       onClick: this.onMapClick,
       setView: this.setView
-    }
+    };
 
     const sidebarOptions = {
       sideBarOpen: this.state.sideBarOpen,
       toggleSidebar: this.toggleSidebar
-    }
+    };
 
     return (
       <div className="app">
         <Header title="Atlas Utah" version={version} />
         {this.state.showIdentify ?
-        <IdentifyContainer show={this.showIdentify}>
-          <IdentifyInformation apiKey={findAddressOptions.apiKey} location={this.state.mapClick} />
-        </IdentifyContainer>
-        : null}
+          <IdentifyContainer show={this.showIdentify}>
+            <IdentifyInformation apiKey={findAddressOptions.apiKey} location={this.state.mapClick} />
+          </IdentifyContainer>
+          : null}
         <Sidebar>
           <small>Data and services provided by <a href="https://gis.utah.gov/">Utah AGRC</a></small>
           <p>Click a location on the map for more information</p>
@@ -132,11 +132,11 @@ export default class App extends Component {
         level: 18
       }
     });
-  };
+  }
 
   onFindAddressError(e) {
     console.error(e);
-  };
+  }
 
   onMapClick(event) {
     this.setState({

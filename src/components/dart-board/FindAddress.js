@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './FindAddress.css';
-import { Button, Form, FormGroup, FormText, Label, Input, } from 'reactstrap';
+import { Button, Form, FormGroup, FormText, Label, Input } from 'reactstrap';
 import { loadModules } from 'esri-loader';
 import Helpers from '../../Helpers';
 
@@ -50,8 +50,8 @@ export default class FindAddress extends Component {
           <FormText color="danger" className={this.state.found ? 'find-address__help-block' : ''}>No match found!</FormText>
         </FormGroup>
       </Form>
-    )
-  };
+    );
+  }
 
   async find() {
     console.info('FindAddress.find');
@@ -73,7 +73,7 @@ export default class FindAddress extends Component {
     let location = await this.extractResponse(response);
 
     return this.props.onFindAddress(location);
-  };
+  }
 
   fetch(options) {
     const url = `https://api.mapserv.utah.gov/api/v1/Geocode/${options.street}/${options.zone}?`;
@@ -89,7 +89,7 @@ export default class FindAddress extends Component {
       method: 'GET',
       mode: 'cors'
     });
-  };
+  }
 
   async extractResponse(response) {
     if (!response.ok) {
@@ -125,7 +125,7 @@ export default class FindAddress extends Component {
     });
 
     return graphic;
-  };
+  }
 
   validate() {
     const propsToValidate = ['street', 'zone'];
@@ -141,15 +141,15 @@ export default class FindAddress extends Component {
     this.setState(newState);
 
     return propsToValidate.every(key => newState[key + 'IsValid'] === true);
-  };
+  }
 
   handleChange(value, event) {
     this.setState({ [value]: event.target.value });
-  };
+  }
 
   handleKeyPress = async (event) => {
     if (event.key === 'Enter') {
       await this.find();
     }
-  };
-};
+  }
+}

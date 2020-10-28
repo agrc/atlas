@@ -72,7 +72,7 @@ export default class ReactMapView extends Component {
         opacity: 0.3
       }],
       modules: { LOD, TileInfo, WebTileLayer, Basemap }
-    }
+    };
 
     ReactDOM.render(
       <LayerSelectorContainer>

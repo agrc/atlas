@@ -13,6 +13,6 @@ export default class Header extends PureComponent {
         </h1>
         {window.innerWidth >= config.MIN_DESKTOP_WIDTH && <img src={logo} className="heading__img" alt="agrc logo" />}
       </div>
-    )
+    );
   }
 }
