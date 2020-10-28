@@ -35,6 +35,6 @@ export default class Printer extends Component {
           legendLayers: []
         }
       }]
-    })
+    });
   }
 }

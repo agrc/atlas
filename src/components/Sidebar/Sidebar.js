@@ -9,6 +9,6 @@ export default class Sidebar extends PureComponent {
           {this.props.children}
         </div>
       </div>
-    )
+    );
   }
 }

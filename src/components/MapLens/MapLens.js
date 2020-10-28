@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import './MapLens.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Button } from 'reactstrap';
 
