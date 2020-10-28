@@ -1,143 +1,110 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { loadModules, loadCss } from 'esri-loader';
-import { LayerSelectorContainer, LayerSelector } from '@agrc/layer-selector';
+import React, { useRef, useEffect, useState } from 'react';
+import MapView from '@arcgis/core/views/MapView';
+import EsriMap from '@arcgis/core/Map';
+import Basemap from '@arcgis/core/Basemap';
+import Polygon from '@arcgis/core/geometry/Polygon';
+import LOD from '@arcgis/core/layers/support/LOD';
+import TileInfo from '@arcgis/core/layers/support/TileInfo';
+import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
+import WebTileLayer from '@arcgis/core/layers/WebTileLayer';
+import {once} from '@arcgis/core/core/watchUtils';
+import LayerSelector from '@agrc/layer-selector';
 import cityExtents from './data/cityExtents.json';
 
+const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
+const urls = {
+  landownership: 'https://gis.trustlands.utah.gov/server/' +
+    '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0'
+};
 
-export default class ReactMapView extends Component {
-  zoomLevel = 5;
-  displayedZoomGraphic = null;
-  urls = {
-    landownership: 'https://gis.trustlands.utah.gov/server/' +
-      '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0'
-  };
+const ReactMapView = ({ setView, zoomToGraphic }) => {
+  const mapDiv = useRef(null);
+  const displayedZoomGraphic = useRef(null);
+  const [selectorOptions, setSelectorOptions] = useState(null);
+  const [view, localSetView] = useState(null);
 
-  render() {
-    return (
-      <div
-        style={{ height: '100%', width: '100%' }}
-        ref={mapViewDiv => {
-          this.mapViewDiv = mapViewDiv;
-        }}
-      />
-    );
-  }
+  useEffect(() => {
+    if (!mapDiv.current) {
+      return;
+    }
 
-  async componentDidMount() {
-    loadCss('https://js.arcgis.com/4.9/esri/css/main.css');
-    const mapRequires = [
-      'esri/Map',
-      'esri/views/MapView',
-      'esri/layers/FeatureLayer',
-      'esri/geometry/Polygon'
-    ];
-    const selectorRequires = [
-      'esri/layers/support/LOD',
-      'esri/layers/support/TileInfo',
-      'esri/layers/WebTileLayer',
-      'esri/Basemap'
-    ];
-
-    const [Map, MapView, FeatureLayer, Polygon, LOD, TileInfo, WebTileLayer, Basemap] = await loadModules(mapRequires.concat(selectorRequires));
-
-    this.map = new Map();
-
-    // get random city extent
-    const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
     const extent = new Polygon(randomExtent.geometry).extent;
 
-    this.view = new MapView({
-      container: this.mapViewDiv,
-      map: this.map,
+    const map = new EsriMap();
+    const mapView = new MapView({
+      container: mapDiv.current,
+      map,
       extent,
       ui: {
         components: ['zoom']
       }
     });
 
-    this.props.setView(this.view);
+    setView(mapView);
 
-    const selectorNode = document.createElement('div');
-    this.view.ui.add(selectorNode, 'top-right');
-
-    const layerSelectorOptions = {
-      view: this.view,
-      quadWord: this.props.discoverKey,
+    setSelectorOptions({
+      view: mapView,
+      quadWord: process.env.REACT_APP_DISCOVER,
       baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
       overlays: ['Address Points', {
         Factory: FeatureLayer,
-        url: this.urls.landownership,
+        url: urls.landownership,
         id: 'Land Ownership',
         opacity: 0.3
       }],
-      modules: { LOD, TileInfo, WebTileLayer, Basemap }
-    };
+      modules: { LOD, TileInfo, Basemap, WebTileLayer, FeatureLayer },
+      position: 'top-right'
+    });
 
-    ReactDOM.render(
-      <LayerSelectorContainer>
-        <LayerSelector {...layerSelectorOptions}></LayerSelector>
-      </LayerSelectorContainer>,
-      selectorNode);
+    localSetView(mapView);
+  }, [setView]);
 
-    this.view.on('click', this.props.onClick);
-  }
+  useEffect(() => {
 
-  componentDidUpdate(prevProps) {
-    const currentGraphic = (((this.props || false).zoomToGraphic || false).graphic || false);
-    const previousGraphic = (((prevProps || false).zoomToGraphic || false).graphic || false);
-
-    if (currentGraphic !== previousGraphic && currentGraphic !== false) {
-      const { graphic, level, preserve } = this.props.zoomToGraphic;
-
-      this.zoomTo({
-        target: graphic,
-        zoom: level,
-        preserve: preserve
-      });
-    }
-  }
-
-  async zoomTo(zoomObj) {
-    console.log('app.zoomTo', arguments);
-
-    if (!Array.isArray(zoomObj.target)) {
-      zoomObj.target = [zoomObj.target];
+    if (!zoomToGraphic?.graphic) {
+      return;
     }
 
-    if (!zoomObj.zoom) {
-      if (zoomObj.target.every(graphic => graphic.geometry.type === 'point')) {
-        zoomObj = {
-          target: zoomObj.target,
-          zoom: this.view.map.basemap.baseLayers.items[0].tileInfo.lods.length - this.zoomLevel
+    if (!Array.isArray(zoomToGraphic.graphic)) {
+      zoomToGraphic.graphic = [zoomToGraphic.graphic];
+    }
+
+    let zoom;
+    if (!zoomToGraphic.zoom) {
+      if (zoomToGraphic.graphic.every(graphic => graphic.geometry.type === 'point')) {
+        zoom = {
+          target: zoomToGraphic.graphic,
+          zoom: view.map.basemap.baseLayers.items[0].tileInfo.lods.length - 5
         };
       } else {
-        zoomObj = {
-          target: zoomObj.target
+        zoom = {
+          target: zoomToGraphic.graphic
         };
       }
     }
 
-    await this.view.goTo(zoomObj);
-
-    if (this.displayedZoomGraphic) {
-      this.view.graphics.removeMany(this.displayedZoomGraphic);
+    if (displayedZoomGraphic.current) {
+      view.graphics.removeMany(displayedZoomGraphic.current);
     }
 
-    this.displayedZoomGraphic = zoomObj.target;
+    displayedZoomGraphic.current = zoom.target;
 
-    this.view.graphics.addMany(zoomObj.target);
+    view.graphics.addMany(zoom.target);
 
-    const [watchUtils] = await loadModules(['esri/core/watchUtils']);
+    view.goTo(zoom).then(() => {
+      if (!zoom.preserve) {
+        once(view, 'extent', () => {
+          view.graphics.removeAll();
+        });
+      }
+    });
+  }, [zoomToGraphic, view]);
 
-    if (!zoomObj.preserve) {
-      watchUtils.once(this.view, 'extent', () => {
-        this.view.graphics.removeAll();
-      });
-    }
-  }
+  return (
+    <div ref={mapDiv} style={{ height: '100%', width: '100%' }}>
+      { selectorOptions ? <LayerSelector {...selectorOptions}></LayerSelector> : null}
+    </div>
+  );
+};
 
-  getView() {
-    return this.view;
-  }
-}
+export default ReactMapView;
