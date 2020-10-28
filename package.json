@@ -54,5 +54,10 @@
     "grunt-contrib-compress": "^1.6.0",
     "grunt-ssh": "^0.12.9",
     "load-grunt-tasks": "^5.1.0"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@arcgis/core)/)"
+    ]
   }
 }
