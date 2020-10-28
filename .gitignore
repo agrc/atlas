@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# esri required modules
+public/assets
+
 # testing
 /coverage
 
