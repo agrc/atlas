@@ -17,7 +17,7 @@ const urls = {
     '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0'
 };
 
-const ReactMapView = ({ setView, zoomToGraphic }) => {
+const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
   const mapDiv = useRef(null);
   const displayedZoomGraphic = useRef(null);
   const [selectorOptions, setSelectorOptions] = useState(null);
@@ -40,6 +40,8 @@ const ReactMapView = ({ setView, zoomToGraphic }) => {
       }
     });
 
+    mapView.on('click', onClick);
+
     setView(mapView);
 
     setSelectorOptions({
@@ -57,7 +59,7 @@ const ReactMapView = ({ setView, zoomToGraphic }) => {
     });
 
     localSetView(mapView);
-  }, [setView]);
+  }, [setView, onClick]);
 
   useEffect(() => {
 
