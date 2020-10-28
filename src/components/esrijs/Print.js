@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { loadModules } from 'esri-loader';
-
+import Print from '@arcgis/core/widgets/Print';
 
 export default class Printer extends Component {
   render() {
@@ -10,8 +9,6 @@ export default class Printer extends Component {
   }
 
   async componentDidMount() {
-    const [Print] = await loadModules(['esri/widgets/Print']);
-
     if (this.printer) {
       return;
     }

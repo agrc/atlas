@@ -4,9 +4,8 @@ import './Identify.css';
 import { Container, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-
+import {project, isLoaded, isSupported, load} from '@arcgis/core/geometry/projection';
 import Helpers from '../../Helpers';
-import { loadModules } from 'esri-loader';
 
 class IdentifyInformation extends Component {
   state = {
@@ -302,16 +301,17 @@ class IdentifyInformation extends Component {
   }
 
   async projectPoint(mapPoint, srid) {
-    const [projection] = await loadModules(['esri/geometry/projection']);
+    if (!isSupported) {
+      console.warn('projection not supported');
+      return;
+    }
+
     // lat/long coords
-    console.log("loaded: ", projection.isLoaded());
-    console.log("supported: ", projection.isSupported());
+    if (!isLoaded()) {
+      await load();
+    }
 
-    await projection.load();
-
-    console.log(projection.isLoaded());
-
-    return projection.project(mapPoint, { wkid: srid });
+    return project(mapPoint, { wkid: srid });
   }
 }
 
