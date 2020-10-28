@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MapLens from './components/MapLens';
+import Graphic from '@arcgis/core/Graphic';
+import QueryTask from '@arcgis/core/tasks/QueryTask';
 import FindAddress from './components/dart-board/FindAddress';
-import { Sherlock, WebApiProvider } from './components/Sherlock/Sherlock';
+import { Sherlock, WebApiProvider } from '@agrc/sherlock';
 import MapView from './components/esrijs/MapView';
 import Printer from './components/esrijs/Print';
 import { IdentifyInformation, IdentifyContainer } from './components/Identify';
@@ -34,7 +36,6 @@ export default class App extends Component {
   setView = this.setView.bind(this);
 
   render() {
-    const quadWord = process.env.REACT_APP_DISCOVER;
     const apiKey = process.env.REACT_APP_WEB_API;
     const version = process.env.REACT_APP_VERSION;
 
@@ -60,7 +61,8 @@ export default class App extends Component {
       label: 'Find Point of Interest',
       placeHolder: 'place name ...',
       maxResultsToDisplay: 10,
-      onSherlockMatch: this.onSherlockMatch
+      onSherlockMatch: this.onSherlockMatch,
+      modules: { Graphic, QueryTask }
     };
 
     const citySherlock = {
@@ -68,11 +70,11 @@ export default class App extends Component {
       label: 'Find City',
       placeHolder: 'city name ...',
       maxResultsToDisplay: 10,
-      onSherlockMatch: this.onSherlockMatch
+      onSherlockMatch: this.onSherlockMatch,
+      modules: { Graphic, QueryTask }
     };
 
     const mapOptions = {
-      discoverKey: quadWord,
       zoomToGraphic: this.state.zoomToGraphic,
       onClick: this.onMapClick,
       setView: this.setView
