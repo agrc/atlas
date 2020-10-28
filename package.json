@@ -1,6 +1,6 @@
 {
   "name": "atlas",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "private": true,
   "dependencies": {
     "@agrc/layer-selector": "^4.0.0",
