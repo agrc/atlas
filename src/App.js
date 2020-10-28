@@ -110,7 +110,7 @@ export default class App extends Component {
 
           <Sherlock {...citySherlock}></Sherlock>
 
-          <Card>
+          <Card style={{marginTop: "1em"}}>
             <Button block onClick={this.togglePrint}>Export Map</Button>
             <Collapse isOpen={this.state.showPrint}>
               {this.state.showPrint ?
