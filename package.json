@@ -24,20 +24,31 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postinstall": "cp -R ./node_modules/@arcgis/core/assets ./public/assets",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "@agrc"
+    "extends": "@agrc",
+    "parserOptions": {
+      "ecmaVersion": 2020
+    }
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": {
+    "production": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "@agrc/eslint-config": "^1.3.0",
+    "@arcgis/core": "^4.17.0-next.20201008",
     "eslint": "^7.1.0",
     "grunt": "^1.3.0",
     "grunt-contrib-clean": "^2.0.0",
