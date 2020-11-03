@@ -1,6 +1,0 @@
-{
-  "name": "FindAddress",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./FindAddress.js"
-}
