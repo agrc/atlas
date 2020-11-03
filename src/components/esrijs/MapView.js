@@ -7,7 +7,7 @@ import LOD from '@arcgis/core/layers/support/LOD';
 import TileInfo from '@arcgis/core/layers/support/TileInfo';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import WebTileLayer from '@arcgis/core/layers/WebTileLayer';
-import {once} from '@arcgis/core/core/watchUtils';
+import { once } from '@arcgis/core/core/watchUtils';
 import LayerSelector from '@agrc/layer-selector';
 import cityExtents from './data/cityExtents.json';
 
@@ -62,7 +62,6 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
   }, [setView, onClick]);
 
   useEffect(() => {
-
     if (!zoomToGraphic?.graphic) {
       return;
     }
