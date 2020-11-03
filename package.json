@@ -3,6 +3,7 @@
   "version": "5.0.3",
   "private": true,
   "dependencies": {
+    "@agrc/dart-board": "^3.0.1-alpha.154",
     "@agrc/layer-selector": "^4.0.0",
     "@agrc/sherlock": "^2.2.0",
     "@arcgis/core": "^4.17.0-next.20201008",
@@ -17,9 +18,10 @@
     "lodash.uniqwith": "^4.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-error-boundary": "^3.0.2",
     "react-fast-compare": "^2.0.4",
     "react-scripts": "^4.0.0",
-    "reactstrap": "^8.6.0"
+    "reactstrap": "^8.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,10 +56,5 @@
     "grunt-contrib-compress": "^1.6.0",
     "grunt-ssh": "^0.12.9",
     "load-grunt-tasks": "^5.1.0"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@arcgis/core)/)"
-    ]
   }
 }
