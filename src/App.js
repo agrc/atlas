@@ -84,7 +84,7 @@ export default function App() {
   };
 
   const gnisSherlock = {
-    provider: new WebApiProvider(apiKey, 'SGID10.LOCATION.PlaceNamesGNIS2010', 'NAME', {
+    provider: new WebApiProvider(apiKey, 'SGID10.LOCATION.PlaceNamesGNIS2019', 'NAME', {
       contextField: 'COUNTY'
     }),
     label: 'Find Point of Interest',
