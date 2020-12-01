@@ -1,6 +1,6 @@
 {
   "name": "atlas",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "private": true,
   "dependencies": {
     "@agrc/dart-board": "^3.2.2",
