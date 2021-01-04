@@ -11,25 +11,25 @@ import Helpers from '../../Helpers';
 import './Identify.css';
 
 const featureClassNames = {
-  counties: 'SGID10.BOUNDARIES.Counties',
-  municipalities: 'SGID10.BOUNDARIES.Municipalities',
-  landOwnership: 'SGID10.CADASTRE.LandOwnership',
-  nationalGrid: 'SGID10.INDICES.NationalGrid',
+  counties: 'boundaries.county_boundaries',
+  municipalities: 'boundaries.municipal_boundaries',
+  landOwnership: 'cadastre.land_ownership',
+  nationalGrid: 'indices.national_grid',
   dem: 'SGID10.RASTER.USGS_DEM_10METER',
-  gnis: 'SGID10.LOCATION.PlaceNamesGNIS2010',
-  zip: 'SGID10.BOUNDARIES.ZipCodes'
+  gnis: 'location.gnis_place_names',
+  zip: 'boundaries.zip_code_areas'
 };
 
 const fieldNames = {
   // counties & municipalities
-  NAME: 'NAME',
+  NAME: 'name',
   // state
-  STATE_LGD: 'STATE_LGD',
-  GRID1Mil: 'GRID1Mil',
-  GRIS100K: 'GRID100K',
+  STATE_LGD: 'state_lgd',
+  GRID1Mil: 'grid1mil',
+  GRIS100K: 'grid100k',
   FEET: 'feet',
   METERS: 'value',
-  ZIP5: 'ZIP5'
+  ZIP5: 'zip5'
 };
 
 const urls = {
@@ -182,7 +182,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       const url = `${urls.search}/${item[0]}/${item[1]}?`;
       const query = Helpers.toQueryString({
         geometry: `point: ${JSON.stringify(mapPoint.toJSON())}`,
-        attributeStyle: 'identical',
+        attributeStyle: 'lower',
         apiKey: apiKey,
         spatialReference: wkid
       });
