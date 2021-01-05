@@ -49,7 +49,7 @@ Tasks to be completed for each release:
 - [ ] Update `public/changelog.html`
 - [ ] Verify all tests are passing (`npm test`)
 - [ ] Run a build and test (`npm run build:prod`)
-- [ ] Deploy website (`wonkavision clean && wonkavision zip && env-cmd -e production wonkavision ship ./deploy/deploy.zip wwwroot/atlas && env-cmd -e production wonkavision unzip wwwroot/atlas`)
+- [ ] Deploy website (`npm run deploy:prod`)
 - [ ] Create release commit (`git commit -m 'chore: Release vx.x.x`)
 - [ ] Create tag (`git tag vx.x.x`)
 - [ ] Push commits and tag to github (`git push origin && git push origin --tags`)
