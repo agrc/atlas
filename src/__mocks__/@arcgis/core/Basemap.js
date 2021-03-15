@@ -1,1 +1,1 @@
-export default class Basemap { }
+export default class Basemap {}

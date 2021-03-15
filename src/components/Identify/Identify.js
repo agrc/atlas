@@ -17,7 +17,7 @@ const featureClassNames = {
   nationalGrid: 'indices.national_grid',
   dem: 'SGID10.RASTER.USGS_DEM_10METER',
   gnis: 'location.gnis_place_names',
-  zip: 'boundaries.zip_code_areas'
+  zip: 'boundaries.zip_code_areas',
 };
 
 const fieldNames = {
@@ -29,13 +29,13 @@ const fieldNames = {
   GRIS100K: 'grid100k',
   FEET: 'feet',
   METERS: 'value',
-  ZIP5: 'zip5'
+  ZIP5: 'zip5',
 };
 
 const urls = {
   search: 'https://api.mapserv.utah.gov/api/v1/search',
   reverse: 'https://api.mapserv.utah.gov/api/v1/geocode/reverse',
-  google: 'https://www.google.com/maps?q&layer=c&'
+  google: 'https://www.google.com/maps?q&layer=c&',
 };
 
 const outside = 'Outside of Utah';
@@ -62,7 +62,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
     y: 0,
     lat: 0,
     lon: 0,
-    googleMapsLink: ''
+    googleMapsLink: '',
   });
   const [address, setAddress] = useState(loading);
   const [ownership, setOwnership] = useState(loading);
@@ -74,139 +74,152 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   const signal = useRef();
   const controller = useRef();
 
-  const requests = useMemo(() => [
-    [
-      featureClassNames.counties,
-      fieldNames.NAME,
-      (data) => {
-        if (!data) {
-          setCounty(outside);
+  const requests = useMemo(
+    () => [
+      [
+        featureClassNames.counties,
+        fieldNames.NAME,
+        (data) => {
+          if (!data) {
+            setCounty(outside);
 
-          return;
-        }
-        setCounty(data[fieldNames.NAME]);
-      }
-    ], [
-      featureClassNames.municipalities,
-      fieldNames.NAME,
-      (data) => {
-        if (!data) {
-          setCity('Unincorporated');
+            return;
+          }
+          setCounty(data[fieldNames.NAME]);
+        },
+      ],
+      [
+        featureClassNames.municipalities,
+        fieldNames.NAME,
+        (data) => {
+          if (!data) {
+            setCity('Unincorporated');
 
-          return;
-        }
-        setCity(data[fieldNames.NAME]);
-      }
-    ], [
-      featureClassNames.landOwnership,
-      fieldNames.STATE_LGD,
-      (data) => {
-        if (!data) {
-          setOwnership(outside);
+            return;
+          }
+          setCity(data[fieldNames.NAME]);
+        },
+      ],
+      [
+        featureClassNames.landOwnership,
+        fieldNames.STATE_LGD,
+        (data) => {
+          if (!data) {
+            setOwnership(outside);
 
-          return;
-        }
-        setOwnership(data[fieldNames.STATE_LGD]);
-      }
-    ], [
-      featureClassNames.nationalGrid,
-      fieldNames.GRID1Mil + ',' + fieldNames.GRIS100K,
-      (data) => {
-        if (!data) {
-          setGrid(outside);
+            return;
+          }
+          setOwnership(data[fieldNames.STATE_LGD]);
+        },
+      ],
+      [
+        featureClassNames.nationalGrid,
+        fieldNames.GRID1Mil + ',' + fieldNames.GRIS100K,
+        (data) => {
+          if (!data) {
+            setGrid(outside);
 
-          return;
-        }
+            return;
+          }
 
-        const values = [
-          data[fieldNames.GRID1Mil],
-          data[fieldNames.GRIS100K], data.x, data.y
-        ];
-        setGrid(('{0} {1} {2} {3}', values));
-      }
-    ], [
-      featureClassNames.dem,
-      fieldNames.FEET + ',' + fieldNames.METERS,
-      (data) => {
-        if (!data) {
-          setElevation({feet: outside, meters: outside });
+          const values = [data[fieldNames.GRID1Mil], data[fieldNames.GRIS100K], data.x, data.y];
+          setGrid(('{0} {1} {2} {3}', values));
+        },
+      ],
+      [
+        featureClassNames.dem,
+        fieldNames.FEET + ',' + fieldNames.METERS,
+        (data) => {
+          if (!data) {
+            setElevation({ feet: outside, meters: outside });
 
-          return;
-        }
+            return;
+          }
 
-        const feet = Math.round(data[fieldNames.FEET] * 100) / 100;
+          const feet = Math.round(data[fieldNames.FEET] * 100) / 100;
 
-        setElevation({feet: feet, meters: data[fieldNames.METERS] });
-      }
-    ], [
-      featureClassNames.zip,
-      fieldNames.ZIP5,
-      (data) => {
-        if (!data) {
-          setZip(outside);
+          setElevation({ feet: feet, meters: data[fieldNames.METERS] });
+        },
+      ],
+      [
+        featureClassNames.zip,
+        fieldNames.ZIP5,
+        (data) => {
+          if (!data) {
+            setZip(outside);
 
-          return;
-        }
+            return;
+          }
 
-        setZip(data[fieldNames.ZIP5]);
-      }
-    ]
-  ], []);
+          setZip(data[fieldNames.ZIP5]);
+        },
+      ],
+    ],
+    []
+  );
 
-  const reverseGeocode = useCallback(async (point) => {
-    const distanceInMeters = 50;
-    const url = `${urls.reverse}/${point.x}/${point.y}/?`;
-    const query = Helpers.toQueryString({
-      apiKey: apiKey,
-      distance: distanceInMeters,
-      spatialReference: wkid
-    });
-
-    try {
-      const response = await fetch(url + query, { signal: signal.current });
-      let result = await response.json();
-      let address = 'No house address found.';
-
-      if (response.status === 200 && result.status === 200 && result.result.address) {
-        address = result.result.address.street;
-      }
-
-      setAddress(address);
-    } catch (ex) {
-      console.warn(ex);
-    }
-  }, [wkid, apiKey]);
-
-  const get = useCallback(async (requestMetadata, mapPoint) => {
-    await Promise.all(requestMetadata.map(async item => {
-      const url = `${urls.search}/${item[0]}/${item[1]}?`;
+  const reverseGeocode = useCallback(
+    async (point) => {
+      const distanceInMeters = 50;
+      const url = `${urls.reverse}/${point.x}/${point.y}/?`;
       const query = Helpers.toQueryString({
-        geometry: `point: ${JSON.stringify(mapPoint.toJSON())}`,
-        attributeStyle: 'lower',
         apiKey: apiKey,
-        spatialReference: wkid
+        distance: distanceInMeters,
+        spatialReference: wkid,
       });
 
       try {
         const response = await fetch(url + query, { signal: signal.current });
         let result = await response.json();
-        result = result.result;
+        let address = 'No house address found.';
 
-        let data;
-        if (result.length > 0) {
-          data = result[0].attributes || {};
+        if (response.status === 200 && result.status === 200 && result.result.address) {
+          address = result.result.address.street;
         }
 
-        item[2](data);
-      } catch (error) {
-        console.warn(error);
+        setAddress(address);
+      } catch (ex) {
+        console.warn(ex);
       }
-    }));
+    },
+    [wkid, apiKey]
+  );
 
-    await reverseGeocode(mapPoint);
+  const get = useCallback(
+    async (requestMetadata, mapPoint) => {
+      await Promise.all(
+        requestMetadata.map(async (item) => {
+          const url = `${urls.search}/${item[0]}/${item[1]}?`;
+          const query = Helpers.toQueryString({
+            geometry: `point: ${JSON.stringify(mapPoint.toJSON())}`,
+            attributeStyle: 'lower',
+            apiKey: apiKey,
+            spatialReference: wkid,
+          });
 
-    controller.current = null;
-  }, [apiKey, wkid, reverseGeocode]);
+          try {
+            const response = await fetch(url + query, { signal: signal.current });
+            let result = await response.json();
+            result = result.result;
+
+            let data;
+            if (result.length > 0) {
+              data = result[0].attributes || {};
+            }
+
+            item[2](data);
+          } catch (error) {
+            console.warn(error);
+          }
+        })
+      );
+
+      await reverseGeocode(mapPoint);
+
+      controller.current = null;
+    },
+    [apiKey, wkid, reverseGeocode]
+  );
 
   useEffect(() => {
     const identify = async () => {
@@ -214,7 +227,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         x: 0,
         y: 0,
         lat: 0,
-        lon: 0
+        lon: 0,
       });
       setAddress(loading);
       setZip(loading);
@@ -239,7 +252,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         y,
         lat,
         lon,
-        googleMapsLink: `${urls.google}cbll=${lon},${lat}`
+        googleMapsLink: `${urls.google}cbll=${lon},${lat}`,
       });
     };
 
@@ -262,7 +275,9 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       </Col>
       <Col>
         <strong>UTM 12 NAD83 Coordinates</strong>
-        <p className="identify--muted">{spatial.x}, {spatial.y}</p>
+        <p className="identify--muted">
+          {spatial.x}, {spatial.y}
+        </p>
       </Col>
       <Col>
         <strong>Approximate Street Address</strong>
@@ -278,7 +293,9 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       </Col>
       <Col>
         <strong>WGS84 Coordinates</strong>
-        <p className="identify--muted">{spatial.lat}, {spatial.lon}</p>
+        <p className="identify--muted">
+          {spatial.lat}, {spatial.lon}
+        </p>
       </Col>
       <Col>
         <strong>City</strong>
@@ -301,14 +318,25 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         <p className="identify--muted">{elevation.feet}</p>
       </Col>
       <Col>
-        <a href={spatial.googleMapsLink} className="text-info position-static" target="_blank" rel="noopener noreferrer">Google Street View</a>
-        <FontAwesomeIcon icon={faExternalLinkAlt} className="identify--muted" style={{ marginLeft: '.5em' }}></FontAwesomeIcon>
+        <a
+          href={spatial.googleMapsLink}
+          className="text-info position-static"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google Street View
+        </a>
+        <FontAwesomeIcon
+          icon={faExternalLinkAlt}
+          className="identify--muted"
+          style={{ marginLeft: '.5em' }}
+        ></FontAwesomeIcon>
       </Col>
     </Container>
   );
 };
 
-const IdentifyContainer = function  ({ show, children }) {
+const IdentifyContainer = function ({ show, children }) {
   return (
     <div className="identify__container side-bar side-bar--with-border side-bar--open">
       <button type="button" className="identify__close" aria-label="Close" onClick={() => show(false)}>
@@ -323,5 +351,5 @@ export { IdentifyContainer, IdentifyInformation };
 
 IdentifyInformation.propTypes = {
   apiKey: PropTypes.string.isRequired,
-  wkid: PropTypes.number
+  wkid: PropTypes.number,
 };
