@@ -1,1 +1,1 @@
-export default class Print{}
+export default class Print {}

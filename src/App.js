@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import {ErrorBoundary} from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Collapse, Button, Card } from 'reactstrap';
 import Graphic from '@arcgis/core/Graphic';
 import QueryTask from '@arcgis/core/tasks/QueryTask';
@@ -24,7 +24,7 @@ const ErrorFallback = ({ error }) => {
   return (
     <div role="alert">
       <p>Something went wrong:</p>
-      <pre style={{color: 'red'}}>{error.message}</pre>
+      <pre style={{ color: 'red' }}>{error.message}</pre>
     </div>
   );
 };
@@ -33,8 +33,8 @@ export default function App() {
   const [zoomToGraphic, setZoomToGraphic] = useState({
     zoomToGraphic: {
       graphic: {},
-      level: 0
-    }
+      level: 0,
+    },
   });
   const [showIdentify, setShowIdentify] = useState(false);
   const [mapClick, setMapClick] = useState(null);
@@ -54,7 +54,7 @@ export default function App() {
     // check for point feature
     setZoomToGraphic({
       graphic: graphics,
-      preserve: false
+      preserve: false,
     });
   };
 
@@ -68,30 +68,30 @@ export default function App() {
       size: '18px',
       outline: {
         color: config.MARKER_OUTLINE_COLOR,
-        width: 1
-      }
+        width: 1,
+      },
     },
     events: {
       success: (graphic) => {
         console.log('findAddress::success');
         setZoomToGraphic({
           graphic: graphic,
-          level: 18
+          level: 18,
         });
       },
-      error: console.error
-    }
+      error: console.error,
+    },
   };
 
   const gnisSherlock = {
     provider: new WebApiProvider(apiKey, 'SGID10.LOCATION.PlaceNamesGNIS2019', 'NAME', {
-      contextField: 'COUNTY'
+      contextField: 'COUNTY',
     }),
     label: 'Find Point of Interest',
     placeHolder: 'place name ...',
     maxResultsToDisplay: 10,
     onSherlockMatch: onSherlockMatch,
-    modules: { Graphic, QueryTask }
+    modules: { Graphic, QueryTask },
   };
 
   const citySherlock = {
@@ -100,7 +100,7 @@ export default function App() {
     placeHolder: 'city name ...',
     maxResultsToDisplay: 10,
     onSherlockMatch: onSherlockMatch,
-    modules: { Graphic, QueryTask }
+    modules: { Graphic, QueryTask },
   };
 
   const onClick = useCallback((event) => {
@@ -112,27 +112,29 @@ export default function App() {
   const mapOptions = {
     zoomToGraphic: zoomToGraphic,
     onClick: onClick,
-    setView: setMapView
+    setView: setMapView,
   };
 
   const sidebarOptions = {
     sideBarOpen: sideBarOpen,
-    toggleSidebar: () => setSideBarOpen(!sideBarOpen)
+    toggleSidebar: () => setSideBarOpen(!sideBarOpen),
   };
 
   return (
     <div className="app">
       <Header title="Atlas Utah" version={version} />
-      {showIdentify ?
+      {showIdentify ? (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <IdentifyContainer show={setShowIdentify}>
             <IdentifyInformation apiKey={apiKey} location={mapClick} />
           </IdentifyContainer>
         </ErrorBoundary>
-        : null}
+      ) : null}
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Sidebar>
-          <small>Data and services provided by <a href="https://gis.utah.gov/">Utah AGRC</a></small>
+          <small>
+            Data and services provided by <a href="https://gis.utah.gov/">Utah AGRC</a>
+          </small>
           <p>Click a location on the map for more information</p>
           <h4>Find Address</h4>
           <div id="geocodeNode">
@@ -146,13 +148,11 @@ export default function App() {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Sherlock {...citySherlock}></Sherlock>
           </ErrorBoundary>
-          <Card style={{ marginTop: "1em" }}>
-            <Button block onClick={() => setShowPrint(!showPrint)}>Export Map</Button>
-            <Collapse isOpen={showPrint}>
-              {showPrint ?
-                <Printer view={mapView}></Printer>
-                : null}
-            </Collapse>
+          <Card style={{ marginTop: '1em' }}>
+            <Button block onClick={() => setShowPrint(!showPrint)}>
+              Export Map
+            </Button>
+            <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
           </Card>
         </Sidebar>
       </ErrorBoundary>

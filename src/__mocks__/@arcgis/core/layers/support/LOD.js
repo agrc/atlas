@@ -1,1 +1,1 @@
-export default class LOD { }
+export default class LOD {}

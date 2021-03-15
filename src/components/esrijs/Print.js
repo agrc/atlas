@@ -3,9 +3,13 @@ import Print from '@arcgis/core/widgets/Print';
 
 export default class Printer extends Component {
   render() {
-    return (<div ref={printDiv => {
-      this.printDiv = printDiv;
-    }}></div>);
+    return (
+      <div
+        ref={(printDiv) => {
+          this.printDiv = printDiv;
+        }}
+      ></div>
+    );
   }
 
   async componentDidMount() {
@@ -17,21 +21,24 @@ export default class Printer extends Component {
       container: this.printDiv,
       view: this.props.view,
       printServiceUrl: process.env.REACT_APP_PRINT_PROXY,
-      templates: [{
-        label: 'Portrait (PDF)',
-        format: 'PDF',
-        layout: 'Letter ANSI A Portrait',
-        options: {
-          legendLayers: []
-        }
-      }, {
-        label: 'Landscape (PDF)',
-        format: 'PDF',
-        layout: 'Letter ANSI A Landscape',
-        options: {
-          legendLayers: []
-        }
-      }]
+      templates: [
+        {
+          label: 'Portrait (PDF)',
+          format: 'PDF',
+          layout: 'Letter ANSI A Portrait',
+          options: {
+            legendLayers: [],
+          },
+        },
+        {
+          label: 'Landscape (PDF)',
+          format: 'PDF',
+          layout: 'Letter ANSI A Landscape',
+          options: {
+            legendLayers: [],
+          },
+        },
+      ],
     });
   }
 }

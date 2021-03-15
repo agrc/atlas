@@ -13,8 +13,9 @@ import cityExtents from './data/cityExtents.json';
 
 const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
 const urls = {
-  landownership: 'https://gis.trustlands.utah.gov/server/' +
-    '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0'
+  landownership:
+    'https://gis.trustlands.utah.gov/server/' +
+    '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
 };
 
 const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
@@ -36,8 +37,8 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
       map,
       extent,
       ui: {
-        components: ['zoom']
-      }
+        components: ['zoom'],
+      },
     });
 
     mapView.on('click', onClick);
@@ -48,14 +49,17 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
       view: mapView,
       quadWord: process.env.REACT_APP_DISCOVER,
       baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
-      overlays: ['Address Points', {
-        Factory: FeatureLayer,
-        url: urls.landownership,
-        id: 'Land Ownership',
-        opacity: 0.3
-      }],
+      overlays: [
+        'Address Points',
+        {
+          Factory: FeatureLayer,
+          url: urls.landownership,
+          id: 'Land Ownership',
+          opacity: 0.3,
+        },
+      ],
       modules: { LOD, TileInfo, Basemap, WebTileLayer, FeatureLayer },
-      position: 'top-right'
+      position: 'top-right',
     });
 
     localSetView(mapView);
@@ -72,14 +76,14 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
 
     let zoom;
     if (!zoomToGraphic.zoom) {
-      if (zoomToGraphic.graphic.every(graphic => graphic.geometry.type === 'point')) {
+      if (zoomToGraphic.graphic.every((graphic) => graphic.geometry.type === 'point')) {
         zoom = {
           target: zoomToGraphic.graphic,
-          zoom: view.map.basemap.baseLayers.items[0].tileInfo.lods.length - 5
+          zoom: view.map.basemap.baseLayers.items[0].tileInfo.lods.length - 5,
         };
       } else {
         zoom = {
-          target: zoomToGraphic.graphic
+          target: zoomToGraphic.graphic,
         };
       }
     }
@@ -103,7 +107,7 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
 
   return (
     <div ref={mapDiv} style={{ height: '100%', width: '100%' }}>
-      { selectorOptions ? <LayerSelector {...selectorOptions}></LayerSelector> : null}
+      {selectorOptions ? <LayerSelector {...selectorOptions}></LayerSelector> : null}
     </div>
   );
 };
