@@ -1,0 +1,40 @@
+name: Node.js CI
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - ".github/workflows/nodejs.yaml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
+      - run: npm ci
+
+      - run: npm run build:test --if-present
+        env:
+          CI: false
+
+      - run: npm test -- --watchAll=false
