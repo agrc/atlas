@@ -1,1 +1,1 @@
-export default class TileInfo { }
+export default class TileInfo {}

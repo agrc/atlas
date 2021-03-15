@@ -1,12 +1,10 @@
 import React from 'react';
 import './Sidebar.css';
 
-export default function Sidebar({children}) {
+export default function Sidebar({ children }) {
   return (
     <div id="sideBar" className="side-bar side-bar--with-border side-bar--open">
-      <div className="side-bar__padder">
-        {children}
-      </div>
+      <div className="side-bar__padder">{children}</div>
     </div>
   );
 }
