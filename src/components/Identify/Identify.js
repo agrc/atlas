@@ -6,7 +6,7 @@ import { Container, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
-import Helpers from '../../Helpers';
+import { toQueryString } from '../../Helpers';
 
 import './Identify.css';
 
@@ -162,7 +162,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
     async (point) => {
       const distanceInMeters = 50;
       const url = `${urls.reverse}/${point.x}/${point.y}/?`;
-      const query = Helpers.toQueryString({
+      const query = toQueryString({
         apiKey: apiKey,
         distance: distanceInMeters,
         spatialReference: wkid,
@@ -190,7 +190,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       await Promise.all(
         requestMetadata.map(async (item) => {
           const url = `${urls.search}/${item[0]}/${item[1]}?`;
-          const query = Helpers.toQueryString({
+          const query = toQueryString({
             geometry: `point: ${JSON.stringify(mapPoint.toJSON())}`,
             attributeStyle: 'lower',
             apiKey: apiKey,
