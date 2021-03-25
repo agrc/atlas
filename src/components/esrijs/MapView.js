@@ -10,6 +10,7 @@ import WebTileLayer from '@arcgis/core/layers/WebTileLayer';
 import { once } from '@arcgis/core/core/watchUtils';
 import LayerSelector from '@agrc/layer-selector';
 import cityExtents from './data/cityExtents.json';
+import addMapPropsToGlobal from './addMapPropsToGlobal';
 
 const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
 const urls = {
@@ -40,6 +41,10 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
         components: ['zoom'],
       },
     });
+
+    if (window.Cypress) {
+      addMapPropsToGlobal(mapView);
+    }
 
     mapView.on('click', onClick);
 
