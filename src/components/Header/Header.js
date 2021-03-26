@@ -8,7 +8,7 @@ export default function Header({ title, version }) {
     <div className="app__header">
       <h1 className="header__heading">
         <span>{title}</span>
-        <a className="heading__version" href="/changelog.html" target="_blank" rel="noopener">
+        <a className="heading__version" href="https://github.com/agrc/atlas/blob/main/CHANGELOG.md" target="_blank" rel="noreferrer">
           {version}
         </a>
       </h1>
