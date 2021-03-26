@@ -2,7 +2,7 @@
 
 ## AGRC JavaScript Project Boilerplate
 
-[![Build Status](https://travis-ci.com/agrc/atlas.svg?branch=master)](https://travis-ci.com/agrc/atlas)
+[![Node.js CI](https://github.com/agrc/atlas/actions/workflows/nodejs.yaml/badge.svg)](https://github.com/agrc/atlas/actions/workflows/nodejs.yaml)
 
 ## To Use
 
