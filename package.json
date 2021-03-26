@@ -34,7 +34,8 @@
     "lint": "eslint src",
     "postinstall": "cp -R ./node_modules/@arcgis/core/assets ./public/assets",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "standard-version"
   },
   "eslintConfig": {
     "extends": [
@@ -70,6 +71,7 @@
     "grunt-contrib-compress": "^2.0.0",
     "grunt-ssh": "^0.12.9",
     "load-grunt-tasks": "^5.1.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "standard-version": "^9.1.1"
   }
 }
