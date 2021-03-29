@@ -2,6 +2,7 @@
   "name": "atlas",
   "version": "5.0.5",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@agrc/dart-board": "^3.3.0",
     "@agrc/layer-selector": "^4.0.4",
