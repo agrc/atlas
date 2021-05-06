@@ -28,6 +28,7 @@
   "scripts": {
     "build:prod": "env-cmd -e production react-scripts build",
     "build:stage": "env-cmd -e staging react-scripts build",
+    "build:cloud-dev": "env-cmd -e cloud-dev react-scripts build",
     "build": "env-cmd -e development react-scripts build",
     "cypress:open": "cypress open",
     "cypress:run": "npm start & wait-on http://localhost:3000 && cypress run",
