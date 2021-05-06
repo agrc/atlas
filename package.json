@@ -35,7 +35,6 @@
     "eject": "react-scripts eject",
     "format": "prettier --write src --ignore-path ./.gitignore",
     "lint": "eslint src",
-    "postinstall": "cp -R ./node_modules/@arcgis/core/assets ./public/assets",
     "postinstall": "cp -R ./node_modules/@arcgis/core/assets ./public",
     "release": "standard-version",
     "start": "env-cmd -e development react-scripts start",
