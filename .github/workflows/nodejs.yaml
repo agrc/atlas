@@ -10,11 +10,8 @@ on:
       - "cypress.json"
 
 jobs:
-  build:
+  test-unit:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x, 15.x]
 
     steps:
       - name: Checkout Code
@@ -23,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
 
       - name: Cache Node.js modules
         uses: actions/cache@v2
@@ -36,13 +33,9 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build:test --if-present
-        env:
-          CI: false
-
       - run: npm test -- --watchAll=false
 
-  cypress:
+  test-functional:
     runs-on: ubuntu-latest
     env:
       REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
@@ -57,3 +50,85 @@ jobs:
         with:
           start: npm run start:no-env
           wait-on: 'http://localhost:3000'
+
+  deploy-prod:
+    needs: [test-unit, test-functional]
+    environment:
+      name: prod
+      url: https://atlas.utah.gov
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build:prod
+
+      - name: Firebase Deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: '${{ secrets.PROJECT_ID }}'
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
+
+      - name: Cache firebase
+        uses: actions/cache@v2
+        with:
+          path: ./.firebase
+          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
+          restore-keys: |
+            ${{ runner.OS }}-firebase-
+            ${{ runner.OS }}-
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    needs: [test-unit, test-functional]
+    environment:
+      name: dev
+      url: https://atlas.dev.utah.gov
+    if: github.ref == 'refs/heads/dev'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build:cloud-dev
+
+      - name: Firebase Deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: '${{ secrets.PROJECT_ID }}'
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
+
+      - name: Cache firebase
+        uses: actions/cache@v2
+        with:
+          path: ./.firebase
+          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
+          restore-keys: |
+            ${{ runner.OS }}-firebase-
+            ${{ runner.OS }}-
