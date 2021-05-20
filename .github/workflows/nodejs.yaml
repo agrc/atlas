@@ -80,6 +80,15 @@ jobs:
           REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
           REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
 
+      - name: Cache firebase
+        uses: actions/cache@v2
+        with:
+          path: ./.firebase
+          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
+          restore-keys: |
+            ${{ runner.OS }}-firebase-
+            ${{ runner.OS }}-
+
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -89,15 +98,6 @@ jobs:
           projectId: '${{ secrets.PROJECT_ID }}'
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
-
-      - name: Cache firebase
-        uses: actions/cache@v2
-        with:
-          path: ./.firebase
-          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
-          restore-keys: |
-            ${{ runner.OS }}-firebase-
-            ${{ runner.OS }}-
 
   deploy-dev:
     runs-on: ubuntu-latest
@@ -124,6 +124,15 @@ jobs:
           REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
           REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
 
+      - name: Cache firebase
+        uses: actions/cache@v2
+        with:
+          path: ./.firebase
+          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
+          restore-keys: |
+            ${{ runner.OS }}-firebase-
+            ${{ runner.OS }}-
+
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -133,12 +142,3 @@ jobs:
           projectId: '${{ secrets.PROJECT_ID }}'
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
-
-      - name: Cache firebase
-        uses: actions/cache@v2
-        with:
-          path: ./.firebase
-          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
-          restore-keys: |
-            ${{ runner.OS }}-firebase-
-            ${{ runner.OS }}-
