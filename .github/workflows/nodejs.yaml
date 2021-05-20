@@ -72,7 +72,7 @@ jobs:
         run: npm ci
 
       - name: Build app
-        run: npm run build:prod
+        run: npm run build:ci
 
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -112,7 +112,7 @@ jobs:
         run: npm ci
 
       - name: Build app
-        run: npm run build:cloud-dev
+        run: npm run build:ci
 
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
