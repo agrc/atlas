@@ -78,7 +78,7 @@ jobs:
         env:
           REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
           REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
-          REACT_APP_PRINT_PROXY: ${{ secretes.REACT_APP_PRINT_PROXY }}
+          REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
 
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -122,7 +122,7 @@ jobs:
         env:
           REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
           REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
-          REACT_APP_PRINT_PROXY: ${{ secretes.REACT_APP_PRINT_PROXY }}
+          REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
 
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
