@@ -30,6 +30,7 @@
     "build:stage": "env-cmd -e staging react-scripts build",
     "build:cloud-dev": "env-cmd -e cloud-dev react-scripts build",
     "build": "env-cmd -e development react-scripts build",
+    "build:ci": "react-scripts build",
     "cypress:open": "cypress open",
     "cypress:run": "npm start & wait-on http://localhost:3000 && cypress run",
     "deploy:prod": "wonkavision clean && wonkavision zip && env-cmd -e production wonkavision ship ./deploy/deploy.zip wwwroot/atlas && env-cmd -e production wonkavision unzip wwwroot/atlas",
