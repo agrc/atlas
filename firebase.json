@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "ut-dts-agrc-atlas-prod",
+      "site": "ut-dts-agrc-atlas-prod",
       "public": "build",
       "ignore": [
         "firebase.json",
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "target": "ut-dts-agrc-atlas-dev",
+      "site": "ut-dts-agrc-atlas-dev",
       "public": "build",
       "ignore": [
         "firebase.json",
