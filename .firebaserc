@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "ut-dts-agrc-atlas-prod"
+  },
+  "targets": {
+    "ut-dts-agrc-atlas-prod": {
+      "hosting": {
+        "ut-dts-agrc-atlas-dev": [
+          "hosting"
+        ]
+      }
+    }
   }
 }
