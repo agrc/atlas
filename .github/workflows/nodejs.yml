@@ -5,7 +5,7 @@ on:
     paths:
       - "public/**"
       - "src/**"
-      - ".github/workflows/nodejs.yaml"
+      - ".github/workflows/nodejs.yml"
       - "package.json"
       - "cypress/**"
       - "cypress.json"
