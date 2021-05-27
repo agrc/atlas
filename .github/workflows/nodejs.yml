@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/nodejs.yml"
+      - "firebase.json"
       - "src/**"
       - "public/**"
       - "package-lock.json"
