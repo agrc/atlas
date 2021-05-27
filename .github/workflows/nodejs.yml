@@ -107,6 +107,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
           channelId: live
           projectId: '${{ secrets.PROJECT_ID }}'
+          target: '${{ secrets.PROJECT_ID }}'
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 
@@ -161,6 +162,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
           channelId: live
-          projectId: '${{ secrets.PROJECT_ID }}'
+          projectId: 'ut-dts-agrc-atlas-prod'
+          target: '${{ secrets.PROJECT_ID }}'
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
