@@ -8,6 +8,26 @@
         "**/.*",
         "**/node_modules/**"
       ],
+      "headers": [
+      {
+        "source": "*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=300"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400"
+          }
+        ]
+      }
+    ],
       "rewrites": [
         {
           "source": "**",
