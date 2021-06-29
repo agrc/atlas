@@ -23,7 +23,7 @@
     "react-fast-compare": "^3.2.0",
     "react-scripts": "^4.0.3",
     "reactstrap": "^8.9.0",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^2.0.1"
   },
   "scripts": {
     "build:prod": "env-cmd -e production react-scripts build",
@@ -78,6 +78,6 @@
     "eslint-plugin-react": "^7.23.2",
     "prettier": "^2.3.0",
     "standard-version": "^9.3.0",
-    "wait-on": "^5.3.0"
+    "wait-on": "^6.0.0"
   }
 }
