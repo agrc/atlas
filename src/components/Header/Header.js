@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import logo from './agrc_logo.jpg';
+import logo from './ugrc_logo.png';
 import config from '../../config';
 
 export default function Header({ title, version }) {
