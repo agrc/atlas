@@ -7,7 +7,7 @@
     "@agrc/dart-board": "^3.3.1",
     "@agrc/layer-selector": "^4.0.5",
     "@agrc/sherlock": "^2.3.0",
-    "@arcgis/core": "^4.20.2",
+    "@arcgis/core": "^4.21.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
