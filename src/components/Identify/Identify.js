@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { project, isLoaded, isSupported, load } from '@arcgis/core/geometry/projection';
+import { project, isLoaded, load } from '@arcgis/core/geometry/projection';
 import { Container, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -41,11 +41,6 @@ const urls = {
 const outside = 'Outside of Utah';
 
 const projectPoint = async (mapPoint, srid) => {
-  if (!isSupported) {
-    console.warn('projection not supported');
-    return;
-  }
-
   // lat/long coords
   if (!isLoaded()) {
     await load();
