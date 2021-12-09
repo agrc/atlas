@@ -3,43 +3,18 @@ name: Node.js CI
 on:
   push:
     paths:
-      - ".github/workflows/nodejs.yml"
-      - "firebase.json"
-      - ".firebaserc"
-      - "src/**"
-      - "public/**"
-      - "package-lock.json"
-      - "cypress/**"
-      - "cypress.json"
+      - '.github/workflows/nodejs.yml'
+      - 'firebase.json'
+      - '.firebaserc'
+      - 'src/**'
+      - 'public/**'
+      - 'package-lock.json'
+      - 'cypress/**'
+      - 'cypress.json'
 
 jobs:
-  test-unit:
-    runs-on: ubuntu-latest
-    needs: [test-functional]
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-
-      - run: npm ci
-
-      - run: npm test -- --watchAll=false
-
   test-functional:
+    name: Functional tests
     runs-on: ubuntu-latest
     environment:
       name: dev
@@ -48,16 +23,38 @@ jobs:
       REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
       REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
     steps:
-      - name: Checkout
+      - name: ⬇️ Set up code
         uses: actions/checkout@v2
 
-      - name: Run Cypress Tests
+      - name: 🧪 Run tests
         uses: cypress-io/github-action@v2
         with:
           start: npm run start:no-env
           wait-on: 'http://localhost:3000'
 
+  test-unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    needs: [test-functional]
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
+
+      - name: 🧪 Run tests
+        run: npm test -- --watchAll=false
+
   deploy-prod:
+    name: Deploy to production
     needs: [test-unit, test-functional]
     environment:
       name: prod
@@ -66,34 +63,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: ⬇️ Set up code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: lts/*
+          cache: npm
 
-      - name: Cache Node.js modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-
-      - name: Install dependencies
+      - name: 📥 Download dependencies
         run: npm ci
 
-      - name: Build app
+      - name: 🏗 Run build script
         run: npm run build:ci
         env:
           REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
           REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
           REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
 
-      - name: Cache firebase
+      - name: 🪣 Cache firebase
         uses: actions/cache@v2
         with:
           path: ./.firebase
@@ -102,7 +91,7 @@ jobs:
             ${{ runner.OS }}-firebase-
             ${{ runner.OS }}-
 
-      - name: Firebase Deploy
+      - name: 🚀 Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -114,6 +103,7 @@ jobs:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 
   deploy-dev:
+    name: Deploy to staging
     runs-on: ubuntu-latest
     needs: [test-unit, test-functional]
     environment:
@@ -122,34 +112,26 @@ jobs:
     if: github.ref == 'refs/heads/dev'
 
     steps:
-      - name: Checkout Code
+      - name: ⬇️ Set up code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: ⎔ Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: lts/*
+          cache: npm
 
-      - name: Cache Node.js modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-
-      - name: Install dependencies
+      - name: 📥 Download dependencies
         run: npm ci
 
-      - name: Build app
+      - name: 🏗 Run build script
         run: npm run build:ci
         env:
           REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
           REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
           REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
 
-      - name: Cache firebase
+      - name: 🪣 Cache firebase
         uses: actions/cache@v2
         with:
           path: ./.firebase
@@ -158,7 +140,7 @@ jobs:
             ${{ runner.OS }}-firebase-
             ${{ runner.OS }}-
 
-      - name: Firebase Deploy
+      - name: 🚀 Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
