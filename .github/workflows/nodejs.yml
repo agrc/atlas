@@ -31,7 +31,6 @@ jobs:
         with:
           start: npm run start:no-env
           wait-on: 'http://localhost:3000'
-          timeout-minutes: 10
 
   test-unit:
     name: Unit tests
