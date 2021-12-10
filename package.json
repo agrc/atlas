@@ -71,6 +71,7 @@
     "@agrc/wonkavision": "^1.0.2",
     "@babel/plugin-transform-regenerator": "^7.16.0",
     "@testing-library/cypress": "^8.0.2",
+    "chokidar": "^3.5.2",
     "cypress": "^8.3.1",
     "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.3.0",
