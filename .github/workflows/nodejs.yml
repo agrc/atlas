@@ -53,55 +53,6 @@ jobs:
       - name: 🧪 Run tests
         run: npm test -- --watchAll=false
 
-  deploy-prod:
-    name: Deploy to production
-    needs: [test-unit, test-functional]
-    environment:
-      name: prod
-      url: https://atlas.utah.gov
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: ⬇️ Set up code
-        uses: actions/checkout@v2
-
-      - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: lts/*
-          cache: npm
-
-      - name: 📥 Download dependencies
-        run: npm ci
-
-      - name: 🏗 Run build script
-        run: npm run build:ci
-        env:
-          REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
-          REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
-          REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
-
-      - name: 🪣 Cache firebase
-        uses: actions/cache@v2
-        with:
-          path: ./.firebase
-          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
-          restore-keys: |
-            ${{ runner.OS }}-firebase-
-            ${{ runner.OS }}-
-
-      - name: 🚀 Firebase Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: '${{ secrets.PROJECT_ID }}'
-          target: '${{ secrets.PROJECT_ID }}'
-        env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
-
   deploy-dev:
     name: Deploy to staging
     runs-on: ubuntu-latest
@@ -110,10 +61,24 @@ jobs:
       name: dev
       url: https://atlas.dev.utah.gov
     if: github.ref == 'refs/heads/dev'
+    permissions:
+      contents: read
+      id-token: write
+      deployments: write
 
     steps:
       - name: ⬇️ Set up code
         uses: actions/checkout@v2
+
+      - id: auth
+        name: 🗝️ Authenticate to Google Cloud
+        uses: google-github-actions/auth@v0.4.4
+        with:
+          token_format: access_token
+          access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          create_credentials_file: true
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v2
@@ -147,6 +112,69 @@ jobs:
           firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
           channelId: live
           projectId: 'ut-dts-agrc-atlas-prod'
+          target: '${{ secrets.PROJECT_ID }}'
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
+
+  deploy-prod:
+    name: Deploy to production
+    needs: [test-unit, test-functional]
+    environment:
+      name: prod
+      url: https://atlas.utah.gov
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      deployments: write
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v2
+
+      - id: auth
+        name: 🗝️ Authenticate to Google Cloud
+        uses: google-github-actions/auth@v0.4.4
+        with:
+          token_format: access_token
+          access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          create_credentials_file: true
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
+
+      - name: 🏗 Run build script
+        run: npm run build:ci
+        env:
+          REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
+          REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
+          REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
+
+      - name: 🪣 Cache firebase
+        uses: actions/cache@v2
+        with:
+          path: ./.firebase
+          key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
+          restore-keys: |
+            ${{ runner.OS }}-firebase-
+            ${{ runner.OS }}-
+
+      - name: 🚀 Firebase Deploy
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: '${{ secrets.PROJECT_ID }}'
           target: '${{ secrets.PROJECT_ID }}'
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
