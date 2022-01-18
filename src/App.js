@@ -133,7 +133,7 @@ export default function App() {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Sidebar>
           <small>
-            Data and services provided by <a href="https://gis.utah.gov/">Utah AGRC</a>
+            Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>
           </small>
           <p>Click a location on the map for more information</p>
           <h4>Find Address</h4>
