@@ -7,10 +7,10 @@
     "@agrc/dart-board": "^3.3.1",
     "@agrc/layer-selector": "^4.0.5",
     "@agrc/sherlock": "^2.3.0",
-    "@arcgis/core": "^4.22.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@arcgis/core": "^4.22.2",
+    "@fortawesome/fontawesome-svg-core": "^1.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.0.0",
+    "@fortawesome/react-fontawesome": "^0.1.17",
     "bootstrap": "^4.6.0",
     "downshift": "^6.1.7",
     "lodash.debounce": "^4.0.8",
@@ -21,9 +21,9 @@
     "react-dom": "^17.0.2",
     "react-error-boundary": "^3.1.4",
     "react-fast-compare": "^3.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.0",
     "reactstrap": "^8.10.0",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "build:prod": "env-cmd -e production react-scripts build",
@@ -68,17 +68,16 @@
     ]
   },
   "devDependencies": {
-    "@agrc/wonkavision": "^1.0.2",
-    "@babel/plugin-transform-regenerator": "^7.16.0",
+    "@babel/plugin-transform-regenerator": "^7.16.7",
     "@testing-library/cypress": "^8.0.2",
-    "chokidar": "^3.5.2",
-    "cypress": "^8.3.1",
+    "chokidar": "^3.5.3",
+    "cypress": "^9.5.0",
     "env-cmd": "^10.1.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react": "^7.28.0",
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
-    "wait-on": "^6.0.0"
+    "wait-on": "^6.0.1"
   }
 }
