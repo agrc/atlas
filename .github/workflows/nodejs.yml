@@ -74,7 +74,6 @@ jobs:
         name: 🗝️ Authenticate to Google Cloud
         uses: google-github-actions/auth@v0.4.4
         with:
-          token_format: access_token
           access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
           workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
@@ -106,13 +105,10 @@ jobs:
             ${{ runner.OS }}-
 
       - name: 🚀 Firebase Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: 'ut-dts-agrc-atlas-prod'
-          target: '${{ secrets.PROJECT_ID }}'
+        run: >
+          npx firebase-tools deploy
+          --only hosting:${{ secrets.PROJECT_ID }}
+          --project ut-dts-agrc-atlas-prod
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 
@@ -137,7 +133,6 @@ jobs:
         name: 🗝️ Authenticate to Google Cloud
         uses: google-github-actions/auth@v0.4.4
         with:
-          token_format: access_token
           access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
           workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
@@ -169,12 +164,9 @@ jobs:
             ${{ runner.OS }}-
 
       - name: 🚀 Firebase Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: '${{ secrets.PROJECT_ID }}'
-          target: '${{ secrets.PROJECT_ID }}'
+        run: >
+          npx firebase-tools deploy
+          --only hosting:${{ secrets.PROJECT_ID }}
+          --project ${{ secrets.PROJECT_ID }}
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
