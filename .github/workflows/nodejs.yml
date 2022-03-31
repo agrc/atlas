@@ -24,7 +24,7 @@ jobs:
       REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🧪 Run tests
         uses: cypress-io/github-action@v2
@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v2
@@ -68,11 +68,11 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
-        uses: google-github-actions/auth@v0.4.4
+        uses: google-github-actions/auth@v0
         with:
           access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
           workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
@@ -127,7 +127,7 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
