@@ -28,7 +28,7 @@ jobs:
       REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 🧪 Run tests
         uses: cypress-io/github-action@v3
@@ -43,10 +43,10 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: lts/*
           cache: npm
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
@@ -84,7 +84,7 @@ jobs:
           create_credentials_file: true
 
       - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: lts/*
           cache: npm
@@ -131,7 +131,7 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - id: auth
         name: 🗝️ Authenticate to Google Cloud
@@ -143,7 +143,7 @@ jobs:
           create_credentials_file: true
 
       - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: lts/*
           cache: npm
