@@ -7,7 +7,7 @@
     "@agrc/dart-board": "^3.3.1",
     "@agrc/layer-selector": "^4.0.5",
     "@agrc/sherlock": "^2.3.0",
-    "@arcgis/core": "^4.23.5",
+    "@arcgis/core": "^4.23.7",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
@@ -68,15 +68,15 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-transform-regenerator": "^7.16.7",
+    "@babel/plugin-transform-regenerator": "^7.17.9",
     "@testing-library/cypress": "^8.0.2",
     "chokidar": "^3.5.3",
-    "cypress": "^9.5.3",
+    "cypress": "^9.5.4",
     "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-react": "^7.29.4",
-    "prettier": "^2.6.1",
+    "prettier": "^2.6.2",
     "standard-version": "^9.3.2",
     "wait-on": "^6.0.1"
   }
