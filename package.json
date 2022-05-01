@@ -71,7 +71,7 @@
     "@babel/plugin-transform-regenerator": "^7.17.9",
     "@testing-library/cypress": "^8.0.2",
     "chokidar": "^3.5.3",
-    "cypress": "^9.5.4",
+    "cypress": "^9.6.0",
     "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
