@@ -12,6 +12,11 @@ on:
       - 'cypress/**'
       - 'cypress.json'
 
+permissions:
+  contents: read
+  id-token: write
+  deployments: write
+
 concurrency:
   group: '${{ github.head_ref || github.ref }}'
   cancel-in-progress: true
@@ -65,23 +70,10 @@ jobs:
       name: dev
       url: https://atlas.dev.utah.gov
     if: github.ref == 'refs/heads/dev'
-    permissions:
-      contents: read
-      id-token: write
-      deployments: write
 
     steps:
       - name: ⬇️ Set up code
         uses: actions/checkout@v3
-
-      - id: auth
-        name: 🗝️ Authenticate to Google Cloud
-        uses: google-github-actions/auth@v0
-        with:
-          access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
-          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
-          create_credentials_file: true
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
@@ -107,6 +99,15 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-firebase-
             ${{ runner.OS }}-
+
+      - name: 🗝️ Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          create_credentials_file: true
 
       - name: 🚀 Firebase Deploy
         run: >
@@ -124,23 +125,10 @@ jobs:
       url: https://atlas.utah.gov
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-      deployments: write
 
     steps:
       - name: ⬇️ Set up code
         uses: actions/checkout@v3
-
-      - id: auth
-        name: 🗝️ Authenticate to Google Cloud
-        uses: google-github-actions/auth@v0
-        with:
-          access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
-          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
-          create_credentials_file: true
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
@@ -166,6 +154,15 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-firebase-
             ${{ runner.OS }}-
+
+      - name: 🗝️ Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v0
+        with:
+          access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          create_credentials_file: true
 
       - name: 🚀 Firebase Deploy
         run: >
