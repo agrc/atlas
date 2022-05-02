@@ -111,8 +111,8 @@ jobs:
       - name: 🚀 Firebase Deploy
         run: >
           npx firebase-tools deploy
-          --only hosting:${{ secrets.PROJECT_ID }}
-          --project ut-dts-agrc-atlas-prod
+          --only hosting
+          --project ${{ secrets.PROJECT_ID }}
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 
@@ -170,7 +170,7 @@ jobs:
       - name: 🚀 Firebase Deploy
         run: >
           npx firebase-tools deploy
-          --only hosting:${{ secrets.PROJECT_ID }}
+          --only hosting
           --project ${{ secrets.PROJECT_ID }}
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
