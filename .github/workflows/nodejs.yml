@@ -44,7 +44,6 @@ jobs:
   test-unit:
     name: Unit tests
     runs-on: ubuntu-latest
-    needs: [test-functional]
 
     steps:
       - name: ⬇️ Set up code
