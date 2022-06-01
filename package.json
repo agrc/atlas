@@ -75,7 +75,7 @@
     "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react": "^7.30.0",
     "prettier": "^2.6.2",
     "standard-version": "^9.3.2",
     "wait-on": "^6.0.1"
