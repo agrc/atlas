@@ -22,7 +22,7 @@
     "react-error-boundary": "^3.1.4",
     "react-fast-compare": "^3.2.0",
     "react-scripts": "^5.0.1",
-    "reactstrap": "^9.0.2",
+    "reactstrap": "^9.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -68,16 +68,16 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-transform-regenerator": "^7.17.9",
+    "@babel/plugin-transform-regenerator": "^7.18.0",
     "@testing-library/cypress": "^8.0.2",
     "chokidar": "^3.5.3",
-    "cypress": "^9.6.0",
+    "cypress": "^10.0.0",
     "env-cmd": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react": "^7.30.0",
     "prettier": "^2.6.2",
-    "standard-version": "^9.3.2",
+    "standard-version": "^9.5.0",
     "wait-on": "^6.0.1"
   }
 }
