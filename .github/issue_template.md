@@ -25,11 +25,11 @@ The info below often helps, please fill it out if you're able to. :)
 
 #### I'm viewing atlas on
 
-- [ ] Internet Explorer: ( _version:_ ___ )
-- [ ] Edge: ( _version:_ ___ )
-- [ ] Firefox: ( _version:_ ___ )
-- [ ] Chrome: ( _version:_ ___ )
-- [ ] Other: ___
+- [ ] Internet Explorer: ( _version:_ \_\_\_ )
+- [ ] Edge: ( _version:_ \_\_\_ )
+- [ ] Firefox: ( _version:_ \_\_\_ )
+- [ ] Chrome: ( _version:_ \_\_\_ )
+- [ ] Other: \_\_\_
 
 #### Issue reproduction
 

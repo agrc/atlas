@@ -1,14 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
-import MapView from '@arcgis/core/views/MapView';
-import EsriMap from '@arcgis/core/Map';
-import Basemap from '@arcgis/core/Basemap';
 import Polygon from '@arcgis/core/geometry/Polygon';
-import LOD from '@arcgis/core/layers/support/LOD';
-import TileInfo from '@arcgis/core/layers/support/TileInfo';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
-import WebTileLayer from '@arcgis/core/layers/WebTileLayer';
-import { once } from '@arcgis/core/core/watchUtils';
-import LayerSelector from '@agrc/layer-selector';
+import EsriMap from '@arcgis/core/Map';
+import MapView from '@arcgis/core/views/MapView';
+import LayerSelector from '@ugrc/layer-selector';
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
 import cityExtents from './data/cityExtents.json';
 
 const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
@@ -47,7 +43,7 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
 
     setSelectorOptions({
       view: mapView,
-      quadWord: process.env.REACT_APP_DISCOVER,
+      quadWord: import.meta.env.VITE_DISCOVER,
       baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
       overlays: [
         'Address Points',
@@ -58,7 +54,6 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
           opacity: 0.3,
         },
       ],
-      modules: { LOD, TileInfo, Basemap, WebTileLayer, FeatureLayer },
       position: 'top-right',
     });
 
@@ -110,6 +105,12 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
       {selectorOptions ? <LayerSelector {...selectorOptions}></LayerSelector> : null}
     </div>
   );
+};
+
+ReactMapView.propTypes = {
+  setView: PropTypes.func.isRequired,
+  zoomToGraphic: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default ReactMapView;

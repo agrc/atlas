@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { project, isLoaded, load } from '@arcgis/core/geometry/projection';
-import { Container, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isLoaded, load, project } from '@arcgis/core/geometry/projection';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Col, Container } from 'reactstrap';
 
 import { toQueryString } from '../../Helpers';
 
@@ -331,6 +331,10 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   );
 };
 
+IdentifyInformation.propTypes = {
+  location: PropTypes.object,
+};
+
 const IdentifyContainer = function ({ show, children }) {
   return (
     <div className="identify__container side-bar side-bar--with-border side-bar--open">
@@ -340,6 +344,11 @@ const IdentifyContainer = function ({ show, children }) {
       {children}
     </div>
   );
+};
+
+IdentifyContainer.propTypes = {
+  show: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export { IdentifyContainer, IdentifyInformation };

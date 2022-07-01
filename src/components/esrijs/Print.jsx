@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import Print from '@arcgis/core/widgets/Print';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
 export default class Printer extends Component {
   render() {
@@ -20,7 +21,7 @@ export default class Printer extends Component {
     this.printer = new Print({
       container: this.printDiv,
       view: this.props.view,
-      printServiceUrl: process.env.REACT_APP_PRINT_PROXY,
+      printServiceUrl: import.meta.env.VITE_PRINT_PROXY,
       templates: [
         {
           label: 'Portrait (PDF)',
@@ -42,3 +43,7 @@ export default class Printer extends Component {
     });
   }
 }
+
+Printer.propTypes = {
+  view: PropTypes.object,
+};

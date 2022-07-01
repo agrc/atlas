@@ -1,9 +1,6 @@
 # dependencies
 /node_modules
 
-# esri required modules
-public/assets
-
 # testing
 /coverage
 cypress/videos
@@ -14,7 +11,7 @@ cypress/videos
 /dist
 
 # secrets
-.env-cmdrc.json
+.env.local
 *.odc
 *.pyc
 *.sde

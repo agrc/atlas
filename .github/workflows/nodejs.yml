@@ -28,9 +28,9 @@ jobs:
     environment:
       name: dev
     env:
-      REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
-      REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
-      REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
+      VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+      VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
+      VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
     steps:
       - name: ⬇️ Set up code
         uses: actions/checkout@v3
@@ -86,9 +86,9 @@ jobs:
       - name: 🏗 Run build script
         run: npm run build:ci
         env:
-          REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
-          REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
-          REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
+          VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+          VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
+          VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
 
       - name: 🪣 Cache firebase
         uses: actions/cache@v3
@@ -141,9 +141,9 @@ jobs:
       - name: 🏗 Run build script
         run: npm run build:ci
         env:
-          REACT_APP_DISCOVER: ${{ secrets.REACT_APP_DISCOVER }}
-          REACT_APP_WEB_API: ${{ secrets.REACT_APP_WEB_API }}
-          REACT_APP_PRINT_PROXY: ${{ secrets.REACT_APP_PRINT_PROXY }}
+          VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+          VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
+          VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
 
       - name: 🪣 Cache firebase
         uses: actions/cache@v3
