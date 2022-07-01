@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import './Sidebar.css';
 
 export default function Sidebar({ children }) {
@@ -8,3 +8,7 @@ export default function Sidebar({ children }) {
     </div>
   );
 }
+
+Sidebar.propTypes = {
+  children: PropTypes.node.isRequired,
+};

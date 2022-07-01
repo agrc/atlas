@@ -1,24 +1,23 @@
-import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
+import { useCallback, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Collapse, Button, Card } from 'reactstrap';
-import Graphic from '@arcgis/core/Graphic';
-import QueryTask from '@arcgis/core/tasks/QueryTask';
+import { Button, Card, Collapse } from 'reactstrap';
 
-import FindAddress from '@agrc/dart-board';
-import { Sherlock, WebApiProvider } from '@agrc/sherlock';
+import FindAddress from '@ugrc/dart-board';
+import { Sherlock, WebApiProvider } from '@ugrc/sherlock';
 
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import MapLens from './components/MapLens';
 import MapView from './components/esrijs/MapView';
 import Printer from './components/esrijs/Print';
-import { IdentifyInformation, IdentifyContainer } from './components/Identify';
+import Header from './components/Header/Header';
+import { IdentifyContainer, IdentifyInformation } from './components/Identify/Identify';
+import MapLens from './components/MapLens/MapLens';
+import Sidebar from './components/Sidebar/Sidebar';
 import config from './config';
 
 import './App.css';
 
-const apiKey = process.env.REACT_APP_WEB_API;
-const version = process.env.REACT_APP_VERSION;
+const apiKey = import.meta.env.VITE_WEB_API;
+const version = import.meta.env.VITE_VERSION;
 
 const ErrorFallback = ({ error }) => {
   return (
@@ -27,6 +26,10 @@ const ErrorFallback = ({ error }) => {
       <pre style={{ color: 'red' }}>{error.message}</pre>
     </div>
   );
+};
+
+ErrorFallback.propTypes = {
+  error: PropTypes.object,
 };
 
 export default function App() {
@@ -91,7 +94,6 @@ export default function App() {
     placeHolder: 'place name ...',
     maxResultsToDisplay: 10,
     onSherlockMatch: onSherlockMatch,
-    modules: { Graphic, QueryTask },
   };
 
   const citySherlock = {
@@ -100,7 +102,6 @@ export default function App() {
     placeHolder: 'city name ...',
     maxResultsToDisplay: 10,
     onSherlockMatch: onSherlockMatch,
-    modules: { Graphic, QueryTask },
   };
 
   const onClick = useCallback((event) => {

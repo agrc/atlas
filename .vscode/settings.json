@@ -6,6 +6,7 @@
     "basemap",
     "browserslist",
     "cadastre",
+    "cbll",
     "escaperegexp",
     "esrijs",
     "firebaserc",
@@ -16,11 +17,13 @@
     "lods",
     "noopener",
     "noreferrer",
+    "packagejson",
     "padder",
     "sgid",
     "sitla",
     "sortby",
     "srid",
+    "tagname",
     "topo",
     "ugrc",
     "uniqwith",
@@ -28,5 +31,6 @@
     "wkid",
     "wonkavision",
     "wwwroot"
-  ]
+  ],
+  "editor.formatOnSave": true
 }
