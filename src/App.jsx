@@ -144,10 +144,14 @@ export default function App() {
             </ErrorBoundary>
           </div>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Sherlock {...gnisSherlock}></Sherlock>
+            <div className="mt-3">
+              <Sherlock {...gnisSherlock}></Sherlock>
+            </div>
           </ErrorBoundary>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Sherlock {...citySherlock}></Sherlock>
+            <div className="mt-3">
+              <Sherlock {...citySherlock}></Sherlock>
+            </div>
           </ErrorBoundary>
           <Card style={{ marginTop: '1em' }}>
             <Button block onClick={() => setShowPrint(!showPrint)}>
