@@ -1,9 +1,21 @@
-import commonjs from '@rollup/plugin-commonjs';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [commonjs(), react()],
+  plugins: [react()],
+  optimizeDeps: {
+    include: [
+      'react-is',
+      'prop-types',
+      'react-fast-compare',
+      'warning',
+      'react-dom',
+      'classnames',
+      'lodash.escaperegexp',
+      'lodash.sortby',
+      'lodash.uniqwith',
+    ],
+  },
   base: './',
 });
