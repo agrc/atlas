@@ -38,7 +38,7 @@ jobs:
       - name: 🧪 Run tests
         uses: cypress-io/github-action@v3
         with:
-          start: npm run start:no-env
+          start: npm run start
           wait-on: 'http://localhost:3000'
 
   test-unit:
