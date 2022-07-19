@@ -5,17 +5,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: [
-      'react-is',
-      'prop-types',
-      'react-fast-compare',
-      'warning',
-      'react-dom',
-      'classnames',
-      'lodash.escaperegexp',
-      'lodash.sortby',
-      'lodash.uniqwith',
-    ],
+    include: ['react-is', 'prop-types', 'react-fast-compare', 'warning', 'react-dom', 'classnames'],
   },
   base: './',
   test: {
