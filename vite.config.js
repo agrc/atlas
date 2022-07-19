@@ -12,7 +12,7 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     deps: {
-      inline: ['@ugrc', '@esri', '@arcgis'],
+      inline: ['@ugrc', '@arcgis/core'],
     },
   },
 });
