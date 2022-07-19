@@ -39,7 +39,7 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           start: npm run start
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://127.0.0.1:5137'
 
   test-unit:
     name: Unit tests
