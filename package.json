@@ -6,7 +6,7 @@
     "build": "vite build",
     "build:stage": "vite build --mode stage",
     "cypress:open": "cypress open",
-    "cypress:run": "npm start & wait-on http://localhost:3000 && cypress run",
+    "cypress:run": "npm start & wait-on http://localhost:5173 && cypress run",
     "format": "prettier . --write",
     "lint": "eslint src",
     "release": "standard-version",

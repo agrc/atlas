@@ -1,5 +1,5 @@
 describe('example suite', () => {
   it('example spec', () => {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://127.0.0.1:5173');
   });
 });
