@@ -1,10 +1,9 @@
+import { BootstrapDartboard as FindAddress } from '@ugrc/dart-board';
+import Sherlock, { WebApiProvider } from '@ugrc/sherlock';
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Button, Card, Collapse } from 'reactstrap';
-
-import FindAddress from '@ugrc/dart-board';
-import Sherlock, { WebApiProvider } from '@ugrc/sherlock';
 
 import MapView from './components/esrijs/MapView';
 import Printer from './components/esrijs/Print';
