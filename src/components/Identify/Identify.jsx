@@ -6,7 +6,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Col, Container } from 'reactstrap';
 
-import { toQueryString } from '../../Helpers';
+import { toQueryString } from '@ugrc/utilities';
 
 import './Identify.css';
 
