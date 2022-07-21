@@ -5,11 +5,4 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   base: './',
-  test: {
-    globals: true,
-    environment: 'happy-dom',
-    deps: {
-      inline: ['@ugrc', '@arcgis/core'],
-    },
-  },
 });
