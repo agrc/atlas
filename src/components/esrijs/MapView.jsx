@@ -3,6 +3,7 @@ import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import EsriMap from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import LayerSelector from '@ugrc/layer-selector';
+import '@ugrc/layer-selector/src/LayerSelector.css';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import cityExtents from './data/cityExtents.json';

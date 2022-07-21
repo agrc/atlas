@@ -13,6 +13,7 @@ import MapLens from './components/MapLens/MapLens';
 import Sidebar from './components/Sidebar/Sidebar';
 import config from './config';
 
+import '@ugrc/sherlock/src/Sherlock.css';
 import './App.css';
 
 const apiKey = import.meta.env.VITE_WEB_API;
