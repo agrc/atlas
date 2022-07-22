@@ -4,5 +4,6 @@
 /maps
 /mockups
 /scripts
-/build
+/dist
+/public/assets
 CHANGELOG.md
