@@ -1,0 +1,13 @@
+.firebase
+.github
+.vscode
+build
+cypress
+data
+forklift
+maps
+mockups
+public
+scripts
+node_modules
+package-lock.json
