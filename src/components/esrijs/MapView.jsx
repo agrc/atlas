@@ -1,3 +1,4 @@
+import { whenOnce } from '@arcgis/core/core/reactiveUtils';
 import Polygon from '@arcgis/core/geometry/Polygon';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
 import EsriMap from '@arcgis/core/Map';
@@ -94,7 +95,7 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
 
     view.goTo(zoom).then(() => {
       if (!zoom.preserve) {
-        once(view, 'extent', () => {
+        whenOnce(() => view.extent).then(() => {
           view.graphics.removeAll();
         });
       }
