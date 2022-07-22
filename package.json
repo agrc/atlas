@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "vite build",
+    "copy:arcgis": "cpy \"./node_modules/@arcgis/core/assets/**\" ./public/assets",
     "cypress:open": "cypress open",
     "cypress:run": "npm start & wait-on http://localhost:5173 && cypress run",
     "format": "prettier . --write",
@@ -95,6 +96,7 @@
   "devDependencies": {
     "@testing-library/cypress": "^8.0.3",
     "@vitejs/plugin-react": "^2.0.0",
+    "cpy-cli": "^4.1.0",
     "cypress": "^10.3.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",

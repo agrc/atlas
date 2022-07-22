@@ -83,8 +83,11 @@ jobs:
       - name: 📥 Download dependencies
         run: npm ci
 
+      - name: 👥 Copy arcgis assets
+        run: npm run copy:arcgis
+
       - name: 🏗 Run build script
-        run: npm run build:ci
+        run: npm run build
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
@@ -138,8 +141,11 @@ jobs:
       - name: 📥 Download dependencies
         run: npm ci
 
+      - name: 👥 Copy arcgis assets
+        run: npm run copy:arcgis
+
       - name: 🏗 Run build script
-        run: npm run build:ci
+        run: npm run build
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
