@@ -17,7 +17,7 @@ import '@ugrc/sherlock/src/Sherlock.css';
 import './App.css';
 
 const apiKey = import.meta.env.VITE_WEB_API;
-const version = import.meta.env.VITE_VERSION;
+const version = import.meta.env.PACKAGE_VERSION;
 
 const ErrorFallback = ({ error }) => {
   return (
