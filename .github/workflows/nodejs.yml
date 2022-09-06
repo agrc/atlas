@@ -17,6 +17,7 @@ permissions:
   contents: read
   id-token: write
   deployments: write
+  pull-requests: write
 
 concurrency:
   group: '${{ github.head_ref || github.ref }}'
@@ -62,10 +63,35 @@ jobs:
       - name: 🧪 Run tests
         run: npm test
 
+  release-please:
+    runs-on: ubuntu-latest
+    needs: [test-unit, test-functional]
+    env:
+      prerelease: ${{ github.ref == 'refs/heads/dev' }}
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
+    steps:
+      - name: Get New Version
+        id: get-version
+        run: |
+          lastTag="$(git describe --tags `git rev-list --tags --max-count=1`)"
+          local bump=$(npx conventional-recommended-bump -p angular)
+          if [[ ${{ env.prerelease }} ]]; then
+            bump="pre$bump"
+          fi
+          local newVersion="v$(npx semver -i $bump $lastTag)"
+          echo "::set-output name=version::newVersion"
+
+      - uses: google-github-actions/release-please-action@v3
+        id: release-please
+        with:
+          prerelease: ${{ env.prerelease }}
+          default-branch: ${{ github.head_ref || github.ref_name }}
+          release-as: ${{ steps.get-version.outputs.version }}
+
   deploy-dev:
     name: Deploy to staging
     runs-on: ubuntu-latest
-    needs: [test-unit, test-functional]
     environment:
       name: dev
       url: https://atlas.dev.utah.gov
