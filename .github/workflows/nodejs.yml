@@ -70,9 +70,12 @@ jobs:
       prerelease: ${{ github.ref == 'refs/heads/dev' }}
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
+
     steps:
       - name: ⬇️ Set up code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
@@ -80,23 +83,25 @@ jobs:
           node-version: lts/*
           cache: npm
 
-      - name: install stuff
+      - name: 📥 Download dependencies
         run: npm install -g conventional-recommended-bump semver
 
-      - name: Get New Version
+      - name: ⏩ Get next version
         id: get-version
         run: |
           lastTag="$(git describe --tags `git rev-list --tags --max-count=1`)"
           local bump=$(conventional-recommended-bump -p angular)
-          if [[ ${{ env.prerelease }} ]]; then
-            bump="pre$bump"
+          if ${{ env.prerelease }}; then
+            local bump="pre$bump"
           fi
           local newVersion="v$(semver -i $bump $lastTag)"
           echo "::set-output name=version::newVersion"
 
-      - uses: google-github-actions/release-please-action@v3
+      - name: 🚀 Create release
+        uses: google-github-actions/release-please-action@v3
         id: release-please
         with:
+          release-type: nodejs
           prerelease: ${{ env.prerelease }}
           default-branch: ${{ github.head_ref || github.ref_name }}
           release-as: ${{ steps.get-version.outputs.version }}
