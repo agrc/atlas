@@ -107,7 +107,7 @@ jobs:
         uses: google-github-actions/release-please-action@v3
         id: release-please
         with:
-          release-type: nodejs
+          release-type: node
           prerelease: ${{ env.prerelease }}
           default-branch: ${{ github.head_ref || github.ref_name }}
           release-as: ${{ steps.get-version.outputs.version }}
