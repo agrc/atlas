@@ -1,0 +1,76 @@
+name: Pull Request Events
+
+on: pull_request
+
+permissions:
+  contents: write
+  id-token: write
+  pull-requests: write
+
+concurrency:
+  group: '${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  test-functional:
+    name: Functional tests
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v3
+
+      - name: 🧪 Run tests
+        uses: cypress-io/github-action@v3
+        with:
+          start: npm run start
+          wait-on: 'http://127.0.0.1:5173'
+        env:
+          VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+          VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
+          VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
+
+  test-unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
+
+      - name: 🧪 Run tests
+        run: npm test
+
+  deploy-preview:
+    name: Firebase preview
+    runs-on: ubuntu-latest
+    needs: [test-functional, test-unit]
+    environment:
+      name: dev
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v3
+
+      - name: 🚀 Deploy
+        uses: ./.github/actions/deploy
+        with:
+          identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          project-id: ${{ secrets.PROJECT_ID }}
+          preview: 'yes'
+        env:
+          VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+          VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
+          VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
