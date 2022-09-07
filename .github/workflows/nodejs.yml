@@ -90,17 +90,18 @@ jobs:
       - name: ⏩ Get next version
         id: get-version
         run: |
-          lastTag="$(git describe --tags `git rev-list --tags --max-count=1`)"
-          echo $lastTag
-          local bump=$(conventional-recommended-bump -p angular)
-          echo $bump
-          if ${{ env.prerelease }}; then
-            bump="pre$bump"
-          fi
-          echo $bump
-          local newVersion="v$(semver -i $bump $lastTag)"
-          echo $newVersion
-          echo "::set-output name=version::newVersion"
+          getNextVersion()
+          {
+            lastTag="$(git describe --tags `git rev-list --tags --max-count=1`)"
+            local bump=$(conventional-recommended-bump -p angular)
+            if ${{ env.prerelease }}; then
+              local bump="pre$bump"
+            fi
+            local newVersion="v$(semver -i $bump $lastTag)"
+            echo $newVersion
+          }
+
+          echo "::set-output name=version::$(getNextVersion)"
 
       - name: 🚀 Create release
         uses: google-github-actions/release-please-action@v3
