@@ -10,10 +10,6 @@ inputs:
   project-id:
     description: Project ID
     required: true
-outputs:
-  url:
-    description: The URL to the deployed website
-    value: ${{ steps.deploy.outputs.url }}
 
 runs:
   using: composite
@@ -28,9 +24,9 @@ runs:
       shell: bash
       run: npm ci
 
-    - name: 👥 Copy ArcGIS assets
-      shell: bash
-      run: npm run copy:arcgis
+    # - name: 👥 Copy ArcGIS assets
+    #   shell: bash
+    #   run: npm run copy:arcgis
 
     - name: 🏗 Run build script
       shell: bash
@@ -57,9 +53,43 @@ runs:
     - name: 🚀 Firebase deploy
       id: deploy
       shell: bash
-      run: >
-        npx firebase-tools
-        hosting:channel:deploy $GITHUB_HEAD_REF
-        --expires 3d
-        --project ${{ inputs.project-id }}
-        --json
+      run: |
+        RESULTS=$(npx firebase-tools hosting:channel:deploy $GITHUB_HEAD_REF \
+        --expires 3d \
+        --project ${{ inputs.project-id }} \
+        --json)
+        echo "::set-output name=url::$(echo $RESULTS | jq '.result | .[] | .url')"
+        echo "::set-output name=expires::$(echo $RESULTS | jq '.result | .[] | .expireTime')"
+
+    - name: 🔍 Find preview comment
+      uses: peter-evans/find-comment@v2
+      id: find-comment
+      with:
+        issue-number: ${{ github.event.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: Visit the preview URL for this PR
+
+    - name: 🎨 Render template
+      id: template
+      uses: chuhlomin/render-template@v1
+      with:
+        template: .github/actions/deploy/template.md
+        vars: |
+          commit: ${{ github.sha }}
+          url: ${{ steps.deploy.outputs.url }}
+          expires: ${{ steps.deploy.outputs.expires }}
+
+    - name: 💬 Post preview comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: steps.find-comment.outputs.comment-id == ''
+      with:
+        issue-number: ${{ github.event.number }}
+        body: ${{ steps.template.outputs.result }}
+
+    - name: 🔀 Update preview comment
+      if: steps.find-comment.outputs.comment-id != ''
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        comment-id: ${{ steps.find-comment.outputs.comment-id }}
+        body: ${{ steps.template.outputs.result }}
+        edit-mode: replace
