@@ -10,17 +10,16 @@ permissions:
   contents: write
   id-token: write
   deployments: write
+  pull-requests: write
 
 concurrency:
-  group: '${{ github.head_ref || github.ref }}'
+  group: '${{ github.ref_name }}'
   cancel-in-progress: true
 
 jobs:
   release-please:
     name: Create release
     runs-on: ubuntu-latest
-    env:
-      prerelease: ${{ github.base_ref == 'dev' }}
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
 
@@ -46,7 +45,7 @@ jobs:
           {
             lastTag="$(git describe --tags `git rev-list --tags --max-count=1`)"
             local bump=$(conventional-recommended-bump -p angular)
-            if ${{ env.prerelease }}; then
+            if [["${{ github.ref_name }}" == "dev"]];  then
               bump="pre$bump"
             fi
             local newVersion="v$(semver -i $bump $lastTag)"
@@ -68,8 +67,8 @@ jobs:
             {"type":"chore","section":"🧰 Maintenance","hidden":true},
             {"type":"deps","section":"🌲 Dependencies","hidden":false},
             {"type":"docs","section":"📖 Documentation Improvements","hidden":false}]
-          prerelease: ${{ env.prerelease }}
-          default-branch: ${{ github.base_ref || github.ref_name }}
+          prerelease: ${{ github.ref_name == 'dev' }}
+          default-branch: ${{ github.ref_name }}
           release-as: ${{ steps.get-version.outputs.version }}
 
   deploy-dev:
@@ -79,7 +78,7 @@ jobs:
     environment:
       name: dev
       url: https://atlas.dev.utah.gov
-    if: github.ref == 'refs/heads/dev' && needs.release-please.outputs.release_created
+    if: github.ref_name == 'dev' && needs.release-please.outputs.release_created
 
     steps:
       - name: ⬇️ Set up code
@@ -102,7 +101,7 @@ jobs:
     environment:
       name: prod
       url: https://atlas.utah.gov
-    if: github.ref == 'refs/heads/main' && needs.release-please.outputs.release_created
+    if: github.ref_name == 'main' && needs.release-please.outputs.release_created
     runs-on: ubuntu-latest
 
     steps:
