@@ -1,0 +1,65 @@
+name: 🚀 Deploy
+description: Deploys the app to Firebase Hosting
+inputs:
+  identity-provider:
+    description: Identity Provider
+    required: true
+  service-account-email:
+    description: Service Account Email
+    required: true
+  project-id:
+    description: Project ID
+    required: true
+outputs:
+  url:
+    description: The URL to the deployed website
+    value: ${{ steps.deploy.outputs.url }}
+
+runs:
+  using: composite
+  steps:
+    - name: ⎔ Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: lts/*
+        cache: npm
+
+    - name: 📥 Download dependencies
+      shell: bash
+      run: npm ci
+
+    - name: 👥 Copy ArcGIS assets
+      shell: bash
+      run: npm run copy:arcgis
+
+    - name: 🏗 Run build script
+      shell: bash
+      run: npm run build
+
+    - name: 🪣 Cache firebase
+      uses: actions/cache@v3
+      with:
+        path: ./.firebase
+        key: ${{ runner.OS }}-firebase-${{ hashFiles('**/*.cache') }}
+        restore-keys: |
+          ${{ runner.OS }}-firebase-
+          ${{ runner.OS }}-
+
+    - name: 🗝️ Authenticate to Google Cloud
+      id: auth
+      uses: google-github-actions/auth@v0
+      with:
+        access_token_scopes: 'email, openid, https://www.googleapis.com/auth/cloud-platform, https://www.googleapis.com/auth/firebase'
+        workload_identity_provider: ${{ inputs.identity-provider }}
+        service_account: ${{ inputs.service-account-email }}
+        create_credentials_file: true
+
+    - name: 🚀 Firebase deploy
+      id: deploy
+      shell: bash
+      run: >
+        npx firebase-tools
+        hosting:channel:deploy $GITHUB_HEAD_REF
+        --expires 3d
+        --project ${{ inputs.project-id }}
+        --json
