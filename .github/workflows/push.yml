@@ -20,12 +20,21 @@ jobs:
   release-please:
     name: Create release
     runs-on: ubuntu-latest
+    environment:
+      name: dev
     env:
       prerelease: ${{ github.ref_name == 'dev' }}
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
 
     steps:
+      - name: 🪙 Convert token
+        uses: tibdex/github-app-token@v1
+        id: generate_token
+        with:
+          app_id: ${{ secrets.UGRC_RELEASE_BOT_APP_ID }}
+          private_key: ${{ secrets.UGRC_RELEASE_BOT_APP_KEY }}
+
       - name: ⬇️ Set up code
         uses: actions/checkout@v3
         with:
@@ -60,6 +69,7 @@ jobs:
         uses: google-github-actions/release-please-action@v3
         id: release-please
         with:
+          token: ${{ steps.generate_token.outputs.token }}
           release-type: node
           pull-request-title-pattern: 'chore: release v${version}'
           component: ''
