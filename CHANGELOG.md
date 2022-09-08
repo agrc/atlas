@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.2-0](https://github.com/agrc/atlas/compare/v5.1.1-0...v5.1.2-0) (2022-09-08)
+
+
+### 📖 Documentation Improvements
+
+* add legacy changelog back ([39c1d86](https://github.com/agrc/atlas/commit/39c1d8602852be4aede3af98bcf8cabaabc31ce3))
+
 ## [5.1.1-0](https://github.com/agrc/atlas/compare/v5.1.0-0...v5.1.1-0) (2022-09-08)
 
 
