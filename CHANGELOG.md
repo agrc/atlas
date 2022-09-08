@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1-0](https://github.com/agrc/atlas/compare/v5.1.0-0...v5.1.1-0) (2022-09-08)
+
+
+### 🐛 Bug Fixes
+
+* display version number from package json ([6b9ee76](https://github.com/agrc/atlas/commit/6b9ee7686b2df525e9bbbcbffab42067004db049))
+
 ## [5.1.0-0](https://github.com/agrc/atlas/compare/v5.0.1...v5.1.0-0) (2022-09-08)
 
 
