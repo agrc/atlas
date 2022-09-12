@@ -61,13 +61,14 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
           release-type: node
           pull-request-title-pattern: 'chore: release v${version}'
-          component: ''
           changelog-types: >
             [{"type":"feat","section":"🚀 Features","hidden":false},
             {"type":"fix","section":"🐛 Bug Fixes","hidden":false},
-            {"type":"chore","section":"🧰 Maintenance","hidden":true},
             {"type":"deps","section":"🌲 Dependencies","hidden":false},
-            {"type":"docs","section":"📖 Documentation Improvements","hidden":false}]
+            {"type":"docs","section":"📖 Documentation Improvements","hidden":false},
+            {"type":"style","section":"🎨 Design Improvements","hidden":false},
+            {"type":"ci","section":"⚙️ Continuous Integration Changes","hidden":true},
+            {"type":"chore","section":"🧰 Maintenance","hidden":true}]
           prerelease: ${{ env.prerelease }}
           default-branch: ${{ github.ref_name }}
           release-as: ${{ steps.get-version.outputs.version }}
