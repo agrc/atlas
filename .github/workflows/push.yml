@@ -20,8 +20,6 @@ jobs:
   release-please:
     name: Create release
     runs-on: ubuntu-latest
-    environment:
-      name: dev
     env:
       prerelease: ${{ github.ref_name == 'dev' }}
     outputs:
@@ -51,19 +49,10 @@ jobs:
 
       - name: ⏩ Get next version
         id: get-version
-        run: |
-          getNextVersion()
-          {
-            lastTag="$(git describe --tags `git rev-list --tags --max-count=1`)"
-            local bump=$(conventional-recommended-bump -p angular)
-            if $prerelease; then
-              bump="pre$bump"
-            fi
-            local newVersion="v$(semver -i $bump $lastTag)"
-            echo $newVersion
-          }
-
-          echo "::set-output name=version::$(getNextVersion)"
+        uses: agrc/get-next-version-action@v1
+        with:
+          prerelease: ${{ env.prerelease }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🚀 Create release
         uses: google-github-actions/release-please-action@v3
