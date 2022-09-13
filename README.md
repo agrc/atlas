@@ -1,22 +1,32 @@
 # atlas
 
-## UGRC JavaScript Project Boilerplate
+## UGRC Web Mapping Application Template
 
-[![Node.js CI](https://github.com/agrc/atlas/actions/workflows/nodejs.yml/badge.svg)](https://github.com/agrc/atlas/actions/workflows/nodejs.yml)
+[![Pull Request Events](https://github.com/agrc/atlas/actions/workflows/pull_request.yml/badge.svg)](https://github.com/agrc/atlas/actions/workflows/pull_request.yml)
+[![Push Events](https://github.com/agrc/atlas/actions/workflows/push.yml/badge.svg)](https://github.com/agrc/atlas/actions/workflows/push.yml)
 
 ## To Use
 
-### Step 1 - Boilerplate
+### Step 1 - Use this template
+
+Click the `Use this template` button to create a new repository from atlas
+
+or
 
 Checkout repository and install dependencies
 
 ```bash
 git clone https://github.com/agrc/atlas.git
 cd atlas
-npm install
 ```
 
 Duplicate the `.env` file and rename it as `.env.local` and update the properties with your data
+
+Download all the dependencies
+
+```bash
+npm install
+```
 
 ### Step 2 - Develop & Test
 
@@ -48,7 +58,8 @@ One-time tasks:
 
 - [ ] Update the analytics code in `index.html`
 
-Tasks to be completed for each release:
+This website is tested and deployed with GitHub Actions.
 
-- [ ] `npm run release`
-- [ ] `git push --tags`
+### Contributing
+
+[See our Contributing Guide](./CONTRIBUTING.md)
