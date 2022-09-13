@@ -1,0 +1,48 @@
+name: 🐞 Bug
+description: Create a report to help us improve
+title: '[BUG] <title>'
+labels: [bug, unconfirmed]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: Current Behavior
+      description: A concise description of what you're experiencing.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Browsers
+      description: The browsers used that display the issue you are experiencing.
+      options:
+        - label: Chrome
+        - label: Safari
+        - label: Firefox
+        - label: Brave
+        - label: Microsoft Edge
+        - label: Internet Explorer
+        - label: Other
+  - type: textarea
+    attributes:
+      label: Reproduction steps
+      description: What are the steps to recreate the issue.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Developer console logs
+      description: Paste anything from the developer console logs that would be helpful to troubleshoot the issue.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Any additional context can go here.
+    validations:
+      required: false

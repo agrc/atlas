@@ -1,0 +1,24 @@
+name: ✨ Feature
+description: Suggest an improvement to atlas
+title: '[FEATURE] <title>'
+labels: [feature, unconfirmed]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the feature you want.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: Describe the new feature
+      description: A concise description of what atlas is missing.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Any additional context can go here.
+    validations:
+      required: false

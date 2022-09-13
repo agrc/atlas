@@ -1,0 +1,24 @@
+name: 🤔 Ask a question
+description: Ask us anything about this website or its technology
+title: '[QUESTION] <title>'
+labels: [question, unconfirmed]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists answering this question.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    attributes:
+      label: What's up
+      description: Ask you're question. We are all ears.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: Any additional context can go here.
+    validations:
+      required: false
