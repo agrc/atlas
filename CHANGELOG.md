@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.2-1](https://github.com/agrc/atlas/compare/v5.1.2-0...v5.1.2-1) (2022-09-13)
+
+
+### 🌲 Dependencies
+
+* remove standard version ([11f0afc](https://github.com/agrc/atlas/commit/11f0afc9193d6d1bb48ad38be6348d395b4e33b0))
+
+
+### 📖 Documentation Improvements
+
+* create pull request template ([8298220](https://github.com/agrc/atlas/commit/829822058c6b37a4170ada4e0aa4bcfc5e5bed2b))
+
 ## [5.1.2-0](https://github.com/agrc/atlas/compare/v5.1.1-0...v5.1.2-0) (2022-09-08)
 
 
