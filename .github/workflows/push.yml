@@ -28,7 +28,6 @@ jobs:
         id: release-please
         uses: agrc/release-composite-action@v1
         with:
-          create-major-minor-tags: true
           prerelease: ${{ github.ref_name == 'dev' }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           github-app-id: ${{ secrets.UGRC_RELEASE_BOT_APP_ID }}
