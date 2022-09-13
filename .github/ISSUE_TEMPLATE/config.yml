@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: UGRC Ideas
+    url: https://github.com/agrc/darwin/discussions
+    about: Please ask and up vote UGRC ideas here.
+  - name: Questions
+    url: https://twitter.com/MapUtah
+    about: Please ask questions on twitter.
