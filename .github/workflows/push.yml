@@ -20,58 +20,21 @@ jobs:
   release-please:
     name: Create release
     runs-on: ubuntu-latest
-    env:
-      prerelease: ${{ github.ref_name == 'dev' }}
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
 
     steps:
-      - name: 🪙 Convert token
-        uses: tibdex/github-app-token@v1
-        id: generate_token
-        with:
-          app_id: ${{ secrets.UGRC_RELEASE_BOT_APP_ID }}
-          private_key: ${{ secrets.UGRC_RELEASE_BOT_APP_KEY }}
-
-      - name: ⬇️ Set up code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-          cache: npm
-
-      - name: 📥 Download dependencies
-        run: npm install -g conventional-changelog-angular conventional-recommended-bump semver
-
-      - name: ⏩ Get next version
-        id: get-version
-        uses: agrc/get-next-version-action@v1
-        with:
-          prerelease: ${{ env.prerelease }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🚀 Create release
-        uses: google-github-actions/release-please-action@v3
+      - name: 🚀 Create Release
         id: release-please
+        uses: agrc/release-composite-action@v1
         with:
-          token: ${{ steps.generate_token.outputs.token }}
-          release-type: node
-          pull-request-title-pattern: 'chore: release v${version}'
-          changelog-types: >
-            [{"type":"feat","section":"🚀 Features","hidden":false},
-            {"type":"fix","section":"🐛 Bug Fixes","hidden":false},
-            {"type":"deps","section":"🌲 Dependencies","hidden":false},
-            {"type":"docs","section":"📖 Documentation Improvements","hidden":false},
-            {"type":"style","section":"🎨 Design Improvements","hidden":false},
-            {"type":"ci","section":"⚙️ Continuous Integration Changes","hidden":true},
-            {"type":"chore","section":"🧰 Maintenance","hidden":true}]
-          prerelease: ${{ env.prerelease }}
-          default-branch: ${{ github.ref_name }}
-          release-as: ${{ steps.get-version.outputs.version }}
+          create-major-minor-tags: true
+          prerelease: ${{ github.ref_name == 'dev' }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          github-app-id: ${{ secrets.UGRC_RELEASE_BOT_APP_ID }}
+          github-app-key: ${{ secrets.UGRC_RELEASE_BOT_APP_KEY }}
+          github-app-name: ${{ secrets.UGRC_RELEASE_BOT_NAME }}
+          github-app-email: ${{ secrets.UGRC_RELEASE_BOT_EMAIL }}
 
   deploy-dev:
     name: Deploy to staging
