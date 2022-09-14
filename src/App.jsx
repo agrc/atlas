@@ -133,9 +133,11 @@ export default function App() {
       ) : null}
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Sidebar>
-          <small>
-            Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>
-          </small>
+          <div className="bg-light border text-center p-1">
+            <small>
+              Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>.
+            </small>
+          </div>
           <p>Click a location on the map for more information</p>
           <h4>Find Address</h4>
           <div id="geocodeNode">
@@ -159,6 +161,23 @@ export default function App() {
             </Button>
             <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
           </Card>
+          <div style={{ marginTop: '1em', border: '#aaa 1px dashed' }}>
+            <small>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
+                  This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
+                  to create your own website.
+                </li>
+                <li className="list-group-item">
+                  Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>{' '}
+                  via GitHub issues.
+                </li>
+                <li className="list-group-item">
+                  Reach out to us on <a href="https://twitter.com/MapUtah">Twitter</a> if you want to chat.
+                </li>
+              </ul>
+            </small>
+          </div>
         </Sidebar>
       </ErrorBoundary>
       <MapLens {...sidebarOptions}>
