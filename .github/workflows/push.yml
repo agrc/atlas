@@ -54,6 +54,7 @@ jobs:
           identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
+          mode: dev
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
