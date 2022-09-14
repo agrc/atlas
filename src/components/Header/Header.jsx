@@ -10,7 +10,7 @@ export default function Header({ title, version }) {
         <span>{title}</span>
         <a
           className="heading__version"
-          href="https://github.com/agrc/atlas/blob/main/CHANGELOG.md"
+          href={`https://github.com/agrc/atlas/releases/v${version}`}
           target="_blank"
           rel="noreferrer"
         >
