@@ -1,8 +1,10 @@
 import { BootstrapDartboard as FindAddress } from '@ugrc/dart-board';
 import Sherlock, { WebApiProvider } from '@ugrc/sherlock';
+import { getAnalytics } from 'firebase/analytics';
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { AnalyticsProvider, useFirebaseApp } from 'reactfire';
 import { Button, Card, Collapse } from 'reactstrap';
 
 import MapView from './components/esrijs/MapView';
@@ -33,6 +35,7 @@ ErrorFallback.propTypes = {
 };
 
 export default function App() {
+  const app = useFirebaseApp();
   const [zoomToGraphic, setZoomToGraphic] = useState({
     zoomToGraphic: {
       graphic: {},
@@ -122,69 +125,71 @@ export default function App() {
   };
 
   return (
-    <div className="app">
-      <Header title="Atlas Utah" version={version} />
-      {showIdentify ? (
+    <AnalyticsProvider sdk={getAnalytics(app)}>
+      <div className="app">
+        <Header title="Atlas Utah" version={version} />
+        {showIdentify ? (
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <IdentifyContainer show={setShowIdentify}>
+              <IdentifyInformation apiKey={apiKey} location={mapClick} />
+            </IdentifyContainer>
+          </ErrorBoundary>
+        ) : null}
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <IdentifyContainer show={setShowIdentify}>
-            <IdentifyInformation apiKey={apiKey} location={mapClick} />
-          </IdentifyContainer>
-        </ErrorBoundary>
-      ) : null}
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Sidebar>
-          <div className="bg-light border text-center p-1">
-            <small>
-              Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>.
-            </small>
-          </div>
-          <p>Click a location on the map for more information</p>
-          <h4>Find Address</h4>
-          <div id="geocodeNode">
+          <Sidebar>
+            <div className="bg-light border text-center p-1">
+              <small>
+                Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>.
+              </small>
+            </div>
+            <p>Click a location on the map for more information</p>
+            <h4>Find Address</h4>
+            <div id="geocodeNode">
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <FindAddress {...findAddressOptions} />
+              </ErrorBoundary>
+            </div>
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <FindAddress {...findAddressOptions} />
+              <div className="mt-3">
+                <Sherlock {...gnisSherlock}></Sherlock>
+              </div>
             </ErrorBoundary>
-          </div>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <div className="mt-3">
-              <Sherlock {...gnisSherlock}></Sherlock>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <div className="mt-3">
+                <Sherlock {...citySherlock}></Sherlock>
+              </div>
+            </ErrorBoundary>
+            <Card style={{ marginTop: '1em' }}>
+              <Button block onClick={() => setShowPrint(!showPrint)}>
+                Export Map
+              </Button>
+              <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
+            </Card>
+            <div style={{ marginTop: '1em', border: '#aaa 1px dashed' }}>
+              <small>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                    This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can
+                    use to create your own website.
+                  </li>
+                  <li className="list-group-item">
+                    Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>{' '}
+                    via GitHub issues.
+                  </li>
+                  <li className="list-group-item">
+                    Reach out to us on <a href="https://twitter.com/MapUtah">Twitter</a> if you want to chat.
+                  </li>
+                </ul>
+              </small>
             </div>
-          </ErrorBoundary>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <div className="mt-3">
-              <Sherlock {...citySherlock}></Sherlock>
-            </div>
-          </ErrorBoundary>
-          <Card style={{ marginTop: '1em' }}>
-            <Button block onClick={() => setShowPrint(!showPrint)}>
-              Export Map
-            </Button>
-            <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
-          </Card>
-          <div style={{ marginTop: '1em', border: '#aaa 1px dashed' }}>
-            <small>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
-                  to create your own website.
-                </li>
-                <li className="list-group-item">
-                  Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>{' '}
-                  via GitHub issues.
-                </li>
-                <li className="list-group-item">
-                  Reach out to us on <a href="https://twitter.com/MapUtah">Twitter</a> if you want to chat.
-                </li>
-              </ul>
-            </small>
-          </div>
-        </Sidebar>
-      </ErrorBoundary>
-      <MapLens {...sidebarOptions}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <MapView {...mapOptions} />
+          </Sidebar>
         </ErrorBoundary>
-      </MapLens>
-    </div>
+        <MapLens {...sidebarOptions}>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <MapView {...mapOptions} />
+          </ErrorBoundary>
+        </MapLens>
+      </div>
+    </AnalyticsProvider>
   );
 }
