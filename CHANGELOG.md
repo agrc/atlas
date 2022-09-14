@@ -1,5 +1,20 @@
 # Changelog
 
+## [5.3.0-0](https://github.com/agrc/atlas/compare/v5.2.0...v5.3.0-0) (2022-09-14)
+
+
+### 🎨 Design Improvements
+
+* update favicon from old logo to new ([f2bc261](https://github.com/agrc/atlas/commit/f2bc261706a313f287fa3c878f5ea5250ab16a44))
+
+
+### 🚀 Features
+
+* add performance analytics ([7b14207](https://github.com/agrc/atlas/commit/7b142074b4c2824b715722052cd0f89e43e9f8d3))
+* add some marketing information about the atlas website ([7b12924](https://github.com/agrc/atlas/commit/7b12924034d6c2d018dfbb78e36dbfc147f5d0d2))
+* link to github release from header ([4a21171](https://github.com/agrc/atlas/commit/4a21171907196db0d90c9a48f42a17eb44df68d8))
+* use Google Analytics 4 with env variable ([b6da991](https://github.com/agrc/atlas/commit/b6da9914c1171261f4b155fb502f63f3b442bcd4))
+
 ## [5.2.0](https://github.com/agrc/atlas/compare/v5.0.1...v5.2.0) (2022-09-13)
 
 
