@@ -82,6 +82,7 @@
     "@ugrc/sherlock": "^4.0.0",
     "@ugrc/utilities": "^2.2.1",
     "bootstrap": "^4.5.3",
+    "firebase": "^9.9.4",
     "lodash.debounce": "^4.0.8",
     "lodash.escaperegexp": "^4.1.2",
     "lodash.sortby": "^4.7.0",
@@ -90,6 +91,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
     "react-fast-compare": "^3.2.0",
+    "reactfire": "^4.2.2",
     "reactstrap": "^9.1.4"
   },
   "devDependencies": {
