@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "vite",
+    "dev": "npm start",
     "test": "vitest"
   },
   "browserslist": {
