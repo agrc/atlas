@@ -4,7 +4,7 @@ import { getAnalytics } from 'firebase/analytics';
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { AnalyticsProvider, useFirebaseApp } from 'reactfire';
+import { AnalyticsProvider, useFirebaseApp, useInitPerformance } from 'reactfire';
 import { Button, Card, Collapse } from 'reactstrap';
 
 import MapView from './components/esrijs/MapView';
@@ -36,6 +36,10 @@ ErrorFallback.propTypes = {
 
 export default function App() {
   const app = useFirebaseApp();
+  useInitPerformance(async () => {
+    const { getPerformance } = await import('firebase/performance');
+    return getPerformance(app);
+  });
   const [zoomToGraphic, setZoomToGraphic] = useState({
     zoomToGraphic: {
       graphic: {},
