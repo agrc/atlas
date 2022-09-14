@@ -56,7 +56,7 @@ jobs:
     name: Firebase preview
     runs-on: ubuntu-latest
     needs: [test-functional, test-unit]
-    if: github.pull_request.sender.type == 'User'
+    if: ${{ github.pull_request.sender.type == 'User' }}
     environment:
       name: dev
 
