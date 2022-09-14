@@ -1,55 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Atlas Utah showing off SGID data" />
-    <title>Atlas Utah</title>
-  </head>
-  <body>
-    <noscript> You need to enable JavaScript to run this app. </noscript>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-       https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description"
+    content="This web mapping application will show you Discover base maps, kitchen sink react components, and the esri javascript api. It is a GitHub template that you can use to create your own." />
+  <title>Atlas Utah : Provided by the UGRC</title>
+</head>
 
-  <script>
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    var firebaseConfig = {
-      apiKey: 'AIzaSyCy4pwRgCLZZwwnfC2etDolNTOyJ_Oif4k',
-      authDomain: 'ut-dts-agrc-atlas-prod.firebaseapp.com',
-      projectId: 'ut-dts-agrc-atlas-prod',
-      storageBucket: 'ut-dts-agrc-atlas-prod.appspot.com',
-      messagingSenderId: '903991188124',
-      appId: '1:903991188124:web:87587e066dcea0d54c2b59',
-      measurementId: 'G-SEKRDV94LJ',
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-  </script>
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      (i[r] =
-        i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        }),
-        (i[r].l = 1 * new Date());
-      (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m);
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-11849964-7', 'utah.gov');
-    ga('send', 'pageview');
-  </script>
+<body>
+  <noscript> You need to enable JavaScript to run this app. </noscript>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
