@@ -14,6 +14,10 @@ inputs:
     description: Determines if firebase deploys to a preview channel
     required: false
     default: 'no'
+  mode:
+    description: The mode to use when building the website. development for local development, dev for firebase dev, and production for firebase prod
+    required: false
+    default: 'production'
 
 runs:
   using: composite
@@ -34,7 +38,7 @@ runs:
 
     - name: 🏗 Run build script
       shell: bash
-      run: npm run build
+      run: npm run build -- --mode ${{ inputs.mode }}
 
     - name: 🪣 Cache firebase
       uses: actions/cache@v3
