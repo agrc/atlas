@@ -51,7 +51,7 @@ jobs:
           identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
-          mode: dev
+          build-command: npm run build -- --mode dev
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
@@ -59,12 +59,12 @@ jobs:
 
   deploy-prod:
     name: Deploy to production
+    runs-on: ubuntu-latest
     needs: release-please
     environment:
       name: prod
       url: https://atlas.utah.gov
     if: github.ref_name == 'main' && needs.release-please.outputs.release_created
-    runs-on: ubuntu-latest
 
     steps:
       - name: 🚀 Deploy
@@ -73,6 +73,7 @@ jobs:
           identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
+          build-command: npm run build -- --mode production
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
