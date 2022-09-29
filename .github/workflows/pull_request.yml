@@ -8,7 +8,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: '${{ github.head_ref || github.ref }}'
+  group: "${{ github.head_ref || github.ref }}"
   cancel-in-progress: true
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           start: npm run start
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: "http://127.0.0.1:5173"
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
@@ -61,16 +61,13 @@ jobs:
       name: dev
 
     steps:
-      - name: ⬇️ Set up code
-        uses: actions/checkout@v3
-
       - name: 🚀 Deploy
-        uses: ./.github/actions/deploy
+        uses: agrc/firebase-website-deploy-composite-action@dev
         with:
           identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
-          preview: 'yes'
+          preview: yes
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}

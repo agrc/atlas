@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: '${{ github.ref_name }}'
+  group: "${{ github.ref_name }}"
   cancel-in-progress: true
 
 jobs:
@@ -45,11 +45,8 @@ jobs:
     if: github.ref_name == 'dev' && needs.release-please.outputs.release_created
 
     steps:
-      - name: ⬇️ Set up code
-        uses: actions/checkout@v3
-
       - name: 🚀 Deploy
-        uses: ./.github/actions/deploy
+        uses: agrc/firebase-website-deploy-composite-action@dev
         with:
           identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
@@ -70,11 +67,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Set up code
-        uses: actions/checkout@v3
-
       - name: 🚀 Deploy
-        uses: ./.github/actions/deploy
+        uses: agrc/firebase-website-deploy-composite-action@dev
         with:
           identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
