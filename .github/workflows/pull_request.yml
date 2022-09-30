@@ -68,6 +68,7 @@ jobs:
           project-id: ${{ secrets.PROJECT_ID }}
           preview: yes
           build-command: npm run build -- --mode dev
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
