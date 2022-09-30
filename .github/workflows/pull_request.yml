@@ -5,6 +5,7 @@ on: pull_request
 permissions:
   contents: write
   id-token: write
+  pull-requests: write
 
 concurrency:
   group: "${{ github.head_ref || github.ref }}"
