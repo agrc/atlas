@@ -34,11 +34,6 @@ jobs:
           github-app-key: ${{ secrets.UGRC_RELEASE_BOT_APP_KEY }}
           github-app-name: ${{ secrets.UGRC_RELEASE_BOT_NAME }}
           github-app-email: ${{ secrets.UGRC_RELEASE_BOT_EMAIL }}
-          service-now-instance: ${{ secrets.SN_INSTANCE }}
-          service-now-table: ${{ secrets.SN_TABLE }}
-          service-now-system-id: ${{ secrets.SN_SYS_ID }}
-          service-now-username: ${{ secrets.SN_USERNAME }}
-          service-now-password: ${{ secrets.SN_PASSWORD }}
 
   deploy-dev:
     name: Deploy to staging
@@ -79,6 +74,11 @@ jobs:
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
           build-command: npm run build -- --mode production
+          service-now-instance: ${{ secrets.SN_INSTANCE }}
+          service-now-table: ${{ secrets.SN_TABLE }}
+          service-now-system-id: ${{ secrets.SN_SYS_ID }}
+          service-now-username: ${{ secrets.SN_USERNAME }}
+          service-now-password: ${{ secrets.SN_PASSWORD }}
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
