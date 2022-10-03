@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.3.1](https://github.com/agrc/atlas/compare/v5.3.0...v5.3.1) (2022-10-03)
+
+
+### 🐛 Bug Fixes
+
+* add missing permissions ([caa7e79](https://github.com/agrc/atlas/commit/caa7e79f3d93a51d59d4380e7f8f1894cc819ad7))
+* add repo-token to deploy action ([8b225d9](https://github.com/agrc/atlas/commit/8b225d9d5a91ef3c86a1f17211f41f7a9f49a339))
+* move service now inputs to deploy action ([b85d4f2](https://github.com/agrc/atlas/commit/b85d4f232cc1def6625aee50b92d97a4923d9325))
+* point at v1 of deploy action ([a7d3d4d](https://github.com/agrc/atlas/commit/a7d3d4de7e71eb3c8b3991ee4e6be5c645d25be8))
+* use new build-command parameter and remove mode ([4e12401](https://github.com/agrc/atlas/commit/4e12401c83f6e9e8bf82edb0cb344b4ec62c71bf))
+* use the correct github context for pull requests ([af1bf8e](https://github.com/agrc/atlas/commit/af1bf8e2ae876b96695e2505b5381b24f9c4d225))
+
 ## [5.3.0](https://github.com/agrc/atlas/compare/v5.2.0...v5.3.0) (2022-09-14)
 
 
