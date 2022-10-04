@@ -131,7 +131,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
             return;
           }
 
-          const feet = Math.round(data[fieldNames.FEET] * 100) / 100;
+          const feet = Math.round(data[fieldNames.FEET]);
 
           setElevation({ feet: feet, meters: data[fieldNames.METERS] });
         },
