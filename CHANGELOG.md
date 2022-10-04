@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0-1](https://github.com/agrc/atlas/compare/v5.4.0-0...v5.4.0-1) (2022-10-04)
+
+
+### 🐛 Bug Fixes
+
+* update condition for single flight area ([a5f82ec](https://github.com/agrc/atlas/commit/a5f82ecf262dce56331daf97ee66873eeb8156ea)), closes [#190](https://github.com/agrc/atlas/issues/190)
+
 ## [5.4.0-0](https://github.com/agrc/atlas/compare/v5.3.1...v5.4.0-0) (2022-10-04)
 
 
