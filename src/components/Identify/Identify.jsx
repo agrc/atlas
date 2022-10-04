@@ -162,7 +162,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
             return;
           }
 
-          if ((data?.date.length ?? 0) > 0) {
+          if ((data?.date?.length ?? 0) > 0) {
             data.date = intl.format(new Date(data['date']));
 
             setFlightDate(data);
