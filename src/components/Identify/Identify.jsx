@@ -269,28 +269,22 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         <hr />
       </Col>
       <Col>
-        <strong>UTM 12 NAD83 Coordinates</strong>
-        <p className="identify--muted">
-          {spatial.x}, {spatial.y}
-        </p>
-      </Col>
-      <Col>
         <strong>Approximate Street Address</strong>
-        <p className="identify--muted">{address}</p>
+        <p className="identify--muted">
+          <span className="d-block">{address}</span>
+          <a href={spatial.googleMapsLink} className="text-info" target="_blank" rel="noopener noreferrer">
+            Google Street View
+          </a>
+          <FontAwesomeIcon
+            icon={faExternalLinkAlt}
+            className="identify--muted"
+            style={{ marginLeft: '.5em' }}
+          ></FontAwesomeIcon>
+        </p>
       </Col>
       <Col>
         <strong>Zip Code</strong>
         <p className="identify--muted">{zip}</p>
-      </Col>
-      <Col>
-        <strong>Land Administration Category</strong>
-        <p className="identify--muted">{ownership}</p>
-      </Col>
-      <Col>
-        <strong>WGS84 Coordinates</strong>
-        <p className="identify--muted">
-          {spatial.lat}, {spatial.lon}
-        </p>
       </Col>
       <Col>
         <strong>City</strong>
@@ -301,8 +295,16 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         <p className="identify--muted">{county}</p>
       </Col>
       <Col>
-        <strong>US National Grid</strong>
-        <p className="identify--muted">{grid}</p>
+        <strong>UTM 12 NAD83 Coordinates</strong>
+        <p className="identify--muted">
+          {spatial.x}, {spatial.y} meters
+        </p>
+      </Col>
+      <Col>
+        <strong>WGS84 Coordinates</strong>
+        <p className="identify--muted">
+          {spatial.lat}, {spatial.lon}
+        </p>
       </Col>
       <Col>
         <strong>Elevation Meters</strong>
@@ -313,19 +315,12 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         <p className="identify--muted">{elevation.feet}</p>
       </Col>
       <Col>
-        <a
-          href={spatial.googleMapsLink}
-          className="text-info position-static"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Google Street View
-        </a>
-        <FontAwesomeIcon
-          icon={faExternalLinkAlt}
-          className="identify--muted"
-          style={{ marginLeft: '.5em' }}
-        ></FontAwesomeIcon>
+        <strong>Land Administration Category</strong>
+        <p className="identify--muted">{ownership}</p>
+      </Col>
+      <Col>
+        <strong>US National Grid</strong>
+        <p className="identify--muted">{grid}</p>
       </Col>
     </Container>
   );
