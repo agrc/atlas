@@ -8,6 +8,7 @@ import { Col, Container } from 'reactstrap';
 
 import { toQueryString } from '@ugrc/utilities';
 
+import ky from 'ky';
 import './Identify.css';
 
 const featureClassNames = {
@@ -66,6 +67,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   const [zip, setZip] = useState(loading);
   const [city, setCity] = useState(loading);
   const [elevation, setElevation] = useState(loading);
+  const [flightDate, setFlightDate] = useState(loading);
   const signal = useRef();
   const controller = useRef();
 
@@ -193,7 +195,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
           });
 
           try {
-            const response = await fetch(url + query, { signal: signal.current });
+            const response = await ky.get(url + query, { signal: signal.current, mode: 'cors' });
             let result = await response.json();
             result = result.result;
 
