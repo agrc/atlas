@@ -19,6 +19,7 @@ const featureClassNames = {
   dem: 'SGID10.RASTER.USGS_DEM_10METER',
   gnis: 'location.gnis_place_names',
   zip: 'boundaries.zip_code_areas',
+  imageryDate: 'indices.hexagon_service_dates',
 };
 
 const fieldNames = {
@@ -39,7 +40,9 @@ const urls = {
   google: 'https://www.google.com/maps?q&layer=c&',
 };
 
+const intl = new Intl.DateTimeFormat('en-US', { dateStyle: 'short' });
 const outside = 'Outside of Utah';
+const loading = 'loading...';
 
 const projectPoint = async (mapPoint, srid) => {
   // lat/long coords
@@ -49,8 +52,6 @@ const projectPoint = async (mapPoint, srid) => {
 
   return project(mapPoint, { wkid: srid });
 };
-
-const loading = 'loading...';
 
 const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   const [spatial, setSpatial] = useState({
@@ -151,6 +152,34 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
           setZip(data[fieldNames.ZIP5]);
         },
       ],
+      [
+        featureClassNames.imageryDate,
+        'date,resolution',
+        (data) => {
+          if (!data) {
+            setFlightDate({ date: 'unknown', resolution: 'A mystery' });
+
+            return;
+          }
+
+          if ((data?.date.length ?? 0) > 0) {
+            data.date = intl.format(new Date(data['date']));
+
+            setFlightDate(data);
+          } else if ((data?.length ?? 0) > 0) {
+            const dates = data.map((result) => {
+              return { date: new Date(result.attributes['date']), resolution: result.attributes['resolution'] };
+            });
+            const sorted = dates.sort((a, b) => {
+              return a.date - b.date;
+            });
+
+            const newest = sorted[sorted.length - 1];
+            newest.date = intl.format(newest.date);
+            setFlightDate(newest);
+          }
+        },
+      ],
     ],
     []
   );
@@ -200,8 +229,14 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
             result = result.result;
 
             let data;
-            if (result.length > 0) {
+
+            if (result.length === 1) {
               data = result[0].attributes || {};
+            }
+
+            if (result.length > 1) {
+              console.warn('more than one result found', url);
+              data = result;
             }
 
             item[2](data);
@@ -323,6 +358,10 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       <Col>
         <strong>US National Grid</strong>
         <p className="identify--muted">{grid}</p>
+      </Col>
+      <Col>
+        <strong>Imagery Flight Data</strong>
+        <p className="identify--muted">{flightDate.date && `${flightDate.resolution} on ${flightDate.date}`}</p>
       </Col>
     </Container>
   );
