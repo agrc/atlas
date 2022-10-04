@@ -320,12 +320,12 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         </p>
       </Col>
       <Col>
-        <strong>Zip Code</strong>
-        <p className="identify--muted">{zip}</p>
-      </Col>
-      <Col>
         <strong>City</strong>
         <p className="identify--muted">{city}</p>
+      </Col>
+      <Col>
+        <strong>Zip Code</strong>
+        <p className="identify--muted">{zip}</p>
       </Col>
       <Col>
         <strong>County</strong>
