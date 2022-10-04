@@ -1,5 +1,24 @@
 # Changelog
 
+## [5.4.0](https://github.com/agrc/atlas/compare/v5.3.1...v5.4.0) (2022-10-04)
+
+
+### 🚀 Features
+
+* add imagery flight dates ([6debb4d](https://github.com/agrc/atlas/commit/6debb4d1ef2e3897a488430336f415231270e446)), closes [#190](https://github.com/agrc/atlas/issues/190)
+
+
+### 🐛 Bug Fixes
+
+* round feet elevation to no decimal places ([b91a29c](https://github.com/agrc/atlas/commit/b91a29c8428241a7f584d2f83ca504b87ce36b8b)), closes [#190](https://github.com/agrc/atlas/issues/190)
+* update condition for single flight area ([e434960](https://github.com/agrc/atlas/commit/e4349608248221a66a35c1eba0b2448e5ec04b8c)), closes [#190](https://github.com/agrc/atlas/issues/190)
+
+
+### 🎨 Design Improvements
+
+* better organize identify results ([e71a3d2](https://github.com/agrc/atlas/commit/e71a3d260affe806f608095ac328e74b14a97c84)), closes [#190](https://github.com/agrc/atlas/issues/190)
+* move zip to after city ([87d89a4](https://github.com/agrc/atlas/commit/87d89a4b5494ecc943bf7ad39c065f4a942759d1))
+
 ## [5.4.0-2](https://github.com/agrc/atlas/compare/v5.4.0-1...v5.4.0-2) (2022-10-04)
 
 
