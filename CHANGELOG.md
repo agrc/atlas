@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0-2](https://github.com/agrc/atlas/compare/v5.4.0-1...v5.4.0-2) (2022-10-04)
+
+
+### 🎨 Design Improvements
+
+* move zip to after city ([9fca0fd](https://github.com/agrc/atlas/commit/9fca0fd721e11d57c4c81244a76599edf4b0e342))
+
 ## [5.4.0-1](https://github.com/agrc/atlas/compare/v5.4.0-0...v5.4.0-1) (2022-10-04)
 
 
