@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.2](https://github.com/agrc/atlas/compare/v5.4.1...v5.4.2) (2022-11-03)
+
+
+### 🐛 Bug Fixes
+
+* add missing ci parameter to fix build ([109a63c](https://github.com/agrc/atlas/commit/109a63c6cc6197d27cffcabaa4455c36637bbe00))
+
 ## [5.4.1](https://github.com/agrc/atlas/compare/v5.4.0...v5.4.1) (2022-11-03)
 
 
