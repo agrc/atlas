@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.3](https://github.com/agrc/atlas/compare/v5.4.2...v5.4.3) (2022-12-01)
+
+
+### 🐛 Bug Fixes
+
+* :evergreen_tree: november updates ([d7b097f](https://github.com/agrc/atlas/commit/d7b097f284a0d116255db85a034790639b563cac))
+
 ## [5.4.2](https://github.com/agrc/atlas/compare/v5.4.1...v5.4.2) (2022-11-03)
 
 
