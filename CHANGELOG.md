@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.4](https://github.com/agrc/atlas/compare/v5.4.3...v5.4.4) (2023-01-03)
+
+
+### 🐛 Bug Fixes
+
+* january dependency updates ([abee359](https://github.com/agrc/atlas/commit/abee359ffd4599815b344c08d36a57e0a436d85c))
+
 ## [5.4.3](https://github.com/agrc/atlas/compare/v5.4.2...v5.4.3) (2022-12-01)
 
 
