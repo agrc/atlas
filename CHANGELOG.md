@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.4.5-0](https://github.com/agrc/atlas/compare/v5.4.3...v5.4.5-0) (2023-01-11)
+
+### 🐛 Bug Fixes
+
+* update printing quad word ([b582821](https://github.com/agrc/atlas/commit/b5828216dc81602fc9f1f297c296405c9eb1a4b8))
+
 ## [5.4.4](https://github.com/agrc/atlas/compare/v5.4.3...v5.4.4) (2023-01-03)
 
 
