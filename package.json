@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "@testing-library/cypress": "^9.0.0",
-    "@vitejs/plugin-react": "^3.0.0",
+    "@vitejs/plugin-react": "^3.0.1",
     "cpy-cli": "^4.2.0",
     "cypress": "^12.2.0",
     "eslint-config-prettier": "^8.6.0",
