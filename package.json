@@ -6,7 +6,7 @@
     "build": "vite build",
     "copy:arcgis": "cpy \"./node_modules/@arcgis/core/assets/**\" ./public/assets",
     "cypress:open": "cypress open",
-    "cypress:run": "npm start & wait-on http://localhost:5173 && cypress run",
+    "cypress:run": "npm start & wait-on --delay 1000 -v --timeout 10000 tcp:5173 && cypress run",
     "format": "prettier . --write",
     "lint": "eslint .",
     "preview": "vite preview",
