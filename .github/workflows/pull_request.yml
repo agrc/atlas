@@ -26,7 +26,8 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           start: npm run start
-          wait-on: 'http://127.0.0.1:5173'
+          wait-on: 'tcp:5173'
+          wait-on-timeout: 10
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
