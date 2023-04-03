@@ -25,8 +25,8 @@ jobs:
       - name: 🧪 Run tests
         uses: cypress-io/github-action@v5
         with:
-          start: npm run start
-          wait-on: 'tcp:5173'
+          start: npm run start:ci
+          wait-on: 'http://0.0.0.0:5173'
           wait-on-timeout: 10
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
