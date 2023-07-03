@@ -75,7 +75,7 @@
     ]
   },
   "dependencies": {
-    "@arcgis/core": "^4.26.5",
+    "@arcgis/core": "^4.27.6",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -84,7 +84,7 @@
     "@ugrc/sherlock": "^4.0.2",
     "@ugrc/utilities": "^2.2.1",
     "bootstrap": "^4.5.3",
-    "firebase": "^9.19.1",
+    "firebase": "^9.23.0",
     "ky": "^0.33.3",
     "lodash.debounce": "^4.0.8",
     "lodash.escaperegexp": "^4.1.2",
@@ -92,29 +92,29 @@
     "lodash.uniqwith": "^4.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-error-boundary": "^4.0.3",
-    "react-fast-compare": "^3.2.1",
-    "reactfire": "^4.2.2",
-    "reactstrap": "^9.1.8"
+    "react-error-boundary": "^4.0.10",
+    "react-fast-compare": "^3.2.2",
+    "reactfire": "^4.2.3",
+    "reactstrap": "^9.2.0"
   },
   "devDependencies": {
     "@testing-library/cypress": "^9.0.0",
-    "@vitejs/plugin-react": "^3.1.0",
-    "cpy-cli": "^4.2.0",
-    "cypress": "^12.9.0",
+    "@vitejs/plugin-react": "^4.0.1",
+    "cpy-cli": "^5.0.0",
+    "cypress": "^12.16.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-cypress": "^2.13.2",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
-    "vite": "^4.2.1",
+    "vite": "^4.3.9",
     "vite-plugin-package-version": "^1.0.2",
-    "vitest": "^0.29.8",
+    "vitest": "^0.32.4",
     "wait-on": "^7.0.1"
   }
 }
