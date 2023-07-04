@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.8](https://github.com/agrc/atlas/compare/v5.4.7...v5.4.8) (2023-07-04)
+
+
+### 🐛 Bug Fixes
+
+* Q3 Dependency Bumps 🌲 ([82f5828](https://github.com/agrc/atlas/commit/82f5828b947e6132339f791462354b4e0faf03ce))
+
 ## [5.4.7](https://github.com/agrc/atlas/compare/v5.4.6...v5.4.7) (2023-04-04)
 
 
