@@ -80,7 +80,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@ugrc/dart-board": "^5.0.5",
-    "@ugrc/layer-selector": "^6.1.1",
+    "@ugrc/layer-selector": "^6.1.2",
     "@ugrc/sherlock": "^4.0.2",
     "@ugrc/utilities": "^2.2.1",
     "bootstrap": "^4.5.3",
