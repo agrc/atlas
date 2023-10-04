@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.4.9](https://github.com/agrc/atlas/compare/v5.4.8...v5.4.9) (2023-10-04)
+
+
+### 🐛 Bug Fixes
+
+* reactfire dependency on firebase 9 ([f2aa6c5](https://github.com/agrc/atlas/commit/f2aa6c591ca9c62e83c86f5bab2102141fb1d763))
+
+
+### 🌲 Dependencies
+
+* q4 ci dependency bump ([668a8e9](https://github.com/agrc/atlas/commit/668a8e986c055d628a28f4266617ba38fdb126bb))
+* q4 dependency bump ([8044a4c](https://github.com/agrc/atlas/commit/8044a4cfa7e05689f0d6c5a608e5277d4439c222))
+
 ## [5.4.8](https://github.com/agrc/atlas/compare/v5.4.7...v5.4.8) (2023-07-04)
 
 
