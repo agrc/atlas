@@ -20,10 +20,12 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - name: 🧪 Run tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           start: npm run start:ci
           wait-on: 'http://0.0.0.0:5173'
@@ -39,7 +41,9 @@ jobs:
 
     steps:
       - name: ⬇️ Set up code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v3
