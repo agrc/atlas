@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.4.10](https://github.com/agrc/atlas/compare/v5.4.9...v5.4.10) (2023-10-12)
+
+
+### 🐛 Bug Fixes
+
+* add prettier plugins config ([6473749](https://github.com/agrc/atlas/commit/6473749a6c1dae1cdaaba5d475380151b1ca0a37))
+
+
+### 🌲 Dependencies
+
+* bump the safe-dependencies group with 5 updates ([695988f](https://github.com/agrc/atlas/commit/695988f41a9a0f891c5968c1b039f5c566046a68))
+
 ## [5.4.9](https://github.com/agrc/atlas/compare/v5.4.8...v5.4.9) (2023-10-04)
 
 
