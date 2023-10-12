@@ -9,6 +9,9 @@ updates:
         update-types: ['minor', 'patch']
       major-dependencies:
         update-types: ['major']
+    commit-message:
+      prefix: deps
+      prefix-development: deps(dev)
   - package-ecosystem: github-actions
     directory: /
     schedule:
