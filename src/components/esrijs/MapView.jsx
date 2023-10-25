@@ -12,8 +12,8 @@ import cityExtents from './data/cityExtents.json';
 const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
 const urls = {
   landownership:
-    'https://gis.trustlands.utah.gov/server/' +
-    '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
+    'https://gis.trustlands.utah.gov/mapping/' +
+    'rest/services/Land_Ownership_WM/FeatureServer/0',
 };
 
 const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
