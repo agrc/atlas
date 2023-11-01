@@ -88,7 +88,7 @@
     "@ugrc/sherlock": "^4.0.4",
     "@ugrc/utilities": "^2.2.1",
     "bootstrap": "^4.5.3",
-    "firebase": "^9.23.0",
+    "firebase": "^10.5.2",
     "ky": "^1.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.escaperegexp": "^4.1.2",
