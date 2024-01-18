@@ -88,7 +88,7 @@
     "@ugrc/sherlock": "^4.0.4",
     "@ugrc/utilities": "^2.2.1",
     "bootstrap": "^4.5.3",
-    "firebase": "^9.23.0",
+    "firebase": "^10.7.1",
     "ky": "^1.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.escaperegexp": "^4.1.2",
@@ -116,9 +116,9 @@
     "prettier": "^3.0.3",
     "prettier-plugin-organize-imports": "^3.2.3",
     "prettier-plugin-packagejson": "^2.4.6",
-    "vite": "^4.5.1",
+    "vite": "^5.0.11",
     "vite-plugin-package-version": "^1.0.2",
-    "vitest": "^0.34.6",
+    "vitest": "^1.2.1",
     "wait-on": "^7.2.0"
   }
 }
