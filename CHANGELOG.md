@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.4.11](https://github.com/agrc/atlas/compare/v5.4.10...v5.4.11) (2024-01-18)
+
+
+### 🌲 Dependencies
+
+* bump axios and wait-on ([aef0814](https://github.com/agrc/atlas/commit/aef081499f61021efeada5ada7ab254a9c86cd92))
+* bump the safe-dependencies group with 5 updates ([c46c638](https://github.com/agrc/atlas/commit/c46c6386ac1cc31d640c06b544a78bf4d93cda04))
+* **dev:** bump @babel/traverse from 7.23.0 to 7.23.2 ([84c19e3](https://github.com/agrc/atlas/commit/84c19e336286c30023529da7caadcc34345f19d3))
+* **dev:** bump follow-redirects from 1.15.3 to 1.15.4 ([d908b7b](https://github.com/agrc/atlas/commit/d908b7b225d86b67d0fceebb4d92d7161bb45955))
+* **dev:** bump vite from 4.5.0 to 4.5.1 ([d4e2605](https://github.com/agrc/atlas/commit/d4e26051aea062833edd7704b387679401aabd81))
+
 ## [5.4.10](https://github.com/agrc/atlas/compare/v5.4.9...v5.4.10) (2023-10-12)
 
 
