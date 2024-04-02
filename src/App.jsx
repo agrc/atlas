@@ -94,8 +94,8 @@ export default function App() {
   };
 
   const gnisSherlock = {
-    provider: new WebApiProvider(apiKey, 'SGID10.LOCATION.PlaceNamesGNIS2019', 'NAME', {
-      contextField: 'COUNTY',
+    provider: new WebApiProvider(apiKey, 'location.gnis_place_names', 'name', {
+      contextField: 'county',
     }),
     label: 'Find Point of Interest',
     placeHolder: 'place name ...',
@@ -104,7 +104,7 @@ export default function App() {
   };
 
   const citySherlock = {
-    provider: new WebApiProvider(apiKey, 'SGID10.BOUNDARIES.Municipalities', 'NAME'),
+    provider: new WebApiProvider(apiKey, 'boundaries.municipal_boundaries', 'name'),
     label: 'Find City',
     placeHolder: 'city name ...',
     maxResultsToDisplay: 10,
@@ -181,7 +181,7 @@ export default function App() {
                     via GitHub issues.
                   </li>
                   <li className="list-group-item">
-                    Reach out to us on <a href="https://twitter.com/MapUtah">Twitter</a> if you want to chat.
+                    Reach out to us on <a href="https://x.com/MapUtah">X</a> if you want to chat.
                   </li>
                 </ul>
               </small>
