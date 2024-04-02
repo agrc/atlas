@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.12-0](https://github.com/agrc/atlas/compare/v5.4.11...v5.4.12-0) (2024-04-02)
+
+
+### 🌲 Dependencies
+
+* fy24 q4 updates ([961863d](https://github.com/agrc/atlas/commit/961863d42b62e4aab05e53fad2a65bb8295467db))
+
 ## [5.4.11](https://github.com/agrc/atlas/compare/v5.4.10...v5.4.11) (2024-01-18)
 
 
