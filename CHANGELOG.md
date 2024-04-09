@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.4.13](https://github.com/agrc/atlas/compare/v5.4.12...v5.4.13) (2024-04-09)
+
+
+### 🐛 Bug Fixes
+
+* migrate to SITLA vector tiles ([1ca8009](https://github.com/agrc/atlas/commit/1ca8009d65a6e7f058be8f4e3c7431865a0b3ace))
+
+
+### 🌲 Dependencies
+
+* dependency updates ([76971d5](https://github.com/agrc/atlas/commit/76971d594636a22f3a043b492251e90fad0be8fc))
+
 ## [5.4.13-0](https://github.com/agrc/atlas/compare/v5.4.12...v5.4.13-0) (2024-04-09)
 
 
