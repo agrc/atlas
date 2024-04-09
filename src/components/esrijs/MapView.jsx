@@ -1,7 +1,7 @@
+import EsriMap from '@arcgis/core/Map';
 import { whenOnce } from '@arcgis/core/core/reactiveUtils';
 import Polygon from '@arcgis/core/geometry/Polygon';
-import FeatureLayer from '@arcgis/core/layers/FeatureLayer';
-import EsriMap from '@arcgis/core/Map';
+import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer';
 import MapView from '@arcgis/core/views/MapView';
 import LayerSelector from '@ugrc/layer-selector';
 import '@ugrc/layer-selector/src/LayerSelector.css';
@@ -12,8 +12,7 @@ import cityExtents from './data/cityExtents.json';
 const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
 const urls = {
   landownership:
-    'https://gis.trustlands.utah.gov/server/' +
-    '/rest/services/Ownership/UT_SITLA_Ownership_LandOwnership_WM/FeatureServer/0',
+    'https://gis.trustlands.utah.gov/hosting/rest/services/Hosted/Land_Ownership_WM_VectorTile/VectorTileServer',
 };
 
 const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
@@ -50,7 +49,7 @@ const ReactMapView = ({ setView, zoomToGraphic, onClick }) => {
       overlays: [
         'Address Points',
         {
-          Factory: FeatureLayer,
+          Factory: VectorTileLayer,
           url: urls.landownership,
           id: 'Land Ownership',
           opacity: 0.3,
