@@ -80,8 +80,8 @@
   },
   "dependencies": {
     "@arcgis/core": "^4.29.10",
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@ugrc/dart-board": "^5.0.8",
     "@ugrc/layer-selector": "^6.2.3",
@@ -105,7 +105,7 @@
     "@testing-library/cypress": "^10.0.1",
     "@vitejs/plugin-react": "^4.2.1",
     "cpy-cli": "^5.0.0",
-    "cypress": "^13.7.1",
+    "cypress": "^13.7.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-import": "^2.29.1",
@@ -116,7 +116,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.4.14",
-    "vite": "^5.2.7",
+    "vite": "^5.2.8",
     "vite-plugin-package-version": "^1.1.0",
     "vitest": "^1.4.0",
     "wait-on": "^7.2.0"
