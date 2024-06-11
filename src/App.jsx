@@ -1,18 +1,18 @@
 import { BootstrapDartboard as FindAddress } from '@ugrc/dart-board';
 import Sherlock, { WebApiProvider } from '@ugrc/sherlock';
-import { getAnalytics } from 'firebase/analytics';
+import { logEvent } from 'firebase/analytics';
 import PropTypes from 'prop-types';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { AnalyticsProvider, useFirebaseApp, useInitPerformance } from 'reactfire';
 import { Button, Card, Collapse } from 'reactstrap';
-
-import MapView from './components/esrijs/MapView';
-import Printer from './components/esrijs/Print';
 import Header from './components/Header/Header';
 import { IdentifyContainer, IdentifyInformation } from './components/Identify/Identify';
 import MapLens from './components/MapLens/MapLens';
 import Sidebar from './components/Sidebar/Sidebar';
+import MapView from './components/esrijs/MapView';
+import Printer from './components/esrijs/Print';
+import { useAnalytics } from './components/firebase/AnalyticsProvider';
+import { useFirebaseApp } from './components/firebase/FirebaseAppProvider';
 import config from './config';
 
 import '@ugrc/sherlock/src/Sherlock.css';
@@ -36,10 +36,11 @@ ErrorFallback.propTypes = {
 
 export default function App() {
   const app = useFirebaseApp();
-  useInitPerformance(async () => {
+  const analytics = useAnalytics();
+  useMemo(async () => {
     const { getPerformance } = await import('firebase/performance');
     return getPerformance(app);
-  });
+  }, [app]);
   const [zoomToGraphic, setZoomToGraphic] = useState({
     zoomToGraphic: {
       graphic: {},
@@ -59,7 +60,7 @@ export default function App() {
     //      The esri.Graphic(s) that you want to zoom to.
     // tags:
     //      private
-    console.log('sherlock:zoom');
+    logEvent(analytics, 'sherlock:zoom');
 
     // check for point feature
     setZoomToGraphic({
@@ -83,7 +84,7 @@ export default function App() {
     },
     events: {
       success: (graphic) => {
-        console.log('findAddress::success');
+        logEvent(analytics, 'findAddress::success');
         setZoomToGraphic({
           graphic: graphic,
           level: 18,
@@ -129,71 +130,69 @@ export default function App() {
   };
 
   return (
-    <AnalyticsProvider sdk={getAnalytics(app)}>
-      <div className="app">
-        <Header title="Atlas Utah" version={version} />
-        {showIdentify ? (
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <IdentifyContainer show={setShowIdentify}>
-              <IdentifyInformation apiKey={apiKey} location={mapClick} />
-            </IdentifyContainer>
-          </ErrorBoundary>
-        ) : null}
+    <div className="app">
+      <Header title="Atlas Utah" version={version} />
+      {showIdentify ? (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Sidebar>
-            <div className="bg-light border text-center p-1">
-              <small>
-                Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>.
-              </small>
-            </div>
-            <p>Click a location on the map for more information</p>
-            <h4>Find Address</h4>
-            <div id="geocodeNode">
-              <ErrorBoundary FallbackComponent={ErrorFallback}>
-                <FindAddress {...findAddressOptions} />
-              </ErrorBoundary>
-            </div>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <div className="mt-3">
-                <Sherlock {...gnisSherlock}></Sherlock>
-              </div>
-            </ErrorBoundary>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <div className="mt-3">
-                <Sherlock {...citySherlock}></Sherlock>
-              </div>
-            </ErrorBoundary>
-            <Card style={{ marginTop: '1em' }}>
-              <Button block onClick={() => setShowPrint(!showPrint)}>
-                Export Map
-              </Button>
-              <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
-            </Card>
-            <div style={{ marginTop: '1em', border: '#aaa 1px dashed' }}>
-              <small>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
-                    This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can
-                    use to create your own website.
-                  </li>
-                  <li className="list-group-item">
-                    Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>{' '}
-                    via GitHub issues.
-                  </li>
-                  <li className="list-group-item">
-                    Reach out to us on <a href="https://x.com/MapUtah">X</a> if you want to chat.
-                  </li>
-                </ul>
-              </small>
-            </div>
-          </Sidebar>
+          <IdentifyContainer show={setShowIdentify}>
+            <IdentifyInformation apiKey={apiKey} location={mapClick} />
+          </IdentifyContainer>
         </ErrorBoundary>
-        <MapLens {...sidebarOptions}>
+      ) : null}
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Sidebar>
+          <div className="bg-light border text-center p-1">
+            <small>
+              Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>.
+            </small>
+          </div>
+          <p>Click a location on the map for more information</p>
+          <h4>Find Address</h4>
+          <div id="geocodeNode">
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <FindAddress {...findAddressOptions} />
+            </ErrorBoundary>
+          </div>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <MapView {...mapOptions} />
+            <div className="mt-3">
+              <Sherlock {...gnisSherlock}></Sherlock>
+            </div>
           </ErrorBoundary>
-        </MapLens>
-      </div>
-    </AnalyticsProvider>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <div className="mt-3">
+              <Sherlock {...citySherlock}></Sherlock>
+            </div>
+          </ErrorBoundary>
+          <Card style={{ marginTop: '1em' }}>
+            <Button block onClick={() => setShowPrint(!showPrint)}>
+              Export Map
+            </Button>
+            <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
+          </Card>
+          <div style={{ marginTop: '1em', border: '#aaa 1px dashed' }}>
+            <small>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
+                  This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
+                  to create your own website.
+                </li>
+                <li className="list-group-item">
+                  Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>{' '}
+                  via GitHub issues.
+                </li>
+                <li className="list-group-item">
+                  Reach out to us on <a href="https://x.com/MapUtah">X</a> if you want to chat.
+                </li>
+              </ul>
+            </small>
+          </div>
+        </Sidebar>
+      </ErrorBoundary>
+      <MapLens {...sidebarOptions}>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <MapView {...mapOptions} />
+        </ErrorBoundary>
+      </MapLens>
+    </div>
   );
 }
