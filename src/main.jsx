@@ -2,8 +2,9 @@ import '@arcgis/core/assets/esri/themes/light/main.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { FirebaseAppProvider } from 'reactfire';
 import App from './App.jsx';
+import { AnalyticsProvider } from './components/firebase/AnalyticsProvider.jsx';
+import { FirebaseAppProvider } from './components/firebase/FirebaseAppProvider.jsx';
 import './index.css';
 
 let firebaseConfig = {
@@ -23,7 +24,9 @@ if (import.meta.env.VITE_FIREBASE_CONFIG) {
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <App />
+      <AnalyticsProvider>
+        <App />
+      </AnalyticsProvider>
     </FirebaseAppProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
