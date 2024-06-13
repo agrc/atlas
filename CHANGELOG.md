@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.4.14-0](https://github.com/agrc/atlas/compare/v5.4.13...v5.4.14-0) (2024-06-13)
+
+
+### 🌲 Dependencies
+
+* bump the safe-dependencies group across 1 directory with 14 updates ([695de83](https://github.com/agrc/atlas/commit/695de83d6ff9684f5bb92b973077a892554cd794))
+* Q4 package updates ([5ca4de5](https://github.com/agrc/atlas/commit/5ca4de5db5f078f7da7e8eac688c3a963eac2fcf))
+* update firebase ([3288775](https://github.com/agrc/atlas/commit/3288775b2cf470d8baaf3adce0c39d73dd791c2d))
+
 ## [5.4.13](https://github.com/agrc/atlas/compare/v5.4.12...v5.4.13) (2024-04-09)
 
 
