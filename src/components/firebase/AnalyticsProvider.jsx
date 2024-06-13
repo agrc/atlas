@@ -1,7 +1,7 @@
 import { getAnalytics } from 'firebase/analytics';
 import PropTypes from 'prop-types';
 import { createContext, useContext } from 'react';
-import { useFirebaseApp } from './FirebaseAppProvider';
+import { useFirebaseApp } from './FirebaseAppProvider.jsx';
 
 const AnalyticsSdkContext = createContext(undefined);
 
@@ -20,4 +20,6 @@ AnalyticsProvider.propTypes = {
   sdk: PropTypes.object,
 };
 
-export const useAnalytics = () => useContext(AnalyticsSdkContext);
+export function useAnalytics() {
+  return useContext(AnalyticsSdkContext);
+}
