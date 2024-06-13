@@ -2,7 +2,7 @@ import { BootstrapDartboard as FindAddress } from '@ugrc/dart-board';
 import Sherlock, { WebApiProvider } from '@ugrc/sherlock';
 import { logEvent } from 'firebase/analytics';
 import PropTypes from 'prop-types';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Button, Card, Collapse } from 'reactstrap';
 import Header from './components/Header/Header';
@@ -37,9 +37,13 @@ ErrorFallback.propTypes = {
 export default function App() {
   const app = useFirebaseApp();
   const analytics = useAnalytics();
-  useMemo(async () => {
-    const { getPerformance } = await import('firebase/performance');
-    return getPerformance(app);
+  useEffect(() => {
+    async function initPerformance() {
+      const { getPerformance } = await import('firebase/performance');
+
+      return getPerformance(app);
+    }
+    initPerformance();
   }, [app]);
   const [zoomToGraphic, setZoomToGraphic] = useState({
     zoomToGraphic: {
