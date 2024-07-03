@@ -1,22 +1,17 @@
-import { BootstrapDartboard as FindAddress } from '@ugrc/dart-board';
-import Sherlock, { WebApiProvider } from '@ugrc/sherlock';
+import { TailwindDartboard } from '@ugrc/dart-board';
+import { AriaSherlock, Header, SocialMedia, UgrcLogo, masqueradeProvider } from '@ugrc/utah-design-system';
 import { logEvent } from 'firebase/analytics';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Button, Card, Collapse } from 'reactstrap';
-import Header from './components/Header/Header';
-import { IdentifyContainer, IdentifyInformation } from './components/Identify/Identify';
-import MapLens from './components/MapLens/MapLens';
-import Sidebar from './components/Sidebar/Sidebar';
-import MapView from './components/esrijs/MapView';
-import Printer from './components/esrijs/Print';
+import MapView from './components/MapView';
+import Printer from './components/Print';
 import { useAnalytics } from './components/firebase/AnalyticsProvider';
 import { useFirebaseApp } from './components/firebase/FirebaseAppProvider';
 import config from './config';
 
-import '@ugrc/sherlock/src/Sherlock.css';
-import './App.css';
+import Sidebar from './components/Sidebar';
+import MapProvider from './components/contexts/MapProvider';
 
 const apiKey = import.meta.env.VITE_WEB_API;
 const version = import.meta.env.PACKAGE_VERSION;
@@ -33,6 +28,23 @@ const ErrorFallback = ({ error }) => {
 ErrorFallback.propTypes = {
   error: PropTypes.object,
 };
+
+const links = [
+  {
+    key: 'UGRC Homepage',
+    action: { url: 'https://gis.utah.gov' },
+  },
+  {
+    key: 'GitHub Repository',
+    action: { url: 'https://github.com/agrc/atlas' },
+  },
+  {
+    key: `Version ${version} changelog`,
+    action: { url: `https://github.com/agrc/atlas/releases/v${version}` },
+  },
+];
+const url = 'https://masquerade.ugrc.utah.gov/arcgis/rest/services/UtahLocator/GeocodeServer';
+const wkid = 26912;
 
 export default function App() {
   const app = useFirebaseApp();
@@ -98,20 +110,9 @@ export default function App() {
     },
   };
 
-  const gnisSherlock = {
-    provider: new WebApiProvider(apiKey, 'location.gnis_place_names', 'name', {
-      contextField: 'county',
-    }),
-    label: 'Find Point of Interest',
-    placeHolder: 'place name ...',
-    maxResultsToDisplay: 10,
-    onSherlockMatch: onSherlockMatch,
-  };
-
-  const citySherlock = {
-    provider: new WebApiProvider(apiKey, 'boundaries.municipal_boundaries', 'name'),
-    label: 'Find City',
-    placeHolder: 'city name ...',
+  const masqueradeSherlock = {
+    label: 'Find a place',
+    provider: masqueradeProvider(url, wkid),
     maxResultsToDisplay: 10,
     onSherlockMatch: onSherlockMatch,
   };
@@ -134,69 +135,99 @@ export default function App() {
   };
 
   return (
-    <div className="app">
-      <Header title="Atlas Utah" version={version} />
-      {showIdentify ? (
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <IdentifyContainer show={setShowIdentify}>
-            <IdentifyInformation apiKey={apiKey} location={mapClick} />
-          </IdentifyContainer>
-        </ErrorBoundary>
-      ) : null}
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Sidebar>
-          <div className="bg-light border text-center p-1">
-            <small>
-              Data and services provided by <a href="https://gis.utah.gov/">UGRC</a>.
-            </small>
+    <>
+      <Header links={links}>
+        <>
+          <div className="h-full grow flex items-center gap-3">
+            <UgrcLogo />
+            <h2 className="font-heading text-3xl sm:text-5xl font-black text-zinc-600 dark:text-zinc-100">
+              Atlas Utah
+            </h2>
           </div>
-          <p>Click a location on the map for more information</p>
-          <h4>Find Address</h4>
-          <div id="geocodeNode">
+        </>
+      </Header>
+      <main className="flex h-full w-full flex-col md:flex-row">
+        <MapProvider>
+          <div className="relative flex flex-1 flex-col dark:text-zinc-50 md:border-r dark:border-white/30">
+            <MapView setView={setMapView} />
+            <SocialMedia />
+          </div>
+          <Sidebar>
+            {/* <div className="flex max-w-lg flex-col overflow-hidden rounded border border-l-0 border-black/20 bg-black/10 dark:border-white/20 dark:bg-zinc-800 items-center">
+              <div className="m-0 border-l-4 border-l-secondary px-4 py-2 dark:border-l-accent">
+                <div className="line-clamp-5">
+                  Data and services are provided by <a href="https://gis.utah.gov/">UGRC</a>.
+                </div>
+              </div>
+            </div> */}
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <FindAddress {...findAddressOptions} />
+              <div className="mt-3">
+                <AriaSherlock {...masqueradeSherlock}></AriaSherlock>
+              </div>
             </ErrorBoundary>
-          </div>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <div className="mt-3">
-              <Sherlock {...gnisSherlock}></Sherlock>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <div className="mt-3">
+                <TailwindDartboard></TailwindDartboard>
+              </div>
+            </ErrorBoundary>
+            <div style={{ marginTop: '1em' }}>
+              <button onClick={() => setShowPrint(!showPrint)}>Export Map</button>
+              <div>{showPrint ? <Printer view={mapView}></Printer> : null}</div>
             </div>
-          </ErrorBoundary>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <div className="mt-3">
-              <Sherlock {...citySherlock}></Sherlock>
-            </div>
-          </ErrorBoundary>
-          <Card style={{ marginTop: '1em' }}>
-            <Button block onClick={() => setShowPrint(!showPrint)}>
-              Export Map
-            </Button>
-            <Collapse isOpen={showPrint}>{showPrint ? <Printer view={mapView}></Printer> : null}</Collapse>
-          </Card>
-          <div style={{ marginTop: '1em', border: '#aaa 1px dashed' }}>
-            <small>
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
+
+            {/* <div className="flex max-w-lg flex-col overflow-hidden rounded border border-l-0 border-black/20 bg-black/10 dark:border-white/20 dark:bg-zinc-800">
+              <p className="flex items-center gap-3 border-l-4 border-l-secondary pb-2 pl-4 pt-4 text-3xl font-semibold dark:border-l-accent">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  ></path>
+                </svg>
+                <span>Tip</span>
+              </p>
+              <div className="m-0 border-l-4 border-l-secondary px-4 pb-4 dark:border-l-accent">
+                <div className="line-clamp-5">
                   This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
                   to create your own website.
-                </li>
-                <li className="list-group-item">
-                  Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>{' '}
+                </div>
+              </div>
+            </div>
+            <div className="flex max-w-lg flex-col overflow-hidden rounded border border-l-0 border-black/20 bg-black/10 dark:border-white/20 dark:bg-zinc-800">
+              <p className="flex items-center gap-3 border-l-4 border-l-secondary pb-2 pl-4 pt-4 text-3xl font-semibold dark:border-l-accent">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                  ></path>
+                </svg>
+                <span>Tip</span>
+              </p>
+              <div className="m-0 border-l-4 border-l-secondary px-4 pb-4 dark:border-l-accent">
+                <div className="line-clamp-5">
+                  Submit any application or data <a href="https://github.com/agrc/atlas/issues/new/choose">issues</a>
                   via GitHub issues.
-                </li>
-                <li className="list-group-item">
-                  Reach out to us on <a href="https://x.com/MapUtah">X</a> if you want to chat.
-                </li>
-              </ul>
-            </small>
-          </div>
-        </Sidebar>
-      </ErrorBoundary>
-      <MapLens {...sidebarOptions}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <MapView {...mapOptions} />
-        </ErrorBoundary>
-      </MapLens>
-    </div>
+                </div>
+              </div>
+            </div>*/}
+          </Sidebar>
+        </MapProvider>
+      </main>
+    </>
   );
 }
