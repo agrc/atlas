@@ -9,8 +9,6 @@ updates:
         update-types: ['minor', 'patch']
       major-dependencies:
         update-types: ['major']
-        exclude-patterns:
-        - "bootstrap"
     commit-message:
       prefix: deps
       prefix-development: deps(dev)
