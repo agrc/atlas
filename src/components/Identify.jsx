@@ -6,7 +6,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Col, Container } from 'reactstrap';
 
-import { toQueryString } from '@ugrc/utilities';
+import { toQueryString } from '@ugrc/utilities/src';
 
 import ky from 'ky';
 import './Identify.css';
@@ -181,7 +181,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         },
       ],
     ],
-    []
+    [],
   );
 
   const reverseGeocode = useCallback(
@@ -208,7 +208,7 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         console.warn(ex);
       }
     },
-    [wkid, apiKey]
+    [wkid, apiKey],
   );
 
   const get = useCallback(
@@ -243,14 +243,14 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
           } catch (error) {
             console.warn(error);
           }
-        })
+        }),
       );
 
       await reverseGeocode(mapPoint);
 
       controller.current = null;
     },
-    [apiKey, wkid, reverseGeocode]
+    [apiKey, wkid, reverseGeocode],
   );
 
   useEffect(() => {
