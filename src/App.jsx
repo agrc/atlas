@@ -1,16 +1,24 @@
-import { TailwindDartboard } from '@ugrc/dart-board';
-import { AriaSherlock, Header, SocialMedia, UgrcLogo, masqueradeProvider } from '@ugrc/utah-design-system';
+import {
+  Drawer,
+  Footer,
+  Geocode,
+  Header,
+  Sherlock,
+  SocialMedia,
+  UgrcLogo,
+  masqueradeProvider,
+} from '@ugrc/utah-design-system/development';
 import { logEvent } from 'firebase/analytics';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
+import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useOverlayTriggerState } from 'react-stately';
 import MapView from './components/MapView';
-import Printer from './components/Print';
 import { useAnalytics } from './components/firebase/AnalyticsProvider';
 import { useFirebaseApp } from './components/firebase/FirebaseAppProvider';
 import config from './config';
 
-import Sidebar from './components/Sidebar';
 import MapProvider from './components/contexts/MapProvider';
 
 const apiKey = import.meta.env.VITE_WEB_API;
@@ -47,6 +55,189 @@ const url = 'https://masquerade.ugrc.utah.gov/arcgis/rest/services/UtahLocator/G
 const wkid = 26912;
 
 export default function App() {
+  const app = useFirebaseApp();
+  const analytics = useAnalytics();
+  useEffect(() => {
+    async function initPerformance() {
+      const { getPerformance } = await import('firebase/performance');
+
+      return getPerformance(app);
+    }
+    initPerformance();
+  }, [app]);
+  const [zoomToGraphic, setZoomToGraphic] = useState({
+    zoomToGraphic: {
+      graphic: {},
+      level: 0,
+    },
+  });
+  const [showIdentify, setShowIdentify] = useState(false);
+  const [mapClick, setMapClick] = useState(null);
+  const [mapView, setMapView] = useState({});
+  const sideBarState = useOverlayTriggerState({ defaultOpen: true });
+  const overlayTriggerProps = useOverlayTrigger(
+    {
+      type: 'dialog',
+    },
+    sideBarState,
+  );
+
+  const onSherlockMatch = (graphics) => {
+    // summary:
+    //      Zooms to the passed in graphic(s).
+    // graphics: esri.Graphic[]
+    //      The esri.Graphic(s) that you want to zoom to.
+    // tags:
+    //      private
+    logEvent(analytics, 'sherlock:zoom');
+
+    // check for point feature
+    setZoomToGraphic({
+      graphic: graphics,
+      preserve: false,
+    });
+  };
+
+  const findAddressOptions = {
+    apiKey,
+    wkid: config.WEB_MERCATOR_WKID,
+    pointSymbol: {
+      type: 'simple-marker',
+      style: 'diamond',
+      color: config.MARKER_FILL_COLOR,
+      size: '18px',
+      outline: {
+        color: config.MARKER_OUTLINE_COLOR,
+        width: 1,
+      },
+    },
+    events: {
+      success: (graphic) => {
+        logEvent(analytics, 'findAddress::success');
+        setZoomToGraphic({
+          graphic: graphic,
+          level: 18,
+        });
+      },
+      error: console.error,
+    },
+  };
+
+  const masqueradeSherlock = {
+    label: 'Find a place',
+    provider: masqueradeProvider(url, wkid),
+    maxResultsToDisplay: 10,
+    onSherlockMatch: onSherlockMatch,
+  };
+
+  const onClick = useCallback((event) => {
+    setShowIdentify(true);
+    // setSideBarOpen(true);
+    setMapClick(event.mapPoint);
+  }, []);
+
+  const mapOptions = {
+    zoomToGraphic: zoomToGraphic,
+    onClick: onClick,
+    setView: setMapView,
+  };
+
+  const sidebarOptions = {
+    // sideBarOpen: sideBarOpen,
+    // toggleSidebar: () => setSideBarOpen(!sideBarOpen),
+  };
+
+  return (
+    <>
+      <main className="flex flex-col h-screen md:gap-2">
+        <Header links={links}>
+          <div className="h-full grow flex items-center gap-3">
+            <UgrcLogo />
+            <h2 className="font-heading text-3xl sm:text-5xl font-black text-zinc-600 dark:text-zinc-100">
+              Atlas Utah
+            </h2>
+          </div>
+        </Header>
+        <MapProvider>
+          <section className="relative gap-2 flex min-h-0 flex-1 overflow-x-hidden md:mx-2">
+            <Drawer main state={sideBarState} {...overlayTriggerProps}>
+              <div className="grid grid-cols-1 gap-2">
+                <h2 className="text-xl font-bold">Map controls</h2>
+                <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                    <Sherlock {...masqueradeSherlock}></Sherlock>
+                  </ErrorBoundary>
+                </div>
+                <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                    <Geocode {...findAddressOptions} />
+                  </ErrorBoundary>
+                </div>
+                <div className="border border-zinc-200 dark:border-zinc-700 rounded">
+                  <p className="flex items-center gap-3 pb-2 pl-4 pt-4 text-3xl font-semibold text-primary-900 dark:text-accent-600">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                      ></path>
+                    </svg>
+                    <span>Did you know?</span>
+                  </p>
+                  <div className="m-0 px-4 pb-4">
+                    Data and services are provided by <a href="https://gis.utah.gov/">UGRC</a>.
+                  </div>
+                </div>
+                <div className="border border-zinc-200 dark:border-zinc-700 rounded">
+                  <p className="flex items-center gap-3 pb-2 pl-4 pt-4 text-3xl font-semibold text-primary-900 dark:text-accent-600">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+                      ></path>
+                    </svg>
+                    <span>Tip</span>
+                  </p>
+                  <div className="m-0 px-4 pb-4">
+                    This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can
+                    use to create your own website.
+                  </div>
+                </div>
+              </div>
+            </Drawer>
+            <div className="flex flex-col flex-1 rounded">
+              <div className="flex-1 dark:rounded overflow-hidden">
+                <MapView setView={setMapView} />
+              </div>
+              <SocialMedia />
+            </div>
+          </section>
+        </MapProvider>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
+import { TailwindDartboard } from '@ugrc/dart-board';
+import { Sidebar } from './components/Sidebar';
+
+export function App2() {
   const app = useFirebaseApp();
   const analytics = useAnalytics();
   useEffect(() => {
@@ -135,23 +326,21 @@ export default function App() {
   };
 
   return (
-    <>
-      <Header links={links}>
-        <>
-          <div className="h-full grow flex items-center gap-3">
-            <UgrcLogo />
-            <h2 className="font-heading text-3xl sm:text-5xl font-black text-zinc-600 dark:text-zinc-100">
-              Atlas Utah
-            </h2>
-          </div>
-        </>
-      </Header>
-      <main className="flex h-full w-full flex-col md:flex-row">
-        <MapProvider>
-          <div className="relative flex flex-1 flex-col dark:text-zinc-50 md:border-r dark:border-white/30">
-            <MapView setView={setMapView} />
-            <SocialMedia />
-          </div>
+    <main className="grid w-screen h-screen md:gap-2 mobile-grid md:app-grid">
+      <section className="flex items-center justify-between header-grid-area">
+        <Header links={links}>
+          <>
+            <div className="h-full grow flex items-center gap-3">
+              <UgrcLogo />
+              <h2 className="font-heading text-3xl sm:text-5xl font-black text-zinc-600 dark:text-zinc-100">
+                Atlas Utah
+              </h2>
+            </div>
+          </>
+        </Header>
+      </section>
+      <MapProvider>
+        <section className="px-3 md:mb-2 ml-2 py-1 md:overflow-scroll md:border border-zinc-300 dark:border-zinc-600 sidebar-grid-area has-[mobile-grid]:translate-x-[230px] ">
           <Sidebar>
             {/* <div className="flex max-w-lg flex-col overflow-hidden rounded border border-l-0 border-black/20 bg-black/10 dark:border-white/20 dark:bg-zinc-800 items-center">
               <div className="m-0 border-l-4 border-l-secondary px-4 py-2 dark:border-l-accent">
@@ -160,22 +349,19 @@ export default function App() {
                 </div>
               </div>
             </div> */}
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <div className="mt-3">
-                <AriaSherlock {...masqueradeSherlock}></AriaSherlock>
+            <div className="grid grid-cols-1 gap-2">
+              <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <Sherlock {...masqueradeSherlock}></Sherlock>
+                </ErrorBoundary>
               </div>
-            </ErrorBoundary>
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              <div className="mt-3">
-                <TailwindDartboard></TailwindDartboard>
+              <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <TailwindDartboard {...findAddressOptions} />
+                </ErrorBoundary>
               </div>
-            </ErrorBoundary>
-            <div style={{ marginTop: '1em' }}>
-              <button onClick={() => setShowPrint(!showPrint)}>Export Map</button>
-              <div>{showPrint ? <Printer view={mapView}></Printer> : null}</div>
-            </div>
 
-            {/* <div className="flex max-w-lg flex-col overflow-hidden rounded border border-l-0 border-black/20 bg-black/10 dark:border-white/20 dark:bg-zinc-800">
+              {/* <div className="flex max-w-lg flex-col overflow-hidden rounded border border-l-0 border-black/20 bg-black/10 dark:border-white/20 dark:bg-zinc-800">
               <p className="flex items-center gap-3 border-l-4 border-l-secondary pb-2 pl-4 pt-4 text-3xl font-semibold dark:border-l-accent">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -225,9 +411,16 @@ export default function App() {
                 </div>
               </div>
             </div>*/}
+            </div>
           </Sidebar>
-        </MapProvider>
-      </main>
-    </>
+        </section>
+        <section className="md:mr-2 relative md:mb-2 border border-zinc-300 dark:border-zinc-600 map-grid-area bg-gradient-to-br from-zinc-200 to-transparent dark:from-zinc-300 dark:to-transparent">
+          <div className="w-full flex flex-col flex-1 h-full calcite-mode-dark">
+            <MapView setView={setMapView} />
+            <SocialMedia />
+          </div>
+        </section>
+      </MapProvider>
+    </main>
   );
 }
