@@ -53,7 +53,7 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
       mapView.current.on('click', onClick);
     });
 
-    setSelectorOptions({
+    const selectorOptions = {
       view: mapView.current,
       quadWord: import.meta.env.VITE_DISCOVER,
       baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
@@ -67,7 +67,16 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
         },
       ],
       position: 'top-right',
-    });
+    };
+
+    // select a random index from baseLayers and convert the string to an object
+    const randomBaseMapIndex = Math.floor(Math.random() * selectorOptions.baseLayers.length);
+    selectorOptions.baseLayers[randomBaseMapIndex] = {
+      token: selectorOptions.baseLayers[randomBaseMapIndex],
+      selected: true,
+    };
+
+    setSelectorOptions(selectorOptions);
 
     return () => {
       mapView.current.destroy();
@@ -76,7 +85,7 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
   }, [setMapView, onClick]);
 
   return (
-    <div ref={mapNode} className="relative w-full grow">
+    <div ref={mapNode} className="size-full">
       {selectorOptions ? <LayerSelector {...selectorOptions}></LayerSelector> : null}
     </div>
   );
