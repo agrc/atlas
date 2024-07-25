@@ -38,8 +38,6 @@ Build an awesome app.
 
 Run `npm test` to run the unit tests
 
-Run `npm run cypress:run` to run the functional tests
-
 Run `npm run format` to format the code
 
 Run `npm run lint` to lint the code

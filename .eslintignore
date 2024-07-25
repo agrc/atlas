@@ -2,7 +2,6 @@
 .github
 .vscode
 build
-cypress
 data
 forklift
 maps
