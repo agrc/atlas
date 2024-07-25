@@ -1,4 +1,4 @@
-# atlas
+# Atlas
 
 ## UGRC Web Mapping Application Template
 
@@ -9,28 +9,24 @@
 
 ### Step 1 - Use this template
 
-Click the `Use this template` button to create a new repository from atlas
-
-or
-
-Checkout repository and install dependencies
+Click the `Use this template` button to create a new repository from atlas or checkout the repository
 
 ```bash
 git clone https://github.com/agrc/atlas.git
 cd atlas
 ```
 
-Duplicate the `.env` file and rename it as `.env.local` and update the properties with your data
+Duplicate the `.env` file and rename it as `.env.local` to add your local secrets.
 
-Download all the dependencies
+Install the project dependencies
 
 ```bash
 npm install
 ```
 
-### Step 2 - Develop & Test
+### Step 2 - Develop and Test
 
-Execute `npm start` to start a web server and view the website
+Run `npm start` to start a web server and view the website
 
 Open [`src/App.jsx`](src/App.jsx) to view the development version of the app.
 
@@ -48,13 +44,9 @@ Execute `npm run build` to create an optimized production build
 
 _The files will be placed in `/dist`_
 
-Execute `npm run preview` to view the website
+Execute `npm run preview` to view the built website
 
 ### Step 4 - Deploy
-
-One-time tasks:
-
-- [ ] Update the analytics code in `index.html`
 
 This website is tested and deployed with GitHub Actions.
 
