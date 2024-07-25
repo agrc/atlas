@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./node_modules/@ugrc/**/*.{tsx,jsx,js}', './index.html', './src/**/*.{tsx,jsx,js}'],
-  presets: [require('@ugrc/tailwind-colors')],
+  presets: [require('@ugrc/tailwind-preset')],
   theme: {
     extend: {
       fontFamily: {

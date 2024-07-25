@@ -7,7 +7,7 @@ import {
   SocialMedia,
   UgrcLogo,
   masqueradeProvider,
-} from '@ugrc/utah-design-system/development';
+} from '@ugrc/utah-design-system';
 import { logEvent } from 'firebase/analytics';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
