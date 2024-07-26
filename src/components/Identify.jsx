@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { isLoaded, load, project } from '@arcgis/core/geometry/projection';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Col, Container } from 'reactstrap';
 
 import { toQueryString } from '@ugrc/utilities/src';
 
@@ -300,70 +297,65 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   }, [location, get, requests]);
 
   return (
-    <Container fluid className="identify">
-      <Col>
+    <dev className="identify">
+      <div>
         <h4>What&apos;s here?</h4>
         <hr />
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>Approximate Street Address</strong>
         <p className="identify--muted">
           <span className="d-block">{address}</span>
           <a href={spatial.googleMapsLink} className="text-info" target="_blank" rel="noopener noreferrer">
             Google Street View
           </a>
-          <FontAwesomeIcon
-            icon={faExternalLinkAlt}
-            className="identify--muted"
-            style={{ marginLeft: '.5em' }}
-          ></FontAwesomeIcon>
         </p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>City</strong>
         <p className="identify--muted">{city}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>Zip Code</strong>
         <p className="identify--muted">{zip}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>County</strong>
         <p className="identify--muted">{county}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>UTM 12 NAD83 Coordinates</strong>
         <p className="identify--muted">
           {spatial.x}, {spatial.y} meters
         </p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>WGS84 Coordinates</strong>
         <p className="identify--muted">
           {spatial.lat}, {spatial.lon}
         </p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>Elevation Meters</strong>
         <p className="identify--muted">{elevation.meters}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>Elevation Feet</strong>
         <p className="identify--muted">{elevation.feet}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>Land Administration Category</strong>
         <p className="identify--muted">{ownership}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>US National Grid</strong>
         <p className="identify--muted">{grid}</p>
-      </Col>
-      <Col>
+      </div>
+      <div>
         <strong>Imagery Flight Data</strong>
         <p className="identify--muted">{flightDate.date && `${flightDate.resolution} on ${flightDate.date}`}</p>
-      </Col>
-    </Container>
+      </div>
+    </dev>
   );
 };
 
