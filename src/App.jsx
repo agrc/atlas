@@ -75,11 +75,19 @@ export default function App() {
   const [mapClick, setMapClick] = useState(null);
   const [mapView, setMapView] = useState({});
   const sideBarState = useOverlayTriggerState({ defaultOpen: true });
-  const overlayTriggerProps = useOverlayTrigger(
+  const sideBarTriggerProps = useOverlayTrigger(
     {
       type: 'dialog',
     },
     sideBarState,
+  );
+
+  const trayState = useOverlayTriggerState({ defaultOpen: true });
+  const trayTriggerProps = useOverlayTrigger(
+    {
+      type: 'dialog',
+    },
+    trayState,
   );
 
   const onSherlockMatch = (graphics) => {
@@ -142,11 +150,6 @@ export default function App() {
     setView: setMapView,
   };
 
-  const sidebarOptions = {
-    // sideBarOpen: sideBarOpen,
-    // toggleSidebar: () => setSideBarOpen(!sideBarOpen),
-  };
-
   return (
     <>
       <main className="flex flex-col h-screen md:gap-2">
@@ -160,7 +163,7 @@ export default function App() {
         </Header>
         <MapProvider>
           <section className="relative gap-2 flex min-h-0 flex-1 overflow-x-hidden md:mx-2">
-            <Drawer main state={sideBarState} {...overlayTriggerProps}>
+            <Drawer main state={sideBarState} {...sideBarTriggerProps}>
               <div className="grid grid-cols-1 gap-2">
                 <h2 className="text-xl font-bold">Map controls</h2>
                 <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
@@ -226,6 +229,9 @@ export default function App() {
               </div>
               <SocialMedia />
             </div>
+            <Drawer type="tray" state={trayState} {...trayTriggerProps}>
+              I am a tray
+            </Drawer>
           </section>
         </MapProvider>
       </main>
