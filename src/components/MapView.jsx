@@ -1,8 +1,8 @@
-import WebMap from '@arcgis/core/WebMap';
 import Polygon from '@arcgis/core/geometry/Polygon';
 import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer';
+import EsriMap from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
-import LayerSelector from '@ugrc/layer-selector';
+import LayerSelector from '@ugrc/layer-selector/dev';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import useMap from './hooks/useMap';
