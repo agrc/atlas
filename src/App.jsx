@@ -83,7 +83,7 @@ export default function App() {
     sideBarState,
   );
 
-  const trayState = useOverlayTriggerState({ defaultOpen: true });
+  const trayState = useOverlayTriggerState({ defaultOpen: false });
   const trayTriggerProps = useOverlayTrigger(
     {
       type: 'dialog',
@@ -187,15 +187,18 @@ export default function App() {
                 </Tip>
               </div>
             </Drawer>
-            <div className="flex flex-col flex-1 rounded">
+            <div className="relative flex flex-col flex-1 rounded">
               <div className="flex-1 dark:rounded overflow-hidden">
                 <MapView setView={setMapView} />
               </div>
               <SocialMedia />
+              <Drawer type="tray" allowFullScreen state={trayState} {...trayTriggerProps}>
+                <div className="p-4">
+                  Navigate around the map with the map controls and click on the map to learn about the area you clicked
+                  on.
+                </div>
+              </Drawer>
             </div>
-            <Drawer type="tray" state={trayState} {...trayTriggerProps}>
-              I am a tray
-            </Drawer>
           </section>
         </MapProvider>
       </main>
