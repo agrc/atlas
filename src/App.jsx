@@ -154,7 +154,7 @@ export default function App() {
         </Header>
         <section className="relative gap-2 flex min-h-0 flex-1 md:mr-2 overflow-x-hidden">
           <Drawer main state={sideBarState} {...sideBarTriggerProps}>
-            <div className="grid grid-cols-1 gap-2 mx-2">
+            <div className="grid grid-cols-1 gap-2 mx-2 mb-2">
               <h2 className="text-xl font-bold">Map controls</h2>
               <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
