@@ -1,16 +1,21 @@
-import { initializeApp, registerVersion } from 'firebase/app';
-import PropTypes from 'prop-types';
-import { createContext, useContext, useMemo, version } from 'react';
+import { FirebaseOptions, initializeApp, registerVersion } from 'firebase/app';
+import { createContext, ReactNode, useContext, useMemo, version } from 'react';
 
 const DEFAULT_APP_NAME = '[DEFAULT]';
 const FirebaseAppContext = createContext(undefined);
 
-export function FirebaseAppProvider(props) {
+const appVersion = import.meta.env.PACKAGE_VERSION;
+
+type FirebaseProviderProps = {
+  firebaseConfig: FirebaseOptions;
+  children: ReactNode;
+};
+
+export function FirebaseAppProvider(props: FirebaseProviderProps) {
   const { firebaseConfig } = props;
   const firebaseApp = useMemo(() => {
     registerVersion('react', version || 'unknown');
-    // TODO! add app package.json version
-    // registerVersion('app', appVersion || 'unknown');
+    registerVersion('app', appVersion || 'unknown');
 
     return initializeApp(firebaseConfig, DEFAULT_APP_NAME);
   }, [firebaseConfig]);
@@ -26,10 +31,3 @@ export function useFirebaseApp() {
 
   return firebaseApp;
 }
-
-FirebaseAppProvider.propTypes = {
-  firebaseConfig: PropTypes.object.isRequired,
-  firebaseApp: PropTypes.object,
-  appName: PropTypes.string,
-  children: PropTypes.node,
-};
