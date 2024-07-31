@@ -31,6 +31,13 @@
     @apply text-sm font-bold md:text-base;
   }
 
+  a:not(.custom-style) {
+    @apply font-semibold text-secondary-800 hover:bg-black/10 focus:outline-none focus:ring-1 focus:ring-accent-500 dark:text-accent-500 dark:hover:bg-white/10;
+    &:hover {
+      @apply text-primary-900 dark:text-accent-500;
+    }
+  }
+
   @font-face {
     font-family: 'SourceSansPro-Regular';
     src: url('/fonts/SourceSans3-Regular.otf.woff2') format('woff2');
