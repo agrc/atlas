@@ -12,6 +12,25 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  h2 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+  h3 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+  h4 {
+    @apply text-lg font-bold md:text-xl;
+  }
+  h5 {
+    @apply text-base font-bold md:text-lg;
+  }
+  h6 {
+    @apply text-sm font-bold md:text-base;
+  }
+
   @font-face {
     font-family: 'SourceSansPro-Regular';
     src: url('/fonts/SourceSans3-Regular.otf.woff2') format('woff2');
