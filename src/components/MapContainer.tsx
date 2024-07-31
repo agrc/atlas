@@ -7,16 +7,17 @@ import { useEffect, useRef, useState } from 'react';
 import { useMap } from './hooks';
 import { randomize } from './utils';
 
+import Graphic from '@arcgis/core/Graphic';
 import '@ugrc/layer-selector/src/LayerSelector.css';
 import cityExtents from './data/cityExtents.json';
 
-const { item: randomExtent } = randomize(cityExtents);
+const { item: randomExtent } = randomize<Graphic>(cityExtents);
 const urls = {
   landownership:
     'https://gis.trustlands.utah.gov/hosting/rest/services/Hosted/Land_Ownership_WM_VectorTile/VectorTileServer',
 };
 
-export const MapContainer = () => {
+export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: Function }) => {
   const mapNode = useRef(null);
   const mapComponent = useRef(null);
   const mapView = useRef(null);
@@ -43,9 +44,9 @@ export const MapContainer = () => {
 
     setMapView(mapView.current);
 
-    // mapView.current.when(() => {
-    //   mapView.current.on('click', onClick);
-    // });
+    mapView.current.when(() => {
+      mapView.current.on('click', onIdentifyClick);
+    });
 
     const selectorOptions = {
       view: mapView.current,
