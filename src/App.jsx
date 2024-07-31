@@ -1,3 +1,6 @@
+import esriConfig from '@arcgis/core/config';
+import Graphic from '@arcgis/core/Graphic';
+import Viewpoint from '@arcgis/core/Viewpoint.js';
 import {
   Drawer,
   Footer,
@@ -8,19 +11,15 @@ import {
   UgrcLogo,
   masqueradeProvider,
 } from '@ugrc/utah-design-system';
-import { logEvent } from 'firebase/analytics';
 import PropTypes from 'prop-types';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
-import { useAnalytics } from './components/firebase/AnalyticsProvider';
-import { useFirebaseApp } from './components/firebase/FirebaseAppProvider';
-import MapView from './components/MapView';
+import { MapContainer, Tip } from './components';
+import { useAnalytics, useFirebaseApp } from './components/contexts';
+import { useMap } from './components/hooks';
 import config from './config';
-
-import MapProvider from './components/contexts/MapProvider';
-import { Tip } from './Tip';
 
 const apiKey = import.meta.env.VITE_WEB_API;
 const version = import.meta.env.PACKAGE_VERSION;
@@ -38,6 +37,7 @@ ErrorFallback.propTypes = {
   error: PropTypes.object,
 };
 
+esriConfig.assetsPath = './assets';
 const links = [
   {
     key: 'UGRC Homepage',
@@ -57,24 +57,7 @@ const wkid = 26912;
 
 export default function App() {
   const app = useFirebaseApp();
-  const analytics = useAnalytics();
-  useEffect(() => {
-    async function initPerformance() {
-      const { getPerformance } = await import('firebase/performance');
-
-      return getPerformance(app);
-    }
-    initPerformance();
-  }, [app]);
-  const [zoomToGraphic, setZoomToGraphic] = useState({
-    zoomToGraphic: {
-      graphic: {},
-      level: 0,
-    },
-  });
-  const [showIdentify, setShowIdentify] = useState(false);
-  const [mapClick, setMapClick] = useState(null);
-  const [mapView, setMapView] = useState({});
+  const logEvent = useAnalytics();
   const sideBarState = useOverlayTriggerState({ defaultOpen: true });
   const sideBarTriggerProps = useOverlayTrigger(
     {
@@ -91,6 +74,18 @@ export default function App() {
     trayState,
   );
 
+  const { zoom, placeGraphic } = useMap();
+
+  // initialize firebase performance metrics
+  useEffect(() => {
+    async function initPerformance() {
+      const { getPerformance } = await import('firebase/performance');
+
+      return getPerformance(app);
+    }
+    initPerformance();
+  }, [app]);
+
   const onSherlockMatch = (graphics) => {
     // summary:
     //      Zooms to the passed in graphic(s).
@@ -98,58 +93,53 @@ export default function App() {
     //      The esri.Graphic(s) that you want to zoom to.
     // tags:
     //      private
-    logEvent(analytics, 'sherlock:zoom');
+    logEvent('sherlock:zoom');
 
-    // check for point feature
-    setZoomToGraphic({
-      graphic: graphics,
-      preserve: false,
-    });
+    zoom(new Viewpoint({ scale: 10000, targetGeometry: graphics[0].geometry }));
+    placeGraphic(graphics);
   };
 
-  const findAddressOptions = {
+  const geocodeOptions = {
     apiKey,
     wkid: config.WEB_MERCATOR_WKID,
     pointSymbol: {
       type: 'simple-marker',
       style: 'diamond',
       color: config.MARKER_FILL_COLOR,
-      size: '18px',
+      size: 20,
       outline: {
         color: config.MARKER_OUTLINE_COLOR,
-        width: 1,
+        width: 3,
       },
     },
     events: {
       success: (graphic) => {
-        logEvent(analytics, 'findAddress::success');
-        setZoomToGraphic({
-          graphic: graphic,
-          level: 18,
-        });
+        logEvent('findAddress::success', { ...graphic.attributes });
+        placeGraphic(new Graphic(graphic));
+        const point = new Viewpoint({ scale: 1500, targetGeometry: graphic.geometry });
+        zoom(point);
       },
-      error: console.error,
+      error: () => {
+        logEvent('findAddress::not found');
+        placeGraphic(undefined);
+      },
     },
   };
 
-  const masqueradeSherlock = {
+  const masqueradeSherlockOptions = {
     label: 'Find a place',
     provider: masqueradeProvider(url, wkid),
     maxResultsToDisplay: 10,
     onSherlockMatch: onSherlockMatch,
   };
 
-  const onClick = useCallback((event) => {
-    setShowIdentify(true);
-    // setSideBarOpen(true);
-    setMapClick(event.mapPoint);
-  }, []);
-
-  const mapOptions = {
-    zoomToGraphic: zoomToGraphic,
-    onClick: onClick,
-    setView: setMapView,
-  };
+  const onClick = useCallback(
+    (event) => {
+      console.log('map click', event.mapPoint);
+      trayState.open(true);
+    },
+    [trayState],
+  );
 
   return (
     <>
@@ -162,45 +152,52 @@ export default function App() {
             </h2>
           </div>
         </Header>
-        <MapProvider>
-          <section className="relative gap-2 flex min-h-0 flex-1 overflow-x-hidden md:mx-2">
-            <Drawer main state={sideBarState} {...sideBarTriggerProps}>
-              <div className="grid grid-cols-1 gap-2">
-                <h2 className="text-xl font-bold">Map controls</h2>
-                <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <Sherlock {...masqueradeSherlock}></Sherlock>
-                  </ErrorBoundary>
-                </div>
-                <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
-                    <Geocode {...findAddressOptions} />
-                  </ErrorBoundary>
-                </div>
-                <Tip title="Did you know?">
-                  The data and services for this application are provided by the Utah Geospatial Resource Center, UGRC.
-                  Visit our website, <a href="https://gis.utah.gov/">gis.utah.gov</a> to view more data and services.
-                </Tip>
-                <Tip>
-                  This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
-                  to create your own website.
-                </Tip>
+        <section className="relative gap-2 flex min-h-0 flex-1 md:mr-2 overflow-x-hidden">
+          <Drawer main state={sideBarState} {...sideBarTriggerProps}>
+            <div className="grid grid-cols-1 gap-2 mx-2">
+              <h2 className="text-xl font-bold">Map controls</h2>
+              <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <Sherlock {...masqueradeSherlockOptions}></Sherlock>
+                </ErrorBoundary>
               </div>
-            </Drawer>
-            <div className="relative flex flex-col flex-1 rounded">
-              <div className="flex-1 dark:rounded overflow-hidden">
-                <MapView setView={setMapView} />
+              <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+                <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <Geocode {...geocodeOptions} />
+                </ErrorBoundary>
               </div>
-              <SocialMedia />
-              <Drawer type="tray" allowFullScreen state={trayState} {...trayTriggerProps}>
-                <div className="p-4">
-                  Navigate around the map with the map controls and click on the map to learn about the area you clicked
-                  on.
-                </div>
+              <Tip title="Did you know?">
+                The data and services for this application are provided by the Utah Geospatial Resource Center, UGRC.
+                Visit our website, <a href="https://gis.utah.gov/">gis.utah.gov</a> to view more data and services.
+              </Tip>
+              <Tip>
+                This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
+                to create your own website.
+              </Tip>
+            </div>
+          </Drawer>
+          <div className="relative flex flex-col flex-1 rounded">
+            <div className="relative flex-1 dark:rounded overflow-hidden">
+              <MapContainer />
+              <Drawer
+                type="tray"
+                className="shadow-inner dark:shadow-white/20"
+                allowFullScreen
+                state={trayState}
+                {...trayTriggerProps}
+              >
+                <section className="px-6 pt-2 grid gap-2">
+                  <h2 className="text-center">What&#39;s there?</h2>
+                  <p>
+                    First, explore the map to find your desired location. Then, click on it to reveal additional details
+                    about the area.
+                  </p>
+                </section>
               </Drawer>
             </div>
-          </section>
-        </MapProvider>
+            <SocialMedia />
+          </div>
+        </section>
       </main>
       <Footer />
     </>

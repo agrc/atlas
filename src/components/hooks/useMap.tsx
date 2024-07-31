@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { MapContext } from '../contexts/MapProvider';
 
-export default function useMap() {
+export const useMap = () => {
   const context = useContext(MapContext);
 
   if (context === undefined) {
@@ -9,4 +9,4 @@ export default function useMap() {
   }
 
   return context;
-}
+};

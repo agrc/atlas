@@ -1,4 +1,6 @@
-export const Tip = ({ title = 'Tip', children }) => (
+import { ReactNode } from 'react';
+
+export const Tip = ({ title = 'Tip', children }: { title: string; children: ReactNode }) => (
   <div className="border border-zinc-200 dark:border-zinc-700 rounded">
     <p className="flex items-center gap-3 pb-2 pl-4 pt-4 text-3xl font-semibold text-primary-900 dark:text-accent-600">
       <svg

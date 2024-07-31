@@ -1,42 +1,36 @@
 import Polygon from '@arcgis/core/geometry/Polygon';
 import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer';
+import EsriMap from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
-import WebMap from '@arcgis/core/WebMap';
 import LayerSelector from '@ugrc/layer-selector';
-import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
-import useMap from './hooks/useMap';
+import { useMap } from './hooks';
+import { randomize } from './utils';
 
 import '@ugrc/layer-selector/src/LayerSelector.css';
 import cityExtents from './data/cityExtents.json';
 
-const randomExtent = cityExtents[Math.round(Math.random() * (cityExtents.length - 1))];
+const { item: randomExtent } = randomize(cityExtents);
 const urls = {
   landownership:
     'https://gis.trustlands.utah.gov/hosting/rest/services/Hosted/Land_Ownership_WM_VectorTile/VectorTileServer',
 };
 
-const MapComponent = ({ zoomToGraphic, onClick }) => {
+export const MapContainer = () => {
   const mapNode = useRef(null);
   const mapComponent = useRef(null);
   const mapView = useRef(null);
-
   const [selectorOptions, setSelectorOptions] = useState(null);
 
-  const { setMapView, selectedGraphicInfo, setSelectedGraphicInfo } = useMap();
+  const { setMapView } = useMap();
 
+  // setup the Map
   useEffect(() => {
     if (!mapNode.current) {
       return;
     }
 
-    // mapComponent.current = new EsriMap();
-
-    mapComponent.current = new WebMap({
-      portalItem: {
-        id: '80c26c2104694bbab7408a4db4ed3382',
-      },
-    });
+    mapComponent.current = new EsriMap();
 
     mapView.current = new MapView({
       container: mapNode.current,
@@ -47,11 +41,11 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
       },
     });
 
-    setMapView(mapView);
+    setMapView(mapView.current);
 
-    mapView.current.when(() => {
-      mapView.current.on('click', onClick);
-    });
+    // mapView.current.when(() => {
+    //   mapView.current.on('click', onClick);
+    // });
 
     const selectorOptions = {
       view: mapView.current,
@@ -70,7 +64,8 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
     };
 
     // select a random index from baseLayers and convert the string to an object
-    const randomBaseMapIndex = Math.floor(Math.random() * selectorOptions.baseLayers.length);
+    const { index: randomBaseMapIndex } = randomize(selectorOptions.baseLayers);
+
     selectorOptions.baseLayers[randomBaseMapIndex] = {
       token: selectorOptions.baseLayers[randomBaseMapIndex],
       selected: true,
@@ -82,7 +77,7 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
       mapView.current.destroy();
       mapComponent.current.destroy();
     };
-  }, [setMapView, onClick]);
+  }, [setMapView]);
 
   return (
     <div ref={mapNode} className="size-full">
@@ -90,11 +85,3 @@ const MapComponent = ({ zoomToGraphic, onClick }) => {
     </div>
   );
 };
-
-MapComponent.propTypes = {
-  setView: PropTypes.func.isRequired,
-  zoomToGraphic: PropTypes.object,
-  onClick: PropTypes.func,
-};
-
-export default MapComponent;
