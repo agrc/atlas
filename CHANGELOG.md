@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.15-1](https://github.com/agrc/atlas/compare/v5.4.15-0...v5.4.15-1) (2024-07-31)
+
+
+### Bug Fixes
+
+* **ci:** add missing ci secrets ([5524b25](https://github.com/agrc/atlas/commit/5524b2585bf5971f57d05506a784c2e5e8bec5ec))
+
 ## [5.4.15-0](https://github.com/agrc/atlas/compare/v5.4.14...v5.4.15-0) (2024-07-31)
 
 
