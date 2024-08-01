@@ -189,7 +189,7 @@ export default function App() {
                 {...trayTriggerProps}
               >
                 <section className="grid gap-2 px-7 pt-2">
-                  <h2 className="text-center">What&#39;s there?</h2>
+                  <h2 className="text-center">What&#39;s here?</h2>
                   <IdentifyInformation apiKey={apiKey} location={initialIdentifyLocation} />
                 </section>
               </Drawer>
