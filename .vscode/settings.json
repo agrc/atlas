@@ -1,13 +1,13 @@
 {
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "cSpell.words": [
-    "agrc",
     "apos",
     "arcgis",
     "basemap",
     "browserslist",
     "cadastre",
-    "cbll",
-    "chuhlomin",
     "escaperegexp",
     "esrijs",
     "firebaserc",
@@ -18,22 +18,20 @@
     "noopener",
     "noreferrer",
     "packagejson",
-    "padder",
     "sgid",
     "sitla",
-    "sortby",
     "srid",
     "tagname",
     "tailwindcss",
-    "tibdex",
     "topo",
     "ugrc",
-    "uniqwith",
     "usgs",
     "vite",
     "wkid",
-    "wonkavision",
-    "wwwroot"
   ],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true
 }
