@@ -12,13 +12,14 @@ import {
   masqueradeProvider,
 } from '@ugrc/utah-design-system';
 import PropTypes from 'prop-types';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
 import { MapContainer, Tip } from './components';
 import { useAnalytics, useFirebaseApp } from './components/contexts';
 import { useMap } from './components/hooks';
+import { IdentifyInformation } from './components/Identify';
 import config from './config';
 
 const apiKey = import.meta.env.VITE_WEB_API;
@@ -58,6 +59,8 @@ const wkid = 26912;
 export default function App() {
   const app = useFirebaseApp();
   const logEvent = useAnalytics();
+  const { zoom, placeGraphic } = useMap();
+  const [initialIdentifyLocation, setInitialIdentifyLocation] = useState();
   const sideBarState = useOverlayTriggerState({ defaultOpen: true });
   const sideBarTriggerProps = useOverlayTrigger(
     {
@@ -73,8 +76,6 @@ export default function App() {
     },
     trayState,
   );
-
-  const { zoom, placeGraphic } = useMap();
 
   // initialize firebase performance metrics
   useEffect(() => {
@@ -135,7 +136,7 @@ export default function App() {
 
   const onClick = useCallback(
     (event) => {
-      console.log('map click', event.mapPoint);
+      setInitialIdentifyLocation(event.mapPoint);
       trayState.open(true);
     },
     [trayState],
@@ -178,7 +179,7 @@ export default function App() {
           </Drawer>
           <div className="relative flex flex-col flex-1 rounded">
             <div className="relative flex-1 dark:rounded overflow-hidden">
-              <MapContainer />
+              <MapContainer onIdentifyClick={onClick} />
               <Drawer
                 type="tray"
                 className="shadow-inner dark:shadow-white/20"
@@ -186,12 +187,9 @@ export default function App() {
                 state={trayState}
                 {...trayTriggerProps}
               >
-                <section className="px-6 pt-2 grid gap-2">
+                <section className="px-7 pt-2 grid gap-2">
                   <h2 className="text-center">What&#39;s there?</h2>
-                  <p>
-                    First, explore the map to find your desired location. Then, click on it to reveal additional details
-                    about the area.
-                  </p>
+                  <IdentifyInformation apiKey={apiKey} location={initialIdentifyLocation} />
                 </section>
               </Drawer>
             </div>
