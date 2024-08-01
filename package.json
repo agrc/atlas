@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build": "tsc -b && vite build",
     "copy:arcgis": "cpy \"./node_modules/@arcgis/core/assets/**\" ./public/assets",
     "dev": "npm start",
     "format": "prettier . --write",
-    "lint": "eslint .",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "check": "tsc -b",
     "preview": "vite preview",
     "start": "vite",
     "start:ci": "vite --host",
@@ -24,52 +25,6 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
-  },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-organize-imports",
-      "prettier-plugin-packagejson"
-    ],
-    "printWidth": 120,
-    "singleQuote": true
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es2022": true,
-      "node": true
-    },
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "plugins": [
-      "react",
-      "prettier",
-      "import",
-      "jsx-a11y",
-      "react-hooks"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime",
-      "plugin:react-hooks/recommended",
-      "plugin:import/recommended",
-      "plugin:jsx-a11y/recommended",
-      "prettier"
-    ],
-    "ignorePatterns": [
-      "dist/**"
     ]
   },
   "dependencies": {
@@ -89,17 +44,21 @@
     "react-stately": "^3.32.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@ugrc/tailwind-preset": "^1.0.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
     "cpy-cli": "^5.0.0",
+    "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-cypress": "^3.4.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsx-a11y": "^6.9.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-hooks": "^5.1.0-rc-06d0b89e-20240801",
+    "globals": "^15.9.0",
     "postcss": "^8.4.40",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.0.0",
@@ -107,6 +66,8 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.7",
     "tailwindcss-react-aria-components": "^1.1.4",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.0.0",
     "vite": "^5.3.5",
     "vite-plugin-package-version": "^1.1.0",
     "vitest": "^2.0.5",
