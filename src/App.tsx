@@ -1,4 +1,5 @@
 import esriConfig from '@arcgis/core/config';
+import Point from '@arcgis/core/geometry/Point';
 import Graphic from '@arcgis/core/Graphic';
 import Viewpoint from '@arcgis/core/Viewpoint.js';
 import {
@@ -25,7 +26,7 @@ import config from './config';
 const apiKey = import.meta.env.VITE_WEB_API;
 const version = import.meta.env.PACKAGE_VERSION;
 
-const ErrorFallback = ({ error }) => {
+const ErrorFallback = ({ error }: { error: Error }) => {
   return (
     <div role="alert">
       <p>Something went wrong:</p>
@@ -60,7 +61,7 @@ export default function App() {
   const app = useFirebaseApp();
   const logEvent = useAnalytics();
   const { zoom, placeGraphic } = useMap();
-  const [initialIdentifyLocation, setInitialIdentifyLocation] = useState();
+  const [initialIdentifyLocation, setInitialIdentifyLocation] = useState<Point | null>(null);
   const sideBarState = useOverlayTriggerState({ defaultOpen: window.innerWidth >= config.MIN_DESKTOP_WIDTH });
   const sideBarTriggerProps = useOverlayTrigger(
     {
@@ -87,7 +88,7 @@ export default function App() {
     initPerformance();
   }, [app]);
 
-  const onSherlockMatch = (graphics) => {
+  const onSherlockMatch = (graphics: Graphic[]) => {
     // summary:
     //      Zooms to the passed in graphic(s).
     // graphics: esri.Graphic[]
@@ -114,7 +115,7 @@ export default function App() {
       },
     },
     events: {
-      success: (graphic) => {
+      success: (graphic: Graphic) => {
         logEvent('findAddress::success', { ...graphic.attributes });
         placeGraphic(new Graphic(graphic));
         const point = new Viewpoint({ scale: 1500, targetGeometry: graphic.geometry });
@@ -122,7 +123,7 @@ export default function App() {
       },
       error: () => {
         logEvent('findAddress::not found');
-        placeGraphic(undefined);
+        placeGraphic(null);
       },
     },
   };
@@ -135,34 +136,34 @@ export default function App() {
   };
 
   const onClick = useCallback(
-    (event) => {
+    (event: __esri.ViewClickEvent) => {
       setInitialIdentifyLocation(event.mapPoint);
-      trayState.open(true);
+      trayState.open();
     },
     [trayState],
   );
 
   return (
     <>
-      <main className="flex flex-col h-screen md:gap-2">
+      <main className="flex h-screen flex-col md:gap-2">
         <Header links={links}>
-          <div className="h-full grow flex items-center gap-3">
+          <div className="flex h-full grow items-center gap-3">
             <UgrcLogo />
-            <h2 className="font-heading text-3xl sm:text-5xl font-black text-zinc-600 dark:text-zinc-100">
+            <h2 className="font-heading text-3xl font-black text-zinc-600 sm:text-5xl dark:text-zinc-100">
               Atlas Utah
             </h2>
           </div>
         </Header>
-        <section className="relative gap-2 flex min-h-0 flex-1 md:mr-2 overflow-x-hidden">
+        <section className="relative flex min-h-0 flex-1 gap-2 overflow-x-hidden md:mr-2">
           <Drawer main state={sideBarState} {...sideBarTriggerProps}>
-            <div className="grid grid-cols-1 gap-2 mx-2 mb-2">
+            <div className="mx-2 mb-2 grid grid-cols-1 gap-2">
               <h2 className="text-xl font-bold">Map controls</h2>
-              <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+              <div className="rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Sherlock {...masqueradeSherlockOptions}></Sherlock>
                 </ErrorBoundary>
               </div>
-              <div className="p-3 border border-zinc-200 dark:border-zinc-700 rounded">
+              <div className="rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Geocode {...geocodeOptions} />
                 </ErrorBoundary>
@@ -177,8 +178,8 @@ export default function App() {
               </Tip>
             </div>
           </Drawer>
-          <div className="relative flex flex-col flex-1 rounded">
-            <div className="relative flex-1 dark:rounded overflow-hidden">
+          <div className="relative flex flex-1 flex-col rounded">
+            <div className="relative flex-1 overflow-hidden dark:rounded">
               <MapContainer onIdentifyClick={onClick} />
               <Drawer
                 type="tray"
@@ -187,7 +188,7 @@ export default function App() {
                 state={trayState}
                 {...trayTriggerProps}
               >
-                <section className="px-7 pt-2 grid gap-2">
+                <section className="grid gap-2 px-7 pt-2">
                   <h2 className="text-center">What&#39;s there?</h2>
                   <IdentifyInformation apiKey={apiKey} location={initialIdentifyLocation} />
                 </section>
