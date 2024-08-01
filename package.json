@@ -76,7 +76,7 @@
     "@arcgis/core": "^4.30.9",
     "@heroicons/react": "^2.1.5",
     "@ugrc/layer-selector": "^6.2.7",
-    "@ugrc/utah-design-system": "^1.2.0",
+    "@ugrc/utah-design-system": "^1.2.1",
     "firebase": "^10.12.4",
     "ky": "^1.5.0",
     "react": "^18.3.1",
