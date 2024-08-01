@@ -1,12 +1,12 @@
+import { isLoaded, load, project } from '@arcgis/core/geometry/projection';
+import { Label } from '@ugrc/utah-design-system';
+import { toQueryString } from '@ugrc/utilities';
+import ky from 'ky';
+import startCase from 'lodash.startcase';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
-import { isLoaded, load, project } from '@arcgis/core/geometry/projection';
-
-import { toQueryString } from '@ugrc/utilities/src';
-
-import ky from 'ky';
-import './Identify.css';
+import { Text } from 'react-aria-components';
+import { ExternalLink } from './ExternalLink';
 
 const featureClassNames = {
   counties: 'boundaries.county_boundaries',
@@ -50,7 +50,7 @@ const projectPoint = async (mapPoint, srid) => {
   return project(mapPoint, { wkid: srid });
 };
 
-const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
+export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   const [spatial, setSpatial] = useState({
     x: 0,
     y: 0,
@@ -296,92 +296,136 @@ const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
     return () => controller.current?.abort();
   }, [location, get, requests]);
 
+  if (!location) {
+    return (
+      <p>
+        First, explore the map to find your desired location. Then, click on it to reveal additional details about the
+        area.
+      </p>
+    );
+  }
+
   return (
-    <dev className="identify">
-      <div>
-        <h4>What&apos;s here?</h4>
-        <hr />
-      </div>
-      <div>
-        <strong>Approximate Street Address</strong>
-        <p className="identify--muted">
-          <span className="d-block">{address}</span>
-          <a href={spatial.googleMapsLink} className="text-info" target="_blank" rel="noopener noreferrer">
+    <div className="grid grid-cols-2 lg:grid-cols-5 lg:gap-4 gap-10 mx-auto">
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>Approximate Street Address</Label>
+        <Text className="block text-sm pl-1">
+          <Text className="block text-sm pl-1">{address}</Text>
+          <ExternalLink href={spatial.googleMapsLink} className="pl-1">
             Google Street View
-          </a>
-        </p>
+          </ExternalLink>
+        </Text>
+        <Text className="text-xs block grow content-end">
+          Provided by{' '}
+          <ExternalLink href="https://gis.utah.gov/products/sgid/transportation/road-centerlines/">roads</ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>City</strong>
-        <p className="identify--muted">{city}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>City</Label>
+        <Text className="block text-sm pl-1">{city}</Text>
+        <Text className="text-xs block grow content-end">
+          Provided by{' '}
+          <ExternalLink href="https://gis.utah.gov/products/sgid/boundaries/municipal/">
+            municipal boundaries
+          </ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>Zip Code</strong>
-        <p className="identify--muted">{zip}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>Zip code</Label>
+        <Text className="block text-sm pl-1">{zip}</Text>
+        <Text className="text-xs block grow content-end">
+          Provided by{' '}
+          <ExternalLink href="https://gis.utah.gov/products/sgid/boundaries/zip-codes/">zip code areas</ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>County</strong>
-        <p className="identify--muted">{county}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>County</Label>
+        <Text className="block text-sm pl-1">{startCase(county.toLowerCase())}</Text>
+        <Text className="text-xs block grow content-end">
+          Provided by{' '}
+          <ExternalLink href="https://gis.utah.gov/products/sgid/boundaries/county/">county boundaries</ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>UTM 12 NAD83 Coordinates</strong>
-        <p className="identify--muted">
-          {spatial.x}, {spatial.y} meters
-        </p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>UTM 12 NAD83 coordinates</Label>
+        <Text className="block text-sm pl-1">
+          {spatial.x}, {spatial.y} m
+        </Text>
       </div>
-      <div>
-        <strong>WGS84 Coordinates</strong>
-        <p className="identify--muted">
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>WGS84 coordinates</Label>
+        <Text className="block text-sm pl-1">
           {spatial.lat}, {spatial.lon}
-        </p>
+        </Text>
       </div>
-      <div>
-        <strong>Elevation Meters</strong>
-        <p className="identify--muted">{elevation.meters}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>Elevation</Label>
+        <Text className="block text-sm pl-1">{elevation.meters} m</Text>
+        <Text className="block text-sm pl-1">{elevation.feet} ft</Text>
+        <Text className="text-xs block grow content-end">
+          Provided by <ExternalLink href="https://elevation.nationalmap.gov/">The National Map</ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>Elevation Feet</strong>
-        <p className="identify--muted">{elevation.feet}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>Land administration category</Label>
+        <Text className="block text-sm pl-1">{ownership}</Text>
+        <Text className="text-xs block grow content-end">
+          Provided by{' '}
+          <ExternalLink href="https://gis.utah.gov/products/sgid/cadastre/land-ownership/">land ownership</ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>Land Administration Category</strong>
-        <p className="identify--muted">{ownership}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>US National Grid</Label>
+        <Text className="block text-sm pl-1">{grid}</Text>
+        <Text className="text-xs block grow content-end">
+          Provided by the{' '}
+          <ExternalLink href="https://gis.utah.gov/products/sgid/indices/national-grid-index/">
+            national grid
+          </ExternalLink>
+        </Text>
       </div>
-      <div>
-        <strong>US National Grid</strong>
-        <p className="identify--muted">{grid}</p>
+      <div
+        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        role="presentation"
+      >
+        <Label>Imagery flight metadata</Label>
+        <Text className="block text-sm pl-1">
+          {flightDate.date && `${flightDate.resolution} on ${flightDate.date}`}
+        </Text>
       </div>
-      <div>
-        <strong>Imagery Flight Data</strong>
-        <p className="identify--muted">{flightDate.date && `${flightDate.resolution} on ${flightDate.date}`}</p>
-      </div>
-    </dev>
+    </div>
   );
 };
 
 IdentifyInformation.propTypes = {
   location: PropTypes.object,
-};
-
-const IdentifyContainer = function ({ show, children }) {
-  return (
-    <div className="identify__container side-bar side-bar--with-border side-bar--open">
-      <button type="button" className="identify__close" aria-label="Close" onClick={() => show(false)}>
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {children}
-    </div>
-  );
-};
-
-IdentifyContainer.propTypes = {
-  show: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-export { IdentifyContainer, IdentifyInformation };
-
-IdentifyInformation.propTypes = {
   apiKey: PropTypes.string.isRequired,
   wkid: PropTypes.number,
 };
