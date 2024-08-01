@@ -1,5 +1,31 @@
 # Changelog
 
+## [5.4.15](https://github.com/agrc/atlas/compare/v5.4.14...v5.4.15) (2024-08-01)
+
+
+### Bug Fixes
+
+* **ci:** add missing ci secrets ([3ead623](https://github.com/agrc/atlas/commit/3ead623b31233377739c494f170de61103fb42f8))
+
+
+### Dependencies
+
+* update packages ([a497b6e](https://github.com/agrc/atlas/commit/a497b6e3afeb0be034f19b992ddee7295df13515))
+* update packages ([df59963](https://github.com/agrc/atlas/commit/df599636cc98b74b1ff6b6fc22ac6574f835367d))
+* update packages ([909b2e8](https://github.com/agrc/atlas/commit/909b2e87366cc19be75c36a2d886704b57e877a4))
+
+
+### Documentation
+
+* update readme ([da51407](https://github.com/agrc/atlas/commit/da5140720b02ccfa37d8fde674dc24911bf3cd70))
+
+
+### Styles
+
+* apply default styles to headings ([3d24797](https://github.com/agrc/atlas/commit/3d24797b441275a29c30c1a3028cbecdf631343d))
+* change marker symbol ([4f061f2](https://github.com/agrc/atlas/commit/4f061f2b0bcdd122bfadf6f1a60b4e96ad2452c5))
+* start to flesh out new layout ([75409c8](https://github.com/agrc/atlas/commit/75409c8ea135808ed37504b808ae4de92ddf9c73))
+
 ## [5.4.14](https://github.com/agrc/atlas/compare/v5.4.13...v5.4.14) (2024-07-09)
 
 
