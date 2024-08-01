@@ -1,33 +1,46 @@
-import '@ugrc/layer-selector/src/LayerSelector.css';
-import cityExtents from './data/cityExtents.json';
-
 import Polygon from '@arcgis/core/geometry/Polygon';
-import Graphic from '@arcgis/core/Graphic';
 import VectorTileLayer from '@arcgis/core/layers/VectorTileLayer';
 import EsriMap from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import LayerSelector from '@ugrc/layer-selector';
 import { useEffect, useRef, useState } from 'react';
+import cityExtents from './data/cityExtents';
 import { useMap } from './hooks';
 import { randomize } from './utils';
 
-const { item: randomExtent } = randomize<Graphic>(cityExtents);
+import '@ugrc/layer-selector/src/LayerSelector.css';
+
+const { item: randomExtent } = randomize<__esri.GraphicProperties>(cityExtents);
 const urls = {
   landownership:
     'https://gis.trustlands.utah.gov/hosting/rest/services/Hosted/Land_Ownership_WM_VectorTile/VectorTileServer',
 };
 
-export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: Function }) => {
-  const mapNode = useRef(null);
-  const mapComponent = useRef(null);
-  const mapView = useRef(null);
-  const [selectorOptions, setSelectorOptions] = useState(null);
+type LayerFactory = {
+  Factory: new () => __esri.Layer;
+  url: string;
+  id: string;
+  opacity: number;
+};
+type SelectorOptions = {
+  view: MapView;
+  quadWord: string;
+  baseLayers: Array<string | { token: string; selected: boolean } | LayerFactory>;
+  overlays?: Array<string | LayerFactory>;
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+};
+
+export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: __esri.ViewClickEventHandler }) => {
+  const mapNode = useRef<HTMLDivElement | null>(null);
+  const mapComponent = useRef<EsriMap | null>(null);
+  const mapView = useRef<MapView | null>(null);
+  const [selectorOptions, setSelectorOptions] = useState<SelectorOptions | null>(null);
 
   const { setMapView } = useMap();
 
   // setup the Map
   useEffect(() => {
-    if (!mapNode.current) {
+    if (!mapNode.current || !setMapView) {
       return;
     }
 
@@ -45,10 +58,10 @@ export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: Function })
     setMapView(mapView.current);
 
     mapView.current.when(() => {
-      mapView.current.on('click', onIdentifyClick);
+      mapView.current?.on('click', onIdentifyClick);
     });
 
-    const selectorOptions = {
+    const selectorOptions: SelectorOptions = {
       view: mapView.current,
       quadWord: import.meta.env.VITE_DISCOVER,
       baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
@@ -68,17 +81,17 @@ export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: Function })
     const { index: randomBaseMapIndex } = randomize(selectorOptions.baseLayers);
 
     selectorOptions.baseLayers[randomBaseMapIndex] = {
-      token: selectorOptions.baseLayers[randomBaseMapIndex],
+      token: selectorOptions.baseLayers[randomBaseMapIndex] as string,
       selected: true,
     };
 
     setSelectorOptions(selectorOptions);
 
     return () => {
-      mapView.current.destroy();
-      mapComponent.current.destroy();
+      mapView.current?.destroy();
+      mapComponent.current?.destroy();
     };
-  }, [setMapView]);
+  }, [setMapView, onIdentifyClick]);
 
   return (
     <div ref={mapNode} className="size-full">

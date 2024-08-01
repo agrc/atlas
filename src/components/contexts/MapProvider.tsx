@@ -1,17 +1,21 @@
 import Graphic from '@arcgis/core/Graphic';
-import Viewpoint from '@arcgis/core/Viewpoint';
-import Geometry from '@arcgis/core/geometry/Geometry.js';
+import MapView from '@arcgis/core/views/MapView';
 import { useGraphicManager } from '@ugrc/utilities/hooks';
 import PropTypes from 'prop-types';
 import { createContext, ReactNode, useState } from 'react';
 
-export const MapContext = createContext(null);
+export const MapContext = createContext<{
+  mapView: MapView | null;
+  setMapView: (mapView: MapView) => void;
+  placeGraphic: (graphic: Graphic | Graphic[] | null) => void;
+  zoom: (geometry: __esri.GoToTarget2D) => void;
+} | null>(null);
 
 export const MapProvider = ({ children }: { children: ReactNode }) => {
-  const [mapView, setMapView] = useState(null);
+  const [mapView, setMapView] = useState<MapView | null>(null);
   const { setGraphic } = useGraphicManager(mapView);
 
-  const zoom = (geometry: Geometry | Graphic | Geometry[] | Graphic[] | Viewpoint): void => {
+  const zoom = (geometry: __esri.GoToTarget2D): void => {
     if (!mapView) {
       console.warn('attempting to zoom before the mapView is set');
 
@@ -21,7 +25,7 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
     mapView.goTo(geometry);
   };
 
-  const placeGraphic = (graphic: Graphic | Graphic[] | undefined): void => {
+  const placeGraphic = (graphic: Graphic | Graphic[] | null): void => {
     setGraphic(graphic);
   };
 

@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 
-export const ExternalLink = ({ href, children }: { href: URL; children: ReactNode }) => (
+export const ExternalLink = ({ href, children }: { href: string; children: ReactNode }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer nofollow"
-    className="inline-flex items-center gap-x-1 flex-wrap m-0"
+    className="m-0 inline-flex flex-wrap items-center gap-x-1"
   >
     {children}
     <span aria-hidden="true">

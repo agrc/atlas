@@ -306,30 +306,30 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   }
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-5 lg:gap-4 gap-10 mx-auto">
+    <div className="mx-auto grid grid-cols-2 gap-10 lg:grid-cols-5 lg:gap-4">
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>Approximate Street Address</Label>
-        <Text className="block text-sm pl-1">
-          <Text className="block text-sm pl-1">{address}</Text>
+        <Text className="block pl-1 text-sm">
+          <Text className="block pl-1 text-sm">{address}</Text>
           <ExternalLink href={spatial.googleMapsLink} className="pl-1">
             Google Street View
           </ExternalLink>
         </Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block grow content-end text-xs">
           Provided by{' '}
           <ExternalLink href="https://gis.utah.gov/products/sgid/transportation/road-centerlines/">roads</ExternalLink>
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>City</Label>
-        <Text className="block text-sm pl-1">{city}</Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block pl-1 text-sm">{city}</Text>
+        <Text className="block grow content-end text-xs">
           Provided by{' '}
           <ExternalLink href="https://gis.utah.gov/products/sgid/boundaries/municipal/">
             municipal boundaries
@@ -337,74 +337,74 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>Zip code</Label>
-        <Text className="block text-sm pl-1">{zip}</Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block pl-1 text-sm">{zip}</Text>
+        <Text className="block grow content-end text-xs">
           Provided by{' '}
           <ExternalLink href="https://gis.utah.gov/products/sgid/boundaries/zip-codes/">zip code areas</ExternalLink>
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>County</Label>
-        <Text className="block text-sm pl-1">{startCase(county.toLowerCase())}</Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block pl-1 text-sm">{startCase(county.toLowerCase())}</Text>
+        <Text className="block grow content-end text-xs">
           Provided by{' '}
           <ExternalLink href="https://gis.utah.gov/products/sgid/boundaries/county/">county boundaries</ExternalLink>
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>UTM 12 NAD83 coordinates</Label>
-        <Text className="block text-sm pl-1">
+        <Text className="block pl-1 text-sm">
           {spatial.x}, {spatial.y} m
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>WGS84 coordinates</Label>
-        <Text className="block text-sm pl-1">
+        <Text className="block pl-1 text-sm">
           {spatial.lat}, {spatial.lon}
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>Elevation</Label>
-        <Text className="block text-sm pl-1">{elevation.meters} m</Text>
-        <Text className="block text-sm pl-1">{elevation.feet} ft</Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block pl-1 text-sm">{elevation.meters} m</Text>
+        <Text className="block pl-1 text-sm">{elevation.feet} ft</Text>
+        <Text className="block grow content-end text-xs">
           Provided by <ExternalLink href="https://elevation.nationalmap.gov/">The National Map</ExternalLink>
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>Land administration category</Label>
-        <Text className="block text-sm pl-1">{ownership}</Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block pl-1 text-sm">{ownership}</Text>
+        <Text className="block grow content-end text-xs">
           Provided by{' '}
           <ExternalLink href="https://gis.utah.gov/products/sgid/cadastre/land-ownership/">land ownership</ExternalLink>
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>US National Grid</Label>
-        <Text className="block text-sm pl-1">{grid}</Text>
-        <Text className="text-xs block grow content-end">
+        <Text className="block pl-1 text-sm">{grid}</Text>
+        <Text className="block grow content-end text-xs">
           Provided by the{' '}
           <ExternalLink href="https://gis.utah.gov/products/sgid/indices/national-grid-index/">
             national grid
@@ -412,11 +412,11 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         </Text>
       </div>
       <div
-        className="flex flex-col gap-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded"
+        className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
         <Label>Imagery flight metadata</Label>
-        <Text className="block text-sm pl-1">
+        <Text className="block pl-1 text-sm">
           {flightDate.date && `${flightDate.resolution} on ${flightDate.date}`}
         </Text>
       </div>
