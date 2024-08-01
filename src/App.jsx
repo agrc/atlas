@@ -61,7 +61,7 @@ export default function App() {
   const logEvent = useAnalytics();
   const { zoom, placeGraphic } = useMap();
   const [initialIdentifyLocation, setInitialIdentifyLocation] = useState();
-  const sideBarState = useOverlayTriggerState({ defaultOpen: true });
+  const sideBarState = useOverlayTriggerState({ defaultOpen: window.innerWidth >= config.MIN_DESKTOP_WIDTH });
   const sideBarTriggerProps = useOverlayTrigger(
     {
       type: 'dialog',
