@@ -40,7 +40,7 @@ jobs:
     needs: test-unit
     if: ${{ github.event.sender.type == 'User' }}
     environment:
-      name: dev
+      name: preview
 
     steps:
       - name: 🚀 Deploy
