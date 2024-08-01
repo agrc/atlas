@@ -10,7 +10,7 @@ import { randomize } from './utils';
 import '@ugrc/layer-selector/src/LayerSelector.css';
 import cityExtents from './data/cityExtents.json';
 
-const { item: randomExtent } = randomize(cityExtents);
+const { item: randomExtent } = randomize<Graphic>(cityExtents);
 const urls = {
   landownership:
     'https://gis.trustlands.utah.gov/hosting/rest/services/Hosted/Land_Ownership_WM_VectorTile/VectorTileServer',
