@@ -76,7 +76,6 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
       position: 'top-right',
     };
 
-    // select a random index from baseLayers and convert the string to an object
     const { index: randomBaseMapIndex } = randomize(selectorOptions.baseLayers);
 
     selectorOptions.baseLayers[randomBaseMapIndex] = {
@@ -92,6 +91,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
     };
   }, [setMapView]);
 
+  // add click event handlers
   useEffect(() => {
     if (onClick) {
       clickHandler.current = mapView.current!.on('immediate-click', onClick);
