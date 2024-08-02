@@ -11,6 +11,7 @@
     "escaperegexp",
     "esrijs",
     "firebaserc",
+    "geocode",
     "Geospatial",
     "gnis",
     "hostingchannels",
@@ -27,7 +28,7 @@
     "ugrc",
     "usgs",
     "vite",
-    "wkid",
+    "wkid"
   ],
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"

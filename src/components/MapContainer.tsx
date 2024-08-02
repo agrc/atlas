@@ -30,12 +30,13 @@ type SelectorOptions = {
   position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 
-export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: __esri.ViewClickEventHandler }) => {
+export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickEventHandler }) => {
   const mapNode = useRef<HTMLDivElement | null>(null);
   const mapComponent = useRef<EsriMap | null>(null);
-  const mapView = useRef<MapView | null>(null);
+  const mapView = useRef<MapView>();
+  const clickHandler = useRef<IHandle>();
   const [selectorOptions, setSelectorOptions] = useState<SelectorOptions | null>(null);
-
+  console.log('rendering MapContainer');
   const { setMapView } = useMap();
 
   // setup the Map
@@ -44,7 +45,9 @@ export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: __esri.View
       return;
     }
 
-    mapComponent.current = new EsriMap();
+    mapComponent.current = new EsriMap({
+      basemap: {},
+    });
 
     mapView.current = new MapView({
       container: mapNode.current,
@@ -56,10 +59,6 @@ export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: __esri.View
     });
 
     setMapView(mapView.current);
-
-    mapView.current.when(() => {
-      mapView.current?.on('click', onIdentifyClick);
-    });
 
     const selectorOptions: SelectorOptions = {
       view: mapView.current,
@@ -91,11 +90,19 @@ export const MapContainer = ({ onIdentifyClick }: { onIdentifyClick: __esri.View
       mapView.current?.destroy();
       mapComponent.current?.destroy();
     };
-  }, [setMapView, onIdentifyClick]);
+  }, [setMapView]);
+
+  useEffect(() => {
+    clickHandler.current = mapView.current!.on('immediate-click', onClick);
+
+    return () => {
+      clickHandler.current?.remove();
+    };
+  }, [onClick, mapView]);
 
   return (
     <div ref={mapNode} className="size-full">
-      {selectorOptions ? <LayerSelector {...selectorOptions}></LayerSelector> : null}
+      {selectorOptions?.view && <LayerSelector {...selectorOptions}></LayerSelector>}
     </div>
   );
 };

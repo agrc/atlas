@@ -60,7 +60,7 @@ const wkid = 26912;
 export default function App() {
   const app = useFirebaseApp();
   const logEvent = useAnalytics();
-  const { zoom, placeGraphic } = useMap();
+  const { zoom, placeGraphic, mapView } = useMap();
   const [initialIdentifyLocation, setInitialIdentifyLocation] = useState<Point | null>(null);
   const sideBarState = useOverlayTriggerState({ defaultOpen: window.innerWidth >= config.MIN_DESKTOP_WIDTH });
   const sideBarTriggerProps = useOverlayTrigger(
@@ -115,11 +115,20 @@ export default function App() {
       },
     },
     events: {
-      success: (graphic: Graphic) => {
-        logEvent('findAddress::success', { ...graphic.attributes });
-        placeGraphic(new Graphic(graphic));
-        const point = new Viewpoint({ scale: 1500, targetGeometry: graphic.geometry });
+      success: (event: Graphic) => {
+        logEvent('findAddress::success', { ...event.attributes });
+
+        const graphic = new Graphic(event);
+        const point = new Viewpoint({ scale: 1500, targetGeometry: event.geometry });
+
         zoom(point);
+        placeGraphic(graphic);
+
+        mapView!.openPopup({
+          features: [graphic],
+          fetchFeatures: true,
+          location: graphic.geometry as Point,
+        });
       },
       error: () => {
         logEvent('findAddress::not found');
@@ -136,11 +145,16 @@ export default function App() {
   };
 
   const onClick = useCallback(
-    (event: __esri.ViewClickEvent) => {
-      setInitialIdentifyLocation(event.mapPoint);
-      trayState.open();
+    (event: __esri.ViewImmediateClickEvent) => {
+      mapView!.hitTest(event).then(({ results }) => {
+        if (!results.length) {
+          trayState.open();
+
+          return setInitialIdentifyLocation(event.mapPoint);
+        }
+      });
     },
-    [trayState],
+    [mapView, trayState],
   );
 
   return (
@@ -180,7 +194,9 @@ export default function App() {
           </Drawer>
           <div className="relative flex flex-1 flex-col rounded">
             <div className="relative flex-1 overflow-hidden dark:rounded">
-              <MapContainer onIdentifyClick={onClick} />
+              <ErrorBoundary FallbackComponent={ErrorFallback}>
+                <MapContainer onClick={onClick} />
+              </ErrorBoundary>
               <Drawer
                 type="tray"
                 className="shadow-inner dark:shadow-white/20"
