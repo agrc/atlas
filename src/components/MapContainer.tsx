@@ -93,7 +93,9 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
   }, [setMapView]);
 
   useEffect(() => {
-    clickHandler.current = mapView.current!.on('immediate-click', onClick);
+    if (onClick) {
+      clickHandler.current = mapView.current!.on('immediate-click', onClick);
+    }
 
     return () => {
       clickHandler.current?.remove();
