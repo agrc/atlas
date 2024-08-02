@@ -12,6 +12,31 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test-check:
+    name: Lint and check types
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Set up code
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+
+      - name: ⎔ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: 📥 Download dependencies
+        run: npm ci
+
+      - name: 🧶 Lint
+        run: npm run lint
+
+      - name: 🧪 Check types
+        run: npm run check
+
   test-unit:
     name: Unit tests
     runs-on: ubuntu-latest
@@ -37,7 +62,7 @@ jobs:
   deploy-preview:
     name: Firebase preview
     runs-on: ubuntu-latest
-    needs: test-unit
+    needs: [test-unit, test-check]
     if: ${{ github.event.sender.type == 'User' }}
     environment:
       name: preview
