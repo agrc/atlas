@@ -4,7 +4,5 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "dbaeumer.vscode-eslint",
-    "toba.vsfire",
-    "christian-kohler.npm-intellisense",
   ]
 }
