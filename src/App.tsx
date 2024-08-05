@@ -2,6 +2,7 @@ import esriConfig from '@arcgis/core/config';
 import Point from '@arcgis/core/geometry/Point';
 import Graphic from '@arcgis/core/Graphic';
 import Viewpoint from '@arcgis/core/Viewpoint.js';
+import { ChevronDownIcon, InformationCircleIcon } from '@heroicons/react/16/solid';
 import {
   Drawer,
   Footer,
@@ -19,6 +20,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
 import { MapContainer, Tip } from './components';
 import { useAnalytics, useFirebaseApp } from './components/contexts';
+import { ExternalLink } from './components/ExternalLink';
 import { useMap } from './components/hooks';
 import { IdentifyInformation } from './components/Identify';
 import config from './config';
@@ -172,14 +174,46 @@ export default function App() {
           <Drawer main state={sideBarState} {...sideBarTriggerProps}>
             <div className="mx-2 mb-2 grid grid-cols-1 gap-2">
               <h2 className="text-xl font-bold">Map controls</h2>
-              <div className="rounded border border-zinc-200 p-3 dark:border-zinc-700">
+              <div className="flex flex-col gap-4 rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
-                  <Sherlock {...masqueradeSherlockOptions}></Sherlock>
+                  <Sherlock {...masqueradeSherlockOptions} />
+                  <details className="group">
+                    <summary className="flex cursor-default list-none items-center gap-1 transition-all [&::-webkit-details-marker]:hidden">
+                      <InformationCircleIcon className="not-sr-only size-5 grow-0" />
+                      <span className="grow text-xs font-semibold">About this tool</span>
+                      <div className="flex flex-1 justify-end">
+                        <ChevronDownIcon className="not-sr-only flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180" />
+                      </div>
+                    </summary>
+                    <p className="pl-2 pt-2 text-xs">
+                      Functionality provided by the Sherlock component from the{' '}
+                      <ExternalLink href="https://www.npmjs.com/package/@ugrc/utah-design-system">
+                        @ugrc/utah-design-system
+                      </ExternalLink>
+                      package.
+                    </p>
+                  </details>
                 </ErrorBoundary>
               </div>
-              <div className="rounded border border-zinc-200 p-3 dark:border-zinc-700">
+              <div className="flex flex-col gap-4 rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Geocode {...geocodeOptions} />
+                  <details className="group">
+                    <summary className="flex cursor-default list-none items-center gap-1 transition-all [&::-webkit-details-marker]:hidden">
+                      <InformationCircleIcon className="not-sr-only size-5 grow-0" />
+                      <span className="grow text-xs font-semibold">About this tool</span>
+                      <div className="flex flex-1 justify-end">
+                        <ChevronDownIcon className="not-sr-only flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180" />
+                      </div>
+                    </summary>
+                    <p className="pl-2 pt-2 text-xs">
+                      Functionality provided by the Geocode component from the{' '}
+                      <ExternalLink href="https://www.npmjs.com/package/@ugrc/utah-design-system">
+                        @ugrc/utah-design-system
+                      </ExternalLink>{' '}
+                      package.
+                    </p>
+                  </details>
                 </ErrorBoundary>
               </div>
               <Tip title="Did you know?">
