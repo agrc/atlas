@@ -179,10 +179,13 @@ export default function App() {
                   <Sherlock {...masqueradeSherlockOptions} />
                   <details className="group">
                     <summary className="flex cursor-default list-none items-center gap-1 transition-all [&::-webkit-details-marker]:hidden">
-                      <InformationCircleIcon className="not-sr-only size-5 grow-0" />
+                      <InformationCircleIcon aria-hidden="true" className="size-5 grow-0" />
                       <span className="grow text-xs font-semibold">About this tool</span>
                       <div className="flex flex-1 justify-end">
-                        <ChevronDownIcon className="not-sr-only flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180" />
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className="flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180"
+                        />
                       </div>
                     </summary>
                     <p className="pl-2 pt-2 text-xs">
@@ -200,10 +203,13 @@ export default function App() {
                   <Geocode {...geocodeOptions} />
                   <details className="group">
                     <summary className="flex cursor-default list-none items-center gap-1 transition-all [&::-webkit-details-marker]:hidden">
-                      <InformationCircleIcon className="not-sr-only size-5 grow-0" />
+                      <InformationCircleIcon aria-hidden="true" className="size-5 grow-0" />
                       <span className="grow text-xs font-semibold">About this tool</span>
                       <div className="flex flex-1 justify-end">
-                        <ChevronDownIcon className="not-sr-only flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180" />
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className="flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180"
+                        />
                       </div>
                     </summary>
                     <p className="pl-2 pt-2 text-xs">
