@@ -1,5 +1,43 @@
 # Changelog
 
+## [5.4.15-2](https://github.com/agrc/atlas/compare/v5.4.14...v5.4.15-2) (2024-08-14)
+
+
+### Features
+
+* add about details for page components ([b0624ae](https://github.com/agrc/atlas/commit/b0624ae2df91919930cb9618fb60629f0763d821))
+* allow map container to accept a click event ([2ba1b63](https://github.com/agrc/atlas/commit/2ba1b6386517851f77dfe0878bec680f6d142c88))
+* enable identify ([727214c](https://github.com/agrc/atlas/commit/727214c2a00ec1773959e0ac7c8d495ae026e9ae))
+* open popup after geocode ([5cbf7f4](https://github.com/agrc/atlas/commit/5cbf7f4b15399369d1144328d7e7bb9235848fcf))
+
+
+### Bug Fixes
+
+* **ci:** add missing ci secrets ([3ead623](https://github.com/agrc/atlas/commit/3ead623b31233377739c494f170de61103fb42f8))
+
+
+### Dependencies
+
+* update packages ([2e7acd0](https://github.com/agrc/atlas/commit/2e7acd02b07c23c878e8bc606b04fcd60de19cfe))
+* update packages ([a497b6e](https://github.com/agrc/atlas/commit/a497b6e3afeb0be034f19b992ddee7295df13515))
+* update packages ([df59963](https://github.com/agrc/atlas/commit/df599636cc98b74b1ff6b6fc22ac6574f835367d))
+* update packages ([909b2e8](https://github.com/agrc/atlas/commit/909b2e87366cc19be75c36a2d886704b57e877a4))
+
+
+### Documentation
+
+* update readme ([da51407](https://github.com/agrc/atlas/commit/da5140720b02ccfa37d8fde674dc24911bf3cd70))
+
+
+### Styles
+
+* add default link styles ([ac7496a](https://github.com/agrc/atlas/commit/ac7496a6c12619085250d6cb982aa789d036aedb))
+* add some bottom margin to the sidebar drawer ([265fc48](https://github.com/agrc/atlas/commit/265fc4833470fc4e986caf473c86b94ec973398b))
+* apply default styles to headings ([3d24797](https://github.com/agrc/atlas/commit/3d24797b441275a29c30c1a3028cbecdf631343d))
+* change marker symbol ([4f061f2](https://github.com/agrc/atlas/commit/4f061f2b0bcdd122bfadf6f1a60b4e96ad2452c5))
+* start to flesh out new layout ([75409c8](https://github.com/agrc/atlas/commit/75409c8ea135808ed37504b808ae4de92ddf9c73))
+* update focus outline on summaries ([30cb16f](https://github.com/agrc/atlas/commit/30cb16fe38332bc665cade1784039f163d512fd7))
+
 ## [5.4.14](https://github.com/agrc/atlas/compare/v5.4.13...v5.4.14) (2024-07-09)
 
 
