@@ -12,7 +12,7 @@ const featureClassNames = {
   municipalities: 'boundaries.municipal_boundaries',
   landOwnership: 'cadastre.land_ownership',
   nationalGrid: 'indices.national_grid',
-  dem: 'SGID10.RASTER.USGS_DEM_10METER',
+  dem: 'raster.usgs_dem_10meter',
   gnis: 'location.gnis_place_names',
   zip: 'boundaries.zip_code_areas',
   imageryDate: 'indices.hexagon_service_dates',
@@ -416,7 +416,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       >
         <Label>Imagery flight metadata</Label>
         <Text className="block pl-1 text-sm">
-          {flightDate.date && `${flightDate.resolution} on ${flightDate.date}`}
+          {flightDate.date && `${flightDate.resolution} resolution flown on ${flightDate.date}`}
         </Text>
       </div>
     </div>
