@@ -31,7 +31,7 @@
     "@arcgis/core": "^4.30.9",
     "@heroicons/react": "^2.1.5",
     "@ugrc/layer-selector": "^6.2.7",
-    "@ugrc/utah-design-system": "^1.4.0",
+    "@ugrc/utah-design-system": "^1.4.1",
     "firebase": "^10.12.5",
     "ky": "^1.6.0",
     "lodash.startcase": "^4.4.0",
