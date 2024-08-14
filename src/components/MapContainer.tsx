@@ -36,7 +36,6 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
   const mapView = useRef<MapView>();
   const clickHandler = useRef<IHandle>();
   const [selectorOptions, setSelectorOptions] = useState<SelectorOptions | null>(null);
-  console.log('rendering MapContainer');
   const { setMapView } = useMap();
 
   // setup the Map
