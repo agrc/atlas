@@ -1,6 +1,7 @@
 import esriConfig from '@arcgis/core/config';
 import Point from '@arcgis/core/geometry/Point';
 import Graphic from '@arcgis/core/Graphic';
+import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol.js';
 import Viewpoint from '@arcgis/core/Viewpoint.js';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
@@ -153,12 +154,35 @@ export default function App() {
         if (!results.length) {
           trayState.open();
 
+          placeGraphic(
+            new Graphic({
+              geometry: event.mapPoint,
+              symbol: new SimpleMarkerSymbol({
+                type: 'simple-marker',
+                style: 'diamond',
+                color: config.MARKER_FILL_COLOR,
+                size: 20,
+                outline: {
+                  color: config.MARKER_OUTLINE_COLOR,
+                  width: 3,
+                },
+              }),
+            }),
+          );
+
           return setInitialIdentifyLocation(event.mapPoint);
         }
       });
     },
-    [mapView, trayState],
+    [mapView, placeGraphic, trayState],
   );
+
+  // remove graphic when identify tray is closed
+  useEffect(() => {
+    if (!trayState.isOpen) {
+      placeGraphic(null);
+    }
+  }, [trayState.isOpen, placeGraphic]);
 
   return (
     <>
