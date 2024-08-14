@@ -179,7 +179,7 @@ export default function App() {
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Sherlock {...masqueradeSherlockOptions} />
                   <details className="group">
-                    <summary className="flex cursor-default list-none items-center gap-1 transition-all [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-default list-none items-center gap-1 rounded outline-0 outline-offset-2 transition-all focus:outline-2 focus:outline-primary-900 focus:dark:outline-secondary-600 [&::-webkit-details-marker]:hidden">
                       <InformationCircleIcon aria-hidden="true" className="size-5 grow-0" />
                       <span className="grow text-xs font-semibold">About this tool</span>
                       <div className="flex flex-1 justify-end">
@@ -203,7 +203,7 @@ export default function App() {
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Geocode {...geocodeOptions} />
                   <details className="group">
-                    <summary className="flex cursor-default list-none items-center gap-1 transition-all [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-default list-none items-center gap-1 rounded outline-0 outline-offset-2 transition-all focus:outline-2 focus:outline-primary-900 focus:dark:outline-secondary-600 [&::-webkit-details-marker]:hidden">
                       <InformationCircleIcon aria-hidden="true" className="size-5 grow-0" />
                       <span className="grow text-xs font-semibold">About this tool</span>
                       <div className="flex flex-1 justify-end">
