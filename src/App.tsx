@@ -2,9 +2,11 @@ import esriConfig from '@arcgis/core/config';
 import Point from '@arcgis/core/geometry/Point';
 import Graphic from '@arcgis/core/Graphic';
 import Viewpoint from '@arcgis/core/Viewpoint.js';
-import { ChevronDownIcon, InformationCircleIcon } from '@heroicons/react/16/solid';
+import { ChevronDownIcon } from '@heroicons/react/16/solid';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import {
   Drawer,
+  ExternalLink,
   Footer,
   Geocode,
   Header,
@@ -20,7 +22,6 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
 import { MapContainer, Tip } from './components';
 import { useAnalytics, useFirebaseApp } from './components/contexts';
-import { ExternalLink } from './components/ExternalLink';
 import { useMap } from './components/hooks';
 import { IdentifyInformation } from './components/Identify';
 import config from './config';
@@ -184,7 +185,7 @@ export default function App() {
                       <div className="flex flex-1 justify-end">
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className="flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180"
+                          className="flex size-6 grow-0 rotate-0 transform text-zinc-500 transition-all duration-300 group-open:-rotate-180 dark:text-zinc-400"
                         />
                       </div>
                     </summary>
@@ -208,7 +209,7 @@ export default function App() {
                       <div className="flex flex-1 justify-end">
                         <ChevronDownIcon
                           aria-hidden="true"
-                          className="flex size-6 grow-0 rotate-0 transform transition-all duration-300 group-open:-rotate-180"
+                          className="flex size-6 grow-0 rotate-0 transform text-zinc-500 transition-all duration-300 group-open:-rotate-180 dark:text-zinc-400"
                         />
                       </div>
                     </summary>
@@ -224,11 +225,13 @@ export default function App() {
               </div>
               <Tip title="Did you know?">
                 The data and services for this application are provided by the Utah Geospatial Resource Center, UGRC.
-                Visit our website, <a href="https://gis.utah.gov/">gis.utah.gov</a> to view more data and services.
+                Visit our website, <ExternalLink href="https://gis.utah.gov/">gis.utah.gov</ExternalLink> to view more
+                data and services.
               </Tip>
               <Tip>
-                This web application is a <a href="https://github.com/agrc/atlas">GitHub template</a> that you can use
-                to create your own website.
+                This web application is a{' '}
+                <ExternalLink href="https://github.com/agrc/atlas">GitHub template</ExternalLink> that you can use to
+                create your own website.
               </Tip>
             </div>
           </Drawer>

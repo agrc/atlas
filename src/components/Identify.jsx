@@ -1,12 +1,11 @@
 import { isLoaded, load, project } from '@arcgis/core/geometry/projection';
-import { Label } from '@ugrc/utah-design-system';
+import { ExternalLink, Label } from '@ugrc/utah-design-system';
 import { toQueryString } from '@ugrc/utilities';
 import ky from 'ky';
 import startCase from 'lodash.startcase';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Text } from 'react-aria-components';
-import { ExternalLink } from './ExternalLink';
 
 const featureClassNames = {
   counties: 'boundaries.county_boundaries',
