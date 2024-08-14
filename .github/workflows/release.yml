@@ -1,0 +1,79 @@
+name: Release Events
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
+permissions:
+  id-token: write
+  deployments: write
+
+jobs:
+  deploy-dev:
+    name: Deploy to staging
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+      url: https://atlas.dev.utah.gov
+    if: github.event.release.prerelease == true || inputs.environment == 'dev'
+
+    steps:
+      - name: 🚀 Deploy
+        uses: agrc/firebase-website-deploy-composite-action@v1
+        with:
+          identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          project-id: ${{ secrets.PROJECT_ID }}
+          build-command: npm run build -- --mode dev
+        env:
+          VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+          VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
+          VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
+          VITE_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+
+  deploy-prod:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+      url: https://atlas.utah.gov
+    if: github.event.release.prerelease == false || inputs.environment == 'prod'
+
+    steps:
+      - name: 🚀 Deploy
+        uses: agrc/firebase-website-deploy-composite-action@v1
+        with:
+          identity-provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+          project-id: ${{ secrets.PROJECT_ID }}
+          build-command: npm run build -- --mode production
+          service-now-instance: ${{ secrets.SN_INSTANCE }}
+          service-now-table: ${{ secrets.SN_TABLE }}
+          service-now-system-id: ${{ secrets.SN_SYS_ID }}
+          service-now-username: ${{ secrets.SN_USERNAME }}
+          service-now-password: ${{ secrets.SN_PASSWORD }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
+          VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
+          VITE_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+
+  notify:
+    name: Notifications
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Release Notifier
+        uses: agrc/release-issue-notifications-action@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
