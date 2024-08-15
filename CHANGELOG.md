@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.4.16](https://github.com/agrc/atlas/compare/v5.4.15...v5.4.16) (2024-08-15)
+
+
+### Bug Fixes
+
+* show geocode point with attributes open on match ([e182cc1](https://github.com/agrc/atlas/commit/e182cc1d97f4b140198c23a434f0aa69d33aff3a))
+
+
+### Dependencies
+
+* package audit fix ([b0b0898](https://github.com/agrc/atlas/commit/b0b08984f37a1fd45b850a033db255f82f36745d))
+
 ## [5.4.15](https://github.com/agrc/atlas/compare/v5.4.14...v5.4.15) (2024-08-14)
 
 
