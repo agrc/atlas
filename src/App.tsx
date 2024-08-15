@@ -177,13 +177,6 @@ export default function App() {
     [mapView, placeGraphic, trayState],
   );
 
-  // remove graphic when identify tray is closed
-  useEffect(() => {
-    if (!trayState.isOpen) {
-      placeGraphic(null);
-    }
-  }, [trayState.isOpen, placeGraphic]);
-
   return (
     <>
       <main className="flex h-screen flex-col md:gap-2">
