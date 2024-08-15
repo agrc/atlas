@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/agrc/atlas/compare/v5.4.16...v5.5.0) (2024-08-15)
+
+
+### Features
+
+* add open graph information ([0f7ef90](https://github.com/agrc/atlas/commit/0f7ef90066e8f6b4f502cbd47de2ac6ffdb4c63c))
+
 ## [5.4.16](https://github.com/agrc/atlas/compare/v5.4.15...v5.4.16) (2024-08-15)
 
 
