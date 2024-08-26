@@ -252,7 +252,7 @@ export default function App() {
               </Tip>
             </div>
           </Drawer>
-          <div className="relative flex flex-1 flex-col rounded">
+          <div className="relative flex flex-1 flex-col rounded border border-b-0 border-zinc-200 dark:border-0 dark:border-zinc-700">
             <div className="relative flex-1 overflow-hidden dark:rounded">
               <ErrorBoundary FallbackComponent={ErrorFallback}>
                 <MapContainer onClick={onClick} />
