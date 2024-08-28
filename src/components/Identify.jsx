@@ -23,8 +23,7 @@ const fieldNames = {
   NAME: 'name',
   // state
   STATE_LGD: 'state_lgd',
-  GRID1Mil: 'grid1mil',
-  GRIS100K: 'grid100k',
+  USNG: 'usng',
   FEET: 'feet',
   METERS: 'value',
   ZIP5: 'zip5',
@@ -108,7 +107,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       ],
       [
         featureClassNames.nationalGrid,
-        fieldNames.GRID1Mil + ',' + fieldNames.GRIS100K,
+        fieldNames.USNG,
         (data) => {
           if (!data) {
             setGrid(outside);
@@ -116,8 +115,8 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
             return;
           }
 
-          const values = [data[fieldNames.GRID1Mil], data[fieldNames.GRIS100K], data.x, data.y];
-          setGrid(('{0} {1} {2} {3}', values));
+          const values = [data[fieldNames.USNG]];
+          setGrid(('{0}', values));
         },
       ],
       [
