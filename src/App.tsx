@@ -158,7 +158,6 @@ export default function App() {
             new Graphic({
               geometry: event.mapPoint,
               symbol: new SimpleMarkerSymbol({
-                type: 'simple-marker',
                 style: 'diamond',
                 color: config.MARKER_FILL_COLOR,
                 size: 20,
