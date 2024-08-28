@@ -53,3 +53,7 @@ This website is tested and deployed with GitHub Actions.
 ### Contributing
 
 [See our Contributing Guide](./CONTRIBUTING.md)
+
+## Attribution
+
+This project was developed with the assistance of [GitHub Copilot](https://github.com/features/copilot).
