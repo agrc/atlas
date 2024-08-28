@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.6.0](https://github.com/agrc/atlas/compare/v5.5.1...v5.6.0) (2024-08-28)
+
+
+### Features
+
+* update to 2021 color ir base map ([ce0c048](https://github.com/agrc/atlas/commit/ce0c048000cbeb179b073ba8b0565a1740b221fc))
+
+
+### Dependencies
+
+* update dependencies ([90eadc4](https://github.com/agrc/atlas/commit/90eadc4975bf5ab9d1b6fd023486cdcf85828e04))
+
 ## [5.5.1](https://github.com/agrc/atlas/compare/v5.5.0...v5.5.1) (2024-08-28)
 
 
