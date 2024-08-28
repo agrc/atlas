@@ -30,7 +30,7 @@
   "dependencies": {
     "@arcgis/core": "^4.30.9",
     "@heroicons/react": "^2.1.5",
-    "@ugrc/layer-selector": "^6.2.7",
+    "@ugrc/layer-selector": "^6.2.8",
     "@ugrc/utah-design-system": "^1.5.2",
     "firebase": "^10.13.0",
     "ky": "^1.7.1",
