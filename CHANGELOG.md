@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.5.1](https://github.com/agrc/atlas/compare/v5.5.0...v5.5.1) (2024-08-28)
+
+
+### Bug Fixes
+
+* replace national grid attribute ([298ec21](https://github.com/agrc/atlas/commit/298ec2198578129afcb57a7e2a5ad29d33126908)), closes [#469](https://github.com/agrc/atlas/issues/469)
+
+
+### Styles
+
+* add a border around the map to light mode ([e9516ce](https://github.com/agrc/atlas/commit/e9516cef53178d110e9ea85fc22cad5b8415634b))
+
 ## [5.5.0](https://github.com/agrc/atlas/compare/v5.4.16...v5.5.0) (2024-08-15)
 
 
