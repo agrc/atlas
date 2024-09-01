@@ -46,7 +46,7 @@
   "devDependencies": {
     "@eslint/js": "^9.9.1",
     "@types/eslint__js": "^8.42.3",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^8.3.0",
     "@ugrc/tailwind-preset": "^1.0.0",
@@ -59,7 +59,7 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc-06d0b89e-20240801",
     "globals": "^15.9.0",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.42",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.0.0",
     "prettier-plugin-packagejson": "^2.5.2",
