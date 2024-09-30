@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.1-0](https://github.com/agrc/atlas/compare/v5.6.0...v5.6.1-0) (2024-09-30)
+
+
+### Dependencies
+
+* update deps to fix geocoding bug ([1eddb4a](https://github.com/agrc/atlas/commit/1eddb4a220c036781baecf4810fe282e3ca68d14))
+* update packages ([a19655b](https://github.com/agrc/atlas/commit/a19655bfe65d86d0dc9a0bc3cd43899914cc1f4e))
+
 ## [5.6.0](https://github.com/agrc/atlas/compare/v5.5.1...v5.6.0) (2024-08-28)
 
 
