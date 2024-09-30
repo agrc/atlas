@@ -63,7 +63,7 @@ jobs:
     name: Firebase preview
     runs-on: ubuntu-latest
     needs: [test-unit, test-check]
-    if: ${{ github.event.sender.type == 'User' }}
+    if: ${{ github.event.sender.type == 'User' }} && github.head_ref != 'dev' }}
     environment:
       name: preview
 
