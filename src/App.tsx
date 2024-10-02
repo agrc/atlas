@@ -151,7 +151,10 @@ export default function App() {
   const onClick = useCallback(
     (event: __esri.ViewImmediateClickEvent) => {
       mapView!.hitTest(event).then(({ results }) => {
-        if (!results.length) {
+        if (
+          ((results?.length ?? 0) > 0 && (results[0] as __esri.GraphicHit).graphic.layer === null) ||
+          results.length === 0
+        ) {
           trayState.open();
 
           placeGraphic(
