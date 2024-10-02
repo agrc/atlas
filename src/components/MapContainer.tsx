@@ -14,6 +14,8 @@ const { item: randomExtent } = randomize<__esri.GraphicProperties>(cityExtents);
 const urls = {
   landownership:
     'https://gis.trustlands.utah.gov/hosting/rest/services/Hosted/Land_Ownership_WM_VectorTile/VectorTileServer',
+  liteVector:
+    'https://www.arcgis.com/sharing/rest/content/items/77202507796a4d5796b7d8e6871e352e/resources/styles/root.json',
 };
 
 type LayerFactory = {
@@ -60,7 +62,18 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
     const selectorOptions: SelectorOptions = {
       view: mapView.current,
       quadWord: import.meta.env.VITE_DISCOVER,
-      baseLayers: ['Hybrid', 'Lite', 'Terrain', 'Topo', 'Color IR'],
+      baseLayers: [
+        'Hybrid',
+        {
+          Factory: VectorTileLayer,
+          url: urls.liteVector,
+          id: 'Lite',
+          opacity: 1,
+        },
+        'Terrain',
+        'Topo',
+        'Color IR',
+      ],
       overlays: [
         'Address Points',
         {
