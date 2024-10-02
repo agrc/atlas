@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.6.2-0](https://github.com/agrc/atlas/compare/v5.6.1...v5.6.2-0) (2024-10-02)
+
+
+### Features
+
+* add draft lite vector tile layers ([33d3466](https://github.com/agrc/atlas/commit/33d34662520a9bc1f42964693802da6281d381bf))
+
+
+### Bug Fixes
+
+* show identify on map click ([be3f31b](https://github.com/agrc/atlas/commit/be3f31bbba8e27c3e042cf71bb8097af4619b8e2)), closes [#475](https://github.com/agrc/atlas/issues/475)
+
+
+### Dependencies
+
+* bump the safe-dependencies group with 5 updates ([aaa4cc8](https://github.com/agrc/atlas/commit/aaa4cc8b57af9938c065d4abd07c4ea7c593a9e3))
+
 ## [5.6.1](https://github.com/agrc/atlas/compare/v5.6.0...v5.6.1) (2024-09-30)
 
 
