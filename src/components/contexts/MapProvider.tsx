@@ -4,10 +4,11 @@ import { useGraphicManager } from '@ugrc/utilities/hooks';
 import PropTypes from 'prop-types';
 import { createContext, ReactNode, useState } from 'react';
 
+type GraphicOptions = Graphic | Graphic[] | null;
 export const MapContext = createContext<{
   mapView: MapView | null;
-  setMapView: (mapView: MapView) => void;
-  placeGraphic: (graphic: Graphic | Graphic[] | null) => void;
+  setMapView: (mapView: MapView | null) => void;
+  placeGraphic: (graphic: GraphicOptions) => void;
   zoom: (geometry: __esri.GoToTarget2D) => void;
 } | null>(null);
 
@@ -25,7 +26,7 @@ export const MapProvider = ({ children }: { children: ReactNode }) => {
     mapView.goTo(geometry);
   };
 
-  const placeGraphic = (graphic: Graphic | Graphic[] | null): void => {
+  const placeGraphic = (graphic: GraphicOptions): void => {
     setGraphic(graphic);
   };
 
