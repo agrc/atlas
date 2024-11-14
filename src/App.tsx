@@ -110,7 +110,7 @@ export default function App() {
     wkid: config.WEB_MERCATOR_WKID,
     pointSymbol: {
       type: 'simple-marker',
-      style: 'diamond',
+      style: 'diamond' as const,
       color: config.MARKER_FILL_COLOR,
       size: 20,
       outline: {
