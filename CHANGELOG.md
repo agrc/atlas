@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.6.3](https://github.com/agrc/atlas/compare/v5.6.2...v5.6.3) (2024-11-14)
+
+
+### Bug Fixes
+
+* update layout to accommodate new drawer trigger alignment ([6c432e8](https://github.com/agrc/atlas/commit/6c432e813971209826ab4ccd151d65bf8b7346f7))
+
+
+### Dependencies
+
+* update packages ([4961323](https://github.com/agrc/atlas/commit/4961323497ac84e7843abccd690e0b30b84a6549))
+
 ## [5.6.2](https://github.com/agrc/atlas/compare/v5.6.1...v5.6.2) (2024-10-02)
 
 
