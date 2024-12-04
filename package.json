@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
+    "check": "tsc -b",
     "copy:arcgis": "cpy \"./node_modules/@arcgis/core/assets/**\" ./public/assets",
     "dev": "npm start",
     "format": "prettier . --write",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "check": "tsc -b",
     "preview": "vite preview",
     "start": "vite",
     "start:ci": "vite --host",
