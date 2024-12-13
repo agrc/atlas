@@ -6,7 +6,7 @@ import loadVersion from 'vite-plugin-package-version';
 export default defineConfig({
   plugins: [react(), loadVersion()],
   resolve: {
-    // this is only applicable when npm-linking the utah-design-package
+    // this is only applicable when pnpm-linking the utah-design-package
     dedupe: ['firebase', '@arcgis/core'],
   },
 });
