@@ -15,11 +15,14 @@ importers:
         specifier: ^2.1.5
         version: 2.2.0(react@18.3.1)
       '@ugrc/layer-selector':
-        specifier: ^6.2.9
-        version: 6.2.10(@arcgis/core@4.31.6(@floating-ui/utils@0.2.8))(prop-types@15.8.1)(react@18.3.1)
+        specifier: ^6.2.11
+        version: 6.2.11(@arcgis/core@4.31.6(@floating-ui/utils@0.2.8))(prop-types@15.8.1)(react@18.3.1)
       '@ugrc/utah-design-system':
-        specifier: ^1.15.1
-        version: 1.17.0(@floating-ui/utils@0.2.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.16)
+        specifier: ^1.17.2
+        version: 1.17.2(@floating-ui/utils@0.2.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.16)
+      '@ugrc/utilities':
+        specifier: ^2.4.3
+        version: 2.4.3(@floating-ui/utils@0.2.8)(react@18.3.1)
       firebase:
         specifier: ^11.0.1
         version: 11.1.0
@@ -1557,8 +1560,8 @@ packages:
     resolution: {integrity: sha512-pCh/qEA8Lb1wVIqNvBke8UaRjJ6wrAWkJO5yyIbs8Yx6TNGYyfNjOo61tLv+WwLvoLPp4BQ8B7AHKijl8NGUfw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@ugrc/layer-selector@6.2.10':
-    resolution: {integrity: sha512-CeuDWQBWNOoyi72FtkNRWC1mUV78OSSgd45zCZAGPAntf4bv/u0qHjoFZMGhRG1Vu4inF8M/msyXQgZA41O85A==}
+  '@ugrc/layer-selector@6.2.11':
+    resolution: {integrity: sha512-vA6kEthnOIJb9T8YOpEMpttRw5UUM943HbWERno8na2bSvNyM0aHUUDgf/uJGO9Zer+yktGw0TgCwL2k+3PEfA==}
     peerDependencies:
       '@arcgis/core': ^4.20.0
       prop-types: ^15.8.1
@@ -1570,13 +1573,13 @@ packages:
   '@ugrc/tsconfigs@1.0.2':
     resolution: {integrity: sha512-xfTUsovRbnGNKLxKccDSDeMvvr11+gXhMcGbbIIPGHvkhw4x2vNTgn8Bvb5GEA4UVQgQlFz1vNckBNlxHBoDFA==}
 
-  '@ugrc/utah-design-system@1.17.0':
-    resolution: {integrity: sha512-OhBeQiB4ReQ8YqXAkQM+oa5d/ClE5AKXYXbjSsGdq1oKqWQH1Qn4ZjGRgzjh6CKwh4HeMRQJX3DZxbsAZZDAlw==}
+  '@ugrc/utah-design-system@1.17.2':
+    resolution: {integrity: sha512-U2Isf2sUNTfZ0oLLtdz+hWV/m1Q0N/kyx0fSSiZ+3H+y1QLnHNOZzQzMH9nK5PjvMtxv/MFb1gDpKJjI3/5Rtg==}
     peerDependencies:
       react: '>=16.8'
 
-  '@ugrc/utilities@2.4.2':
-    resolution: {integrity: sha512-5ico/uzCodiEvcdwdRQzgmcI3iRY9C8t1cbteeEdb9BepAVu3UYA0GUqrH6ZCW4JG011gC0DQF0NOjPYZSaOgw==}
+  '@ugrc/utilities@2.4.3':
+    resolution: {integrity: sha512-u3lDIi95hhmbQ0uuFlbsWPrreHtDxBJvbFs3rYHhhnlDTwVIM6bo16dyGbGIU1BC9yjHVsW8/dHL4JRp8fwRXw==}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -5382,7 +5385,7 @@ snapshots:
       '@typescript-eslint/types': 8.18.0
       eslint-visitor-keys: 4.2.0
 
-  '@ugrc/layer-selector@6.2.10(@arcgis/core@4.31.6(@floating-ui/utils@0.2.8))(prop-types@15.8.1)(react@18.3.1)':
+  '@ugrc/layer-selector@6.2.11(@arcgis/core@4.31.6(@floating-ui/utils@0.2.8))(prop-types@15.8.1)(react@18.3.1)':
     dependencies:
       '@arcgis/core': 4.31.6(@floating-ui/utils@0.2.8)
       clsx: 2.1.1
@@ -5399,13 +5402,13 @@ snapshots:
     dependencies:
       '@total-typescript/tsconfig': 1.0.4
 
-  '@ugrc/utah-design-system@1.17.0(@floating-ui/utils@0.2.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.16)':
+  '@ugrc/utah-design-system@1.17.2(@floating-ui/utils@0.2.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.16)':
     dependencies:
       '@arcgis/core': 4.31.6(@floating-ui/utils@0.2.8)
       '@esri/arcgis-rest-geocoding': 4.0.3(@esri/arcgis-rest-request@4.2.3)
       '@esri/arcgis-rest-request': 4.2.3
       '@types/lodash-es': 4.17.12
-      '@ugrc/utilities': 2.4.2(@floating-ui/utils@0.2.8)(react@18.3.1)
+      '@ugrc/utilities': 2.4.3(@floating-ui/utils@0.2.8)(react@18.3.1)
       firebase: 11.1.0
       ky: 1.7.3
       lodash-es: 4.17.21
@@ -5423,7 +5426,7 @@ snapshots:
       - react-dom
       - tailwindcss
 
-  '@ugrc/utilities@2.4.2(@floating-ui/utils@0.2.8)(react@18.3.1)':
+  '@ugrc/utilities@2.4.3(@floating-ui/utils@0.2.8)(react@18.3.1)':
     dependencies:
       '@arcgis/core': 4.31.6(@floating-ui/utils@0.2.8)
       ky: 1.7.3
