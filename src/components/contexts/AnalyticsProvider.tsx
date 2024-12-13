@@ -1,6 +1,6 @@
 import { logEvent as firebaseLogEvent, getAnalytics } from 'firebase/analytics';
 import PropTypes from 'prop-types';
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, type ReactNode, useContext } from 'react';
 import { useFirebaseApp } from './FirebaseAppProvider';
 
 const AnalyticsSdkContext = createContext<((event: string, eventParams?: object) => void) | null>(null);

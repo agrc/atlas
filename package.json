@@ -50,6 +50,7 @@
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@ugrc/tailwind-preset": "^1.1.0",
+    "@ugrc/tsconfigs": "^1.0.2",
     "@vitejs/plugin-react": "^4.3.3",
     "autoprefixer": "^10.4.20",
     "cpy-cli": "^5.0.0",

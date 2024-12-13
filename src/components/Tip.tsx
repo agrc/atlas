@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export const Tip = ({ title = 'Tip', children }: { title?: string; children: ReactNode }) => (
   <div className="rounded border border-zinc-200 dark:border-zinc-700">

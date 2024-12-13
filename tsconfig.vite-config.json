@@ -1,0 +1,4 @@
+{
+  "extends": "@ugrc/tsconfigs/vite-config",
+  "include": ["vite.config.ts"]
+}
