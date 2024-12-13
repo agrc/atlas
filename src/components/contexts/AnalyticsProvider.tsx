@@ -1,5 +1,4 @@
 import { logEvent as firebaseLogEvent, getAnalytics } from 'firebase/analytics';
-import PropTypes from 'prop-types';
 import { createContext, type ReactNode, useContext } from 'react';
 import { useFirebaseApp } from './FirebaseAppProvider';
 
@@ -20,9 +19,6 @@ export function AnalyticsProvider(props: AnalyticsProviderProps) {
 
   return <AnalyticsSdkContext.Provider value={logEvent} {...props} />;
 }
-AnalyticsProvider.propTypes = {
-  sdk: PropTypes.object,
-};
 
 export function useAnalytics() {
   const value = useContext(AnalyticsSdkContext);

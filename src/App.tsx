@@ -16,7 +16,6 @@ import {
   UgrcLogo,
   masqueradeProvider,
 } from '@ugrc/utah-design-system';
-import PropTypes from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
 import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -37,10 +36,6 @@ const ErrorFallback = ({ error }: { error: Error }) => {
       <pre style={{ color: 'red' }}>{error.message}</pre>
     </div>
   );
-};
-
-ErrorFallback.propTypes = {
-  error: PropTypes.object,
 };
 
 esriConfig.assetsPath = './assets';
