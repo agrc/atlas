@@ -22,20 +22,25 @@ jobs:
         with:
           show-progress: false
 
+      - name: 📦 Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: npm
+          cache: pnpm
 
       - name: 📥 Download dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: 🧶 Lint
-        run: npm run lint
+        run: pnpm run lint
 
       - name: 🧪 Check types
-        run: npm run check
+        run: pnpm run check
 
   test-unit:
     name: Unit tests
@@ -47,17 +52,22 @@ jobs:
         with:
           show-progress: false
 
+      - name: 📦 Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: npm
+          cache: pnpm
 
       - name: 📥 Download dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: 🧪 Run tests
-        run: npm test
+        run: pnpm test
 
   deploy-preview:
     name: Firebase preview
@@ -75,7 +85,7 @@ jobs:
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
           preview: yes
-          build-command: npm run build -- --mode dev
+          build-command: pnpm run build -- --mode dev
           repo-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}

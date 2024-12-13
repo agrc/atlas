@@ -21,30 +21,30 @@ Duplicate the `.env` file and rename it as `.env.local` to add your local secret
 Install the project dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Step 2 - Develop and Test
 
-Run `npm start` to start a web server and view the website
+Run `pnpm start` to start a web server and view the website
 
 Open [`src/App.jsx`](src/App.jsx) to view the development version of the app.
 
 Build an awesome app.
 
-Run `npm test` to run the unit tests
+Run `pnpm test` to run the unit tests
 
-Run `npm run format` to format the code
+Run `pnpm run format` to format the code
 
-Run `npm run lint` to lint the code
+Run `pnpm run lint` to lint the code
 
 ### Step 3 - Optimize
 
-Execute `npm run build` to create an optimized production build
+Execute `pnpm run build` to create an optimized production build
 
 _The files will be placed in `/dist`_
 
-Execute `npm run preview` to view the built website
+Execute `pnpm run preview` to view the built website
 
 ### Step 4 - Deploy
 
