@@ -101,7 +101,9 @@ export default function App() {
     //      private
     logEvent('sherlock:zoom');
 
-    zoom(new Viewpoint({ scale: 10000, targetGeometry: graphics[0].geometry }));
+    if (graphics[0]) {
+      zoom(new Viewpoint({ scale: 10000, targetGeometry: graphics[0].geometry }));
+    }
     placeGraphic(graphics);
   };
 

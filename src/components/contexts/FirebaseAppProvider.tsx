@@ -1,5 +1,5 @@
-import { FirebaseApp, FirebaseOptions, initializeApp, registerVersion } from 'firebase/app';
-import { createContext, ReactNode, useContext, useMemo, version } from 'react';
+import { type FirebaseApp, type FirebaseOptions, initializeApp, registerVersion } from 'firebase/app';
+import { createContext, type ReactNode, useContext, useMemo, version } from 'react';
 
 const DEFAULT_APP_NAME = '[DEFAULT]';
 const FirebaseAppContext = createContext<FirebaseApp | null>(null);
