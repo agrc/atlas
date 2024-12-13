@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.4-0](https://github.com/agrc/atlas/compare/v5.6.3...v5.6.4-0) (2024-12-13)
+
+
+### Bug Fixes
+
+* test out dev version of deploy action ([29cfff1](https://github.com/agrc/atlas/commit/29cfff1b54bff671bd0aff15bde561cdc93408c0))
+
 ## [5.6.3](https://github.com/agrc/atlas/compare/v5.6.2...v5.6.3) (2024-11-14)
 
 
