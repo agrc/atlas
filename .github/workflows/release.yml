@@ -34,7 +34,6 @@ jobs:
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
           VITE_WEB_API: ${{ secrets.VITE_WEB_API }}
-          VITE_PRINT_PROXY: ${{ secrets.VITE_PRINT_PROXY }}
           VITE_FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
 
   deploy-prod:
