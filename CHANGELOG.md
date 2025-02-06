@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.5](https://github.com/agrc/atlas/compare/v5.6.4...v5.6.5) (2025-02-06)
+
+
+### Dependencies
+
+* bump the safe-dependencies group with 18 updates ([05cfc6c](https://github.com/agrc/atlas/commit/05cfc6c2be24870bc05f3d20e468dfc7961a3a7c))
+* **dev:** bump vitest from 2.1.8 to 2.1.9 in the npm_and_yarn group ([d2bfd93](https://github.com/agrc/atlas/commit/d2bfd93dc3fa1628b0e87f0e95c207baaf1a72d4))
+
 ## [5.6.4](https://github.com/agrc/atlas/compare/v5.6.3...v5.6.4) (2025-01-01)
 
 
