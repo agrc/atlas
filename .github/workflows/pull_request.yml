@@ -85,7 +85,7 @@ jobs:
           service-account-email: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           project-id: ${{ secrets.PROJECT_ID }}
           preview: yes
-          build-command: pnpm run build -- --mode dev
+          build-command: pnpm run build --mode dev
           repo-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           VITE_DISCOVER: ${{ secrets.VITE_DISCOVER }}
