@@ -30,9 +30,8 @@
   "dependencies": {
     "@arcgis/core": "^4.31.1",
     "@heroicons/react": "^2.1.5",
-    "@ugrc/layer-selector": "^6.2.12",
-    "@ugrc/utah-design-system": "^1.19.0",
-    "@ugrc/utilities": "^2.4.3",
+    "@ugrc/utah-design-system": "^1.20.2",
+    "@ugrc/utilities": "^3.0.2",
     "firebase": "^11.0.1",
     "ky": "^1.7.4",
     "lodash.startcase": "^4.4.0",
