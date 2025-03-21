@@ -1,9 +1,13 @@
-import '@arcgis/core/assets/esri/themes/light/main.css';
+import esriConfig from '@arcgis/core/config';
+import initializeTheme from '@ugrc/esri-theme-toggle';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { AnalyticsProvider, FirebaseAppProvider, MapProvider } from './components/contexts';
 import './index.css';
+
+esriConfig.assetsPath = './assets';
+initializeTheme();
 
 let firebaseConfig = {
   apiKey: '',
