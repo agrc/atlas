@@ -14,7 +14,7 @@ const extents: __esri.GraphicProperties[] = [
       spatialReference: {
         wkid: 3857,
       },
-    } as __esri.PolygonProperties,
+    },
     attributes: {
       name: 'Farmington',
     },
@@ -34,7 +34,7 @@ const extents: __esri.GraphicProperties[] = [
       spatialReference: {
         wkid: 3857,
       },
-    } as __esri.PolygonProperties,
+    },
     attributes: {
       name: 'Ogden',
     },
@@ -54,7 +54,7 @@ const extents: __esri.GraphicProperties[] = [
       spatialReference: {
         wkid: 3857,
       },
-    } as __esri.PolygonProperties,
+    },
     attributes: {
       name: 'Salt Lake City',
     },
@@ -74,7 +74,7 @@ const extents: __esri.GraphicProperties[] = [
       spatialReference: {
         wkid: 3857,
       },
-    } as __esri.PolygonProperties,
+    },
     attributes: {
       name: 'Provo',
     },

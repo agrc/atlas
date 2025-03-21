@@ -215,6 +215,7 @@ export default function App() {
               </div>
               <div className="flex flex-col gap-4 rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  {/* @ts-expect-error Geocode types are messed up */}
                   <Geocode {...geocodeOptions} />
                   <details className="group">
                     <summary className="flex cursor-default list-none items-center gap-1 rounded outline-0 outline-offset-2 transition-all focus:outline-2 focus:outline-primary-900 focus:dark:outline-secondary-600 [&::-webkit-details-marker]:hidden">
