@@ -35,7 +35,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
     mapView.current = new MapView({
       container: mapNode.current,
       map: mapComponent.current,
-      extent: new Polygon(randomExtent.geometry).extent,
+      extent: new Polygon(randomExtent.geometry!).extent!,
       ui: {
         components: ['zoom'],
       },
