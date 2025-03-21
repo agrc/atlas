@@ -1,4 +1,3 @@
-import esriConfig from '@arcgis/core/config';
 import Point from '@arcgis/core/geometry/Point';
 import Graphic from '@arcgis/core/Graphic';
 import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol.js';
@@ -38,7 +37,6 @@ const ErrorFallback = ({ error }: { error: Error }) => {
   );
 };
 
-esriConfig.assetsPath = './assets';
 const links = [
   {
     key: 'UGRC Homepage',
