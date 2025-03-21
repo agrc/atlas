@@ -54,7 +54,6 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
             function: () =>
               new VectorTileLayer({
                 url: urls.liteVector,
-                opacity: 1,
               }),
           },
           'Terrain',
