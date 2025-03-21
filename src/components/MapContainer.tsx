@@ -60,7 +60,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
           'Topo',
           'Color IR',
         ],
-        referenceLayers: ['Address Points', 'Land Ownership'],
+        referenceLayers: ['Address Points', 'Land Ownership', 'Overlay'],
       },
     };
 
