@@ -1,5 +1,25 @@
 # Changelog
 
+## [5.6.5](https://github.com/agrc/atlas/compare/v5.6.4...v5.6.5) (2025-03-22)
+
+
+### Features
+
+* implement esri-theme-toggle package ([18b0f93](https://github.com/agrc/atlas/commit/18b0f93ae61ed7573d6ec73c8d9a0564cb9b2705))
+
+
+### Bug Fixes
+
+* migrate to new layer selector ([3ca2c94](https://github.com/agrc/atlas/commit/3ca2c94e3ed2dc70cbdea86f4cd6c65a0755bbd2))
+* remove superfluous parameter ([08ec8cb](https://github.com/agrc/atlas/commit/08ec8cb00cfa0c4d7d513baa5c175980f39dc54e))
+
+
+### Dependencies
+
+* bump deps except for react v19 and tailwind v4 ([f41f382](https://github.com/agrc/atlas/commit/f41f382dfda92c55f881198a38ecbcc8bcd3f30d))
+* bump the safe-dependencies group with 18 updates ([05cfc6c](https://github.com/agrc/atlas/commit/05cfc6c2be24870bc05f3d20e468dfc7961a3a7c))
+* **dev:** bump vitest from 2.1.8 to 2.1.9 in the npm_and_yarn group ([d2bfd93](https://github.com/agrc/atlas/commit/d2bfd93dc3fa1628b0e87f0e95c207baaf1a72d4))
+
 ## [5.6.4](https://github.com/agrc/atlas/compare/v5.6.3...v5.6.4) (2025-01-01)
 
 
