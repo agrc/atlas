@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.6](https://github.com/agrc/atlas/compare/v5.6.5...v5.6.6) (2025-03-25)
+
+
+### Bug Fixes
+
+* remove overlay because of bug in layer selector ([d04b15a](https://github.com/agrc/atlas/commit/d04b15a681d62e1f0067973b65b05b281ee50045))
+
 ## [5.6.5](https://github.com/agrc/atlas/compare/v5.6.4...v5.6.5) (2025-03-22)
 
 
