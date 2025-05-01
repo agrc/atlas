@@ -19,8 +19,8 @@ const urls = {
 export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickEventHandler }) => {
   const mapNode = useRef<HTMLDivElement | null>(null);
   const mapComponent = useRef<EsriMap | null>(null);
-  const mapView = useRef<MapView>();
-  const clickHandler = useRef<IHandle>();
+  const mapView = useRef<MapView>(null);
+  const clickHandler = useRef<IHandle>(null);
   const [selectorOptions, setSelectorOptions] = useState<LayerSelectorProps | null>(null);
   const { setMapView } = useMap();
 
