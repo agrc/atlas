@@ -1,9 +1,10 @@
 import esriConfig from '@arcgis/core/config';
 import initializeTheme from '@ugrc/esri-theme-toggle';
+import { FirebaseAnalyticsProvider, FirebaseAppProvider } from '@ugrc/utah-design-system';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import { AnalyticsProvider, FirebaseAppProvider, MapProvider } from './components/contexts';
+import { MapProvider } from './components/contexts';
 import './index.css';
 
 esriConfig.assetsPath = './assets';
@@ -25,12 +26,12 @@ if (import.meta.env.VITE_FIREBASE_CONFIG) {
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <AnalyticsProvider>
+    <FirebaseAppProvider config={firebaseConfig}>
+      <FirebaseAnalyticsProvider>
         <MapProvider>
           <App />
         </MapProvider>
-      </AnalyticsProvider>
+      </FirebaseAnalyticsProvider>
     </FirebaseAppProvider>
   </React.StrictMode>,
 );
