@@ -14,13 +14,14 @@ import {
   SocialMedia,
   UgrcLogo,
   masqueradeProvider,
+  useFirebaseAnalytics,
+  useFirebaseApp,
 } from '@ugrc/utah-design-system';
 import { useCallback, useEffect, useState } from 'react';
 import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
 import { MapContainer, Tip } from './components';
-import { useAnalytics, useFirebaseApp } from './components/contexts';
 import { useMap } from './components/hooks';
 import { IdentifyInformation } from './components/Identify';
 import config from './config';
@@ -56,7 +57,7 @@ const wkid = 26912;
 
 export default function App() {
   const app = useFirebaseApp();
-  const logEvent = useAnalytics();
+  const logEvent = useFirebaseAnalytics();
   const { zoom, placeGraphic, mapView } = useMap();
   const [initialIdentifyLocation, setInitialIdentifyLocation] = useState<Point | null>(null);
   const sideBarState = useOverlayTriggerState({ defaultOpen: window.innerWidth >= config.MIN_DESKTOP_WIDTH });
