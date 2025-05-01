@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.7](https://github.com/agrc/atlas/compare/v5.6.6...v5.6.7) (2025-05-01)
+
+
+### Dependencies
+
+* fy25 q4 package updates ([a485c10](https://github.com/agrc/atlas/commit/a485c107f6c59b9c1122d340fd152b23fed5ad0b))
+
 ## [5.6.6](https://github.com/agrc/atlas/compare/v5.6.5...v5.6.6) (2025-03-25)
 
 
