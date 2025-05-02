@@ -32,7 +32,7 @@
     "@heroicons/react": "^2.2.0",
     "@ugrc/eslint-config": "^1.2.1",
     "@ugrc/esri-theme-toggle": "^1.1.0",
-    "@ugrc/utah-design-system": "^1.25.0",
+    "@ugrc/utah-design-system": "^1.26.0",
     "@ugrc/utilities": "^3.0.3",
     "firebase": "^11.6.1",
     "ky": "^1.8.1",
@@ -74,6 +74,7 @@
       "@vaadin/vaadin-usage-statistics",
       "esbuild",
       "protobufjs"
-    ]
+    ],
+    "overrides": {}
   }
 }
