@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.8](https://github.com/agrc/atlas/compare/v5.6.7...v5.6.8) (2025-05-05)
+
+
+### Bug Fixes
+
+* move address points and land ownership to operational layers ([5ffa9a5](https://github.com/agrc/atlas/commit/5ffa9a53309d7c5647c22b2a95011ca12de32473))
+* point to new prod lite vector tile service and updated layer selector ([611ce1f](https://github.com/agrc/atlas/commit/611ce1f20fbdf431051711c6a1b7d7b30a29b84d))
+
 ## [5.6.7](https://github.com/agrc/atlas/compare/v5.6.6...v5.6.7) (2025-05-01)
 
 
