@@ -41,7 +41,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
         view: mapView.current,
         quadWord: import.meta.env.VITE_DISCOVER,
         basemaps: ['Lite', 'Hybrid', 'Terrain', 'Topo', 'Color IR'],
-        referenceLayers: ['Address Points', 'Land Ownership'],
+        operationalLayers: ['Address Points', 'Land Ownership'],
       },
     };
 
