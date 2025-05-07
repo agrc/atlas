@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.9](https://github.com/agrc/atlas/compare/v5.6.8...v5.6.9) (2025-05-07)
+
+
+### Dependencies
+
+* bump npm dependencies 🌲 ([f005878](https://github.com/agrc/atlas/commit/f0058788c5572deb794ecf321b87a01355b5c06d))
+
 ## [5.6.8](https://github.com/agrc/atlas/compare/v5.6.7...v5.6.8) (2025-05-05)
 
 
