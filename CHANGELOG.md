@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.10](https://github.com/agrc/atlas/compare/v5.6.9...v5.6.10) (2025-06-24)
+
+
+### Dependencies
+
+* bump brace-expansion in the npm_and_yarn group ([b57355a](https://github.com/agrc/atlas/commit/b57355a023597ad284410b9c28e001c81606b27c))
+* bump the safe-dependencies group with 15 updates ([2e71941](https://github.com/agrc/atlas/commit/2e71941fe33fb1e15c9b9dc1356456c06ad84fea))
+
 ## [5.6.9](https://github.com/agrc/atlas/compare/v5.6.8...v5.6.9) (2025-05-07)
 
 
