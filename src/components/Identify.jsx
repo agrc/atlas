@@ -1,4 +1,5 @@
-import { isLoaded, load, project } from '@arcgis/core/geometry/projection';
+import { isLoaded, load, execute as project } from '@arcgis/core/geometry/operators/projectOperator';
+
 import { ExternalLink, Label } from '@ugrc/utah-design-system';
 import { toQueryString } from '@ugrc/utilities';
 import ky from 'ky';
