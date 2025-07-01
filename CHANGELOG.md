@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.11-0](https://github.com/agrc/atlas/compare/v5.6.10...v5.6.11-0) (2025-07-01)
+
+
+### Dependencies
+
+* update override for testing ([7cdab40](https://github.com/agrc/atlas/commit/7cdab40bffa33ae96d55683320a0c3b9b77d71fa))
+* update packages for vite 7 ([5954d2e](https://github.com/agrc/atlas/commit/5954d2ea805dfa64da6c1bb43c9b6bf1af3253f3))
+
 ## [5.6.10](https://github.com/agrc/atlas/compare/v5.6.9...v5.6.10) (2025-06-24)
 
 
