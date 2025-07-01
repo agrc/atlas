@@ -1,4 +1,4 @@
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-oxc';
 import { defineConfig } from 'vite';
 import loadVersion from 'vite-plugin-package-version';
 
