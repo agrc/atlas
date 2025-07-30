@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@arcgis/core':
-        specifier: ^4.33.9
-        version: 4.33.9
+        specifier: ^4.33.10
+        version: 4.33.10
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
@@ -21,8 +21,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       '@ugrc/utah-design-system':
-        specifier: ^1.27.2
-        version: 1.27.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@3.4.17)
+        specifier: ^1.27.3
+        version: 1.27.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@3.4.17)
       '@ugrc/utilities':
         specifier: ^3.0.3
         version: 3.0.4(react@19.1.0)
@@ -137,8 +137,8 @@ packages:
   '@arcgis/components-utils@4.33.12':
     resolution: {integrity: sha512-B3cISRLbWEfTTYyjwLR5M5CT38fq6EerAeV8h+nYZMu7Zijy8rWrFLpDXGmDu9eD+KaWZG74Zq065UQv3nhWtg==}
 
-  '@arcgis/core@4.33.9':
-    resolution: {integrity: sha512-I6O43kuo53MhDl9ACcc+RFa//vol650XoFjmo6lwqga47lFMULZfHkh5tf9UCEVu8RXPaeQGb2mrrZhXJk6a7Q==}
+  '@arcgis/core@4.33.10':
+    resolution: {integrity: sha512-UsF2y9NjhE5wTsiBO54ZMnaDvWu4fqIkZanBM0Dde/01rkp+RXmCHR+xzhbsvT4A52JbjbASn6466uMhQeoX9w==}
 
   '@arcgis/lumina@4.33.12':
     resolution: {integrity: sha512-KSkL9AfZX6R6OyxTesa7QLIYedtX2Cje4+9PbcZY5R/txiqGHeunnF842r/xuuNGWrp0L6hQI9zCKCaZkPqzPg==}
@@ -819,11 +819,11 @@ packages:
   '@firebase/webchannel-wrapper@1.0.3':
     resolution: {integrity: sha512-2xCRM9q9FlzGZCdgDMJwc0gyUkWFtkosy7Xxr6sFgQwn+wMNIWd7xIvYNauU1r64B5L5rsGKy/n9TKJ0aAFeqQ==}
 
-  '@floating-ui/core@1.7.2':
-    resolution: {integrity: sha512-wNB5ooIKHQc+Kui96jE/n69rHFWAVoxn5CAzL1Xdd8FG03cgY3MLO+GF9U3W737fYDSgPWA6MReKhBQBop6Pcw==}
+  '@floating-ui/core@1.7.3':
+    resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
 
-  '@floating-ui/dom@1.7.2':
-    resolution: {integrity: sha512-7cfaOQuCS27HD7DX+6ib2OrnW+b4ZBwDNnCcT0uTyidcmyWb03FnQqJybDBoCnpdxwBSfA94UAYlRCt7mV+TbA==}
+  '@floating-ui/dom@1.7.3':
+    resolution: {integrity: sha512-uZA413QEpNuhtb3/iIKoYMSK07keHPYeXF02Zhd6e213j+d1NamLix/mCLxBUDW/Gx52sPH2m+chlUsyaBs/Ag==}
 
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
@@ -1874,8 +1874,8 @@ packages:
   '@ugrc/tsconfigs@1.0.3':
     resolution: {integrity: sha512-9Z84bZpLJ6wRi4sm6RWvckPHs/Q6XZCHW5yjeHZzboZi/1bsJUOoh3F5wT/qQ5EKewDcHk65WcvUTWPc+JYjtQ==}
 
-  '@ugrc/utah-design-system@1.27.2':
-    resolution: {integrity: sha512-PAUSMbGky/yvg1Uu3RJwUxsQ6LYshQcImNPs3R2JQbkkUSJb3U8s0PGGPIN+DIQbIxpBpqyz2doQ6EpFiLUQlg==}
+  '@ugrc/utah-design-system@1.27.3':
+    resolution: {integrity: sha512-c6fjVdCaQRbdO1v6C28a6AHlH21Q+U8nnXPiIyOhtogNXnHVDWWChYd767f0sIOsEDqC4HvtymVs+QNNNIeiYA==}
     peerDependencies:
       react: '>=16.8'
 
@@ -4039,7 +4039,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@arcgis/core@4.33.9':
+  '@arcgis/core@4.33.10':
     dependencies:
       '@esri/arcgis-html-sanitizer': 4.1.0
       '@esri/calcite-components': 3.2.1
@@ -4404,7 +4404,7 @@ snapshots:
       '@arcgis/components-utils': 4.33.12
       '@arcgis/lumina': 4.33.12
       '@esri/calcite-ui-icons': 4.2.0
-      '@floating-ui/dom': 1.7.2
+      '@floating-ui/dom': 1.7.3
       '@floating-ui/utils': 0.2.10
       '@types/sortablejs': 1.15.8
       color: 5.0.0
@@ -4737,13 +4737,13 @@ snapshots:
 
   '@firebase/webchannel-wrapper@1.0.3': {}
 
-  '@floating-ui/core@1.7.2':
+  '@floating-ui/core@1.7.3':
     dependencies:
       '@floating-ui/utils': 0.2.10
 
-  '@floating-ui/dom@1.7.2':
+  '@floating-ui/dom@1.7.3':
     dependencies:
-      '@floating-ui/core': 1.7.2
+      '@floating-ui/core': 1.7.3
       '@floating-ui/utils': 0.2.10
 
   '@floating-ui/utils@0.2.10': {}
@@ -6293,7 +6293,7 @@ snapshots:
 
   '@ugrc/esri-theme-toggle@1.1.1':
     dependencies:
-      '@arcgis/core': 4.33.9
+      '@arcgis/core': 4.33.10
 
   '@ugrc/tailwind-preset@1.2.0(tailwindcss@3.4.17)':
     dependencies:
@@ -6305,9 +6305,9 @@ snapshots:
     dependencies:
       '@total-typescript/tsconfig': 1.0.4
 
-  '@ugrc/utah-design-system@1.27.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@3.4.17)':
+  '@ugrc/utah-design-system@1.27.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@3.4.17)':
     dependencies:
-      '@arcgis/core': 4.33.9
+      '@arcgis/core': 4.33.10
       '@esri/arcgis-rest-geocoding': 4.0.3(@esri/arcgis-rest-request@4.7.2)
       '@esri/arcgis-rest-request': 4.7.2
       '@types/lodash-es': 4.17.12
@@ -6330,7 +6330,7 @@ snapshots:
 
   '@ugrc/utilities@3.0.4(react@19.1.0)':
     dependencies:
-      '@arcgis/core': 4.33.9
+      '@arcgis/core': 4.33.10
       ky: 1.8.2
       react: 19.1.0
 
