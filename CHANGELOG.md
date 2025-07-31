@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.12](https://github.com/agrc/atlas/compare/v5.6.11...v5.6.12) (2025-07-31)
+
+
+### Dependencies
+
+* lock update ([79fd988](https://github.com/agrc/atlas/commit/79fd988f2861cb2fb478fb53acbc9141c439e7d5))
+
 ## [5.6.11](https://github.com/agrc/atlas/compare/v5.6.10...v5.6.11) (2025-07-31)
 
 
