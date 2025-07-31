@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.6.11](https://github.com/agrc/atlas/compare/v5.6.10...v5.6.11) (2025-07-31)
+
+
+### Dependencies
+
+* bump the safe-dependencies group across 1 directory with 17 updates ([e7496c6](https://github.com/agrc/atlas/commit/e7496c60f31c7e054b37ba74e7ecb29a135041c1))
+* bump the safe-dependencies group with 2 updates ([d9450e3](https://github.com/agrc/atlas/commit/d9450e3f23e041cbb70d2276868c38d3e65214e4))
+
 ## [5.6.10](https://github.com/agrc/atlas/compare/v5.6.9...v5.6.10) (2025-06-24)
 
 
