@@ -8,7 +8,6 @@ import App from './App';
 import { MapProvider } from './components/contexts';
 import './index.css';
 
-
 esriConfig.assetsPath = './assets';
 initializeTheme();
 
