@@ -1,6 +1,7 @@
 import Polygon from '@arcgis/core/geometry/Polygon';
 import EsriMap from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
+import '@arcgis/map-components/components/arcgis-locate';
 import { LayerSelector, type LayerSelectorProps } from '@ugrc/utah-design-system';
 import { useEffect, useRef, useState } from 'react';
 import cityExtents from './data/cityExtents';
@@ -16,6 +17,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
   const clickHandler = useRef<IHandle>(null);
   const [selectorOptions, setSelectorOptions] = useState<LayerSelectorProps | null>(null);
   const { setMapView } = useMap();
+  const locateRef = useRef<HTMLArcgisLocateElement | null>(null);
 
   // setup the Map
   useEffect(() => {
@@ -52,6 +54,10 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
 
     setSelectorOptions(selectorOptions);
 
+    mapView.current.when(() => {
+      mapView.current!.ui.add(locateRef.current!, 'top-right');
+    });
+
     return () => {
       mapView.current?.destroy();
       mapComponent.current?.destroy();
@@ -71,6 +77,8 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
 
   return (
     <div ref={mapNode} className="size-full">
+      {/* @ts-expect-error the view prop is defined. It is intended to be an undocumented property available for you to use temporarily while you migrate to components */}
+      <arcgis-locate ref={locateRef} position="top-right" view={mapView.current}></arcgis-locate>
       {selectorOptions && <LayerSelector {...selectorOptions}></LayerSelector>}
     </div>
   );
