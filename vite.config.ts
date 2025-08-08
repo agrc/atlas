@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import loadVersion from 'vite-plugin-package-version';
@@ -8,5 +9,8 @@ export default defineConfig({
   resolve: {
     // this is only applicable when pnpm-linking the utah-design-package
     dedupe: ['firebase', '@arcgis/core'],
+  },
+  test: {
+    environment: 'happy-dom',
   },
 });
