@@ -1,10 +1,14 @@
+import { watch } from '@arcgis/core/core/reactiveUtils';
 import Polygon from '@arcgis/core/geometry/Polygon';
 import EsriMap from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import { LayerSelector, type LayerSelectorProps } from '@ugrc/utah-design-system';
+import type { BasemapToken } from '@ugrc/utah-design-system/src/components/LayerSelector.types';
+import { debounce } from 'es-toolkit/function';
 import { useEffect, useRef, useState } from 'react';
 import cityExtents from './data/cityExtents';
 import { useMap } from './hooks';
+import { getUrlParameter, setUrlParameter } from './utilities/UrlParameters';
 import { randomize } from './utils';
 
 const { item: randomExtent } = randomize<__esri.GraphicProperties>(cityExtents);
@@ -25,14 +29,35 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
 
     mapComponent.current = new EsriMap();
 
-    mapView.current = new MapView({
+    const viewOptions: __esri.MapViewProperties = {
       container: mapNode.current,
       map: mapComponent.current,
-      extent: new Polygon(randomExtent.geometry!).extent!,
       ui: {
         components: ['zoom'],
       },
-    });
+    };
+
+    const xyUrlParam = getUrlParameter<number[]>('center', 'number[]');
+    console.log('xyUrlParam', xyUrlParam);
+    if (xyUrlParam) {
+      viewOptions.center = {
+        x: xyUrlParam[0],
+        y: xyUrlParam[1],
+        spatialReference: { wkid: 3857 },
+      };
+    }
+    if (xyUrlParam && xyUrlParam.length === 2) {
+      const scaleUrlParam = getUrlParameter<number>('scale', 'number', 10000);
+      console.log('scaleUrlParam', scaleUrlParam);
+      if (scaleUrlParam) {
+        viewOptions.scale = scaleUrlParam;
+      }
+    } else {
+      viewOptions.extent = new Polygon(randomExtent.geometry!).extent!;
+    }
+
+    console.log('viewOptions', viewOptions);
+    mapView.current = new MapView(viewOptions);
 
     setMapView(mapView.current);
 
@@ -45,12 +70,42 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
       },
     };
 
-    const { index: randomBaseMapIndex } = randomize(selectorOptions.options.basemaps!);
+    let { index: basemapIndex } = randomize(selectorOptions.options.basemaps!);
+    const basemapUrlParam = getUrlParameter<string>('basemap', 'string') as BasemapToken;
+    console.log('basemapUrlParam', basemapUrlParam);
+    if (basemapUrlParam) {
+      basemapIndex = selectorOptions.options.basemaps!.indexOf(basemapUrlParam);
+    }
 
-    const removed = selectorOptions.options.basemaps!.splice(randomBaseMapIndex, 1);
+    const removed = selectorOptions.options.basemaps!.splice(basemapIndex, 1);
     selectorOptions.options.basemaps!.unshift(removed[0]!);
 
     setSelectorOptions(selectorOptions);
+
+    mapView.current.when(() => {
+      mapView.current!.ui.add(locateRef.current!, 'top-right');
+
+      const debounceTime = 200;
+      watch(
+        () => mapView.current?.scale,
+        debounce((scale) => {
+          console.log('scale', scale);
+          setUrlParameter<number>('scale', Math.round(scale));
+        }, debounceTime),
+      );
+
+      watch(
+        () => mapView.current?.center,
+        debounce((center) => {
+          if (center) {
+            const x = Math.round(center.x);
+            const y = Math.round(center.y);
+            console.log('center', [x, y]);
+            setUrlParameter<number[]>('center', [x, y]);
+          }
+        }, debounceTime),
+      );
+    });
 
     return () => {
       mapView.current?.destroy();
