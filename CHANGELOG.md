@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.13](https://github.com/agrc/atlas/compare/v5.6.12...v5.6.13) (2025-08-09)
+
+
+### Features
+
+* add geolocation map component ([ecd4e55](https://github.com/agrc/atlas/commit/ecd4e55b9c0ca0ea7d2ce7b69b1f13c9dabb0e7e)), closes [#218](https://github.com/agrc/atlas/issues/218)
+
 ## [5.6.12](https://github.com/agrc/atlas/compare/v5.6.11...v5.6.12) (2025-07-31)
 
 
