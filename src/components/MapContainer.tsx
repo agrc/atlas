@@ -57,6 +57,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
     }
 
     mapView.current = new MapView(viewOptions);
+    mapView.current.constraints.snapToZoom = false;
 
     setMapView(mapView.current);
 
