@@ -135,12 +135,12 @@ describe('UrlParameters', () => {
         expect(result).toBe(false);
       });
 
-      it('should return false for missing boolean parameter', () => {
+      it('should return null for missing boolean parameter', () => {
         mockLocation.href = 'https://example.com/';
 
         const result = getUrlParameter('center', 'boolean');
 
-        expect(result).toBe(false);
+        expect(result).toBeNull();
       });
 
       it('should return default value for missing boolean parameter', () => {
@@ -292,7 +292,15 @@ describe('UrlParameters', () => {
 
         const result = getUrlParameter('basemap', 'string');
 
-        expect(result).toBe('');
+        expect(result).toBeNull();
+      });
+
+      it('should handle null without default value', () => {
+        mockLocation.href = 'https://example.com';
+
+        const result = getUrlParameter('basemap', 'string');
+
+        expect(result).toBeNull();
       });
     });
   });

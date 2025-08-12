@@ -22,8 +22,12 @@ export function getUrlParameter<T extends UrlParameterTypes>(
   const url = new URL(window.location.href);
   const value = url.searchParams.get(name);
 
-  if (value === null && defaultValue !== undefined) {
-    return defaultValue;
+  if (value === null) {
+    if (defaultValue !== undefined) {
+      return defaultValue;
+    }
+
+    return null;
   }
 
   if (type === 'boolean') {
@@ -36,6 +40,12 @@ export function getUrlParameter<T extends UrlParameterTypes>(
 
   if (type === 'number') {
     return (value ? Number(value) : null) as T;
+  }
+
+  if (type === 'string') {
+    if (value.trim() === '') {
+      return null;
+    }
   }
 
   return value as T;

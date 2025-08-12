@@ -93,7 +93,6 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
       watch(
         () => mapView.current?.scale,
         debounce((scale) => {
-          console.log('scale', scale);
           setUrlParameter<number>('scale', Math.round(scale));
         }, debounceTime),
       );
@@ -104,7 +103,6 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
           if (center) {
             const x = Math.round(center.x);
             const y = Math.round(center.y);
-            console.log('center', [x, y]);
             setUrlParameter<number[]>('center', [x, y]);
           }
         }, debounceTime),
