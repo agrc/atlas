@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.6.13](https://github.com/agrc/atlas/compare/v5.6.12...v5.6.13) (2025-08-13)
+
+
+### Features
+
+* add geolocation map component ([ecd4e55](https://github.com/agrc/atlas/commit/ecd4e55b9c0ca0ea7d2ce7b69b1f13c9dabb0e7e)), closes [#218](https://github.com/agrc/atlas/issues/218)
+
+
+### Dependencies
+
+* fix dark mode popup color ([57c8471](https://github.com/agrc/atlas/commit/57c84715ab487b2c194aa28aaffae820075efc09))
+* fix layer selector sticky levels of detail ([4c7d73e](https://github.com/agrc/atlas/commit/4c7d73e1ea3296be17d9d5248e55a5e7239c5890))
+
 ## [5.6.12](https://github.com/agrc/atlas/compare/v5.6.11...v5.6.12) (2025-07-31)
 
 
