@@ -36,6 +36,8 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
       },
     });
 
+    mapView.current.constraints.snapToZoom = false;
+
     setMapView(mapView.current);
 
     const selectorOptions: LayerSelectorProps = {
