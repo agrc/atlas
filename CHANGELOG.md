@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.7.0](https://github.com/agrc/atlas/compare/v5.6.13...v5.7.0) (2025-08-19)
+
+
+### Features
+
+* implement basemap, center, & scale url parameters ([5dca073](https://github.com/agrc/atlas/commit/5dca0732a7cce825312c370fbcb4a9aea3ee855e)), closes [#202](https://github.com/agrc/atlas/issues/202)
+
+
+### Bug Fixes
+
+* remove snapping to zoom levels when using mouse scroll wheel ([e9ad76c](https://github.com/agrc/atlas/commit/e9ad76c8a16543aff5cfebd7699293d9f6bcb183))
+
 ## [5.6.13](https://github.com/agrc/atlas/compare/v5.6.12...v5.6.13) (2025-08-13)
 
 
