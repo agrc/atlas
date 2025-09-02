@@ -35,7 +35,7 @@
     "@ugrc/esri-theme-toggle": "^1.1.2",
     "@ugrc/utah-design-system": "^1.28.1",
     "@ugrc/utilities": "^3.1.0",
-    "es-toolkit": "^1.39.8",
+    "es-toolkit": "^1.39.10",
     "firebase": "^11.10.0",
     "ky": "^1.8.2",
     "lodash.startcase": "^4.4.0",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@types/lodash.startcase": "^4.4.9",
-    "@types/react": "^19.1.8",
+    "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.6",
     "@ugrc/tailwind-preset": "^1.2.0",
     "@ugrc/tsconfigs": "^1.0.3",
