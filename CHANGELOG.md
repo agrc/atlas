@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.7.1](https://github.com/agrc/atlas/compare/v5.7.0...v5.7.1) (2025-11-05)
+
+
+### Dependencies
+
+* bump the major-dependencies group across 1 directory with 4 updates ([9b7a283](https://github.com/agrc/atlas/commit/9b7a283a0252c553e0885cd086525bde2ad6f2e2))
+* bump the safe-dependencies group across 1 directory with 18 updates ([db8c726](https://github.com/agrc/atlas/commit/db8c726f9f3f5bf570fedeaaebf777079b1d18bd))
+* **dev:** bump vite in the npm_and_yarn group across 1 directory ([a9d376a](https://github.com/agrc/atlas/commit/a9d376a60c13665a59435a9211b7b97a761a321d))
+* FY26 Q2 package updates ([e732c25](https://github.com/agrc/atlas/commit/e732c2568e273f18333b39858ae498ec10fe7ad5))
+
 ## [5.7.0](https://github.com/agrc/atlas/compare/v5.6.13...v5.7.0) (2025-08-19)
 
 
