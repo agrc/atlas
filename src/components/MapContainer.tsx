@@ -129,7 +129,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewImmediateClickE
   return (
     <div ref={mapNode} className="size-full">
       {/* @ts-expect-error the view prop is defined. It is intended to be an undocumented property available for you to use temporarily while you migrate to components */}
-      <arcgis-locate ref={locateRef} className="esri-widget" slot="top-right" view={mapView.current}></arcgis-locate>
+      <arcgis-locate ref={locateRef} className="esri-widget" view={mapView.current}></arcgis-locate>
       {selectorOptions && <LayerSelector {...selectorOptions}></LayerSelector>}
     </div>
   );
