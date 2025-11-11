@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.2](https://github.com/agrc/atlas/compare/v5.7.1...v5.7.2) (2025-11-11)
+
+
+### Bug Fixes
+
+* add missing style to locate button ([#559](https://github.com/agrc/atlas/issues/559)) ([b884698](https://github.com/agrc/atlas/commit/b8846989aadbea37c883903c3c6b00c7f250cf89))
+
 ## [5.7.1](https://github.com/agrc/atlas/compare/v5.7.0...v5.7.1) (2025-11-05)
 
 
