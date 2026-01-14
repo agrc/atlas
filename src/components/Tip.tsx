@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 export const Tip = ({ title = 'Tip', children }: { title?: string; children: ReactNode }) => (
   <div className="rounded border border-zinc-200 dark:border-zinc-700">
-    <p className="flex items-center gap-3 pb-2 pl-4 pt-4 text-3xl font-semibold text-primary-900 dark:text-accent-600">
+    <h3 className="flex items-center gap-3 pb-2 pl-4 pt-4 text-3xl font-semibold text-primary-900 dark:text-accent-600">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -18,7 +18,7 @@ export const Tip = ({ title = 'Tip', children }: { title?: string; children: Rea
         ></path>
       </svg>
       <span>{title}</span>
-    </p>
-    <div className="m-0 px-4 pb-4">{children}</div>
+    </h3>
+    <p className="m-0 px-4 pb-4">{children}</p>
   </div>
 );
