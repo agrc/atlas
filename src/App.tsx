@@ -189,7 +189,7 @@ export default function App() {
         <section className="relative flex min-h-0 flex-1 overflow-x-hidden md:mr-2">
           <Drawer main state={sideBarState} {...sideBarTriggerProps}>
             <div className="mx-2 mb-2 grid grid-cols-1 gap-2">
-              <h2 className="text-xl font-bold">Map controls</h2>
+              <h1 className="text-xl font-bold">Map controls</h1>
               <div className="flex flex-col gap-4 rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Sherlock {...masqueradeSherlockOptions} />
