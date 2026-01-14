@@ -208,7 +208,7 @@ export default function App() {
                       Functionality provided by the Sherlock component from the{' '}
                       <ExternalLink href="https://www.npmjs.com/package/@ugrc/utah-design-system">
                         @ugrc/utah-design-system
-                      </ExternalLink>
+                      </ExternalLink>{' '}
                       package.
                     </p>
                   </details>
