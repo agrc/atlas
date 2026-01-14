@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.7.3](https://github.com/agrc/atlas/compare/v5.7.2...v5.7.3) (2026-01-14)
+
+
+### Bug Fixes
+
+* **ally:** add an h1 element ([93987fb](https://github.com/agrc/atlas/commit/93987fbdc7447077888a29e58f63651c79b4b633))
+* **ally:** improve noscript content ([07039b1](https://github.com/agrc/atlas/commit/07039b1da2c0e361bb891a370c5c25396c0f3fa3))
+* **ally:** update to heading ([36dd139](https://github.com/agrc/atlas/commit/36dd1391e0ddee772480cd816e110c8f3de18141))
+
+
+### Dependencies
+
+* **ally:** update the design system to get social media component fixes ([f81bbda](https://github.com/agrc/atlas/commit/f81bbda191f8ca9c919e33c86cd445b0f503d62b))
+
 ## [5.7.2](https://github.com/agrc/atlas/compare/v5.7.1...v5.7.2) (2025-11-11)
 
 
