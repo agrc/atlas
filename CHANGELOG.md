@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.8.0](https://github.com/agrc/atlas/compare/v5.7.3...v5.8.0) (2026-01-27)
+
+
+### Features
+
+* display open source notices ([#568](https://github.com/agrc/atlas/issues/568)) ([6fe19c9](https://github.com/agrc/atlas/commit/6fe19c97febcde3e270eb15c2ec12b3c4b64b8aa))
+
+
+### Dependencies
+
+* bump the safe-dependencies group across 1 directory with 22 updates ([445a365](https://github.com/agrc/atlas/commit/445a36553d35a2d56018012bbbf53c5da33daa46))
+
 ## [5.7.3](https://github.com/agrc/atlas/compare/v5.7.2...v5.7.3) (2026-01-14)
 
 
