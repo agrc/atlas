@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.8.1](https://github.com/agrc/atlas/compare/v5.8.0...v5.8.1) (2026-02-03)
+
+
+### Bug Fixes
+
+* convert to arcgis components ([cfc389b](https://github.com/agrc/atlas/commit/cfc389b70a5b0147a33d17aba96ca627e98972ff))
+* fix fallback component types ([ed9403d](https://github.com/agrc/atlas/commit/ed9403dab6e994edbd2ea136394d2ac5d1e3b7ad))
+
+
+### Dependencies
+
+* bump npm deps ([fee67f8](https://github.com/agrc/atlas/commit/fee67f863696d10edc1d4d5bdb419fcabd7a99fb))
+
+
+### Documentation
+
+* restore MIT License redistribution clause ([1ebc98f](https://github.com/agrc/atlas/commit/1ebc98fc142d6252db80e8fef775e207820ea6d0))
+
 ## [5.8.0](https://github.com/agrc/atlas/compare/v5.7.3...v5.8.0) (2026-01-27)
 
 
