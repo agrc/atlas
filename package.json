@@ -29,20 +29,21 @@
   },
   "dependencies": {
     "@arcgis/core": "^4.34.8",
-    "@arcgis/map-components": "^4.34.2",
+    "@arcgis/lumina": "^4.34.9",
+    "@arcgis/map-components": "^4.34.9",
     "@heroicons/react": "^2.2.0",
     "@ugrc/esri-theme-toggle": "^1.1.2",
-    "@ugrc/utah-design-system": "^1.34.1",
+    "@ugrc/utah-design-system": "^1.34.2",
     "@ugrc/utilities": "^3.1.1",
-    "es-toolkit": "^1.43.0",
-    "firebase": "^12.7.0",
+    "es-toolkit": "^1.44.0",
+    "firebase": "^12.8.0",
     "ky": "^1.14.2",
     "lodash.startcase": "^4.4.0",
     "react": "^19.2.3",
     "react-aria": "^3.45.0",
     "react-aria-components": "^1.14.0",
     "react-dom": "^19.2.3",
-    "react-error-boundary": "^6.0.3",
+    "react-error-boundary": "^6.1.0",
     "react-fast-compare": "^3.2.2",
     "react-stately": "^3.43.0"
   },
@@ -60,9 +61,9 @@
     "eslint": "^9.39.2",
     "happy-dom": "^20.1.0",
     "postcss": "^8.5.6",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "prettier-plugin-packagejson": "^2.5.22",
+    "prettier-plugin-packagejson": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "prop-types": "^15.8.1",
     "tailwindcss": "^3.4.19",
@@ -70,7 +71,7 @@
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-package-version": "^1.1.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.18"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -80,10 +81,7 @@
       "protobufjs"
     ],
     "overrides": {
-      "happy-dom@<20.0.0": ">=20.0.0",
-      "happy-dom@<20.0.2": ">=20.0.2",
-      "vite@>=7.1.0 <=7.1.4": ">=7.1.5",
-      "vite@>=7.1.0 <=7.1.10": ">=7.1.11"
+      "storybook@>=9.0.0 <9.1.17": ">=9.1.17"
     }
   }
 }
