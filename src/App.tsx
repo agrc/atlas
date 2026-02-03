@@ -149,7 +149,7 @@ export default function App() {
   };
 
   const onClick = useCallback(
-    (event: __esri.ViewImmediateClickEvent) => {
+    (event: __esri.ViewClickEvent) => {
       mapView!.hitTest(event).then(({ results }) => {
         if (
           ((results?.length ?? 0) > 0 && (results[0] as __esri.GraphicHit).graphic.layer === null) ||
