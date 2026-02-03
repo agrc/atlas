@@ -19,7 +19,7 @@ import {
 } from '@ugrc/utah-design-system';
 import { useCallback, useEffect, useState } from 'react';
 import { useOverlayTrigger } from 'react-aria';
-import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary, getErrorMessage, type FallbackProps } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
 import { MapContainer, Tip } from './components';
 import { useMap } from './components/hooks';
@@ -29,11 +29,11 @@ import config from './config';
 const apiKey = import.meta.env.VITE_WEB_API;
 const version = import.meta.env.PACKAGE_VERSION;
 
-const ErrorFallback = ({ error }: { error: Error }) => {
+const ErrorFallback = ({ error }: FallbackProps) => {
   return (
     <div role="alert">
       <p>Something went wrong:</p>
-      <pre style={{ color: 'red' }}>{error.message}</pre>
+      <pre style={{ color: 'red' }}>{getErrorMessage(error)}</pre>
     </div>
   );
 };
