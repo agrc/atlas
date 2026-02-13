@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.8.2](https://github.com/agrc/atlas/compare/v5.8.1...v5.8.2) (2026-02-13)
+
+
+### Dependencies
+
+* fy26 q3 dependency updates ([a2644a8](https://github.com/agrc/atlas/commit/a2644a8679479b5328743ab478028b4eb186910b))
+
 ## [5.8.1](https://github.com/agrc/atlas/compare/v5.8.0...v5.8.1) (2026-02-03)
 
 
