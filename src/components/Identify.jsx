@@ -1,6 +1,6 @@
 import { isLoaded, load, execute as project } from '@arcgis/core/geometry/operators/projectOperator';
 
-import { ExternalLink, Label } from '@ugrc/utah-design-system';
+import { ExternalLink } from '@ugrc/utah-design-system';
 import { toQueryString } from '@ugrc/utilities';
 import ky from 'ky';
 import startCase from 'lodash.startcase';
@@ -310,7 +310,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>Approximate Street Address</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Approximate Street Address</div>
         <Text className="block pl-1 text-sm">
           <Text className="block pl-1 text-sm">{address}</Text>
           <ExternalLink href={spatial.googleMapsLink} className="pl-1">
@@ -326,7 +326,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>City</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">City</div>
         <Text className="block pl-1 text-sm">{city}</Text>
         <Text className="block grow content-end text-xs">
           Provided by{' '}
@@ -339,7 +339,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>Zip code</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Zip code</div>
         <Text className="block pl-1 text-sm">{zip}</Text>
         <Text className="block grow content-end text-xs">
           Provided by{' '}
@@ -350,7 +350,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>County</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">County</div>
         <Text className="block pl-1 text-sm">{startCase(county.toLowerCase())}</Text>
         <Text className="block grow content-end text-xs">
           Provided by{' '}
@@ -361,7 +361,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>UTM 12 NAD83 coordinates</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">UTM 12 NAD83 coordinates</div>
         <Text className="block pl-1 text-sm">
           {spatial.x}, {spatial.y} m
         </Text>
@@ -370,7 +370,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>WGS84 coordinates</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">WGS84 coordinates</div>
         <Text className="block pl-1 text-sm">
           {spatial.lat}, {spatial.lon}
         </Text>
@@ -379,7 +379,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>Elevation</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Elevation</div>
         <Text className="block pl-1 text-sm">{elevation.meters} m</Text>
         <Text className="block pl-1 text-sm">{elevation.feet} ft</Text>
         <Text className="block grow content-end text-xs">
@@ -390,7 +390,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>Land administration category</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Land administration category</div>
         <Text className="block pl-1 text-sm">{ownership}</Text>
         <Text className="block grow content-end text-xs">
           Provided by{' '}
@@ -401,7 +401,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>US National Grid</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">US National Grid</div>
         <Text className="block pl-1 text-sm">{grid}</Text>
         <Text className="block grow content-end text-xs">
           Provided by the{' '}
@@ -414,7 +414,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <Label>Imagery flight metadata</Label>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Imagery flight metadata</div>
         <Text className="block pl-1 text-sm">
           {flightDate.date && `${flightDate.resolution} resolution flown on ${flightDate.date}`}
         </Text>
