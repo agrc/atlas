@@ -1,8 +1,5 @@
 # Atlas - UGRC Web Mapping Application
 
-> [!NOTE]
-> Include our [org-wide instructions](https://github.com/agrc/.github/blob/main/org-copilot-instructions.md) in addition to the project-specific instructions below.
-
 ## Overview
 
 Atlas is a React-based web mapping template built with **ArcGIS Maps SDK for JavaScript** and **UGRC (Utah Geospatial Resource Center) components**. It serves as a starting point for Utah-specific web mapping applications, featuring geocoding, identify tools, and integration with Utah-specific data services.
@@ -81,6 +78,10 @@ VITE_FIREBASE_CONFIG=<json>      # Firebase config JSON
 - Feature branches → **dev** → **main**
 - `dev` deploys to [atlas.dev.utah.gov](https://atlas.dev.utah.gov)
 - `main` deploys to [atlas.utah.gov](https://atlas.utah.gov)
+
+### Commit Message Format
+
+All commits must follow the Conventional Commits format using the Angular preset.
 
 ## Key Files & Patterns
 
