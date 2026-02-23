@@ -9,7 +9,7 @@ Atlas is a React-based web mapping template built with **ArcGIS Maps SDK for Jav
 
 ## Technology Stack
 
-- **React 19** with TypeScript (TSX) and legacy JavaScript (JSX) - see note below
+- **React 19** with TypeScript (TSX) and legacy JavaScript (JSX)
 - **ArcGIS Maps SDK**: @arcgis/core, @arcgis/map-components (web components), @arcgis/lumina
 - **UGRC Libraries**: @ugrc/utah-design-system, @ugrc/utilities, @ugrc/esri-theme-toggle
 - **Build Tools**: Vite + pnpm (NOT npm)
