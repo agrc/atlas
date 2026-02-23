@@ -17,6 +17,7 @@
     "gnis",
     "hostingchannels",
     "lods",
+    "mapserv",
     "noopener",
     "noreferrer",
     "onarcgis",
@@ -33,6 +34,7 @@
     "usgs",
     "USNG",
     "vite",
+    "Vitest",
     "wkid"
   ],
   "editor.codeActionsOnSave": {
