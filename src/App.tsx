@@ -181,19 +181,19 @@ export default function App() {
 
   return (
     <>
-      <main className="flex h-screen flex-col md:gap-2">
+      <main id="main-content" className="flex h-screen flex-col md:gap-2">
         <Header links={links}>
           <div className="flex h-full grow items-center gap-3">
             <UgrcLogo />
-            <h2 className="font-heading text-3xl font-black text-zinc-600 sm:text-5xl dark:text-zinc-100">
+            <h1 className="font-heading text-3xl font-black text-zinc-600 sm:text-5xl dark:text-zinc-100">
               Atlas Utah
-            </h2>
+            </h1>
           </div>
         </Header>
         <section className="relative flex min-h-0 flex-1 overflow-x-hidden md:mr-2">
           <Drawer main state={sideBarState} {...sideBarTriggerProps}>
             <div className="mx-2 mb-2 grid grid-cols-1 gap-2">
-              <h1 className="text-xl font-bold">Map controls</h1>
+              <h2 className="text-xl font-bold">Map controls</h2>
               <div className="flex flex-col gap-4 rounded border border-zinc-200 p-3 dark:border-zinc-700">
                 <ErrorBoundary FallbackComponent={ErrorFallback}>
                   <Sherlock {...masqueradeSherlockOptions} />

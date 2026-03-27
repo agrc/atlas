@@ -50,7 +50,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewClickEventHandl
 
     const selectorOptions: LayerSelectorProps = {
       quadWord: import.meta.env.VITE_DISCOVER,
-      basemaps: ['Lite', 'Hybrid', 'Terrain', 'Topo', 'Color IR'],
+      basemaps: ['Lite', 'Hybrid', 'Terrain', 'Topo', 'Color IR', 'High Contrast'],
       operationalLayers: ['Address Points', 'Land Ownership'],
       onBasemapChange: (label: string) => {
         setUrlParameter<string>('basemap', label);
