@@ -7,13 +7,13 @@ import startCase from 'lodash.startcase';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Text } from 'react-aria-components';
+import { fetchElevation } from './elevation';
 
 const featureClassNames = {
   counties: 'boundaries.county_boundaries',
   municipalities: 'boundaries.municipal_boundaries',
   landOwnership: 'cadastre.land_ownership',
   nationalGrid: 'indices.national_grid',
-  dem: 'raster.usgs_dem_10meter',
   gnis: 'location.gnis_place_names',
   zip: 'boundaries.zip_code_areas',
   imageryDate: 'indices.hexagon_service_dates',
@@ -25,8 +25,6 @@ const fieldNames = {
   // state
   STATE_LGD: 'state_lgd',
   USNG: 'usng',
-  FEET: 'feet',
-  METERS: 'value',
   ZIP5: 'zip5',
 };
 
@@ -39,6 +37,8 @@ const urls = {
 const intl = new Intl.DateTimeFormat('en-US', { dateStyle: 'short' });
 const outside = 'Outside of Utah';
 const loading = 'loading...';
+const loadingElevation = { meters: loading, feet: loading };
+const loadingFlightDate = { date: loading, resolution: loading };
 
 const projectPoint = async (mapPoint, srid) => {
   // lat/long coords
@@ -63,8 +63,8 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   const [grid, setGrid] = useState(loading);
   const [zip, setZip] = useState(loading);
   const [city, setCity] = useState(loading);
-  const [elevation, setElevation] = useState(loading);
-  const [flightDate, setFlightDate] = useState(loading);
+  const [elevation, setElevation] = useState(loadingElevation);
+  const [flightDate, setFlightDate] = useState(loadingFlightDate);
   const signal = useRef();
   const controller = useRef();
 
@@ -121,21 +121,6 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         },
       ],
       [
-        featureClassNames.dem,
-        fieldNames.FEET + ',' + fieldNames.METERS,
-        (data) => {
-          if (!data) {
-            setElevation({ feet: outside, meters: outside });
-
-            return;
-          }
-
-          const feet = Math.round(data[fieldNames.FEET]);
-
-          setElevation({ feet: feet, meters: data[fieldNames.METERS] });
-        },
-      ],
-      [
         featureClassNames.zip,
         fieldNames.ZIP5,
         (data) => {
@@ -181,7 +166,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
   );
 
   const reverseGeocode = useCallback(
-    async (point) => {
+    async (point, requestSignal) => {
       const distanceInMeters = 50;
       const url = `${urls.reverse}/${point.x}/${point.y}/?`;
       const query = toQueryString({
@@ -191,7 +176,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       });
 
       try {
-        const response = await fetch(url + query, { signal: signal.current });
+        const response = await fetch(url + query, { signal: requestSignal });
         let result = await response.json();
         let address = 'No house address found.';
 
@@ -201,14 +186,40 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
 
         setAddress(address);
       } catch (ex) {
+        if (ex.name === 'AbortError') {
+          return;
+        }
+
         console.warn(ex);
       }
     },
     [wkid, apiKey],
   );
 
+  const getElevation = useCallback(
+    async (mapPoint, requestSignal) => {
+      try {
+        const data = await fetchElevation({
+          mapPoint,
+          signal: requestSignal,
+          wkid,
+        });
+
+        setElevation(data ?? { feet: outside, meters: outside });
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          return;
+        }
+
+        console.warn(error);
+        setElevation({ feet: outside, meters: outside });
+      }
+    },
+    [wkid],
+  );
+
   const get = useCallback(
-    async (requestMetadata, mapPoint) => {
+    async (requestMetadata, mapPoint, requestSignal) => {
       await Promise.all(
         requestMetadata.map(async (item) => {
           const url = `${urls.search}/${item[0]}/${item[1]}?`;
@@ -220,7 +231,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
           });
 
           try {
-            const response = await ky.get(url + query, { signal: signal.current, mode: 'cors' });
+            const response = await ky.get(url + query, { signal: requestSignal, mode: 'cors' });
             let result = await response.json();
             result = result.result;
 
@@ -237,12 +248,16 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
 
             item[2](data);
           } catch (error) {
+            if (error.name === 'AbortError') {
+              return;
+            }
+
             console.warn(error);
           }
         }),
       );
 
-      await reverseGeocode(mapPoint);
+      await reverseGeocode(mapPoint, requestSignal);
 
       controller.current = null;
     },
@@ -263,8 +278,13 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       setCity(loading);
       setCounty(loading);
       setGrid(loading);
+      setElevation(loadingElevation);
+      setFlightDate(loadingFlightDate);
 
-      get(requests, location);
+      const requestSignal = signal.current;
+
+      await Promise.all([get(requests, location, requestSignal), getElevation(location, requestSignal)]);
+
       const ll = await projectPoint(location, 4326);
       const utm = await projectPoint(location, 26912);
 
@@ -293,7 +313,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
     }
 
     return () => controller.current?.abort();
-  }, [location, get, requests]);
+  }, [location, get, getElevation, requests]);
 
   if (!location) {
     return (
