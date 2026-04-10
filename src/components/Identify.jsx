@@ -38,7 +38,7 @@ const intl = new Intl.DateTimeFormat('en-US', { dateStyle: 'short' });
 const outside = 'Outside of Utah';
 const loading = 'loading...';
 const loadingElevation = { meters: loading, feet: loading };
-const loadingFlightDate = { date: loading, resolution: loading };
+const loadingFlightDate = { loading: true, date: null, resolution: null };
 
 const projectPoint = async (mapPoint, srid) => {
   // lat/long coords
@@ -116,8 +116,7 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
             return;
           }
 
-          const values = [data[fieldNames.USNG]];
-          setGrid(('{0}', values));
+          setGrid(data[fieldNames.USNG]);
         },
       ],
       [
@@ -258,8 +257,6 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       );
 
       await reverseGeocode(mapPoint, requestSignal);
-
-      controller.current = null;
     },
     [apiKey, wkid, reverseGeocode],
   );
@@ -284,6 +281,10 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
       const requestSignal = signal.current;
 
       await Promise.all([get(requests, location, requestSignal), getElevation(location, requestSignal)]);
+
+      if (requestSignal.aborted) {
+        return;
+      }
 
       const ll = await projectPoint(location, 4326);
       const utm = await projectPoint(location, 26912);
@@ -330,7 +331,9 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Approximate Street Address</div>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          Approximate Street Address
+        </div>
         <Text className="block pl-1 text-sm">
           <Text className="block pl-1 text-sm">{address}</Text>
           <ExternalLink href={spatial.googleMapsLink} className="pl-1">
@@ -381,7 +384,9 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">UTM 12 NAD83 coordinates</div>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          UTM 12 NAD83 coordinates
+        </div>
         <Text className="block pl-1 text-sm">
           {spatial.x}, {spatial.y} m
         </Text>
@@ -390,7 +395,9 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">WGS84 coordinates</div>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          WGS84 coordinates
+        </div>
         <Text className="block pl-1 text-sm">
           {spatial.lat}, {spatial.lon}
         </Text>
@@ -410,7 +417,9 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Land administration category</div>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          Land administration category
+        </div>
         <Text className="block pl-1 text-sm">{ownership}</Text>
         <Text className="block grow content-end text-xs">
           Provided by{' '}
@@ -421,7 +430,9 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">US National Grid</div>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          US National Grid
+        </div>
         <Text className="block pl-1 text-sm">{grid}</Text>
         <Text className="block grow content-end text-xs">
           Provided by the{' '}
@@ -434,8 +445,11 @@ export const IdentifyInformation = ({ apiKey, wkid = 3857, location }) => {
         className="flex flex-col gap-1 rounded border border-zinc-200 px-3 py-2 dark:border-zinc-800"
         role="presentation"
       >
-        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">Imagery flight metadata</div>
+        <div className="w-fit cursor-default text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          Imagery flight metadata
+        </div>
         <Text className="block pl-1 text-sm">
+          {flightDate.loading && 'Loading...'}
           {flightDate.date && `${flightDate.resolution} resolution flown on ${flightDate.date}`}
         </Text>
       </div>
