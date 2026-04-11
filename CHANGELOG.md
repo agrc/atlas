@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.1](https://github.com/agrc/atlas/compare/v5.9.0...v5.9.1) (2026-04-11)
+
+
+### Bug Fixes
+
+* get elevation data directly from national map ([b2d6c66](https://github.com/agrc/atlas/commit/b2d6c665853c9d543ffea7cfc73b297ccc369e99)), closes [#585](https://github.com/agrc/atlas/issues/585)
+
 ## [5.9.0](https://github.com/agrc/atlas/compare/v5.8.2...v5.9.0) (2026-03-30)
 
 
