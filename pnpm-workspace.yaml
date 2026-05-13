@@ -1,0 +1,5 @@
+allowBuilds:
+  '@firebase/util': false
+  '@vaadin/vaadin-usage-statistics': false
+  esbuild: false
+  protobufjs: false
