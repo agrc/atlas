@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.9.2-rc.1](https://github.com/agrc/atlas/compare/v5.9.1...v5.9.2-rc.1) (2026-05-13)
+
+
+### Bug Fixes
+
+* test new release composite action version ([0a1faca](https://github.com/agrc/atlas/commit/0a1facad6e7a85054b4fbaba3bd0e1f0eaa991b9))
+
 ## [5.9.1](https://github.com/agrc/atlas/compare/v5.9.0...v5.9.1) (2026-04-11)
 
 
