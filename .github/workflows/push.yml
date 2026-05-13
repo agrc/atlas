@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: 🚀 Create Release
         id: release-please
-        uses: agrc/release-composite-action@v1
+        uses: agrc/release-composite-action@dev
         with:
           prerelease: ${{ github.ref_name == 'dev' }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
