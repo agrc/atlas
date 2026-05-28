@@ -1,11 +1,17 @@
-import Polygon from '@arcgis/core/geometry/Polygon';
+import Point from '@arcgis/core/geometry/Point.js';
+import Polygon from '@arcgis/core/geometry/Polygon.js';
+import type { GraphicProperties } from '@arcgis/core/Graphic.js';
+import MapViewConstraints from '@arcgis/core/views/2d/MapViewConstraints.js';
+import type { ClickEvent } from '@arcgis/core/views/input/types.js';
 import type { EventHandler } from '@arcgis/lumina';
 import type { TargetedEvent } from '@arcgis/map-components';
+import '@arcgis/map-components/components/arcgis-home';
 import '@arcgis/map-components/components/arcgis-locate';
 import '@arcgis/map-components/components/arcgis-map';
 import '@arcgis/map-components/components/arcgis-zoom';
-import { LayerSelector, type LayerSelectorProps } from '@ugrc/utah-design-system';
-import type { BasemapToken } from '@ugrc/utah-design-system/src/components/LayerSelector.types';
+import { LayerSelector } from '@ugrc/utah-design-system/components/LayerSelector';
+import type { LayerSelectorProps } from '@ugrc/utah-design-system/components/LayerSelector';
+import type { BasemapToken } from '@ugrc/utah-design-system/components/LayerSelector.types';
 import { getUrlParameter, setUrlParameter } from '@ugrc/utilities';
 import { debounce } from 'es-toolkit/function';
 import { useMemo, useState } from 'react';
@@ -13,11 +19,11 @@ import cityExtents from './data/cityExtents';
 import { useMap } from './hooks';
 import { randomize } from './utils';
 
-const { item: randomExtent } = randomize<__esri.GraphicProperties>(cityExtents);
+const { item: randomExtent } = randomize<GraphicProperties>(cityExtents);
 
 const DEBOUNCE_TIME_MS = 200;
 
-export const MapContainer = ({ onClick }: { onClick?: __esri.ViewClickEventHandler }) => {
+export const MapContainer = ({ onClick }: { onClick?: (event: ClickEvent) => void }) => {
   const [selectorOptions, setSelectorOptions] = useState<LayerSelectorProps | null>(null);
   const { setMapView } = useMap();
 
@@ -26,19 +32,19 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewClickEventHandl
     if (xyUrlParam && xyUrlParam.length === 2) {
       const scaleUrlParam = getUrlParameter<number>('scale', 'number', 10000);
       return {
-        center: {
+        center: new Point({
           x: xyUrlParam[0],
           y: xyUrlParam[1],
           spatialReference: { wkid: 3857 },
-        } as __esri.Point,
+        }),
         scale: scaleUrlParam ?? 10000,
-        extent: null as __esri.Extent | null,
+        extent: null,
       };
     }
 
     return {
-      center: null as __esri.Point | null,
-      scale: null as number | null,
+      center: null,
+      scale: null,
       extent: new Polygon(randomExtent.geometry!).extent!,
     };
   }, []);
@@ -46,7 +52,9 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewClickEventHandl
   const handleViewReady: EventHandler<TargetedEvent<HTMLArcgisMapElement, void>> = (event) => {
     const map = event.target;
 
-    setMapView(map.view);
+    if (map.view?.type === '2d') {
+      setMapView(map.view);
+    }
 
     const selectorOptions: LayerSelectorProps = {
       quadWord: import.meta.env.VITE_DISCOVER,
@@ -79,11 +87,7 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewClickEventHandl
       scale={initialView.scale ?? undefined}
       extent={initialView.extent ?? undefined}
       className="size-full"
-      constraints={
-        {
-          snapToZoom: false,
-        } as __esri.View2DConstraints
-      }
+      constraints={new MapViewConstraints({ snapToZoom: false })}
       onarcgisViewReadyChange={handleViewReady}
       onarcgisViewChange={debounce<EventHandler<TargetedEvent<HTMLArcgisMapElement, void>>>((event) => {
         const map = event.target;
@@ -98,14 +102,15 @@ export const MapContainer = ({ onClick }: { onClick?: __esri.ViewClickEventHandl
       }, DEBOUNCE_TIME_MS)}
       onarcgisViewClick={
         onClick
-          ? (event: CustomEvent<__esri.ViewClickEvent>) => {
+          ? (event: TargetedEvent<HTMLArcgisMapElement, ClickEvent>) => {
               onClick(event.detail);
             }
           : undefined
       }
     >
       <arcgis-zoom slot="top-left"></arcgis-zoom>
-      <arcgis-locate slot="top-right"></arcgis-locate>
+      <arcgis-locate slot="top-left"></arcgis-locate>
+      <arcgis-home slot="top-left"></arcgis-home>
       {selectorOptions && <LayerSelector {...selectorOptions}></LayerSelector>}
     </arcgis-map>
   );

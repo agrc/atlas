@@ -10,7 +10,7 @@ Atlas is a React-based web mapping template built with **ArcGIS Maps SDK for Jav
 - **ArcGIS Maps SDK**: @arcgis/core, @arcgis/map-components (web components), @arcgis/lumina
 - **UGRC Libraries**: @ugrc/utah-design-system, @ugrc/utilities, @ugrc/esri-theme-toggle
 - **Build Tools**: Vite + pnpm (NOT npm)
-- **Styling**: Tailwind CSS with @ugrc/tailwind-preset
+- **Styling**: Tailwind CSS v4 with CSS-first configuration in [src/index.css](src/index.css)
 - **Testing**: Vitest with happy-dom
 - **Analytics**: Firebase (analytics & performance monitoring)
 
@@ -117,8 +117,8 @@ Use `getUrlParameter<T>` from `@ugrc/utilities` for initial load.
 
 ### Styling Conventions
 
-- **Tailwind CSS** with UGRC preset imported in [tailwind.config.js](tailwind.config.js)
-- Include `node_modules/@ugrc/**/*.{tsx,jsx,js}` in Tailwind content paths
+- **Tailwind CSS v4** configured in [src/index.css](src/index.css) with `@theme`, `@plugin`, and `@source`
+- Include external Tailwind sources with `@source`, especially [src/index.css](src/index.css)'s design-system source entry
 - Custom font: `SourceSansPro-Black` for headings
 - Use `@ugrc/utah-design-system` components (Header, Footer, Drawer, etc.)
 

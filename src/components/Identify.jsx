@@ -1,6 +1,5 @@
-import { isLoaded, load, execute as project } from '@arcgis/core/geometry/operators/projectOperator';
-
-import { ExternalLink } from '@ugrc/utah-design-system';
+import { isLoaded, load, execute as project } from '@arcgis/core/geometry/operators/projectOperator.js';
+import { ExternalLink } from '@ugrc/utah-design-system/components/Link';
 import { toQueryString } from '@ugrc/utilities';
 import ky from 'ky';
 import startCase from 'lodash.startcase';
