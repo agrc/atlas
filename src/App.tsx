@@ -84,7 +84,7 @@ export default function App() {
 
       return getPerformance(app);
     }
-    initPerformance();
+    void initPerformance();
   }, [app]);
 
   const onSherlockMatch = (graphics: Graphic[]) => {
