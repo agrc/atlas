@@ -9,9 +9,8 @@ import '@arcgis/map-components/components/arcgis-home';
 import '@arcgis/map-components/components/arcgis-locate';
 import '@arcgis/map-components/components/arcgis-map';
 import '@arcgis/map-components/components/arcgis-zoom';
-import { LayerSelector } from '@ugrc/utah-design-system/components/LayerSelector';
 import type { LayerSelectorProps } from '@ugrc/utah-design-system/components/LayerSelector';
-import type { BasemapToken } from '@ugrc/utah-design-system/components/LayerSelector.types';
+import { LayerSelector } from '@ugrc/utah-design-system/components/LayerSelector';
 import { getUrlParameter, setUrlParameter } from '@ugrc/utilities';
 import { debounce } from 'es-toolkit/function';
 import { useMemo, useState } from 'react';
@@ -22,6 +21,13 @@ import { randomize } from './utils';
 const { item: randomExtent } = randomize<GraphicProperties>(cityExtents);
 
 const DEBOUNCE_TIME_MS = 200;
+const BASEMAPS = ['Lite', 'Hybrid', 'Terrain', 'Topo', 'Color IR', 'High Contrast'] as const;
+
+type AtlasBasemap = (typeof BASEMAPS)[number];
+
+function isAtlasBasemap(value?: string | null): value is AtlasBasemap {
+  return BASEMAPS.includes(value as AtlasBasemap);
+}
 
 export const MapContainer = ({ onClick }: { onClick?: (event: ClickEvent) => void }) => {
   const [selectorOptions, setSelectorOptions] = useState<LayerSelectorProps | null>(null);
@@ -58,7 +64,7 @@ export const MapContainer = ({ onClick }: { onClick?: (event: ClickEvent) => voi
 
     const selectorOptions: LayerSelectorProps = {
       quadWord: import.meta.env.VITE_DISCOVER,
-      basemaps: ['Lite', 'Hybrid', 'Terrain', 'Topo', 'Color IR', 'High Contrast'],
+      basemaps: [...BASEMAPS],
       operationalLayers: ['Address Points', 'Land Ownership'],
       onBasemapChange: (label: string) => {
         setUrlParameter<string>('basemap', label);
@@ -66,8 +72,8 @@ export const MapContainer = ({ onClick }: { onClick?: (event: ClickEvent) => voi
     };
 
     let basemapIndex: number;
-    const basemapUrlParam = getUrlParameter<string>('basemap', 'string') as BasemapToken;
-    if (basemapUrlParam && selectorOptions.basemaps!.includes(basemapUrlParam)) {
+    const basemapUrlParam = getUrlParameter<string>('basemap', 'string');
+    if (isAtlasBasemap(basemapUrlParam)) {
       basemapIndex = selectorOptions.basemaps!.indexOf(basemapUrlParam);
     } else {
       basemapIndex = randomize(selectorOptions.basemaps!).index;
