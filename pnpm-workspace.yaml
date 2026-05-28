@@ -3,3 +3,14 @@ allowBuilds:
   '@vaadin/vaadin-usage-statistics': false
   esbuild: false
   protobufjs: false
+minimumReleaseAgeExclude:
+  - '@ugrc/*'
+  - brace-expansion@1.1.13
+  - protobufjs@7.5.5
+  - protobufjs@7.5.6
+  - '@protobufjs/utf8@1.1.1'
+  - brace-expansion@5.0.6
+  - ws@8.20.1
+  - protobufjs@7.5.8
+overrides:
+  'storybook@>=9.0.0 <9.1.17': '>=9.1.17'

@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import '@ugrc/tailwind-preset';
+@source '../node_modules/@ugrc/utah-design-system/src';
+
+@theme {
+  --font-heading: 'SourceSansPro-Black', 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
 
 @layer base {
   body {

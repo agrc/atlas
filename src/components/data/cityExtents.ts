@@ -1,4 +1,6 @@
-const extents: __esri.GraphicProperties[] = [
+import type { GraphicProperties } from '@arcgis/core/Graphic.js';
+
+const extents: GraphicProperties[] = [
   {
     geometry: {
       rings: [

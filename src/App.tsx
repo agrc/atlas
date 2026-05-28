@@ -1,22 +1,19 @@
-import Point from '@arcgis/core/geometry/Point';
-import Graphic from '@arcgis/core/Graphic';
+import Point from '@arcgis/core/geometry/Point.js';
+import Graphic from '@arcgis/core/Graphic.js';
 import SimpleMarkerSymbol from '@arcgis/core/symbols/SimpleMarkerSymbol.js';
 import Viewpoint from '@arcgis/core/Viewpoint.js';
+import type { ClickEvent } from '@arcgis/core/views/input/types.js';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
-import {
-  Drawer,
-  ExternalLink,
-  Footer,
-  Geocode,
-  Header,
-  Sherlock,
-  SocialMedia,
-  UgrcLogo,
-  masqueradeProvider,
-  useFirebaseAnalytics,
-  useFirebaseApp,
-} from '@ugrc/utah-design-system';
+import { Drawer } from '@ugrc/utah-design-system/components/Drawer';
+import { Footer } from '@ugrc/utah-design-system/components/Footer';
+import { Geocode } from '@ugrc/utah-design-system/components/Geocode';
+import { Header, UgrcLogo } from '@ugrc/utah-design-system/components/Header';
+import { ExternalLink } from '@ugrc/utah-design-system/components/Link';
+import { Sherlock, masqueradeProvider } from '@ugrc/utah-design-system/components/Sherlock';
+import { SocialMedia } from '@ugrc/utah-design-system/components/SocialMedia';
+import { useFirebaseAnalytics } from '@ugrc/utah-design-system/contexts/FirebaseAnalyticsProvider';
+import { useFirebaseApp } from '@ugrc/utah-design-system/contexts/FirebaseAppProvider';
 import { useCallback, useEffect, useState } from 'react';
 import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary, getErrorMessage, type FallbackProps } from 'react-error-boundary';
@@ -149,13 +146,21 @@ export default function App() {
   };
 
   const onClick = useCallback(
-    (event: __esri.ViewClickEvent) => {
+    (event: ClickEvent) => {
       mapView!.hitTest(event).then(({ results }) => {
-        if (
-          ((results?.length ?? 0) > 0 && (results[0] as __esri.GraphicHit).graphic.layer === null) ||
-          results.length === 0
-        ) {
+        // filter out graphics from vector tile layers
+        const filteredResults = results.filter((result) => {
+          return !(result.type === 'graphic' && Object.hasOwn(result.graphic.origin ?? {}, 'layerId'));
+        });
+        const firstResult = filteredResults[0];
+        const clickedUserPlacedGraphic = firstResult?.type === 'graphic' && firstResult.graphic.origin == null;
+
+        if (clickedUserPlacedGraphic || filteredResults.length === 0) {
           trayState.open();
+
+          if (!event.mapPoint) {
+            return;
+          }
 
           placeGraphic(
             new Graphic({
@@ -208,7 +213,7 @@ export default function App() {
                         />
                       </div>
                     </summary>
-                    <p className="pl-2 pt-2 text-xs">
+                    <p className="pt-2 pl-2 text-xs">
                       Functionality provided by the Sherlock component from the{' '}
                       <ExternalLink href="https://www.npmjs.com/package/@ugrc/utah-design-system">
                         @ugrc/utah-design-system
@@ -233,7 +238,7 @@ export default function App() {
                         />
                       </div>
                     </summary>
-                    <p className="pl-2 pt-2 text-xs">
+                    <p className="pt-2 pl-2 text-xs">
                       Functionality provided by the Geocode component from the{' '}
                       <ExternalLink href="https://www.npmjs.com/package/@ugrc/utah-design-system">
                         @ugrc/utah-design-system
