@@ -8,7 +8,7 @@ Atlas is a React-based web mapping template built with **ArcGIS Maps SDK for Jav
 
 - **React 19** with TypeScript (TSX) and legacy JavaScript (JSX)
 - **ArcGIS Maps SDK**: @arcgis/core, @arcgis/map-components (web components), @arcgis/lumina
-- **UGRC Libraries**: @ugrc/utah-design-system, @ugrc/utilities, @ugrc/esri-theme-toggle
+- **Design System Libraries**: @utahdts/utah-design-system-header for official header/footer chrome; @ugrc/utah-design-system, @ugrc/utilities, @ugrc/esri-theme-toggle for map controls and supporting UI
 - **Build Tools**: Vite + pnpm (NOT npm)
 - **Styling**: Tailwind CSS v4 with CSS-first configuration in [src/index.css](src/index.css)
 - **Testing**: Vitest with happy-dom
@@ -88,7 +88,8 @@ All commits must follow the Conventional Commits format using the Angular preset
 ### Component Structure
 
 - **[src/main.tsx](src/main.tsx)**: Entry point, Firebase setup, esriConfig
-- **[src/App.tsx](src/App.tsx)**: Main app, sidebar/drawer logic, UGRC components (Header, Footer, Sherlock, Geocode)
+- **[src/App.tsx](src/App.tsx)**: Main app, sidebar/drawer logic, official Utah header/footer chrome, UGRC components (Sherlock, Geocode, SocialMedia)
+- **[src/components/UtahChrome.tsx](src/components/UtahChrome.tsx)**: Official Utah header/footer configuration via `@utahdts/utah-design-system-header`
 - **[src/components/MapContainer.tsx](src/components/MapContainer.tsx)**: Map initialization, URL persistence (center, scale, basemap), LayerSelector
 - **[src/components/Identify.jsx](src/components/Identify.jsx)**: UGRC API calls for reverse geocoding, feature identification
 - **[src/config.ts](src/config.ts)**: App-wide constants (colors, WKIDs, breakpoints)
@@ -120,7 +121,8 @@ Use `getUrlParameter<T>` from `@ugrc/utilities` for initial load.
 - **Tailwind CSS v4** configured in [src/index.css](src/index.css) with `@theme`, `@plugin`, and `@source`
 - Include external Tailwind sources with `@source`, especially [src/index.css](src/index.css)'s design-system source entry
 - Custom font: `SourceSansPro-Black` for headings
-- Use `@ugrc/utah-design-system` components (Header, Footer, Drawer, etc.)
+- Use `@utahdts/utah-design-system-header` for official Utah header/footer chrome
+- Use `@ugrc/utah-design-system` components for Drawer, Sherlock, Geocode, SocialMedia, LayerSelector, and supporting links
 
 ## Special Considerations
 

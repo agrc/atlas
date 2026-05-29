@@ -38,6 +38,7 @@
     "@ugrc/tailwind-preset": "^2.0.0",
     "@ugrc/utah-design-system": "^4.0.3",
     "@ugrc/utilities": "^5.0.0",
+    "@utahdts/utah-design-system-header": "^5.1.0",
     "es-toolkit": "^1.46.1",
     "firebase": "^12.13.0",
     "ky": "^2.0.2",

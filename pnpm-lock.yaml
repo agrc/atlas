@@ -41,6 +41,9 @@ importers:
       '@ugrc/utilities':
         specifier: ^5.0.0
         version: 5.0.0(@arcgis/core@5.0.19)(react@19.2.6)
+      '@utahdts/utah-design-system-header':
+        specifier: ^5.1.0
+        version: 5.1.0
       es-toolkit:
         specifier: ^1.46.1
         version: 1.46.1
@@ -1637,6 +1640,9 @@ packages:
     peerDependencies:
       '@arcgis/core': 5.x
       react: '>=16.8.0'
+
+  '@utahdts/utah-design-system-header@5.1.0':
+    resolution: {integrity: sha512-eaQ1HmnXdin6nwTxMjggWT3pyU3l4XOsX1jKqjnuUAmQLZeuThBB1GWwdQeQj4k6k7DczzQinpFaWz9tBnNaAw==}
 
   '@vaadin/a11y-base@25.0.12':
     resolution: {integrity: sha512-ie5au1EoNIWOaLEroBF2K8V2PN9G+U52RVVGxEw8mWbe2RS537yac8wKk4tYGZgtv2pbNZSqzzW+/uxO2X5WgQ==}
@@ -7263,6 +7269,10 @@ snapshots:
       '@arcgis/core': 5.0.19
       ky: 2.0.2
       react: 19.2.6
+
+  '@utahdts/utah-design-system-header@5.1.0':
+    dependencies:
+      '@floating-ui/dom': 1.7.6
 
   '@vaadin/a11y-base@25.0.12':
     dependencies:
