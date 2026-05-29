@@ -3,6 +3,9 @@ allowBuilds:
   '@vaadin/vaadin-usage-statistics': false
   esbuild: false
   protobufjs: false
+publicHoistPattern:
+  - '@arcgis/*'
+  - '@esri/*'
 minimumReleaseAgeExclude:
   - '@ugrc/*'
   - brace-expansion@1.1.13
