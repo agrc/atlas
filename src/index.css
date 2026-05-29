@@ -52,3 +52,20 @@
     font-display: swap;
   }
 }
+
+.utah-design-system {
+  --primary-color: var(--color-primary-700);
+  --primary-color-dark: var(--color-primary-800);
+  --primary-color-light: var(--color-primary-200);
+  --secondary-color: var(--color-secondary-700);
+  --secondary-color-dark: var(--color-secondary-800);
+  --secondary-color-light: var(--color-secondary-200);
+  --accent-color: var(--color-accent-700);
+  --accent-color-dark: var(--color-accent-800);
+  --accent-color-light: var(--color-accent-200);
+  --header-title-color: var(--color-zinc-800);
+  --header-primary-color: var(--color-primary-700);
+  --header-primary-color-dark: var(--color-primary-800);
+  --link-color: var(--color-primary-700);
+  --link-color-dark: var(--color-primary-800);
+}
