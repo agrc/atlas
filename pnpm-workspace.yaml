@@ -3,6 +3,7 @@ allowBuilds:
   '@vaadin/vaadin-usage-statistics': false
   esbuild: false
   protobufjs: false
+  re2: false
 publicHoistPattern:
   - '@arcgis/*'
   - '@esri/*'
