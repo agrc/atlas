@@ -23,9 +23,9 @@ jobs:
           show-progress: false
 
       - name: 📦 Setup PNPM
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
-          version: latest
+          version: 11
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v6
@@ -34,7 +34,7 @@ jobs:
           cache: pnpm
 
       - name: 📥 Download dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: 🧶 Lint
         run: pnpm run lint
@@ -53,9 +53,9 @@ jobs:
           show-progress: false
 
       - name: 📦 Setup PNPM
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
-          version: latest
+          version: 11
 
       - name: ⎔ Setup Node.js
         uses: actions/setup-node@v6
@@ -64,7 +64,7 @@ jobs:
           cache: pnpm
 
       - name: 📥 Download dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: 🧪 Run tests
         run: pnpm test
