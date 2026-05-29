@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.9.2](https://github.com/agrc/atlas/compare/v5.9.1...v5.9.2) (2026-05-29)
+
+
+### Bug Fixes
+
+* fix app loading error ([7922793](https://github.com/agrc/atlas/commit/79227930d82de516559ea3c5650c82e3cf77eb2b))
+* migrate to official design system header and footer ([826c190](https://github.com/agrc/atlas/commit/826c190b1c8a4119c8403e63449314e33f6e92f1))
+* use UGRC colors in header/footer ([6b4f5e5](https://github.com/agrc/atlas/commit/6b4f5e5886645d1061263ba371dc77d1e3307665))
+* work-around arcgis/core import issue ([44fb219](https://github.com/agrc/atlas/commit/44fb2192f5bf148e00c06aa23dc2a924f4ec28d2))
+
+
+### Dependencies
+
+* bump NPM dependencies 🌲 ([678385d](https://github.com/agrc/atlas/commit/678385dea7a509ee4165a921eb50299067db2bb1)), closes [#554](https://github.com/agrc/atlas/issues/554)
+* more NPM dependency bumps ([dc626fc](https://github.com/agrc/atlas/commit/dc626fccafe40cbfca00689987abdc6a5897ee28))
+
 ## [5.9.1](https://github.com/agrc/atlas/compare/v5.9.0...v5.9.1) (2026-04-11)
 
 
