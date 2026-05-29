@@ -1,6 +1,6 @@
 import Graphic from '@arcgis/core/Graphic.js';
 import MapView from '@arcgis/core/views/MapView.js';
-import { useGraphicManager } from '@ugrc/utilities/hooks';
+import useGraphicManager from '@ugrc/utilities/hooks/useGraphicManager';
 import { createContext, type ReactNode, useState } from 'react';
 
 type GraphicOptions = Graphic | Graphic[] | null;

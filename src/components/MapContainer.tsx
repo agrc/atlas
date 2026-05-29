@@ -11,7 +11,7 @@ import '@arcgis/map-components/components/arcgis-map';
 import '@arcgis/map-components/components/arcgis-zoom';
 import type { LayerSelectorProps } from '@ugrc/utah-design-system/components/LayerSelector';
 import { LayerSelector } from '@ugrc/utah-design-system/components/LayerSelector';
-import { getUrlParameter, setUrlParameter } from '@ugrc/utilities';
+import { getUrlParameter, setUrlParameter } from '@ugrc/utilities/url';
 import { debounce } from 'es-toolkit/function';
 import { useMemo, useState } from 'react';
 import cityExtents from './data/cityExtents';
