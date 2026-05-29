@@ -6,9 +6,7 @@ import type { ClickEvent } from '@arcgis/core/views/input/types.js';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { Drawer } from '@ugrc/utah-design-system/components/Drawer';
-import { Footer } from '@ugrc/utah-design-system/components/Footer';
 import { Geocode } from '@ugrc/utah-design-system/components/Geocode';
-import { Header, UgrcLogo } from '@ugrc/utah-design-system/components/Header';
 import { ExternalLink } from '@ugrc/utah-design-system/components/Link';
 import { Sherlock, masqueradeProvider } from '@ugrc/utah-design-system/components/Sherlock';
 import { SocialMedia } from '@ugrc/utah-design-system/components/SocialMedia';
@@ -18,7 +16,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useOverlayTrigger } from 'react-aria';
 import { ErrorBoundary, getErrorMessage, type FallbackProps } from 'react-error-boundary';
 import { useOverlayTriggerState } from 'react-stately';
-import { MapContainer, Tip } from './components';
+import { MapContainer, Tip, UtahChrome } from './components';
 import { useMap } from './components/hooks';
 import { IdentifyInformation } from './components/Identify';
 import config from './config';
@@ -35,24 +33,6 @@ const ErrorFallback = ({ error }: FallbackProps) => {
   );
 };
 
-const links = [
-  {
-    key: 'UGRC Homepage',
-    action: { url: 'https://gis.utah.gov' },
-  },
-  {
-    key: 'GitHub Repository',
-    action: { url: 'https://github.com/agrc/atlas' },
-  },
-  {
-    key: `Version ${version} changelog`,
-    action: { url: `https://github.com/agrc/atlas/releases/v${version}` },
-  },
-  {
-    key: 'Third-party notices',
-    action: { url: '/ThirdPartyNotices.txt' },
-  },
-];
 const url = 'https://masquerade.ugrc.utah.gov/arcgis/rest/services/UtahLocator/GeocodeServer';
 const wkid = 26912;
 
@@ -185,16 +165,8 @@ export default function App() {
   );
 
   return (
-    <>
-      <main id="main-content" className="flex h-screen flex-col md:gap-2">
-        <Header links={links}>
-          <div className="flex h-full grow items-center gap-3">
-            <UgrcLogo />
-            <h1 className="font-heading text-3xl font-black text-zinc-600 sm:text-5xl dark:text-zinc-100">
-              Atlas Utah
-            </h1>
-          </div>
-        </Header>
+    <UtahChrome version={version}>
+      <main id="main-content" className="mt-2 flex min-h-0 flex-1 flex-col md:gap-2">
         <section className="relative flex min-h-0 flex-1 overflow-x-hidden md:mr-2">
           <Drawer main state={sideBarState} {...sideBarTriggerProps}>
             <div className="mx-2 mb-2 grid grid-cols-1 gap-2">
@@ -282,7 +254,6 @@ export default function App() {
           </div>
         </section>
       </main>
-      <Footer />
-    </>
+    </UtahChrome>
   );
 }

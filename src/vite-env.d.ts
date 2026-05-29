@@ -2,6 +2,7 @@
 /// <reference types="@esri/calcite-components/types/react" />
 /// <reference types="node" />
 /// <reference types="vite/client" />
+declare module '@utahdts/utah-design-system-header/css';
 
 interface ImportMetaEnv {
   readonly VITE_WEB_API: string;
