@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import loadVersion from 'vite-plugin-package-version';
 import { defineConfig } from 'vitest/config';
 
+const arcgisCorePath = new URL('./node_modules/@arcgis/core', import.meta.url).pathname;
+
 // https://vitejs.dev/config/
 export default defineConfig({
   optimizeDeps: {
@@ -11,6 +13,14 @@ export default defineConfig({
   plugins: [tailwindcss(), react(), loadVersion()],
   resolve: {
     alias: [
+      {
+        find: /^@arcgis\/core\/(.*)$/,
+        replacement: `${arcgisCorePath}/$1`,
+      },
+      {
+        find: '@arcgis/core',
+        replacement: arcgisCorePath,
+      },
       {
         find: 'use-sync-external-store/shim/index.js',
         replacement: 'react',
